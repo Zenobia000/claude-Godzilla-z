@@ -43,8 +43,8 @@ If you previously used VibeCoding templates with the phase-based numbering (01-1
 | Phase | Old name | New path |
 |---|---|---|
 | 11 | code_review_and_refactoring | [`3-process/code-review-checklist.md`](./3-process/code-review-checklist.md) |
-| 12 | frontend_architecture_specification | [`5-views/frontend-architecture.template.md`](./5-views/frontend-architecture.template.md) |
-| 17 | frontend_information_architecture | [`5-views/frontend-information-architecture.template.md`](./5-views/frontend-information-architecture.template.md) |
+| 12 | frontend_architecture_specification | **split** per [ADR-0001](../docs/1-decisions/ADR-0001-frontend-template-tier-realignment.md): `0-principles/frontend-quality-attributes` + `1-decisions/frontend-tech-stack` + `2-contracts/frontend-design-system` + `3-process/frontend-pre-merge-checklist` |
+| 17 | frontend_information_architecture | **split** per [ADR-0001](../docs/1-decisions/ADR-0001-frontend-template-tier-realignment.md): `2-contracts/page-contract` + `5-views/frontend-route-map` + `4-exploration/prd.template.md §6` |
 
 ## Phase 5: Security & Deployment
 

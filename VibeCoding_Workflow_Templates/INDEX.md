@@ -81,8 +81,7 @@ Project structure, dependency graphs, class diagrams, frontend trees. Regenerate
 - [`project-structure.template.md`](./5-views/project-structure.template.md)
 - [`file-dependencies.template.md`](./5-views/file-dependencies.template.md)
 - [`class-relationships.template.md`](./5-views/class-relationships.template.md)
-- [`frontend-architecture.template.md`](./5-views/frontend-architecture.template.md)
-- [`frontend-information-architecture.template.md`](./5-views/frontend-information-architecture.template.md)
+- [`frontend-route-map.template.md`](./5-views/frontend-route-map.template.md) — **NEW v5.4**: page tree + nav + route table + page-to-page data passing (derived from router config; per ADR-0001)
 
 ---
 
@@ -130,12 +129,12 @@ Project structure, dependency graphs, class diagrams, frontend trees. Regenerate
 | `09_file_dependencies_template.md` | `5-views/file-dependencies.template.md` |
 | `10_class_relationships_template.md` | `5-views/class-relationships.template.md` |
 | `11_code_review_and_refactoring_guide.md` | `3-process/code-review-checklist.md` |
-| `12_frontend_architecture_specification.md` | `5-views/frontend-architecture.template.md` |
+| `12_frontend_architecture_specification.md` | **split across 0/1/2/3** (per [ADR-0001](../docs/1-decisions/ADR-0001-frontend-template-tier-realignment.md)): `0-principles/frontend-quality-attributes`, `1-decisions/frontend-tech-stack`, `2-contracts/frontend-design-system`, `3-process/frontend-pre-merge-checklist` |
 | `13_security_and_readiness_checklists.md` | `3-process/security-readiness-checklist.md` |
 | `14_deployment_and_operations_guide.md` | `3-process/deployment-runbook.template.md` |
 | `15_documentation_and_maintenance_guide.md` | `3-process/docs-maintenance-guide.md` |
 | `16_wbs_development_plan_template.md` | `4-exploration/wbs.template.md` |
-| `17_frontend_information_architecture_template.md` | `5-views/frontend-information-architecture.template.md` |
+| `17_frontend_information_architecture_template.md` | **split** (per [ADR-0001](../docs/1-decisions/ADR-0001-frontend-template-tier-realignment.md)): `2-contracts/page-contract` (per-page contract), `5-views/frontend-route-map` (route/nav derive), `4-exploration/prd.template.md §6` (IA principles) |
 | *(new in v4)* | `0-principles/product-principles.template.md` |
 | *(new in v5)* | `0-principles/flow-id-conventions.md` |
 | *(new in v5)* | `2-contracts/flow-business.template.md` |
@@ -162,6 +161,7 @@ A migration script for downstream forks is at `scripts/migrate-templates-v3-to-v
 
 | Version | Date | Change |
 |---|---|---|
+| v5.4 | 2026-05-10 | Frontend template tier realignment (ADR-0001 / CR-0001): split `5-views/frontend-architecture` and `5-views/frontend-information-architecture` into 6 properly-tiered templates (0/1/2/3/5) + integrated IA principles into `prd.template.md §6` |
 | v5.3 | 2026-05-10 | Flow self-monitoring: project-wide flow-index aggregation template; sunnydata-flow-audit skill detecting broken refs / orphans / layering violations / stale flows / index drift |
 | v5.2 | 2026-05-10 | ERP-class foundation: Glossary (terminology source of truth); Module Boundary charter (per-module owns/NOT-owns); Domain Model (DDD aggregates + ERD + invariants); State Machine (extracted when complex); Master Data Specification (governance for long-lived shared entities) |
 | v5.1 | 2026-05-10 | "One doc, one question" enforcement: standalone Functional Requirement template (decouple FR from Flow); Test Plan strategic template; Vendor API Test Requirement template |
