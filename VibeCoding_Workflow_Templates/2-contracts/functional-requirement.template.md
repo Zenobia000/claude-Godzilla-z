@@ -7,6 +7,14 @@ supersedes: null
 superseded_by: null
 ---
 
+
+> **⚠️ WORKED EXAMPLE — DELETE BEFORE USE**
+> Concrete names below (Customer, Order, Inventory, PurchaseOrder, Stripe, etc.) come
+> from a worked e-commerce/ERP example to give AI strong few-shot context. **Replace
+> them with your domain's terms** when filling for your project. The structure (sections,
+> tables, frontmatter) is what to keep; the example content is what to swap or delete.
+> If your domain doesn't fit (CLI / library / ML / embedded), the example is still
+> useful as a structural reference — copy the shape, change the words.
 # FR-NNNN: <Functional Requirement Title — usually noun phrase, e.g. "Order creation rules">
 
 > **Tier**: 2-contracts → Functional Requirement (FR)
