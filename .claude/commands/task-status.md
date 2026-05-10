@@ -33,10 +33,10 @@ description: 查看專案 WBS 任務狀態總覽，追蹤進度和阻塞項。
   進度:   [=====-----] X%
 
 VibeCoding 模板合規:
-  05_architecture_and_design_document.md    [通過]
-  07_module_specification_and_tests.md      [待檢查]
-  08_project_structure_guide.md             [通過]
-  13_security_and_readiness_checklists.md   [待檢查]
+  1-decisions/architecture-overview.template.md    [通過]
+  2-contracts/module-contract.template.md      [待檢查]
+  5-views/project-structure.template.md             [通過]
+  3-process/security-readiness-checklist.md   [待檢查]
 
 任務清單:
   [完成] 1.1 專案初始化

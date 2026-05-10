@@ -78,6 +78,27 @@ EOF
             log "🔄 範本更新，可能需要重新評估任務"
         fi
     fi
+
+    # tier-2 contract 文件：自動更新 last-synced-with / synced-at frontmatter
+    # 守門：避免 hook 自身觸發遞迴
+    if [[ "$FILE_PATH" == *"docs/2-contracts/"* ]] && [ -z "${FRONTMATTER_AUTO_UPDATE:-}" ] && [ -f "$FILE_PATH" ]; then
+        if head -1 "$FILE_PATH" | grep -q "^---$"; then
+            CURRENT_SHA=$(cd "$PROJECT_ROOT" && git rev-parse HEAD 2>/dev/null || echo "no-git")
+            CURRENT_DATE=$(date '+%Y-%m-%d')
+
+            export FRONTMATTER_AUTO_UPDATE=1
+            # in-place 更新 frontmatter 內的兩個欄位（若存在）
+            if grep -q "^last-synced-with:" "$FILE_PATH"; then
+                sed -i.bak "s|^last-synced-with:.*|last-synced-with: $CURRENT_SHA|" "$FILE_PATH"
+            fi
+            if grep -q "^synced-at:" "$FILE_PATH"; then
+                sed -i.bak "s|^synced-at:.*|synced-at: $CURRENT_DATE|" "$FILE_PATH"
+            fi
+            rm -f "${FILE_PATH}.bak"
+            unset FRONTMATTER_AUTO_UPDATE
+            log "🔄 Auto-updated contract frontmatter: $FILE_PATH (sha=$CURRENT_SHA)"
+        fi
+    fi
 fi
 
 # 檢查是否為 WBS 檔案更新

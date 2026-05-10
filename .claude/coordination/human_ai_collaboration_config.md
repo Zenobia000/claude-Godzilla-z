@@ -17,20 +17,20 @@
 | 情境 | VibeCoding 範本 | 建議 Subagent | 觸發閾值 |
 |------|----------------|---------------|----------|
 | **專案規劃階段** |
-| 專案初始化 | `02_project_brief_and_prd.md` | documentation-specialist | HIGH |
-| 架構重大決策 | `04_architecture_decision_record_template.md` | workflow-template-manager | HIGH |
-| 功能驗收規劃 | `03_behavior_driven_development_guide.md` | e2e-validation-specialist | MEDIUM |
+| 專案初始化 | `4-exploration/prd.template.md` | documentation-specialist | HIGH |
+| 架構重大決策 | `1-decisions/adr.template.md` | workflow-template-manager | HIGH |
+| 功能驗收規劃 | `3-process/bdd-guide.md` | e2e-validation-specialist | MEDIUM |
 | **開發階段** |
-| 完成核心功能 | `05_architecture_and_design_document.md` | code-quality-specialist | MEDIUM |
-| API 變更/新增 | `06_api_design_specification.md` | documentation-specialist | HIGH |
-| 測試相關 | `07_module_specification_and_tests.md` | test-automation-engineer | HIGH |
-| 專案結構變更 | `08_project_structure_guide.md` | workflow-template-manager | LOW |
+| 完成核心功能 | `1-decisions/architecture-overview.template.md` | code-quality-specialist | MEDIUM |
+| API 變更/新增 | `2-contracts/api-spec.template.md` | documentation-specialist | HIGH |
+| 測試相關 | `2-contracts/module-contract.template.md` | test-automation-engineer | HIGH |
+| 專案結構變更 | `5-views/project-structure.template.md` | workflow-template-manager | LOW |
 | **程式碼分析階段** |
-| 複雜依賴關係 | `09_file_dependencies_template.md` | code-quality-specialist | MEDIUM |
-| 類別結構設計 | `10_class_relationships_template.md` | code-quality-specialist | MEDIUM |
+| 複雜依賴關係 | `5-views/file-dependencies.template.md` | code-quality-specialist | MEDIUM |
+| 類別結構設計 | `5-views/class-relationships.template.md` | code-quality-specialist | MEDIUM |
 | **品質保證階段** |
-| 安全考量 | `13_security_and_readiness_checklists.md` | security-infrastructure-auditor | HIGH |
-| 準備部署 | `13_security_and_readiness_checklists.md` | deployment-expert | HIGH |
+| 安全考量 | `3-process/security-readiness-checklist.md` | security-infrastructure-auditor | HIGH |
+| 準備部署 | `3-process/security-readiness-checklist.md` | deployment-expert | HIGH |
 
 ### 🔍 審視邏輯
 
@@ -46,12 +46,12 @@
 
 ### 快速指令實作
 
-| 指令 | 實作方式 | 範例 |
-|------|---------|------|
-| `/suggest-mode [level]` | 更新此配置檔 | `/suggest-mode low` |
-| `/review-code [path]` | 基於 VibeCoding 範本分析 | `/review-code src/api/` |
-| `/check-quality` | 觸發品質檢查建議 | 分析並建議相關 Subagent |
-| `/template-check [name]` | 檢查特定範本合規性 | `/template-check api` |
+| 入口 | 類型 | 實作方式 | 範例 |
+|------|------|---------|------|
+| `/suggest-mode [level]` | command | 更新此配置檔 | `/suggest-mode low` |
+| `vibecoding-code-review` | skill | 基於 VibeCoding 範本分析 | 自然語言觸發或 Skill tool |
+| `sunnydata-code-review` + `sunnydata-architecture-review` | skill | 通用品質與架構檢查 | Skill tool |
+| `/template-check [name]` | command | 檢查特定範本合規性 | `/template-check api` |
 
 ## 🚦 協作流程控制
 
@@ -61,7 +61,7 @@
 📊 基於 VibeCoding 範本的建議：
 
 🎯 偵測情境：[具體情境描述]
-📋 相關範本：03_architecture_and_design_document.md
+📋 相關範本：1-decisions/architecture-overview.template.md
 🤖 建議 Subagent：
   🟡 code-quality-specialist - 程式碼重構機會
   🔴 security-infrastructure-auditor - 安全檢查點
@@ -174,7 +174,7 @@ def analyze_and_suggest(code_changes, suggest_mode):
             suggestions.append({
                 'agent': 'documentation-specialist',
                 'reason': 'API 變更需要更新文檔',
-                'template': '06_api_design_specification.md',
+                'template': '2-contracts/api-spec.template.md',
                 'emoji': '📝'
             })
 
@@ -182,7 +182,7 @@ def analyze_and_suggest(code_changes, suggest_mode):
         suggestions.append({
             'agent': 'security-infrastructure-auditor',
             'reason': '偵測到安全相關程式碼',
-            'template': '13_security_and_readiness_checklists.md',
+            'template': '3-process/security-readiness-checklist.md',
             'emoji': '🔴'
         })
 

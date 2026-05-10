@@ -107,32 +107,38 @@ claude_v2026/
 │   │   ├── docs/                      # 文檔報告
 │   │   └── workflow/                  # 工作流報告
 │   │
-│   ├── coordination/                  # Agent 協調
-│   │   └── human_ai_collaboration_config.md
-│   │
-│   └── plugins/
-│       └── config.json
+│   └── coordination/                  # Agent 協調
+│       └── human_ai_collaboration_config.md
 │
-├── VibeCoding_Workflow_Templates/     # 工作流模板庫（17 個）
-│   ├── INDEX.md                       # 模板索引
-│   ├── 01_workflow_manual.md          # 流程總覽
-│   ├── 02_project_brief_and_prd.md   # PRD
-│   ├── 03_behavior_driven_development_guide.md  # BDD
-│   ├── 04_architecture_decision_record_template.md  # ADR
-│   ├── 05_architecture_and_design_document.md  # 架構設計
-│   ├── 06_api_design_specification.md # API 規範
-│   ├── 07_module_specification_and_tests.md  # 模組規格
-│   ├── 08_project_structure_guide.md  # 專案結構
-│   ├── 09_file_dependencies_template.md  # 依賴分析
-│   ├── 10_class_relationships_template.md  # 類別關係
-│   ├── 11_code_review_and_refactoring_guide.md  # Code Review
-│   ├── 12_frontend_architecture_specification.md  # 前端架構
-│   ├── 13_security_and_readiness_checklists.md  # 安全檢查
-│   ├── 14_deployment_and_operations_guide.md  # 部署運維
-│   ├── 15_documentation_and_maintenance_guide.md  # 文檔維護
-│   ├── 16_wbs_development_plan_template.md  # WBS 計劃
-│   ├── 17_frontend_information_architecture_template.md  # 前端 IA
-│   └── output_style.md               # Output Style 參考
+├── VibeCoding_Workflow_Templates/     # 工作流模板庫（v4 穩定性分層）
+│   ├── INDEX.md                       # 主索引（穩定性視圖）
+│   ├── LEGACY-INDEX.md                # 舊 v3 階段視圖（將於 v5 移除）
+│   ├── HOW-TO-INSTANTIATE.md          # 給 end user 的 docs/ 配置建議
+│   ├── 0-principles/                  # 一年一改：產品原則、技術不變量
+│   │   └── product-principles.template.md
+│   ├── 1-decisions/                   # Append-only：ADR、架構總覽
+│   │   ├── adr.template.md
+│   │   └── architecture-overview.template.md
+│   ├── 2-contracts/                   # 與 code 同步：API、模組契約
+│   │   ├── api-spec.template.md
+│   │   └── module-contract.template.md
+│   ├── 3-process/                     # 半年級：工作流、檢查清單、運維
+│   │   ├── workflow-manual.md
+│   │   ├── bdd-guide.md
+│   │   ├── code-review-checklist.md
+│   │   ├── security-readiness-checklist.md
+│   │   ├── deployment-runbook.template.md
+│   │   └── docs-maintenance-guide.md
+│   ├── 4-exploration/                 # 任務即用即丟：PRD、WBS
+│   │   ├── prd.template.md
+│   │   └── wbs.template.md
+│   ├── 5-views/                       # 衍生自 code，不手寫
+│   │   ├── project-structure.template.md
+│   │   ├── file-dependencies.template.md
+│   │   ├── class-relationships.template.md
+│   │   ├── frontend-architecture.template.md
+│   │   └── frontend-information-architecture.template.md
+│   └── output_style.md                # Output Style 參考
 │
 ├── everything-claude/                 # 參考資源庫（不直接使用）
 │   └── everything-claude-code/

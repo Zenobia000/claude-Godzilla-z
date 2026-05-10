@@ -67,11 +67,11 @@ docs/CODEMAPS/
 
 ## VibeCoding 模板整合
 
-- 參考 `04_architecture_decision_record_template.md` 撰寫 ADR
-- 參考 `05_architecture_and_design_document.md` 更新架構文檔
-- 參考 `06_api_design_specification.md` 維護 API 規格
-- 參考 `08_project_structure_guide.md` 更新專案結構指南
-- 參考 `15_documentation_and_maintenance_guide.md` 維護文檔生命週期
+- 參考 `1-decisions/adr.template.md` 撰寫 ADR
+- 參考 `1-decisions/architecture-overview.template.md` 更新架構文檔
+- 參考 `2-contracts/api-spec.template.md` 維護 API 規格
+- 參考 `5-views/project-structure.template.md` 更新專案結構指南
+- 參考 `3-process/docs-maintenance-guide.md` 維護文檔生命週期
 
 ## 關鍵原則
 
