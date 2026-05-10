@@ -5,6 +5,12 @@
 # Claude Code 個人設定
 .claude/settings.local.json
 
+# TaskMaster session-level 暫存檔（hook 高頻變動，不該入 git）
+# 保留 timelog.jsonl（append-only 歷史紀錄）
+.claude/taskmaster-data/.session-snapshot
+.claude/taskmaster-data/.session-start
+.claude/taskmaster-data/.current-task
+
 # Node
 node_modules/
 
