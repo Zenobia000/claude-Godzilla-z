@@ -1,12 +1,12 @@
 ---
-id: UF-NNNN
+
+## id: UF-NNNN
 status: draft
-owner: <team-or-person>
-last_reviewed: <YYYY-MM-DD>
+owner: 
+last_reviewed: 
 parent_business_flow: BF-NNNN
 supersedes: null
 superseded_by: null
----
 
 # UF-NNNN: <User Flow Name — verb + noun, e.g. "Customer Create Order">
 
@@ -17,11 +17,13 @@ superseded_by: null
 
 ## 1. Actor
 
-| Field | Value |
-|---|---|
-| Role | Customer / Admin / Operator / … |
-| Permission | What this role can/can't do in this flow |
+
+| Field       | Value                                      |
+| ----------- | ------------------------------------------ |
+| Role        | Customer / Admin / Operator / …            |
+| Permission  | What this role can/can't do in this flow   |
 | Entry point | Page / API / channel where the flow begins |
+
 
 ## 2. Trigger
 
@@ -37,15 +39,17 @@ How does this flow start? (User action, event, schedule, etc.)
 
 Step-by-step from the actor's perspective. Annotate UI surface where relevant.
 
-| # | Actor Action | System Response | Surface |
-|---|---|---|---|
-| 1 | Click "Add to cart" | Add item, update cart counter | `/products/[id]` |
-| 2 | Click "Checkout" | Navigate to checkout page | `/cart` |
-| 3 | Fill shipping address | Validate format | `/checkout` |
-| 4 | Select payment method | Show payment widget | `/checkout` |
-| 5 | Click "Confirm" | Create order, redirect to payment | `POST /orders` |
-| 6 | Complete payment with vendor | Vendor sends callback (`SF-NNNN`) | external |
-| 7 | Returns to confirmation page | Display order detail | `/orders/[id]/thanks` |
+
+| #   | Actor Action                 | System Response                   | Surface               |
+| --- | ---------------------------- | --------------------------------- | --------------------- |
+| 1   | Click "Add to cart"          | Add item, update cart counter     | `/products/[id]`      |
+| 2   | Click "Checkout"             | Navigate to checkout page         | `/cart`               |
+| 3   | Fill shipping address        | Validate format                   | `/checkout`           |
+| 4   | Select payment method        | Show payment widget               | `/checkout`           |
+| 5   | Click "Confirm"              | Create order, redirect to payment | `POST /orders`        |
+| 6   | Complete payment with vendor | Vendor sends callback (`SF-NNNN`) | external              |
+| 7   | Returns to confirmation page | Display order detail              | `/orders/[id]/thanks` |
+
 
 ## 5. Alternative / Branch Flows
 
@@ -55,19 +59,23 @@ Step-by-step from the actor's perspective. Annotate UI surface where relevant.
 
 ## 6. Exception Flow
 
-| Exception | UI Behavior | System Behavior |
-|---|---|---|
-| Card declined | Inline error on payment widget | Order kept as `pending_payment` |
-| Network drop on submit | Retry button + idempotency-key reuse | Backend dedupes via `SF-NNNN` |
-| Session expired mid-flow | Re-auth modal, restore cart | Cart persisted in session store |
+
+| Exception                | UI Behavior                          | System Behavior                 |
+| ------------------------ | ------------------------------------ | ------------------------------- |
+| Card declined            | Inline error on payment widget       | Order kept as `pending_payment` |
+| Network drop on submit   | Retry button + idempotency-key reuse | Backend dedupes via `SF-NNNN`   |
+| Session expired mid-flow | Re-auth modal, restore cart          | Cart persisted in session store |
+
 
 ## 7. Post-conditions (per outcome)
 
-| Outcome | State |
-|---|---|
-| Success | Order = `paid`; cart = empty; user redirected to confirmation |
-| Payment failed | Order = `pending_payment`; cart preserved; retry CTA shown |
-| User abandoned | Cart preserved 24h; abandonment email triggered (`SF-NNNN`) |
+
+| Outcome        | State                                                         |
+| -------------- | ------------------------------------------------------------- |
+| Success        | Order = `paid`; cart = empty; user redirected to confirmation |
+| Payment failed | Order = `pending_payment`; cart preserved; retry CTA shown    |
+| User abandoned | Cart preserved 24h; abandonment email triggered (`SF-NNNN`)   |
+
 
 ## 8. Related Sub Flows
 
@@ -103,12 +111,17 @@ Step-by-step from the actor's perspective. Annotate UI surface where relevant.
 
 ## 13. Open Questions
 
-| Question | Owner | Status |
-|---|---|---|
-| Should we show estimated delivery on confirmation? | Product | open |
+
+| Question                                           | Owner   | Status |
+| -------------------------------------------------- | ------- | ------ |
+| Should we show estimated delivery on confirmation? | Product | open   |
+
 
 ## 14. Change History
 
-| Date | CR | Change | Reviewer |
-|---|---|---|---|
-| YYYY-MM-DD | CR-NNNN | Initial | — |
+
+| Date       | CR      | Change  | Reviewer |
+| ---------- | ------- | ------- | -------- |
+| YYYY-MM-DD | CR-NNNN | Initial | —        |
+
+
