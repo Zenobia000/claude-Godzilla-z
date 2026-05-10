@@ -46,12 +46,12 @@
 
 ### 快速指令實作
 
-| 指令 | 實作方式 | 範例 |
-|------|---------|------|
-| `/suggest-mode [level]` | 更新此配置檔 | `/suggest-mode low` |
-| `/review-code [path]` | 基於 VibeCoding 範本分析 | `/review-code src/api/` |
-| `/check-quality` | 觸發品質檢查建議 | 分析並建議相關 Subagent |
-| `/template-check [name]` | 檢查特定範本合規性 | `/template-check api` |
+| 入口 | 類型 | 實作方式 | 範例 |
+|------|------|---------|------|
+| `/suggest-mode [level]` | command | 更新此配置檔 | `/suggest-mode low` |
+| `vibecoding-code-review` | skill | 基於 VibeCoding 範本分析 | 自然語言觸發或 Skill tool |
+| `sunnydata-code-review` + `sunnydata-architecture-review` | skill | 通用品質與架構檢查 | Skill tool |
+| `/template-check [name]` | command | 檢查特定範本合規性 | `/template-check api` |
 
 ## 🚦 協作流程控制
 

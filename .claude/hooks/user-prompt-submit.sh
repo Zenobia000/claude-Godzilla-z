@@ -56,9 +56,6 @@ if [[ "$USER_INPUT" == *"/task-"* ]]; then
     elif [[ "$USER_INPUT" == *"/task-next"* ]]; then
         log "➡️ 偵測到下個任務命令"
 
-    elif [[ "$USER_INPUT" == *"/hub-delegate"* ]]; then
-        log "🤖 偵測到智能體委派命令"
-
     elif [[ "$USER_INPUT" == *"/task-review"* ]]; then
         log "🔍 偵測到文檔審查命令"
     fi

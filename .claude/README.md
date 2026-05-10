@@ -34,7 +34,7 @@
 
 ### Agents（13 個）
 
-自動註冊，可透過 Agent tool 或 `/hub-delegate` 呼叫。
+自動註冊，透過 Agent tool 直接呼叫（harness 已內建 routing；不需要 `/hub-delegate` 中介）。
 
 | Agent | Model | 用途 |
 | :--- | :--- | :--- |
@@ -52,29 +52,25 @@
 | deployment-expert | sonnet | 部署運維 |
 | workflow-template-manager | sonnet | 模板管理 |
 
-### Commands（17 個）
+### Commands（11 個）
 
-在 Claude Code 中輸入 `/` 即可使用。
+在 Claude Code 中輸入 `/` 即可使用。**只保留觸碰系統狀態或具獨立程序邏輯的 commands**；其他改用 skill。詳見 `rules/primitive-selection.md`。
 
-| 指令 | 用途 |
-| :--- | :--- |
-| /plan | 規劃實作步驟 |
-| /tdd | 測試驅動開發 |
-| /build-fix | 修復建置錯誤 |
-| /e2e | E2E 測試 |
-| /verify | 全面驗證 |
-| /refactor-clean | 死碼清理 |
-| /review-code | 程式碼審查 |
-| /check-quality | 品質評估 |
-| /learn | 擷取模式 |
-| /save-session | 儲存 session |
-| /task-init | 專案初始化 |
-| /task-next | 下個任務（自動追蹤時間） |
-| /task-status | 專案狀態（含時間追蹤） |
-| /time-log | 開發時間報表（每日/每任務） |
-| /hub-delegate | Agent 委派 |
-| /suggest-mode | 建議密度 |
-| /template-check | 模板合規 |
+| 指令 | 用途 | 類型 |
+| :--- | :--- | :--- |
+| /build-fix | 修復建置錯誤（含建置工具偵測） | 程序 |
+| /verify | 全面驗證（建置+型別+lint+測試） | 程序 |
+| /refactor-clean | 死碼清理（含工具偵測） | 程序 |
+| /template-check | VibeCoding 模板合規檢查 | 程序 |
+| /learn | 擷取模式 | 系統狀態 |
+| /save-session | 儲存 session | 系統狀態 |
+| /task-init | 專案初始化 | 系統狀態 |
+| /task-next | 下個任務（自動追蹤時間） | 系統狀態 |
+| /task-status | 專案狀態（含時間追蹤） | 系統狀態 |
+| /time-log | 開發時間報表 | 系統狀態 |
+| /suggest-mode | 建議密度 | 系統狀態 |
+
+**已遷移至 skill 的舊 commands**：`/plan` → `superpowers:writing-plans`；`/tdd` → `superpowers:test-driven-development` 或 `vibecoding-write-tdd`；`/e2e` → `e2e-validation-specialist` agent；`/review-code` → `vibecoding-code-review`；`/hub-delegate` → Agent tool；`/check-quality` → `sunnydata-code-review` + `sunnydata-architecture-review`。
 
 ### Rules（7 個，自動載入）
 
@@ -90,18 +86,17 @@
 | performance | 模型選擇、Context 管理 |
 | patterns | Repository Pattern、API 格式 |
 
-### Skills（8 個精選）
+### Skills（**主要入口**，按需載入）
 
-放在 `skills/` 下，按需載入。更多可從 `everything-claude/skills/` 複製。
+放在 `skills/` 下。Skills 是 v4 之後的**預設原始元**——所有程序性知識都應走 skill。
 
-| Skill | 搭配 |
-| :--- | :--- |
-| tdd-workflow | /tdd |
-| api-design | API 模板 |
-| security-review | 安全 Agent |
-| e2e-testing | /e2e |
-| coding-standards | 所有開發 |
-| deep-research | 複雜問題 |
+主要 skill 群組：
+- `vibecoding-*`（14 個）：對應 VibeCoding 模板的生成 skills（PRD、ADR、API 契約、TDD 等）
+- `sunnydata-*`：通用工具（code-review、testing、security、debugging、design、doc-freshness 等）
+- `community-*`：社群貢獻（前端、a11y、UI 設計系統等）
+- `superpowers:*`：通用工程方法論（writing-plans、test-driven-development、brainstorming 等）
+
+完整清單見 `.claude/skills/INDEX.md`。
 | deployment-patterns | 部署規劃 |
 | docker-patterns | 容器化 |
 

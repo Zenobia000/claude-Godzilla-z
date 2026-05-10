@@ -17,29 +17,30 @@
 ### Phase 1: 任務循環（每個任務重複）
 
 ```
-/task-next          # 從 WBS 取下一個任務（自動開始時間追蹤）
+/task-next                  # command: 從 WBS 取下一個任務（自動開始時間追蹤）
     |
-/plan               # 規劃該任務的實作步驟（等待確認）
+superpowers:writing-plans   # skill: 規劃實作步驟（等待確認）
     |
-/tdd                # 測試驅動開發（Red → Green → Refactor）
+superpowers:test-driven-development  # skill: TDD（Red → Green → Refactor）
     |
-/build-fix          # 修復建置錯誤（如有）
+/build-fix                  # command: 修復建置錯誤（如有）
     |
-/review-code        # 程式碼審查
+vibecoding-code-review      # skill: 程式碼審查（依 VibeCoding 模板）
+   或 sunnydata-code-review
     |
-/e2e                # 端到端測試（關鍵流程）
+e2e-validation-specialist   # agent (Agent tool): E2E 測試
     |
-/verify full        # 全面驗證（建置+型別+lint+測試+安全）
+/verify full                # command: 全面驗證（建置+型別+lint+測試+安全）
     |
-/task-status        # 確認進度（含預估 vs 實際時間），回到 /task-next
+/task-status                # command: 確認進度（含預估 vs 實際時間），回到 /task-next
 ```
 
 ### Phase 2: 收尾
 
 ```bash
-/time-log           # 查看今日/累計開發時間
-/verify pre-pr      # PR 前完整檢查（含安全掃描）
-/save-session       # 儲存 session 狀態供下次恢復
+/time-log           # command: 查看今日/累計開發時間
+/verify pre-pr      # command: PR 前完整檢查（含安全掃描）
+/save-session       # command: 儲存 session 狀態供下次恢復
 ```
 
 ---
@@ -47,14 +48,29 @@
 ## 快速模式（小功能/Bug 修復）
 
 ```
-/plan [描述]  →  /tdd  →  /verify quick
+[describe task]  →  superpowers:test-driven-development  →  /verify quick
 ```
+讓 AI 自動載入 writing-plans skill；無需顯式 `/plan`。
+
+---
+
+## Primitive 選擇規則（重要）
+
+3 個原始元的決策依 `.claude/rules/primitive-selection.md`：
+
+| 入口類型 | 何時用 | 範例 |
+| :--- | :--- | :--- |
+| **command** (`/name`) | 觸碰 taskmaster/session/time-log 系統狀態，或有獨立程序邏輯 | `/save-session`, `/task-next`, `/verify`, `/build-fix` |
+| **skill** (auto-load 或 Skill tool) | **預設**。任何程序性知識 | `vibecoding-code-review`, `superpowers:writing-plans`, `sunnydata-debugging` |
+| **output-style** (`/output-style`) | 整個 session 持續的人格切換 | `/output-style 15-Vision-output`（視覺化模式） |
+
+**口訣**：預設用 skill；command 只給系統狀態工作流；output-style 只給人格切換。
 
 ---
 
 ## 指令速查
 
-### 核心工作流（按使用順序）
+### Commands（11 個，皆觸碰系統狀態或具獨立程序）
 
 | 指令 | 用途 | 常用參數 |
 | :--- | :--- | :--- |
@@ -62,25 +78,24 @@
 | `/task-next` | 取下一個任務（自動追蹤時間） | |
 | `/task-status` | 查看專案進度（含時間追蹤） | `--detailed`, `--metrics` |
 | `/time-log` | 開發時間報表 | `--today`, `--by-task`, `--week`, `--month` |
-| `/plan` | 規劃實作步驟 | [功能描述] |
-| `/tdd` | 測試驅動開發 | [功能描述] |
-| `/build-fix` | 修復建置錯誤 | |
-| `/review-code` | 程式碼審查 | [路徑] |
-| `/e2e` | E2E 測試 | [流程描述] |
+| `/build-fix` | 修復建置錯誤（含建置工具偵測） | |
 | `/verify` | 全面驗證 | `quick`, `full`, `pre-commit`, `pre-pr` |
+| `/refactor-clean` | 死碼清理（含工具偵測） | |
+| `/template-check` | VibeCoding 模板合規檢查 | |
+| `/suggest-mode` | 調整建議密度 | |
+| `/learn` | 擷取可重用模式 | |
+| `/save-session` | 儲存 session | |
 
-### 輔助指令
+### 已遷移至 skill 的舊 commands（**改用 skill / agent tool**）
 
-| 指令 | 用途 |
+| 舊 command | 新入口 |
 | :--- | :--- |
-| `/hub-delegate` | 委派 agent 執行任務 |
-| `/check-quality` | 品質評估 |
-| `/refactor-clean` | 死碼清理 |
-| `/template-check` | 模板合規檢查 |
-| `/time-log` | 開發時間報表（每日/每任務） |
-| `/suggest-mode` | 調整建議密度 |
-| `/learn` | 擷取可重用模式 |
-| `/save-session` | 儲存 session |
+| `/plan` | `superpowers:writing-plans` skill |
+| `/tdd` | `superpowers:test-driven-development` 或 `vibecoding-write-tdd` skill |
+| `/e2e` | `e2e-validation-specialist` agent (via Agent tool) |
+| `/review-code` | `vibecoding-code-review` 或 `sunnydata-code-review` skill |
+| `/hub-delegate` | Agent tool 本身（已內建路由） |
+| `/check-quality` | `sunnydata-code-review` + `sunnydata-architecture-review` skills |
 
 ---
 
@@ -122,16 +137,19 @@
 
 `.claude/skills/` 下的 skill 提供特定領域的深度知識：
 
-| Skill | 搭配指令 |
+| Skill | 觸發時機 |
 | :--- | :--- |
-| tdd-workflow | `/tdd` |
-| api-design | 06_api 模板 |
-| security-review | `/review-code` |
-| e2e-testing | `/e2e` |
-| coding-standards | 所有開發 |
-| deep-research | 複雜問題 |
-| deployment-patterns | `/verify pre-pr` |
-| docker-patterns | 容器化 |
+| `superpowers:test-driven-development` | TDD Red-Green-Refactor 工作流 |
+| `vibecoding-write-tdd` | 撰寫 TDD 單元測試規格 |
+| `sunnydata-api-design` | API 設計（搭配 `2-contracts/api-spec.template.md`） |
+| `vibecoding-code-review` | VibeCoding 模板式 code review |
+| `sunnydata-code-review` | 通用 code review 流程 |
+| `sunnydata-security` / `vibecoding-security-check` | 安全審查 |
+| `e2e-validation-specialist` (agent) | E2E 測試 |
+| `superpowers:writing-plans` | 規劃實作步驟 |
+| `sunnydata-deep-research` | 複雜問題的多源研究 |
+| `sunnydata-infrastructure` | 部署/容器化 |
+| `sunnydata-doc-freshness` | 檢查 tier-2 contract 文件鮮度 |
 
 ---
 

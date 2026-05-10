@@ -74,7 +74,7 @@ Claude Code 在使用者確認後：
 ## 開發流程
 
 遵循 `.claude/WORKFLOW.md` 的標準流程：
-/task-next → /plan → /tdd → /verify
+/task-next → superpowers:writing-plans (skill) → superpowers:test-driven-development (skill) → /verify
 
 ## 專案規則
 
@@ -192,9 +192,9 @@ GitHub 儲存庫設定：
 - GitHub: [啟用/未啟用]
 
 下一步：
-1. /task-next  取得第一個任務
-2. /plan       規劃實作步驟
-3. /tdd        開始開發
+1. /task-next                          取得第一個任務 (command)
+2. superpowers:writing-plans            規劃實作步驟 (skill)
+3. superpowers:test-driven-development  開始開發 (skill)
 ```
 
 <!-- CLAUDE_CODE_INIT_END -->

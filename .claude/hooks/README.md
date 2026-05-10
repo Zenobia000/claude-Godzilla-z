@@ -44,7 +44,7 @@
 # - /task-init
 # - /task-status
 # - /task-next
-# - /hub-delegate
+# - /task-review
 # - docs/ 路徑
 # - .md 檔案操作
 ```

@@ -139,19 +139,21 @@ main ──┬── feat/xxx ──── PR ──→ main
 分支確認 → 研究 → 規劃 → TDD → 審查 → 提交 → PR
 ```
 
-| 指令 | 用途 |
-| :--- | :--- |
-| `/task-init` | 建立 WBS、分析複雜度 |
-| `/task-next` | 取下一個任務 |
-| `/plan` | 規劃實作步驟 |
-| `/tdd` | Red-Green-Refactor |
-| `/review-code` | 程式碼審查 |
-| `/verify` | 全面驗證 |
-| `/e2e` | Playwright E2E |
-| `/build-fix` | 修復建置錯誤 |
-| `/task-status` | 進度總覽 |
-| `/time-log` | 開發時間報表 |
-| `/save-session` | 儲存 session 狀態 |
+| 入口 | 類型 | 用途 |
+| :--- | :--- | :--- |
+| `/task-init` | command | 建立 WBS、分析複雜度 |
+| `/task-next` | command | 取下一個任務 |
+| `superpowers:writing-plans` | skill | 規劃實作步驟 |
+| `superpowers:test-driven-development` | skill | Red-Green-Refactor |
+| `vibecoding-code-review` / `sunnydata-code-review` | skill | 程式碼審查 |
+| `/verify` | command | 全面驗證 |
+| `e2e-validation-specialist` | agent | Playwright E2E |
+| `/build-fix` | command | 修復建置錯誤 |
+| `/task-status` | command | 進度總覽 |
+| `/time-log` | command | 開發時間報表 |
+| `/save-session` | command | 儲存 session 狀態 |
+
+**Primitive 選擇**：command 限觸碰系統狀態；skill 是預設入口。詳見 `.claude/rules/primitive-selection.md`。
 
 ---
 
