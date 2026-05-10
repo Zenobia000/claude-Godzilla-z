@@ -28,8 +28,9 @@ See [HOW-TO-INSTANTIATE.md](./HOW-TO-INSTANTIATE.md) for how to use these templa
 ## The 6 tiers
 
 ### 0-principles — *near-immutable invariants*
-Mission, non-goals, quality bars, technical hard limits. Reviewed every 6 months, changed only on major version. AI loads this first.
+Mission, non-goals, quality bars, technical hard limits, naming conventions. Reviewed every 6 months, changed only on major version. AI loads this first.
 - [`product-principles.template.md`](./0-principles/product-principles.template.md)
+- [`flow-id-conventions.md`](./0-principles/flow-id-conventions.md) — **NEW v5**: 9-prefix Flow ID system (BF/UF/SF/FR/NFR/API/TC/ADR/CR)
 
 ### 1-decisions — *append-only judgments*
 ADRs and architecture overviews. Once Accepted, never edited; superseded by writing a new ADR.
@@ -37,23 +38,29 @@ ADRs and architecture overviews. Once Accepted, never edited; superseded by writ
 - [`architecture-overview.template.md`](./1-decisions/architecture-overview.template.md)
 
 ### 2-contracts — *interfaces that MUST track code*
-API specs, module contracts, data schemas. Carry frontmatter `last-synced-with: <commit-sha>`; the `/check-doc-freshness` skill flags drift.
+API specs, module contracts, layered Flows, traceability. Carry frontmatter `id`, `status`, `last-synced-with`; the `sunnydata-doc-freshness` skill flags drift + lifecycle issues.
 - [`api-spec.template.md`](./2-contracts/api-spec.template.md)
 - [`module-contract.template.md`](./2-contracts/module-contract.template.md)
+- [`flow-business.template.md`](./2-contracts/flow-business.template.md) — **NEW v5**: L1 Business Flow (BF)
+- [`flow-user.template.md`](./2-contracts/flow-user.template.md) — **NEW v5**: L2 User Flow (UF)
+- [`flow-sub.template.md`](./2-contracts/flow-sub.template.md) — **NEW v5**: L3 reusable Sub Flow (SF)
+- [`traceability-matrix.template.md`](./2-contracts/traceability-matrix.template.md) — **NEW v5**: cross-layer coverage map
 
 ### 3-process — *how we work*
-Workflow guides, checklists, methodology references, runbooks.
+Workflow guides, checklists, methodology references, runbooks, gates.
 - [`workflow-manual.md`](./3-process/workflow-manual.md)
 - [`bdd-guide.md`](./3-process/bdd-guide.md)
 - [`code-review-checklist.md`](./3-process/code-review-checklist.md)
 - [`security-readiness-checklist.md`](./3-process/security-readiness-checklist.md)
 - [`deployment-runbook.template.md`](./3-process/deployment-runbook.template.md)
 - [`docs-maintenance-guide.md`](./3-process/docs-maintenance-guide.md)
+- [`quality-gates.md`](./3-process/quality-gates.md) — **NEW v5**: Gate 0-4 stage prerequisites
 
 ### 4-exploration — *per-task ephemeral intent*
-PRDs, WBS, brainstorms. Date-stamp filenames, archive when shipped.
+PRDs, WBS, brainstorms, change-impact analyses. Date-stamp filenames, archive when shipped.
 - [`prd.template.md`](./4-exploration/prd.template.md)
 - [`wbs.template.md`](./4-exploration/wbs.template.md)
+- [`change-impact-analysis.template.md`](./4-exploration/change-impact-analysis.template.md) — **NEW v5**: CIA (CR-NNNN) — produced by `sunnydata-change-impact-analysis` skill, mandated by `change-governance` rule
 
 ### 5-views — *derived from code; do not hand-edit*
 Project structure, dependency graphs, class diagrams, frontend trees. Regenerate via `/regenerate-views` skill or language-specific tooling.
@@ -115,7 +122,14 @@ Project structure, dependency graphs, class diagrams, frontend trees. Regenerate
 | `15_documentation_and_maintenance_guide.md` | `3-process/docs-maintenance-guide.md` |
 | `16_wbs_development_plan_template.md` | `4-exploration/wbs.template.md` |
 | `17_frontend_information_architecture_template.md` | `5-views/frontend-information-architecture.template.md` |
-| *(new)* | `0-principles/product-principles.template.md` |
+| *(new in v4)* | `0-principles/product-principles.template.md` |
+| *(new in v5)* | `0-principles/flow-id-conventions.md` |
+| *(new in v5)* | `2-contracts/flow-business.template.md` |
+| *(new in v5)* | `2-contracts/flow-user.template.md` |
+| *(new in v5)* | `2-contracts/flow-sub.template.md` |
+| *(new in v5)* | `2-contracts/traceability-matrix.template.md` |
+| *(new in v5)* | `3-process/quality-gates.md` |
+| *(new in v5)* | `4-exploration/change-impact-analysis.template.md` |
 
 A migration script for downstream forks is at `scripts/migrate-templates-v3-to-v4.sh`.
 
@@ -125,6 +139,7 @@ A migration script for downstream forks is at `scripts/migrate-templates-v3-to-v
 
 | Version | Date | Change |
 |---|---|---|
+| v5.0 | 2026-05-10 | Change Governance: Flow ID system (BF/UF/SF/FR/NFR/API/TC/ADR/CR), layered Flow templates, Traceability Matrix, Quality Gates, CIA template & skill, change-governance hard-gate rule, lifecycle frontmatter (status/supersedes) |
 | v4.0 | 2026-05-10 | Stability-tier layout; added 0-principles; .template.md naming; sync metadata for tier 2 |
 | v3.0 | 2026-03-16 | Phase-based numbering, removed cookbook, unified zh-TW |
 | v2.1 | 2025-10-03 | Added 17 (frontend IA) |

@@ -30,16 +30,39 @@ Every instance file in `docs/2-contracts/` MUST carry frontmatter:
 
 ```yaml
 ---
-last-synced-with: <git-commit-sha>   # the HEAD when this doc was last verified
-sync-source: code | doc              # which side is authoritative
-source-paths:                        # the code paths this contract describes
+# Identity (REQUIRED — see 0-principles/flow-id-conventions.md)
+id: BF-NNNN | UF-NNNN | SF-NNNN | API-NNNN | FR-NNNN
+
+# Lifecycle (REQUIRED)
+status: draft | active | deprecated | superseded | archived
+owner: <team-or-person>
+last_reviewed: <YYYY-MM-DD>
+
+# Supersession chain (REQUIRED if status=superseded; null otherwise)
+supersedes: <previous-doc-id-or-null>
+superseded_by: <replacement-doc-id-or-null>
+
+# Sync (REQUIRED for code-tracking contracts; omit for cross-cutting docs like traceability-matrix)
+last-synced-with: <git-commit-sha>     # HEAD when last verified
+sync-source: code | doc                 # which side is authoritative
+source-paths:                            # code paths this contract describes
   - src/api/users.py
   - src/models/user.py
-synced-at: 2026-05-10
+synced-at: <YYYY-MM-DD>
 ---
 ```
 
-The `post-write` hook updates `last-synced-with` and `synced-at` automatically when you edit the file. The `/check-doc-freshness` skill compares `last-synced-with` against the latest commit on each `source-path` and warns if the source has moved on.
+### Lifecycle states
+
+| status | Meaning | AI behavior |
+|---|---|---|
+| `draft` | In progress, not yet authoritative | Read but warn user it's not active |
+| `active` | Current source of truth (default) | Read normally |
+| `deprecated` | Still works but discouraged; migrate when convenient | Warn; suggest replacement |
+| `superseded` | Fully replaced; do not use | Skip; jump to `superseded_by` doc |
+| `archived` | Historical record; not in use | Ignore unless user explicitly asks |
+
+The `post-write` hook updates `last-synced-with` and `synced-at` automatically when you edit the file. The `sunnydata-doc-freshness` skill compares `last-synced-with` against the latest commit on each `source-path` AND inspects `status` to warn on stale content + lifecycle issues. The `change-governance` rule enforces that AI never treats a `status: deprecated` or `status: superseded` doc as authoritative.
 
 ## Files
 
@@ -47,3 +70,7 @@ The `post-write` hook updates `last-synced-with` and `synced-at` automatically w
 |---|---|
 | `api-spec.template.md` | REST/GraphQL API contract (endpoints, schemas, errors, versioning) |
 | `module-contract.template.md` | Module/class public contract (DbC pre/post-conditions, invariants, test cases) |
+| `flow-business.template.md` | L1 Business Flow (BF) — end-to-end across roles |
+| `flow-user.template.md` | L2 User Flow (UF) — single-actor surface-mapped flow |
+| `flow-sub.template.md` | L3 Sub Flow (SF) — reusable building block |
+| `traceability-matrix.template.md` | Cross-layer coverage map (BF→UF→SF→FR→API→Data→TC→CI) |

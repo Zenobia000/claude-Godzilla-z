@@ -40,3 +40,4 @@ These documents constrain *how* AI executes — they don't dictate the architect
 | `security-readiness-checklist.md` | Pre-launch security gates | Checklist |
 | `deployment-runbook.template.md` | Per-service deployment + rollback steps | Template |
 | `docs-maintenance-guide.md` | When to write/update/delete documentation | Guide |
+| `quality-gates.md` | Gate 0-4 stage prerequisites (requirements / FE buildable / BE parallelizable / DB / tests) | Guide |
