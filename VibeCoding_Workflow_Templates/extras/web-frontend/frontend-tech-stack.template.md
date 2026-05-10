@@ -1,3 +1,11 @@
+---
+id: FTS-NNNN
+status: draft        # draft | active | deprecated | superseded | archived
+owner: <frontend-architect-or-lead>
+last_reviewed: <YYYY-MM-DD>
+supersedes: null
+superseded_by: null
+---
 # Frontend Tech Stack & Project Structure - [專案名稱]
 
 > **版本:** v1.0 | **更新:** YYYY-MM-DD | **狀態:** 草稿/審核中/已接受

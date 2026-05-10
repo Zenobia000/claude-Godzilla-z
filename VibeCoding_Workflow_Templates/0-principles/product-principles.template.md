@@ -1,3 +1,11 @@
+---
+id: PP-NNNN
+status: draft        # draft | active | deprecated | superseded | archived
+owner: <product-or-leadership>
+last_reviewed: <YYYY-MM-DD>
+supersedes: null
+superseded_by: null
+---
 # Product Principles — `<PROJECT_NAME>`
 
 > **Stability tier**: `0-principles` (highest). Change at most once per major version.

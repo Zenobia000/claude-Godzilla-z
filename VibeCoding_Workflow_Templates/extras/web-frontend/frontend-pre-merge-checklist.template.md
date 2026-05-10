@@ -1,3 +1,10 @@
+---
+status: draft        # draft | active | deprecated | superseded | archived
+owner: <frontend-lead>
+last_reviewed: <YYYY-MM-DD>
+supersedes: null
+superseded_by: null
+---
 # Frontend Pre-Merge Checklist
 
 > **Tier**: 3-process → process guide

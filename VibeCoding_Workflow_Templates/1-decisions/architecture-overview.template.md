@@ -1,3 +1,11 @@
+---
+id: ARCH-NNNN
+status: draft        # draft | active | deprecated | superseded | archived
+owner: <architect-or-tech-lead>
+last_reviewed: <YYYY-MM-DD>
+supersedes: null
+superseded_by: null
+---
 # 架構與設計文件 - [專案名稱]
 
 > **版本:** v1.0 | **更新:** YYYY-MM-DD | **狀態:** 草稿/審核中/已批准

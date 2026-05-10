@@ -1,3 +1,11 @@
+---
+id: FQA-NNNN
+status: draft        # draft | active | deprecated | superseded | archived
+owner: <frontend-lead>
+last_reviewed: <YYYY-MM-DD>
+supersedes: null
+superseded_by: null
+---
 # Frontend Quality Attributes — `<PROJECT_NAME>`
 
 > **Stability tier**: `0-principles` (highest). Change at most once per major version.

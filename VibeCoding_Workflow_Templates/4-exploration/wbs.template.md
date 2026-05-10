@@ -1,3 +1,12 @@
+---
+id: WBS-NNNN
+status: draft        # draft | reviewed | approved | in-progress | shipped | archived
+owner: <project-lead>
+created: <YYYY-MM-DD>
+target_release: <version-or-quarter>
+supersedes: null
+superseded_by: null
+---
 # WBS 開發計劃 - [專案名稱]
 
 > **版本:** v1.0 | **更新:** YYYY-MM-DD | **狀態:** 草稿/進行中/完成

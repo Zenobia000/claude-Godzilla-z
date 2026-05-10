@@ -1,3 +1,16 @@
+---
+id: MC-NNNN
+status: draft        # draft | active | deprecated | superseded | archived
+owner: <module-owner-team>
+last_reviewed: <YYYY-MM-DD>
+last-synced-with: <git-commit-sha>
+sync-source: code             # module contracts usually mirror code
+source-paths:
+  - src/<module>/
+synced-at: <YYYY-MM-DD>
+supersedes: null
+superseded_by: null
+---
 # 模組規格與測試案例 - [模組名稱]
 
 > **版本:** v1.0 | **更新:** YYYY-MM-DD | **狀態:** 草稿/開發中/已完成

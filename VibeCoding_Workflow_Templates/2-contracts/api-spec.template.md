@@ -1,3 +1,16 @@
+---
+id: API-NNNN
+status: draft        # draft | active | deprecated | superseded | archived
+owner: <api-owner-team>
+last_reviewed: <YYYY-MM-DD>
+last-synced-with: <git-commit-sha>
+sync-source: code | doc       # contract-first → doc; code-first → code
+source-paths:
+  - src/<module>/<api-handler-file>
+synced-at: <YYYY-MM-DD>
+supersedes: null
+superseded_by: null
+---
 # API 設計規範 - [API/服務名稱]
 
 > **版本:** v1.0 | **更新:** YYYY-MM-DD | **狀態:** 草稿/已發布 | **OpenAPI 定義:** [連結]

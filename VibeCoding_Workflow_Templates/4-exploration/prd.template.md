@@ -1,3 +1,12 @@
+---
+id: PRD-NNNN
+status: draft        # draft | reviewed | approved | shipped | archived
+owner: <product-owner>
+created: <YYYY-MM-DD>
+target_release: <version-or-quarter>
+supersedes: null
+superseded_by: null
+---
 # 專案簡報與產品需求文件 (PRD) - [專案名稱]
 
 > **版本:** v1.0 | **更新:** YYYY-MM-DD | **狀態:** 草稿/審核中/已批准

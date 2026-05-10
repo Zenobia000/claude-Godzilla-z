@@ -1,3 +1,13 @@
+---
+status: active
+last-synced-with: <git-commit-sha>
+sync-source: code             # tier-5 views are derived from code
+source-paths:
+  - src/
+synced-at: <YYYY-MM-DD>
+generated-by: sunnydata-auto-regen
+generation-source: <tool-used-e.g.-pyan-madge-tree>
+---
 # 類別/元件關係文件 - [專案名稱]
 
 > **版本:** v1.0 | **更新:** YYYY-MM-DD | **狀態:** 草稿/已批准
