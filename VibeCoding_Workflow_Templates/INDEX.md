@@ -1,100 +1,132 @@
-# VibeCoding 工作流程模板索引
+# VibeCoding Workflow Templates
 
-> **版本:** v3.0 | **更新:** 2026-03-16
-
----
-
-## 模板清單
-
-### 階段 0: 總覽與工作流
-
-| # | 檔名 | 用途 |
-| :---: | :--- | :--- |
-| 01 | [workflow_manual.md](./01_workflow_manual.md) | 開發流程使用說明書，完整流程與 MVP 模式選擇 |
-
-### 階段 1: 規劃 (02-03)
-
-| # | 檔名 | 用途 |
-| :---: | :--- | :--- |
-| 02 | [project_brief_and_prd.md](./02_project_brief_and_prd.md) | 專案簡報與 PRD |
-| 03 | [behavior_driven_development_guide.md](./03_behavior_driven_development_guide.md) | BDD 指南與 Gherkin 範本 |
-
-### 階段 2: 架構與設計 (04-06)
-
-| # | 檔名 | 用途 |
-| :---: | :--- | :--- |
-| 04 | [architecture_decision_record_template.md](./04_architecture_decision_record_template.md) | ADR 模板 |
-| 05 | [architecture_and_design_document.md](./05_architecture_and_design_document.md) | 架構與設計文檔 (C4/DDD) |
-| 06 | [api_design_specification.md](./06_api_design_specification.md) | API 設計規範 |
-
-### 階段 3: 詳細設計 (07-10)
-
-| # | 檔名 | 用途 |
-| :---: | :--- | :--- |
-| 07 | [module_specification_and_tests.md](./07_module_specification_and_tests.md) | 模組規格與測試案例 (DbC) |
-| 08 | [project_structure_guide.md](./08_project_structure_guide.md) | 專案結構指南 |
-| 09 | [file_dependencies_template.md](./09_file_dependencies_template.md) | 模組依賴關係分析 |
-| 10 | [class_relationships_template.md](./10_class_relationships_template.md) | 類別關係文檔 (UML) |
-
-### 階段 4: 開發與品質 (11-12, 17)
-
-| # | 檔名 | 用途 |
-| :---: | :--- | :--- |
-| 11 | [code_review_and_refactoring_guide.md](./11_code_review_and_refactoring_guide.md) | 程式碼審查與重構指南 |
-| 12 | [frontend_architecture_specification.md](./12_frontend_architecture_specification.md) | 前端架構規範 |
-| 17 | [frontend_information_architecture_template.md](./17_frontend_information_architecture_template.md) | 前端資訊架構規範 |
-
-### 階段 5: 安全與部署 (13-14)
-
-| # | 檔名 | 用途 |
-| :---: | :--- | :--- |
-| 13 | [security_and_readiness_checklists.md](./13_security_and_readiness_checklists.md) | 安全與生產準備檢查清單 |
-| 14 | [deployment_and_operations_guide.md](./14_deployment_and_operations_guide.md) | 部署與運維指南 |
-
-### 階段 6: 維護與管理 (15-16)
-
-| # | 檔名 | 用途 |
-| :---: | :--- | :--- |
-| 15 | [documentation_and_maintenance_guide.md](./15_documentation_and_maintenance_guide.md) | 文檔與維護指南 |
-| 16 | [wbs_development_plan_template.md](./16_wbs_development_plan_template.md) | WBS 開發計劃模板 |
+> **Version:** v4.0 — Stability-tier layout
+> **Updated:** 2026-05-10
+> **Migration from v3:** see [LEGACY-INDEX.md](./LEGACY-INDEX.md)
 
 ---
 
-## 使用流程
+## Why this layout
 
-```mermaid
-graph LR
-  A[01 選擇模式] --> B[02 PRD] --> C[03 BDD]
-  C --> D[04 ADR + 05 架構]
-  D --> E[06 API + 07 模組]
-  E --> F[08 結構 + 09 依賴 + 10 類別]
-  F --> G[11 審查 + 12/17 前端]
-  G --> H[13 安全]
-  H --> I[14 部署]
-  I --> J[15 文檔 + 16 WBS]
+Templates are organized by **stability tier**, not by workflow phase. The path prefix (`0-`, `1-`, ..., `5-`) tells you and your AI **how often this kind of doc changes** — which is the metadata that matters most when deciding whether to trust a doc as ground truth.
+
+Lower number = more stable. Higher number = changes more often.
+
+```
+0-principles  ←  read first, trust most
+1-decisions
+2-contracts
+3-process
+4-exploration
+5-views        ←  read last, trust least (regenerate from code)
 ```
 
----
-
-## 依角色查找
-
-| 角色 | 常用模板 |
-| :--- | :--- |
-| PM | 00, 02, 03 |
-| TL | 00, 04, 05 |
-| ARCH | 05, 09, 10 |
-| 後端 DEV | 07, 08, 11 |
-| 前端 DEV | 12, 17 |
-| SEC | 13 |
-| SRE/OPS | 14 |
+See [HOW-TO-INSTANTIATE.md](./HOW-TO-INSTANTIATE.md) for how to use these templates inside your own project.
 
 ---
 
-## 版本記錄
+## The 6 tiers
 
-| 版本 | 日期 | 變更 |
-| :--- | :--- | :--- |
-| v3.0 | 2026-03-16 | 全面精簡優化，移除冗餘的 01_cookbook，統一繁中 |
-| v2.1 | 2025-10-03 | 新增 17_frontend_information_architecture |
-| v2.0 | 2025-10-03 | 重新組織序號，新增 INDEX |
-| v1.0 | 2025-10-01 | 初始版本 |
+### 0-principles — *near-immutable invariants*
+Mission, non-goals, quality bars, technical hard limits. Reviewed every 6 months, changed only on major version. AI loads this first.
+- [`product-principles.template.md`](./0-principles/product-principles.template.md)
+
+### 1-decisions — *append-only judgments*
+ADRs and architecture overviews. Once Accepted, never edited; superseded by writing a new ADR.
+- [`adr.template.md`](./1-decisions/adr.template.md)
+- [`architecture-overview.template.md`](./1-decisions/architecture-overview.template.md)
+
+### 2-contracts — *interfaces that MUST track code*
+API specs, module contracts, data schemas. Carry frontmatter `last-synced-with: <commit-sha>`; the `/check-doc-freshness` skill flags drift.
+- [`api-spec.template.md`](./2-contracts/api-spec.template.md)
+- [`module-contract.template.md`](./2-contracts/module-contract.template.md)
+
+### 3-process — *how we work*
+Workflow guides, checklists, methodology references, runbooks.
+- [`workflow-manual.md`](./3-process/workflow-manual.md)
+- [`bdd-guide.md`](./3-process/bdd-guide.md)
+- [`code-review-checklist.md`](./3-process/code-review-checklist.md)
+- [`security-readiness-checklist.md`](./3-process/security-readiness-checklist.md)
+- [`deployment-runbook.template.md`](./3-process/deployment-runbook.template.md)
+- [`docs-maintenance-guide.md`](./3-process/docs-maintenance-guide.md)
+
+### 4-exploration — *per-task ephemeral intent*
+PRDs, WBS, brainstorms. Date-stamp filenames, archive when shipped.
+- [`prd.template.md`](./4-exploration/prd.template.md)
+- [`wbs.template.md`](./4-exploration/wbs.template.md)
+
+### 5-views — *derived from code; do not hand-edit*
+Project structure, dependency graphs, class diagrams, frontend trees. Regenerate via `/regenerate-views` skill or language-specific tooling.
+- [`project-structure.template.md`](./5-views/project-structure.template.md)
+- [`file-dependencies.template.md`](./5-views/file-dependencies.template.md)
+- [`class-relationships.template.md`](./5-views/class-relationships.template.md)
+- [`frontend-architecture.template.md`](./5-views/frontend-architecture.template.md)
+- [`frontend-information-architecture.template.md`](./5-views/frontend-information-architecture.template.md)
+
+---
+
+## How AI should consume these templates
+
+| Tier | When to load | How to treat the content |
+|---|---|---|
+| 0-principles | Every new conversation | Hard constraint — overrides downstream |
+| 1-decisions | Before proposing architecture | Honor or escalate; never silently contradict |
+| 2-contracts | When touching public interfaces | Check `last-synced-with` first |
+| 3-process | Before category of work (review, deploy, test) | Follow the checklist |
+| 4-exploration | For motivation context | Don't assume current behavior |
+| 5-views | Almost never directly | Read the code, then optionally compare |
+
+---
+
+## How humans should pick a template to fill
+
+| You're doing… | Reach for… |
+|---|---|
+| Starting a project | `0-principles/product-principles.template.md` |
+| Recording an architectural choice | `1-decisions/adr.template.md` |
+| Documenting a service boundary | `2-contracts/api-spec.template.md` |
+| Documenting a module's public surface | `2-contracts/module-contract.template.md` |
+| Drafting a feature spec | `4-exploration/prd.template.md` |
+| Planning a sprint | `4-exploration/wbs.template.md` |
+| Adopting BDD on a new feature | `3-process/bdd-guide.md` (read, don't fill) |
+| Pre-launch checks | `3-process/security-readiness-checklist.md` (read, don't fill) |
+| Onboarding diagrams | `5-views/*` — but **regenerate**, don't write by hand |
+
+---
+
+## Old-numbering → new-path migration table
+
+| v3 path | v4 path |
+|---|---|
+| `01_workflow_manual.md` | `3-process/workflow-manual.md` |
+| `02_project_brief_and_prd.md` | `4-exploration/prd.template.md` |
+| `03_behavior_driven_development_guide.md` | `3-process/bdd-guide.md` |
+| `04_architecture_decision_record_template.md` | `1-decisions/adr.template.md` |
+| `05_architecture_and_design_document.md` | `1-decisions/architecture-overview.template.md` |
+| `06_api_design_specification.md` | `2-contracts/api-spec.template.md` |
+| `07_module_specification_and_tests.md` | `2-contracts/module-contract.template.md` |
+| `08_project_structure_guide.md` | `5-views/project-structure.template.md` |
+| `09_file_dependencies_template.md` | `5-views/file-dependencies.template.md` |
+| `10_class_relationships_template.md` | `5-views/class-relationships.template.md` |
+| `11_code_review_and_refactoring_guide.md` | `3-process/code-review-checklist.md` |
+| `12_frontend_architecture_specification.md` | `5-views/frontend-architecture.template.md` |
+| `13_security_and_readiness_checklists.md` | `3-process/security-readiness-checklist.md` |
+| `14_deployment_and_operations_guide.md` | `3-process/deployment-runbook.template.md` |
+| `15_documentation_and_maintenance_guide.md` | `3-process/docs-maintenance-guide.md` |
+| `16_wbs_development_plan_template.md` | `4-exploration/wbs.template.md` |
+| `17_frontend_information_architecture_template.md` | `5-views/frontend-information-architecture.template.md` |
+| *(new)* | `0-principles/product-principles.template.md` |
+
+A migration script for downstream forks is at `scripts/migrate-templates-v3-to-v4.sh`.
+
+---
+
+## Version history
+
+| Version | Date | Change |
+|---|---|---|
+| v4.0 | 2026-05-10 | Stability-tier layout; added 0-principles; .template.md naming; sync metadata for tier 2 |
+| v3.0 | 2026-03-16 | Phase-based numbering, removed cookbook, unified zh-TW |
+| v2.1 | 2025-10-03 | Added 17 (frontend IA) |
+| v2.0 | 2025-10-03 | Reorganized numbering, added INDEX |
+| v1.0 | 2025-10-01 | Initial release |
