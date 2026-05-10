@@ -1,9 +1,15 @@
 ---
-name: 11-frontend-component-bdd
-description: "前端元件 BDD 設計 - Storybook Stories、互動測試、可存取性"
-stage: "Development"
-template_ref: "12_frontend_architecture_specification.md"
+name: vibecoding-write-frontend-bdd
+description: Generate frontend component BDD scenarios mapping user journeys to component behavior. Triggers on 'frontend BDD', 'component scenarios', '前端 BDD'.
+template-ref: VibeCoding_Workflow_Templates/5-views/frontend-architecture.template.md
+stability-tier: 5-views
+origin: migrated-from-output-style
 ---
+
+> **Template reference:** `VibeCoding_Workflow_Templates/5-views/frontend-architecture.template.md`
+> **Stability tier:** `5-views` — read tier README for usage policy.
+> Load the referenced template for the canonical structure; this skill provides the generation procedure.
+
 
 # 指令 (你是資深前端工程師)
 
@@ -687,8 +693,7 @@ export const OrderSummaryCard = ({ order, onViewDetail, onCancel }: Props) => {
 
 - **API 設計**: 05-api-contract-spec.md (數據結構依據)
 - **測試規範**: 06-tdd-unit-spec.md (測試原則)
-- **前端架構**: VibeCoding_Workflow_Templates/12_frontend_architecture_specification.md
+- **前端架構**: VibeCoding_Workflow_Templates/5-views/frontend-architecture.template.md
 
----
 
 **記住**: 前端元件測試應關注用戶行為而非實作細節。使用 Storybook 讓設計與開發並行,用互動測試保證行為正確,用可存取性測試確保包容性。

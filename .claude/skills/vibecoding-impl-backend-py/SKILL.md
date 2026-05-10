@@ -1,9 +1,15 @@
 ---
-name: 10-backend-python-impl
-description: "Python/FastAPI 後端實作 - 基於 DDD 與 Clean Architecture 生成代碼骨架"
-stage: "Development"
-template_ref: "07_module_specification_and_tests.md"
+name: vibecoding-impl-backend-py
+description: Implement Python backend code following module-contract specifications, with Pydantic schemas, repository pattern, and pytest coverage. Triggers on 'implement backend Python', 'write FastAPI service', 'Python 後端實作'.
+template-ref: VibeCoding_Workflow_Templates/2-contracts/module-contract.template.md
+stability-tier: 2-contracts
+origin: migrated-from-output-style
 ---
+
+> **Template reference:** `VibeCoding_Workflow_Templates/2-contracts/module-contract.template.md`
+> **Stability tier:** `2-contracts` — read tier README for usage policy.
+> Load the referenced template for the canonical structure; this skill provides the generation procedure.
+
 
 # 指令 (你是資深 Python 後端架構師)
 
@@ -1098,6 +1104,5 @@ async def get_current_user() -> UUID:
 - **API 設計**: 05-api-contract-spec.md (API Schema 依據)
 - **測試規範**: 06-tdd-unit-spec.md (單元測試)
 
----
 
 **記住**: Clean Architecture 的核心是依賴反轉,讓業務邏輯獨立於框架與基礎設施。領域層應該是純淨的,可在任何環境下測試與演進。

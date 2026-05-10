@@ -1,9 +1,15 @@
 ---
-name: 09-database-schema-spec
-description: "資料庫實體綱要設計 - ERD、DDL、索引策略、查詢優化"
-stage: "Design"
-template_ref: "05_architecture_and_design_document.md"
+name: vibecoding-write-db-schema
+description: Generate database schema specifications: tables, relationships, indexes, migration plan. Triggers on 'database schema', 'DB design', 'schema migration', '資料庫設計'.
+template-ref: VibeCoding_Workflow_Templates/2-contracts/api-spec.template.md
+stability-tier: 2-contracts
+origin: migrated-from-output-style
 ---
+
+> **Template reference:** `VibeCoding_Workflow_Templates/2-contracts/api-spec.template.md`
+> **Stability tier:** `2-contracts` — read tier README for usage policy.
+> Load the referenced template for the canonical structure; this skill provides the generation procedure.
+
 
 # 指令 (你是資料庫架構師)
 
@@ -671,7 +677,7 @@ RENAME COLUMN new_email TO email;
 
 - DDL 腳本使用 SQL 格式
 - ERD 使用 Mermaid 語法
-- 遵循 VibeCoding_Workflow_Templates/05_architecture_and_design_document.md 的資料架構章節
+- 遵循 VibeCoding_Workflow_Templates/1-decisions/architecture-overview.template.md 的資料架構章節
 
 ## 審查清單
 
@@ -693,6 +699,5 @@ RENAME COLUMN new_email TO email;
 - **架構設計**: 03-architecture-design-doc.md (數據架構)
 - **API 設計**: 05-api-contract-spec.md (API 與數據模型對應)
 
----
 
 **記住**: 資料庫綱要是系統的基石,設計需兼顧正規化與效能,演進需確保向後相容。好的綱要讓查詢快速、維護輕鬆、擴展容易。

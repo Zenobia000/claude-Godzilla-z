@@ -1,9 +1,15 @@
 ---
-name: 02-bdd-scenario-spec
-description: "BDD 可執行規格 (Gherkin) - 將需求轉化為精確的業務語言場景"
-stage: "Planning"
-template_ref: "03_behavior_driven_development_guide.md"
+name: vibecoding-write-bdd
+description: Generate executable BDD specifications in Gherkin from a feature description. Triggers on 'write BDD', 'Gherkin scenarios', '行為驅動測試', '產出 BDD'.
+template-ref: VibeCoding_Workflow_Templates/3-process/bdd-guide.md
+stability-tier: 3-process
+origin: migrated-from-output-style
 ---
+
+> **Template reference:** `VibeCoding_Workflow_Templates/3-process/bdd-guide.md`
+> **Stability tier:** `3-process` — read tier README for usage policy.
+> Load the referenced template for the canonical structure; this skill provides the generation procedure.
+
 
 # 指令 (你是 BDD 引導專家)
 
@@ -296,10 +302,9 @@ features/
 
 ## 關聯文件
 
-- **需求來源**: 02_project_brief_and_prd.md (PRD)
-- **實作依據**: 07_module_specification_and_tests.md (模組規格)
-- **測試策略**: 13_security_and_readiness_checklists.md (測試完整性)
+- **需求來源**: 4-exploration/prd.template.md (PRD)
+- **實作依據**: 2-contracts/module-contract.template.md (模組規格)
+- **測試策略**: 3-process/security-readiness-checklist.md (測試完整性)
 
----
 
 **記住**: BDD 規格是業務與技術的橋樑,是可執行的文檔,是自動化測試的基礎。好的 BDD 規格讓團隊對"完成"有共同理解。

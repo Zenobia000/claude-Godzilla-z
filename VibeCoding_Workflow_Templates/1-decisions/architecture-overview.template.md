@@ -152,7 +152,7 @@ graph TD
 
 - **對應 BDD**: [連結]
 - **職責**: [簡述]
-- **API 設計**: -> 參考 06_api_design_specification.md
+- **API 設計**: -> 參考 2-contracts/api-spec.template.md
 - **資料模型**: [Schema 或說明]
 - **關鍵邏輯**: [偽碼或流程]
 

@@ -11,35 +11,35 @@ description: 根據 VibeCoding 模板進行程式碼審查，涵蓋品質、安�
 ## 審查項目
 
 ### 階段 0: 流程合規
-- `01_workflow_manual.md` → 開發流程合規性
+- `3-process/workflow-manual.md` → 開發流程合規性
 
 ### 階段 1: 規劃
-- `02_project_brief_and_prd.md` → 需求對齊
-- `03_behavior_driven_development_guide.md` → BDD 覆蓋率
+- `4-exploration/prd.template.md` → 需求對齊
+- `3-process/bdd-guide.md` → BDD 覆蓋率
 
 ### 階段 2: 架構設計
-- `04_architecture_decision_record_template.md` → ADR 記錄
-- `05_architecture_and_design_document.md` → 系統架構
-- `06_api_design_specification.md` → API 設計合規
+- `1-decisions/adr.template.md` → ADR 記錄
+- `1-decisions/architecture-overview.template.md` → 系統架構
+- `2-contracts/api-spec.template.md` → API 設計合規
 
 ### 階段 3: 詳細設計
-- `07_module_specification_and_tests.md` → 模組規格與測試
-- `08_project_structure_guide.md` → 專案結構
-- `09_file_dependencies_template.md` → 依賴分析
-- `10_class_relationships_template.md` → 類別設計
+- `2-contracts/module-contract.template.md` → 模組規格與測試
+- `5-views/project-structure.template.md` → 專案結構
+- `5-views/file-dependencies.template.md` → 依賴分析
+- `5-views/class-relationships.template.md` → 類別設計
 
 ### 階段 4: 開發品質
-- `11_code_review_and_refactoring_guide.md` → 審查清單
-- `12_frontend_architecture_specification.md` → 前端架構
-- `17_frontend_information_architecture_template.md` → 前端 IA
+- `3-process/code-review-checklist.md` → 審查清單
+- `5-views/frontend-architecture.template.md` → 前端架構
+- `5-views/frontend-information-architecture.template.md` → 前端 IA
 
 ### 階段 5: 安全部署
-- `13_security_and_readiness_checklists.md` → 安全評估
-- `14_deployment_and_operations_guide.md` → 部署策略
+- `3-process/security-readiness-checklist.md` → 安全評估
+- `3-process/deployment-runbook.template.md` → 部署策略
 
 ### 階段 6: 維護管理
-- `15_documentation_and_maintenance_guide.md` → 文檔品質
-- `16_wbs_development_plan_template.md` → WBS 追蹤
+- `3-process/docs-maintenance-guide.md` → 文檔品質
+- `4-exploration/wbs.template.md` → WBS 追蹤
 
 ## 建議 Agent
 

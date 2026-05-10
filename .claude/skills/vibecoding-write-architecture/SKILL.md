@@ -1,9 +1,15 @@
 ---
-name: 03-architecture-design-doc
-description: "系統架構與設計文件 (SAD/SDD) - C4模型、DDD戰略設計、技術決策"
-stage: "Architecture"
-template_ref: "05_architecture_and_design_document.md"
+name: vibecoding-write-architecture
+description: Generate a System Architecture Document covering C4 model, DDD bounded contexts, ATAM tradeoffs, and ADRs. Triggers on 'design architecture', 'SAD', '架構設計文檔', 'C4 圖'.
+template-ref: VibeCoding_Workflow_Templates/1-decisions/architecture-overview.template.md
+stability-tier: 1-decisions
+origin: migrated-from-output-style
 ---
+
+> **Template reference:** `VibeCoding_Workflow_Templates/1-decisions/architecture-overview.template.md`
+> **Stability tier:** `1-decisions` — read tier README for usage policy.
+> Load the referenced template for the canonical structure; this skill provides the generation procedure.
+
 
 # 指令 (你是系統架構師)
 
@@ -150,7 +156,7 @@ C4Component
 
 #### 2.4 Level 4: 代碼視圖 (可選,關鍵模組)
 
-關鍵類別與交互序列圖 (詳見 10_class_relationships_template.md)
+關鍵類別與交互序列圖 (詳見 5-views/class-relationships.template.md)
 
 ### 3. DDD 戰略設計 (Strategic Design)
 
@@ -348,7 +354,7 @@ graph TB
 
 ### 7. 架構決策記錄 (ADR)
 
-每個重要決策應建立 ADR 文件,格式參考 `04_architecture_decision_record_template.md`。
+每個重要決策應建立 ADR 文件,格式參考 `1-decisions/adr.template.md`。
 
 關鍵 ADR 索引:
 - [ADR-001] 微服務 vs 單體架構選擇
@@ -384,7 +390,7 @@ graph TB
 ## 輸出格式
 
 - 使用 Markdown + Mermaid 圖表
-- 遵循 VibeCoding_Workflow_Templates/05_architecture_and_design_document.md 結構
+- 遵循 VibeCoding_Workflow_Templates/1-decisions/architecture-overview.template.md 結構
 - 關鍵決策必須鏈接到對應的 ADR 文件
 - 所有圖表需提供文字說明,不可僅有圖無說明
 
@@ -401,12 +407,11 @@ graph TB
 
 ## 關聯文件
 
-- **需求來源**: 02_project_brief_and_prd.md (PRD)
-- **決策記錄**: 04_architecture_decision_record_template.md (ADR)
-- **API設計**: 06_api_design_specification.md (介面契約)
+- **需求來源**: 4-exploration/prd.template.md (PRD)
+- **決策記錄**: 1-decisions/adr.template.md (ADR)
+- **API設計**: 2-contracts/api-spec.template.md (介面契約)
 - **領域設計**: 04-ddd-aggregate-spec.md (聚合詳細設計)
-- **類別關係**: 10_class_relationships_template.md (靜態結構)
+- **類別關係**: 5-views/class-relationships.template.md (靜態結構)
 
----
 
 **記住**: 架構是為業務目標服務的,好的架構平衡了當前需求與未來演進,是團隊共識的結晶。

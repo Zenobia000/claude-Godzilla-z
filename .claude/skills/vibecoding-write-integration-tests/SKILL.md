@@ -1,9 +1,15 @@
 ---
-name: 12-integration-contract-suite
-description: "跨系統整合測試 - 合約測試、Provider/Consumer 驗證、失效注入"
-stage: "Testing"
-template_ref: "07_module_specification_and_tests.md"
+name: vibecoding-write-integration-tests
+description: Generate integration test contracts covering cross-module flows, API endpoints, external service mocks. Triggers on 'integration tests', 'contract tests', '整合測試'.
+template-ref: VibeCoding_Workflow_Templates/2-contracts/module-contract.template.md
+stability-tier: 2-contracts
+origin: migrated-from-output-style
 ---
+
+> **Template reference:** `VibeCoding_Workflow_Templates/2-contracts/module-contract.template.md`
+> **Stability tier:** `2-contracts` — read tier README for usage policy.
+> Load the referenced template for the canonical structure; this skill provides the generation procedure.
+
 
 # 指令 (你是整合測試架構師)
 
@@ -707,6 +713,5 @@ jobs:
 - **架構設計**: 03-architecture-design-doc.md (系統依賴關係)
 - **測試規範**: 06-tdd-unit-spec.md (測試原則)
 
----
 
 **記住**: 合約測試確保系統間集成的穩定性。Consumer-Driven Contracts 讓各系統獨立演進,失效注入測試確保韌性。在微服務架構中,合約測試是必不可少的安全網。

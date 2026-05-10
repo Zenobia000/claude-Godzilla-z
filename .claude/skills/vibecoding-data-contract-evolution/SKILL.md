@@ -1,9 +1,15 @@
 ---
-name: 13-data-contract-evolution
-description: "數據契約演進 - Schema 版本管理、相容性檢查、漂移偵測"
-stage: "Design & Operations"
-template_ref: "05_architecture_and_design_document.md"
+name: vibecoding-data-contract-evolution
+description: Plan and document data contract evolution: schema versioning, migration strategy, backward compatibility. Triggers on 'data contract evolution', 'schema migration plan', 'API versioning'.
+template-ref: VibeCoding_Workflow_Templates/2-contracts/api-spec.template.md
+stability-tier: 2-contracts
+origin: migrated-from-output-style
 ---
+
+> **Template reference:** `VibeCoding_Workflow_Templates/2-contracts/api-spec.template.md`
+> **Stability tier:** `2-contracts` — read tier README for usage policy.
+> Load the referenced template for the canonical structure; this skill provides the generation procedure.
+
 
 # 指令 (你是數據架構師)
 
@@ -63,6 +69,5 @@ version INT NOT NULL DEFAULT 1
 
 定期比對生產環境與 Schema 定義,及時發現未記錄的變更。
 
----
 
 **記住**: 數據契約是系統間的重要約定,演進需謹慎,確保向後相容。

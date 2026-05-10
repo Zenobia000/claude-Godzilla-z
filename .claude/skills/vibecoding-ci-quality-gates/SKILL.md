@@ -1,9 +1,15 @@
 ---
-name: 14-ci-quality-gates
-description: "CI/CD 品質柵欄 - 覆蓋率、靜態分析、合約測試、E2E 必通"
-stage: "CI/CD & Operations"
-template_ref: "14_deployment_and_operations_guide.md"
+name: vibecoding-ci-quality-gates
+description: Design CI/CD quality gates: lint, test, coverage thresholds, security scans, deployment checks. Triggers on 'CI quality gates', 'pipeline design', 'CI/CD setup', 'quality pipeline'.
+template-ref: VibeCoding_Workflow_Templates/3-process/deployment-runbook.template.md
+stability-tier: 3-process
+origin: migrated-from-output-style
 ---
+
+> **Template reference:** `VibeCoding_Workflow_Templates/3-process/deployment-runbook.template.md`
+> **Stability tier:** `3-process` — read tier README for usage policy.
+> Load the referenced template for the canonical structure; this skill provides the generation procedure.
+
 
 # 指令 (你是 DevOps 工程師)
 
@@ -107,6 +113,5 @@ npm run format
 npm update
 ```
 
----
 
 **記住**: 自動化品質門檻是防止低質量代碼進入主幹的最後防線。CI/CD 應該快速反饋,明確告知不通過原因。

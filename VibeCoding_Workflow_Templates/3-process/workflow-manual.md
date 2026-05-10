@@ -39,11 +39,11 @@ graph LR
 | 階段 | 目標 | 產出 | Gate |
 | :--- | :--- | :--- | :--- |
 | A0 啟動 | 對齊目標、邊界、風險 | 啟動簡報、里程碑 | 利益相關者共識 |
-| A1 PRD | 定義問題、受眾、範圍、KPI | `02_prd.md` | PRD 簽核、KPI 可量測 |
-| A2 架構 | 系統邊界、技術選型、NFR | `05_architecture.md` + `04_adr.md` | ADR 齊備、NFR 可驗證 |
-| A3 詳細設計 | 可實作規格與契約 | `07_module.md` + `06_api.md` + `08_structure.md` | 契約穩定、測試策略完整 |
+| A1 PRD | 定義問題、受眾、範圍、KPI | `4-exploration/prd.template.md` | PRD 簽核、KPI 可量測 |
+| A2 架構 | 系統邊界、技術選型、NFR | `1-decisions/architecture-overview.template.md` + `1-decisions/adr.template.md` | ADR 齊備、NFR 可驗證 |
+| A3 詳細設計 | 可實作規格與契約 | `2-contracts/module-contract.template.md` + `2-contracts/api-spec.template.md` + `5-views/project-structure.template.md` | 契約穩定、測試策略完整 |
 | A4 開發 | 增量交付 | 程式碼、測試、建置產物 | 測試綠燈、覆蓋率達標 |
-| A5 品質 | 消除高風險弱點 | `13_security.md` | 高/中風險已整改 |
+| A5 品質 | 消除高風險弱點 | `3-process/security-readiness-checklist.md` | 高/中風險已整改 |
 | A6 上線 | 可靠性、可觀測性就緒 | Go/No-Go 簽核 | SLO/Alert 就緒、回滾演練通過 |
 
 **跨階段**: 變更需更新 ADR 與相依文檔；重大變更需重過 Gate。
@@ -80,11 +80,11 @@ graph LR
 
 | 階段 | 完整流程 | MVP |
 | :--- | :--- | :--- |
-| 規劃 | `02_prd.md` | Tech Spec PRD 區塊 |
-| 架構 | `05_architecture.md` + `04_adr.md` | Tech Spec SA/ADR 區塊 |
-| 規格 | `07_module.md` + `06_api.md` | Tech Spec SDD/API 區塊 |
-| 品質 | `13_security.md` | 簡化安全檢查 |
-| 結構 | `08_structure.md` | Tech Spec 結構區塊 |
+| 規劃 | `4-exploration/prd.template.md` | Tech Spec PRD 區塊 |
+| 架構 | `1-decisions/architecture-overview.template.md` + `1-decisions/adr.template.md` | Tech Spec SA/ADR 區塊 |
+| 規格 | `2-contracts/module-contract.template.md` + `2-contracts/api-spec.template.md` | Tech Spec SDD/API 區塊 |
+| 品質 | `3-process/security-readiness-checklist.md` | 簡化安全檢查 |
+| 結構 | `5-views/project-structure.template.md` | Tech Spec 結構區塊 |
 
 ---
 

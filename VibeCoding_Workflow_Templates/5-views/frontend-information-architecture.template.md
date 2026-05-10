@@ -1,7 +1,7 @@
 # 前端資訊架構規範 - [專案名稱]
 
 > **版本:** v1.0 | **更新:** YYYY-MM-DD | **狀態:** 草稿/已批准
-> **相關文檔:** [PRD](./02_project_brief_and_prd.md) | [前端架構](./12_frontend_architecture_specification.md)
+> **相關文檔:** [PRD](./4-exploration/prd.template.md) | [前端架構](./5-views/frontend-architecture.template.md)
 
 ---
 
