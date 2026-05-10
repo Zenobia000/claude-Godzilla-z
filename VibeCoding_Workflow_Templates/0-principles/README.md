@@ -30,3 +30,5 @@ Documents that define **what this product is** and **what it refuses to be**:
 | File | Purpose |
 |---|---|
 | `product-principles.template.md` | Mission, personas, non-goals, quality bars, technical invariants |
+| `flow-id-conventions.md` | 9-prefix Flow ID system (BF/UF/SF/FR/NFR/API/TC/ADR/CR) — naming invariant |
+| `glossary.template.md` | Business terminology source of truth — required for ERP-class systems where "Customer / Buyer / Account" must be unambiguous |

@@ -34,3 +34,5 @@ When generating new ADRs, AI should:
 |---|---|
 | `adr.template.md` | Single-decision record (status, context, decision, consequences) |
 | `architecture-overview.template.md` | C4 / DDD level architecture snapshot |
+| `module-boundary.template.md` | Per-module charter — what it owns, what it explicitly does NOT own, dependencies, ACL with neighbors. **Critical for ERP** (prevents god-modules) |
+| `domain-model.template.md` | Per-bounded-context DDD model — aggregate roots, entities, value objects, invariants, ERD, domain events. **Critical for ERP** (accounting model is the foundation) |

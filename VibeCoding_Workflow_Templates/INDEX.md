@@ -28,14 +28,17 @@ See [HOW-TO-INSTANTIATE.md](./HOW-TO-INSTANTIATE.md) for how to use these templa
 ## The 6 tiers
 
 ### 0-principles — *near-immutable invariants*
-Mission, non-goals, quality bars, technical hard limits, naming conventions. Reviewed every 6 months, changed only on major version. AI loads this first.
+Mission, non-goals, quality bars, technical hard limits, naming conventions, terminology. Reviewed every 6 months, changed only on major version. AI loads this first.
 - [`product-principles.template.md`](./0-principles/product-principles.template.md)
-- [`flow-id-conventions.md`](./0-principles/flow-id-conventions.md) — **NEW v5**: 9-prefix Flow ID system (BF/UF/SF/FR/NFR/API/TC/ADR/CR)
+- [`flow-id-conventions.md`](./0-principles/flow-id-conventions.md) — Flow ID 9-prefix system
+- [`glossary.template.md`](./0-principles/glossary.template.md) — **NEW v5.2**: business terminology source of truth (critical for ERP-class systems)
 
 ### 1-decisions — *append-only judgments*
-ADRs and architecture overviews. Once Accepted, never edited; superseded by writing a new ADR.
+ADRs, architecture overviews, module charters, domain models. Once Accepted, never edited; superseded by writing a new decision.
 - [`adr.template.md`](./1-decisions/adr.template.md)
 - [`architecture-overview.template.md`](./1-decisions/architecture-overview.template.md)
+- [`module-boundary.template.md`](./1-decisions/module-boundary.template.md) — **NEW v5.2**: per-module charter (owns / does NOT own / dependencies / ACL)
+- [`domain-model.template.md`](./1-decisions/domain-model.template.md) — **NEW v5.2**: per-bounded-context DDD model (aggregates, invariants, ERD, events)
 
 ### 2-contracts — *interfaces that MUST track code*
 API specs, module contracts, layered Flows, FRs, traceability. Carry frontmatter `id`, `status`, `last-synced-with`; the `sunnydata-doc-freshness` skill flags drift + lifecycle issues.
