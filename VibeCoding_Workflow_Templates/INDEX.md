@@ -56,6 +56,8 @@ Workflow guides, checklists, methodology references, runbooks, gates.
 - [`deployment-runbook.template.md`](./3-process/deployment-runbook.template.md)
 - [`docs-maintenance-guide.md`](./3-process/docs-maintenance-guide.md)
 - [`quality-gates.md`](./3-process/quality-gates.md) — **NEW v5**: Gate 0-4 stage prerequisites
+- [`test-plan.template.md`](./3-process/test-plan.template.md) — **NEW v5.1**: strategic test document
+- [`vendor-api-test-requirement.template.md`](./3-process/vendor-api-test-requirement.template.md) — **NEW v5.1**: per-vendor test prerequisites
 
 ### 4-exploration — *per-task ephemeral intent*
 PRDs, WBS, brainstorms, change-impact analyses. Date-stamp filenames, archive when shipped.
@@ -131,6 +133,9 @@ Project structure, dependency graphs, class diagrams, frontend trees. Regenerate
 | *(new in v5)* | `2-contracts/traceability-matrix.template.md` |
 | *(new in v5)* | `3-process/quality-gates.md` |
 | *(new in v5)* | `4-exploration/change-impact-analysis.template.md` |
+| *(new in v5.1)* | `2-contracts/functional-requirement.template.md` |
+| *(new in v5.1)* | `3-process/test-plan.template.md` |
+| *(new in v5.1)* | `3-process/vendor-api-test-requirement.template.md` |
 
 A migration script for downstream forks is at `scripts/migrate-templates-v3-to-v4.sh`.
 
@@ -140,6 +145,7 @@ A migration script for downstream forks is at `scripts/migrate-templates-v3-to-v
 
 | Version | Date | Change |
 |---|---|---|
+| v5.1 | 2026-05-10 | "One doc, one question" enforcement: standalone Functional Requirement template (decouple FR from Flow); Test Plan strategic template; Vendor API Test Requirement template |
 | v5.0 | 2026-05-10 | Change Governance: Flow ID system (BF/UF/SF/FR/NFR/API/TC/ADR/CR), layered Flow templates, Traceability Matrix, Quality Gates, CIA template & skill, change-governance hard-gate rule, lifecycle frontmatter (status/supersedes) |
 | v4.0 | 2026-05-10 | Stability-tier layout; added 0-principles; .template.md naming; sync metadata for tier 2 |
 | v3.0 | 2026-03-16 | Phase-based numbering, removed cookbook, unified zh-TW |

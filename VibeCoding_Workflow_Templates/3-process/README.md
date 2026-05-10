@@ -41,3 +41,5 @@ These documents constrain *how* AI executes — they don't dictate the architect
 | `deployment-runbook.template.md` | Per-service deployment + rollback steps | Template |
 | `docs-maintenance-guide.md` | When to write/update/delete documentation | Guide |
 | `quality-gates.md` | Gate 0-4 stage prerequisites (requirements / FE buildable / BE parallelizable / DB / tests) | Guide |
+| `test-plan.template.md` | **Strategic** test document (quality targets, test pyramid, stages, data strategy, CI gate spec, risk register) | Template |
+| `vendor-api-test-requirement.template.md` | Per-vendor test prerequisites (sandbox / contract / scenarios / fallback) | Template |
