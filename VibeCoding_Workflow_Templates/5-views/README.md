@@ -46,5 +46,4 @@ When asked to update a view doc:
 | `project-structure.template.md` | `tree` or `eza --tree` output, then annotate per directory |
 | `file-dependencies.template.md` | Language-specific (Python: `pyan`, JS: `madge`, Go: `go list`) |
 | `class-relationships.template.md` | UML extractor or AI-driven full read |
-| `frontend-architecture.template.md` | Component tree extraction from framework-specific tooling |
-| `frontend-information-architecture.template.md` | Page tree + navigation map; usually AI-generated from routes |
+| `frontend-route-map.template.md` | Page tree + nav + route table + page-to-page data flow; AI-generated from router config (per [ADR-0001](../../docs/1-decisions/ADR-0001-frontend-template-tier-realignment.md)) |
