@@ -74,6 +74,8 @@ The `post-write` hook updates `last-synced-with` and `synced-at` automatically w
 | `functional-requirement.template.md` | Functional Requirement (FR) — business rules + acceptance criteria | "How do we judge correctness?" |
 | `api-spec.template.md` | REST/GraphQL API contract | "How do systems exchange data?" |
 | `module-contract.template.md` | Module/class public contract (DbC) | "What does this module promise?" |
+| `state-machine.template.md` | Per-entity state machine — states, transitions, guards, events | "How does this entity change over time?" *(extract when ≥5 states or ≥10 transitions)* |
+| `master-data-specification.template.md` | Master entity governance contract — identification, lifecycle, DQ rules, replication, GDPR | "How do we govern this long-lived shared entity?" *(critical for ERP-class systems)* |
 | `traceability-matrix.template.md` | Cross-layer coverage map | "What links to what?" (BF→UF→SF→FR→API→Data→TC→CI) |
 
 **One doc, one question** — if you find yourself writing flow steps inside an FR, or rules inside a Flow, you're conflating layers. See `change-governance.md` for the AI-side enforcement.

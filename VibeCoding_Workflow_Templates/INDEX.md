@@ -47,7 +47,9 @@ API specs, module contracts, layered Flows, FRs, traceability. Carry frontmatter
 - [`flow-business.template.md`](./2-contracts/flow-business.template.md) — L1 BF; "how does it happen E2E?"
 - [`flow-user.template.md`](./2-contracts/flow-user.template.md) — L2 UF; "how does this actor do it?"
 - [`flow-sub.template.md`](./2-contracts/flow-sub.template.md) — L3 SF; "how does this shared step work?"
-- [`functional-requirement.template.md`](./2-contracts/functional-requirement.template.md) — **NEW v5.1**: FR; "how do we judge correctness?"
+- [`functional-requirement.template.md`](./2-contracts/functional-requirement.template.md) — FR; "how do we judge correctness?"
+- [`state-machine.template.md`](./2-contracts/state-machine.template.md) — **NEW v5.2**: per-entity state transitions (extract when ≥5 states)
+- [`master-data-specification.template.md`](./2-contracts/master-data-specification.template.md) — **NEW v5.2**: master entity governance (critical for ERP)
 - [`traceability-matrix.template.md`](./2-contracts/traceability-matrix.template.md) — cross-layer coverage map
 
 ### 3-process — *how we work*
@@ -139,6 +141,11 @@ Project structure, dependency graphs, class diagrams, frontend trees. Regenerate
 | *(new in v5.1)* | `2-contracts/functional-requirement.template.md` |
 | *(new in v5.1)* | `3-process/test-plan.template.md` |
 | *(new in v5.1)* | `3-process/vendor-api-test-requirement.template.md` |
+| *(new in v5.2)* | `0-principles/glossary.template.md` |
+| *(new in v5.2)* | `1-decisions/module-boundary.template.md` |
+| *(new in v5.2)* | `1-decisions/domain-model.template.md` |
+| *(new in v5.2)* | `2-contracts/state-machine.template.md` |
+| *(new in v5.2)* | `2-contracts/master-data-specification.template.md` |
 
 A migration script for downstream forks is at `scripts/migrate-templates-v3-to-v4.sh`.
 
@@ -148,6 +155,7 @@ A migration script for downstream forks is at `scripts/migrate-templates-v3-to-v
 
 | Version | Date | Change |
 |---|---|---|
+| v5.2 | 2026-05-10 | ERP-class foundation: Glossary (terminology source of truth); Module Boundary charter (per-module owns/NOT-owns); Domain Model (DDD aggregates + ERD + invariants); State Machine (extracted when complex); Master Data Specification (governance for long-lived shared entities) |
 | v5.1 | 2026-05-10 | "One doc, one question" enforcement: standalone Functional Requirement template (decouple FR from Flow); Test Plan strategic template; Vendor API Test Requirement template |
 | v5.0 | 2026-05-10 | Change Governance: Flow ID system (BF/UF/SF/FR/NFR/API/TC/ADR/CR), layered Flow templates, Traceability Matrix, Quality Gates, CIA template & skill, change-governance hard-gate rule, lifecycle frontmatter (status/supersedes) |
 | v4.0 | 2026-05-10 | Stability-tier layout; added 0-principles; .template.md naming; sync metadata for tier 2 |
