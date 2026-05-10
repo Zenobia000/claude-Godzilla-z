@@ -1,6 +1,6 @@
 # VibeCoding Workflow Templates
 
-> **Version:** v4.0 — Stability-tier layout
+> **Version:** v5.4 — Stability-tier layout
 > **Updated:** 2026-05-10
 > **Migration from v3:** see [LEGACY-INDEX.md](./LEGACY-INDEX.md)
 
@@ -32,6 +32,7 @@ Mission, non-goals, quality bars, technical hard limits, naming conventions, ter
 - [`product-principles.template.md`](./0-principles/product-principles.template.md)
 - [`flow-id-conventions.md`](./0-principles/flow-id-conventions.md) — Flow ID 9-prefix system
 - [`glossary.template.md`](./0-principles/glossary.template.md) — **NEW v5.2**: business terminology source of truth (critical for ERP-class systems)
+- [`frontend-quality-attributes.template.md`](./0-principles/frontend-quality-attributes.template.md) — **NEW v5.4**: frontend SLO / Core Web Vitals / A11y / responsive breakpoints (per ADR-0001)
 
 ### 1-decisions — *append-only judgments*
 ADRs, architecture overviews, module charters, domain models. Once Accepted, never edited; superseded by writing a new decision.
@@ -39,6 +40,7 @@ ADRs, architecture overviews, module charters, domain models. Once Accepted, nev
 - [`architecture-overview.template.md`](./1-decisions/architecture-overview.template.md)
 - [`module-boundary.template.md`](./1-decisions/module-boundary.template.md) — **NEW v5.2**: per-module charter (owns / does NOT own / dependencies / ACL)
 - [`domain-model.template.md`](./1-decisions/domain-model.template.md) — **NEW v5.2**: per-bounded-context DDD model (aggregates, invariants, ERD, events)
+- [`frontend-tech-stack.template.md`](./1-decisions/frontend-tech-stack.template.md) — **NEW v5.4**: frontend layered tech selection + project structure (per ADR-0001)
 
 ### 2-contracts — *interfaces that MUST track code*
 API specs, module contracts, layered Flows, FRs, traceability. Carry frontmatter `id`, `status`, `last-synced-with`; the `sunnydata-doc-freshness` skill flags drift + lifecycle issues.
@@ -52,6 +54,8 @@ API specs, module contracts, layered Flows, FRs, traceability. Carry frontmatter
 - [`master-data-specification.template.md`](./2-contracts/master-data-specification.template.md) — master entity governance (critical for ERP)
 - [`flow-index.template.md`](./2-contracts/flow-index.template.md) — **NEW v5.3**: project-wide Flow aggregation view (paired with `sunnydata-flow-audit` skill)
 - [`traceability-matrix.template.md`](./2-contracts/traceability-matrix.template.md) — cross-layer coverage map
+- [`frontend-design-system.template.md`](./2-contracts/frontend-design-system.template.md) — **NEW v5.4**: design tokens + atomic design + API client + auth + frontend security checklist (per ADR-0001)
+- [`page-contract.template.md`](./2-contracts/page-contract.template.md) — **NEW v5.4**: per-page contract (route / responsibility / data / CTA / nav) (per ADR-0001)
 
 ### 3-process — *how we work*
 Workflow guides, checklists, methodology references, runbooks, gates.
@@ -64,6 +68,7 @@ Workflow guides, checklists, methodology references, runbooks, gates.
 - [`quality-gates.md`](./3-process/quality-gates.md) — **NEW v5**: Gate 0-4 stage prerequisites
 - [`test-plan.template.md`](./3-process/test-plan.template.md) — **NEW v5.1**: strategic test document
 - [`vendor-api-test-requirement.template.md`](./3-process/vendor-api-test-requirement.template.md) — **NEW v5.1**: per-vendor test prerequisites
+- [`frontend-pre-merge-checklist.template.md`](./3-process/frontend-pre-merge-checklist.template.md) — **NEW v5.4**: frontend test strategy + code/quality/IA checklists (per ADR-0001)
 
 ### 4-exploration — *per-task ephemeral intent*
 PRDs, WBS, brainstorms, change-impact analyses. Date-stamp filenames, archive when shipped.
