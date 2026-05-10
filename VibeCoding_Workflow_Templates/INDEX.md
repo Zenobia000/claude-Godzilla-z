@@ -157,6 +157,7 @@ A migration script for downstream forks is at `scripts/migrate-templates-v3-to-v
 
 | Version | Date | Change |
 |---|---|---|
+| v5.3 | 2026-05-10 | Flow self-monitoring: project-wide flow-index aggregation template; sunnydata-flow-audit skill detecting broken refs / orphans / layering violations / stale flows / index drift |
 | v5.2 | 2026-05-10 | ERP-class foundation: Glossary (terminology source of truth); Module Boundary charter (per-module owns/NOT-owns); Domain Model (DDD aggregates + ERD + invariants); State Machine (extracted when complex); Master Data Specification (governance for long-lived shared entities) |
 | v5.1 | 2026-05-10 | "One doc, one question" enforcement: standalone Functional Requirement template (decouple FR from Flow); Test Plan strategic template; Vendor API Test Requirement template |
 | v5.0 | 2026-05-10 | Change Governance: Flow ID system (BF/UF/SF/FR/NFR/API/TC/ADR/CR), layered Flow templates, Traceability Matrix, Quality Gates, CIA template & skill, change-governance hard-gate rule, lifecycle frontmatter (status/supersedes) |
