@@ -1,5 +1,7 @@
 # Output Styles
 
+> **See `.claude/rules/primitive-selection.md` for the full command vs skill vs output-style decision rule.**
+>
 > **As of v4 (2026-05-10):** 14 of the original 15 output-styles were converted into Skills. Only true behavioral modes remain here.
 
 ## Why the change

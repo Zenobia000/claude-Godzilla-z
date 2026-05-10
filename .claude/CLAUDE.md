@@ -20,3 +20,13 @@ Subagent 完成後，主 agent 必須將最終產出總結寫入 `.claude/contex
 文件分 6 個穩定性層級（`0-principles` ~ `5-views`），每層有不同的更新頻率與 AI 處理規則。
 詳見 `rules/context-stability.md`。tier 2 (contracts) 文件需帶 `last-synced-with` frontmatter；
 撰寫前可用 `sunnydata-doc-freshness` skill 檢查鮮度。
+
+## Primitive Selection (command / skill / output-style)
+
+3 個原始元的選擇規則見 `rules/primitive-selection.md`。三句口訣：
+
+1. **預設用 skill**——任何程序性知識都該走 skill。
+2. **command 只給觸碰系統狀態的工作流**（taskmaster, session, time-log, learn）或具獨立程序邏輯（build-fix, verify, refactor-clean, template-check）。
+3. **output-style 只給整個 session 的人格切換**（如視覺化模式），不裝任務模板。
+
+不要為了「快捷鍵」做純間接的 `/command` 包裝；讓使用者用自然語言描述意圖，harness 會自動匹配到對的 skill。
