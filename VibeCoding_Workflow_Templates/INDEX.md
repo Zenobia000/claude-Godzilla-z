@@ -38,13 +38,14 @@ ADRs and architecture overviews. Once Accepted, never edited; superseded by writ
 - [`architecture-overview.template.md`](./1-decisions/architecture-overview.template.md)
 
 ### 2-contracts — *interfaces that MUST track code*
-API specs, module contracts, layered Flows, traceability. Carry frontmatter `id`, `status`, `last-synced-with`; the `sunnydata-doc-freshness` skill flags drift + lifecycle issues.
-- [`api-spec.template.md`](./2-contracts/api-spec.template.md)
-- [`module-contract.template.md`](./2-contracts/module-contract.template.md)
-- [`flow-business.template.md`](./2-contracts/flow-business.template.md) — **NEW v5**: L1 Business Flow (BF)
-- [`flow-user.template.md`](./2-contracts/flow-user.template.md) — **NEW v5**: L2 User Flow (UF)
-- [`flow-sub.template.md`](./2-contracts/flow-sub.template.md) — **NEW v5**: L3 reusable Sub Flow (SF)
-- [`traceability-matrix.template.md`](./2-contracts/traceability-matrix.template.md) — **NEW v5**: cross-layer coverage map
+API specs, module contracts, layered Flows, FRs, traceability. Carry frontmatter `id`, `status`, `last-synced-with`; the `sunnydata-doc-freshness` skill flags drift + lifecycle issues.
+- [`api-spec.template.md`](./2-contracts/api-spec.template.md) — "how do systems exchange data?"
+- [`module-contract.template.md`](./2-contracts/module-contract.template.md) — "what does this module promise?"
+- [`flow-business.template.md`](./2-contracts/flow-business.template.md) — L1 BF; "how does it happen E2E?"
+- [`flow-user.template.md`](./2-contracts/flow-user.template.md) — L2 UF; "how does this actor do it?"
+- [`flow-sub.template.md`](./2-contracts/flow-sub.template.md) — L3 SF; "how does this shared step work?"
+- [`functional-requirement.template.md`](./2-contracts/functional-requirement.template.md) — **NEW v5.1**: FR; "how do we judge correctness?"
+- [`traceability-matrix.template.md`](./2-contracts/traceability-matrix.template.md) — cross-layer coverage map
 
 ### 3-process — *how we work*
 Workflow guides, checklists, methodology references, runbooks, gates.

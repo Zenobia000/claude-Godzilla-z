@@ -66,11 +66,14 @@ The `post-write` hook updates `last-synced-with` and `synced-at` automatically w
 
 ## Files
 
-| File | Purpose |
-|---|---|
-| `api-spec.template.md` | REST/GraphQL API contract (endpoints, schemas, errors, versioning) |
-| `module-contract.template.md` | Module/class public contract (DbC pre/post-conditions, invariants, test cases) |
-| `flow-business.template.md` | L1 Business Flow (BF) — end-to-end across roles |
-| `flow-user.template.md` | L2 User Flow (UF) — single-actor surface-mapped flow |
-| `flow-sub.template.md` | L3 Sub Flow (SF) — reusable building block |
-| `traceability-matrix.template.md` | Cross-layer coverage map (BF→UF→SF→FR→API→Data→TC→CI) |
+| File | Purpose | Answers |
+|---|---|---|
+| `flow-business.template.md` | L1 Business Flow (BF) — end-to-end across roles | "How does it happen E2E?" |
+| `flow-user.template.md` | L2 User Flow (UF) — single-actor surface-mapped flow | "How does *this actor* do it?" |
+| `flow-sub.template.md` | L3 Sub Flow (SF) — reusable building block | "How does this shared step work?" |
+| `functional-requirement.template.md` | Functional Requirement (FR) — business rules + acceptance criteria | "How do we judge correctness?" |
+| `api-spec.template.md` | REST/GraphQL API contract | "How do systems exchange data?" |
+| `module-contract.template.md` | Module/class public contract (DbC) | "What does this module promise?" |
+| `traceability-matrix.template.md` | Cross-layer coverage map | "What links to what?" (BF→UF→SF→FR→API→Data→TC→CI) |
+
+**One doc, one question** — if you find yourself writing flow steps inside an FR, or rules inside a Flow, you're conflating layers. See `change-governance.md` for the AI-side enforcement.
