@@ -1,7 +1,8 @@
 # VibeCoding Workflow Templates
 
-> **Version:** v5.4 — Stability-tier layout
+> **Version:** v5.5 — Stability-tier layout + Ownership Matrix
 > **Updated:** 2026-05-10
+> **🚪 New here?** Start at [OWNERSHIP-MATRIX.md](./OWNERSHIP-MATRIX.md) — tells you which files demand human decisions (~16) vs which AI auto-manages (~6).
 > **Migration from v3:** see [LEGACY-INDEX.md](./LEGACY-INDEX.md)
 
 ---
