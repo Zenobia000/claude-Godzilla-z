@@ -48,8 +48,9 @@ API specs, module contracts, layered Flows, FRs, traceability. Carry frontmatter
 - [`flow-user.template.md`](./2-contracts/flow-user.template.md) — L2 UF; "how does this actor do it?"
 - [`flow-sub.template.md`](./2-contracts/flow-sub.template.md) — L3 SF; "how does this shared step work?"
 - [`functional-requirement.template.md`](./2-contracts/functional-requirement.template.md) — FR; "how do we judge correctness?"
-- [`state-machine.template.md`](./2-contracts/state-machine.template.md) — **NEW v5.2**: per-entity state transitions (extract when ≥5 states)
-- [`master-data-specification.template.md`](./2-contracts/master-data-specification.template.md) — **NEW v5.2**: master entity governance (critical for ERP)
+- [`state-machine.template.md`](./2-contracts/state-machine.template.md) — per-entity state transitions (extract when ≥5 states)
+- [`master-data-specification.template.md`](./2-contracts/master-data-specification.template.md) — master entity governance (critical for ERP)
+- [`flow-index.template.md`](./2-contracts/flow-index.template.md) — **NEW v5.3**: project-wide Flow aggregation view (paired with `sunnydata-flow-audit` skill)
 - [`traceability-matrix.template.md`](./2-contracts/traceability-matrix.template.md) — cross-layer coverage map
 
 ### 3-process — *how we work*
@@ -146,6 +147,7 @@ Project structure, dependency graphs, class diagrams, frontend trees. Regenerate
 | *(new in v5.2)* | `1-decisions/domain-model.template.md` |
 | *(new in v5.2)* | `2-contracts/state-machine.template.md` |
 | *(new in v5.2)* | `2-contracts/master-data-specification.template.md` |
+| *(new in v5.3)* | `2-contracts/flow-index.template.md` |
 
 A migration script for downstream forks is at `scripts/migrate-templates-v3-to-v4.sh`.
 
