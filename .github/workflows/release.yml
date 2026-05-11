@@ -1,0 +1,53 @@
+name: Release on tag push
+
+# Auto-create GitHub Release when a vX.Y.Z tag is pushed.
+# Body comes from the matching ## [vX.Y.Z] section in CHANGELOG.md.
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  contents: write   # required to create releases
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0   # need full history for CHANGELOG extraction
+
+      - name: Extract release notes from CHANGELOG.md
+        id: notes
+        run: |
+          TAG_NAME="${GITHUB_REF#refs/tags/}"
+          echo "tag=$TAG_NAME" >> "$GITHUB_OUTPUT"
+
+          # Extract the section under ## [vX.Y.Z] up to the next ## [ header
+          NOTES=$(awk -v tag="$TAG_NAME" '
+            $0 ~ "^## \\[" tag "\\]" { f=1; next }
+            f && /^## \[/ { exit }
+            f { print }
+          ' CHANGELOG.md)
+
+          if [ -z "$NOTES" ]; then
+            NOTES="Release $TAG_NAME (no CHANGELOG.md section found)"
+          fi
+
+          # multi-line output via delimiter
+          {
+            echo 'notes<<EOF'
+            echo "$NOTES"
+            echo 'EOF'
+          } >> "$GITHUB_OUTPUT"
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          name: ${{ steps.notes.outputs.tag }}
+          body: ${{ steps.notes.outputs.notes }}
+          draft: false
+          prerelease: ${{ contains(steps.notes.outputs.tag, '-rc') || contains(steps.notes.outputs.tag, '-beta') || contains(steps.notes.outputs.tag, '-alpha') }}

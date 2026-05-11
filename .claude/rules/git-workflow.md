@@ -124,3 +124,17 @@ Merge 後刪除遠端分支：`git push origin --delete <branch>`
 - 使用語義化版本（MAJOR.MINOR.PATCH）
 - 重要版本建立 git tag
 - 維護 CHANGELOG.md（依 Keep a Changelog 格式）
+
+## Release 自動化
+
+不要手動跑 `git tag` + 手動寫 CHANGELOG。使用 `/release <version>` command：
+
+1. Pre-flight 檢查（branch、clean tree、tests）
+2. 呼叫 `sunnydata-changelog-sync` skill 從 Conventional Commits + ADR + CR 自動產生 release notes
+3. 🛑 人類審核 CHANGELOG diff
+4. Commit CHANGELOG（`chore(release): vX.Y.Z`）
+5. 建立 annotated tag
+6. Push branch + tag
+7. `.github/workflows/release.yml` 偵測 tag 推送 → 自動建立 GitHub Release
+
+Conventional Commits 規範強制（見上方 §commit type）— 違反規範的 commit 會出現在 changelog 的「Other Changes」段，提醒下次規範化。
