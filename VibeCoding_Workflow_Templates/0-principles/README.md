@@ -30,7 +30,7 @@ Documents that define **what this product is** and **what it refuses to be**:
 | File | Purpose |
 |---|---|
 | `PRIN-0000-product-principles.template.md` | Mission, personas, non-goals, quality bars, technical invariants |
-| `PRIN-0001-flow-id-conventions.md` | 9-prefix Flow ID system (BF/UF/SF/FR/NFR/API/TC/ADR/CR) — naming invariant |
+| `PRIN-0001-flow-id-conventions.md` | Flow ID prefix system (9 core + 22 extended) — naming invariant |
 | `PRIN-0002-frontend-quality-attributes.template.md` | Frontend quality attributes (performance budgets, accessibility, responsive breakpoints) |
 | `GLOS-0000-glossary.template.md` | Business terminology source of truth — required for ERP-class systems where "Customer / Buyer / Account" must be unambiguous |
 

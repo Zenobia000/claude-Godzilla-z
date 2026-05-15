@@ -77,6 +77,80 @@ shipped-at: 2026-04-01
 
 This lets old PRDs link forward to what they became, preserving the rationale trail.
 
+## Profile Selection Table
+
+Not every project needs all 47 templates. Choose a **profile** that matches your product type, then instantiate only the templates marked for that profile. Templates outside your profile can still be added later.
+
+Legend: **R** = required, **O** = optional, **—** = skip
+
+| Template | `web-product` | `data-ml` | `platform-infra` | `full` |
+|---|---|---|---|---|
+| **Tier 0 — Principles** | | | | |
+| PRIN-0000 Product Principles | R | R | R | R |
+| PRIN-0001 Flow ID Conventions | R | O | O | R |
+| GLOS-0000 Glossary | R | R | O | R |
+| PRIN-0002 Frontend Quality Attributes | R | — | — | R |
+| **Tier 1 — Decisions** | | | | |
+| ADR-0000 ADR template | R | R | R | R |
+| ARCH-0000 Architecture Overview | R | R | R | R |
+| ARCH-0001 Module Boundary | R | O | O | R |
+| DDD-0000 Domain Model | R | O | — | R |
+| ARCH-0002 Frontend Tech Stack | R | — | — | R |
+| ARCH-0003 Infra Architecture | O | O | R | R |
+| **Tier 2 — Contracts** | | | | |
+| API-0000 API Spec | R | O | O | R |
+| MC-0000 Module Contract | R | O | O | R |
+| BF-0000 Business Flow | R | O | O | R |
+| UF-0000 User Flow | R | O | — | R |
+| SF-0000 Sub Flow | R | O | — | R |
+| FR-0000 Functional Requirement | R | O | O | R |
+| SM-0000 State Machine | O | O | O | R |
+| MDS-0000 Master Data | R | O | — | R |
+| FI-0000 Flow Index | R | — | — | R |
+| TM-0000 Traceability Matrix | R | O | O | R |
+| DS-0000 Design System | R | — | — | R |
+| PC-0000 Page Contract | R | — | — | R |
+| SLO-0000 SLO Spec | O | O | R | R |
+| PIPE-0000 Pipeline Contract | — | R | O | R |
+| MODEL-0000 Model Card | — | R | — | R |
+| OBS-0000 Observability Spec | O | O | R | R |
+| CAP-0000 Capacity Planning | O | O | R | R |
+| **Tier 3 — Process** | | | | |
+| PROC-0001 Workflow Manual | R | R | O | R |
+| PROC-0002 BDD Guide | R | O | — | R |
+| PROC-0003 Code Review Checklist | R | R | R | R |
+| PROC-0004 Security Readiness | R | O | R | R |
+| PROC-0005 Deployment Runbook | R | O | R | R |
+| PROC-0006 Docs Maintenance | R | O | O | R |
+| QG-0000 Quality Gates | R | O | O | R |
+| TP-0000 Test Plan | R | R | O | R |
+| PROC-0007 Vendor API Test | O | O | O | R |
+| PROC-0008 Frontend Pre-merge | R | — | — | R |
+| PROC-0009 Incident Response | O | O | R | R |
+| PROC-0010 Chaos Engineering | — | — | R | R |
+| PROC-0011 GitOps Runbook | — | — | R | R |
+| PROC-0012 Deprecation Playbook | O | O | O | R |
+| ONBOARD-0000 Team Onboarding | R | R | R | R |
+| **Tier 4 — Exploration** | | | | |
+| PRD-0000 PRD | R | R | O | R |
+| WBS-0000 WBS | R | R | O | R |
+| CIA-0000 Change Impact Analysis | R | O | O | R |
+| EXP-0000 Experiment Log | — | R | — | R |
+| DISC-0000 Discovery Research | O | R | O | R |
+| **Tier 5 — Views** | | | | |
+| VIEW-0001 Project Structure | R | R | R | R |
+| VIEW-0002 File Dependencies | R | O | O | R |
+| VIEW-0003 Class Relationships | R | O | — | R |
+| VIEW-0004 Frontend Route Map | R | — | — | R |
+
+**Quick counts:**
+- `web-product`: 33 R + 8 O = 41 relevant (skip 11)
+- `data-ml`: 14 R + 23 O = 37 relevant (skip 15)
+- `platform-infra`: 15 R + 19 O = 34 relevant (skip 18)
+- `full`: 52 R (all templates)
+
+---
+
 ## Anti-patterns to avoid
 
 | Anti-pattern | Why it's bad | What to do instead |

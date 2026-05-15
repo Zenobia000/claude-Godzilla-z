@@ -1,9 +1,8 @@
 # VibeCoding Workflow Templates
 
-> **Version:** v5.5 — Stability-tier layout + Ownership Matrix
-> **Updated:** 2026-05-10
-> **🚪 New here?** Start at [OWNERSHIP-MATRIX.md](./OWNERSHIP-MATRIX.md) — tells you which files demand human decisions (~16) vs which AI auto-manages (~6).
-> **Migration from v3:** see [LEGACY-INDEX.md](./LEGACY-INDEX.md)
+> **Version:** v5.6 — Profile-based template selection + multi-role coverage
+> **Updated:** 2026-05-15
+> **🚪 New here?** Start at [OWNERSHIP-MATRIX.md](./OWNERSHIP-MATRIX.md) — tells you which files demand human decisions vs which AI auto-manages.
 
 ---
 
@@ -26,12 +25,29 @@ See [HOW-TO-INSTANTIATE.md](./HOW-TO-INSTANTIATE.md) for how to use these templa
 
 ---
 
+## Domain Scope & Profiles
+
+These templates are **not universal** — they're opinionated toward specific product types. The table below shows current coverage:
+
+| Profile | Coverage | Key templates |
+|---|---|---|
+| 🟢 **web-product** (Full Stack) | 95% | API spec, DB schema, flows, frontend contracts, CI/CD, security |
+| 🟡 **platform-infra** (DevOps / SRE) | 60% | Deployment runbook, SLO spec, incident response, chaos engineering, GitOps, infra architecture |
+| 🟡 **data-ml** (Data Scientist) | 40% | Pipeline contract, model card, experiment log |
+| 🟢 **full** | — | All templates |
+
+When initializing a project with `/task-init`, choose the profile that matches your product type. Templates outside your profile can still be used — the profile just controls which ones are instantiated by default.
+
+See the **Profile Selection Table** in [HOW-TO-INSTANTIATE.md](./HOW-TO-INSTANTIATE.md) for the full per-template breakdown.
+
+---
+
 ## The 6 tiers
 
 ### 0-principles — *near-immutable invariants*
 Mission, non-goals, quality bars, technical hard limits, naming conventions, terminology. Reviewed every 6 months, changed only on major version. AI loads this first.
 - [`PRIN-0000-product-principles.template.md`](./0-principles/PRIN-0000-product-principles.template.md)
-- [`PRIN-0001-flow-id-conventions.md`](./0-principles/PRIN-0001-flow-id-conventions.md) — Flow ID 9-prefix system
+- [`PRIN-0001-flow-id-conventions.md`](./0-principles/PRIN-0001-flow-id-conventions.md) — Flow ID prefix system (9 core + 22 extended)
 - [`GLOS-0000-glossary.template.md`](./0-principles/GLOS-0000-glossary.template.md) — **NEW v5.2**: business terminology source of truth (critical for ERP-class systems)
 - [`PRIN-0002-frontend-quality-attributes.template.md`](./0-principles/PRIN-0002-frontend-quality-attributes.template.md) — **NEW v5.4**: frontend SLO / Core Web Vitals / A11y / responsive breakpoints (per ADR-0001)
 
@@ -43,6 +59,7 @@ ADRs, architecture overviews, module charters, domain models. Once Accepted, nev
 - [`ARCH-0001-module-boundary.template.md`](./1-decisions/ARCH-0001-module-boundary.template.md) — **NEW v5.2**: per-module charter (owns / does NOT own / dependencies / ACL)
 - [`DDD-0000-domain-model.template.md`](./1-decisions/DDD-0000-domain-model.template.md) — **NEW v5.2**: per-bounded-context DDD model (aggregates, invariants, ERD, events)
 - [`ARCH-0002-frontend-tech-stack.template.md`](./1-decisions/ARCH-0002-frontend-tech-stack.template.md) — **NEW v5.4**: frontend layered tech selection + project structure (per ADR-0001)
+- [`ARCH-0003-infra-architecture.template.md`](./1-decisions/ARCH-0003-infra-architecture.template.md) — **NEW v5.6**: infrastructure architecture (VPC, compute, IaC, DR) — profile: `platform-infra`
 
 ### 2-contracts — *interfaces that MUST track code*
 API specs, module contracts, layered Flows, FRs, traceability. Carry frontmatter `id`, `status`, `last-synced-with`; the `sunnydata-doc-freshness` skill flags drift + lifecycle issues.
@@ -58,6 +75,11 @@ API specs, module contracts, layered Flows, FRs, traceability. Carry frontmatter
 - [`TM-0000-traceability-matrix.template.md`](./2-contracts/TM-0000-traceability-matrix.template.md) — cross-layer coverage map
 - [`DS-0000-frontend-design-system.template.md`](./2-contracts/DS-0000-frontend-design-system.template.md) — **NEW v5.4**: design tokens + atomic design + API client + auth + frontend security checklist (per ADR-0001)
 - [`PC-0000-page-contract.template.md`](./2-contracts/PC-0000-page-contract.template.md) — **NEW v5.4**: per-page contract (route / responsibility / data / CTA / nav) (per ADR-0001)
+- [`SLO-0000-slo-spec.template.md`](./2-contracts/SLO-0000-slo-spec.template.md) — **NEW v5.6**: SLO specification (SLI / error budget / burn-rate alerts / SLA mapping) — profile: `platform-infra`
+- [`PIPE-0000-pipeline-contract.template.md`](./2-contracts/PIPE-0000-pipeline-contract.template.md) — **NEW v5.6**: data pipeline contract (input/output schema / DQ gates / SLA) — profile: `data-ml`
+- [`MODEL-0000-model-card.template.md`](./2-contracts/MODEL-0000-model-card.template.md) — **NEW v5.6**: ML model card (intended use / metrics / bias / lineage) — profile: `data-ml`
+- [`OBS-0000-observability-spec.template.md`](./2-contracts/OBS-0000-observability-spec.template.md) — **NEW v5.6**: observability specification (metrics / logs / traces / dashboards / alerting) — profile: `platform-infra`
+- [`CAP-0000-capacity-planning.template.md`](./2-contracts/CAP-0000-capacity-planning.template.md) — **NEW v5.6**: capacity planning & cost management (resource model / cost allocation / scaling) — profile: `platform-infra`
 
 ### 3-process — *how we work*
 Workflow guides, checklists, methodology references, runbooks, gates.
@@ -71,12 +93,19 @@ Workflow guides, checklists, methodology references, runbooks, gates.
 - [`TP-0000-test-plan.template.md`](./3-process/TP-0000-test-plan.template.md) — **NEW v5.1**: strategic test document
 - [`PROC-0007-vendor-api-test.template.md`](./3-process/PROC-0007-vendor-api-test.template.md) — **NEW v5.1**: per-vendor test prerequisites
 - [`PROC-0008-frontend-pre-merge.template.md`](./3-process/PROC-0008-frontend-pre-merge.template.md) — **NEW v5.4**: frontend test strategy + code/quality/IA checklists (per ADR-0001)
+- [`PROC-0009-incident-response.template.md`](./3-process/PROC-0009-incident-response.template.md) — **NEW v5.6**: incident response (SEV1-4 / on-call / post-mortem / comms) — profile: `platform-infra`
+- [`PROC-0010-chaos-engineering.template.md`](./3-process/PROC-0010-chaos-engineering.template.md) — **NEW v5.6**: chaos engineering (game day / fault injection / blast radius) — profile: `platform-infra`
+- [`PROC-0011-gitops-runbook.template.md`](./3-process/PROC-0011-gitops-runbook.template.md) — **NEW v5.6**: GitOps runbook (ArgoCD/Flux / environment promotion / drift detection) — profile: `platform-infra`
+- [`PROC-0012-deprecation-playbook.template.md`](./3-process/PROC-0012-deprecation-playbook.template.md) — **NEW v5.6**: deprecation & sunset playbook (compatibility windows / migration paths / data retention) — profile: `full`
+- [`ONBOARD-0000-team-onboarding.template.md`](./3-process/ONBOARD-0000-team-onboarding.template.md) — **NEW v5.6**: team onboarding & knowledge transfer (Day 1-30 / offboarding / handoff) — profile: `full`
 
 ### 4-exploration — *per-task ephemeral intent*
 PRDs, WBS, brainstorms, change-impact analyses. Date-stamp filenames, archive when shipped.
 - [`PRD-0000-prd.template.md`](./4-exploration/PRD-0000-prd.template.md)
 - [`WBS-0000-wbs.template.md`](./4-exploration/WBS-0000-wbs.template.md)
 - [`CIA-0000-change-impact-analysis.template.md`](./4-exploration/CIA-0000-change-impact-analysis.template.md) — **NEW v5**: CIA (CR-NNNN) — produced by `sunnydata-change-impact-analysis` skill, mandated by `change-governance` rule
+- [`EXP-0000-experiment-log.template.md`](./4-exploration/EXP-0000-experiment-log.template.md) — **NEW v5.6**: ML experiment log (hypothesis / dataset / results / reproducibility) — profile: `data-ml`
+- [`DISC-0000-discovery-research.template.md`](./4-exploration/DISC-0000-discovery-research.template.md) — **NEW v5.6**: discovery & user research (hypotheses / competitive analysis / opportunity sizing) — profile: `full`
 
 ### 5-views — *derived from code; do not hand-edit*
 Project structure, dependency graphs, class diagrams, frontend trees. Regenerate via `sunnydata-auto-regen` skill or language-specific tooling.
@@ -154,6 +183,19 @@ Project structure, dependency graphs, class diagrams, frontend trees. Regenerate
 | *(new in v5.2)* | `2-contracts/SM-0000-state-machine.template.md` |
 | *(new in v5.2)* | `2-contracts/MDS-0000-master-data.template.md` |
 | *(new in v5.3)* | `2-contracts/FI-0000-flow-index.template.md` |
+| *(new in v5.6)* | `1-decisions/ARCH-0003-infra-architecture.template.md` |
+| *(new in v5.6)* | `2-contracts/SLO-0000-slo-spec.template.md` |
+| *(new in v5.6)* | `2-contracts/PIPE-0000-pipeline-contract.template.md` |
+| *(new in v5.6)* | `2-contracts/MODEL-0000-model-card.template.md` |
+| *(new in v5.6)* | `3-process/PROC-0009-incident-response.template.md` |
+| *(new in v5.6)* | `3-process/PROC-0010-chaos-engineering.template.md` |
+| *(new in v5.6)* | `3-process/PROC-0011-gitops-runbook.template.md` |
+| *(new in v5.6)* | `4-exploration/EXP-0000-experiment-log.template.md` |
+| *(new in v5.6)* | `2-contracts/OBS-0000-observability-spec.template.md` |
+| *(new in v5.6)* | `2-contracts/CAP-0000-capacity-planning.template.md` |
+| *(new in v5.6)* | `3-process/PROC-0012-deprecation-playbook.template.md` |
+| *(new in v5.6)* | `3-process/ONBOARD-0000-team-onboarding.template.md` |
+| *(new in v5.6)* | `4-exploration/DISC-0000-discovery-research.template.md` |
 
 A migration script for downstream forks is at `scripts/migrate-templates-v3-to-v4.sh`.
 
@@ -163,6 +205,7 @@ A migration script for downstream forks is at `scripts/migrate-templates-v3-to-v
 
 | Version | Date | Change |
 |---|---|---|
+| v5.6 | 2026-05-15 | Profile-based template selection + lifecycle completion: Domain Scope declaration, 4 profiles (web-product / data-ml / platform-infra / full); 13 new templates — SRE (SLO, incident response, chaos engineering, observability), DevOps (infra architecture, GitOps runbook, capacity planning), Data Scientist (pipeline contract, model card, experiment log), Lifecycle (deprecation playbook, team onboarding, discovery research) |
 | v5.4 | 2026-05-10 | Frontend template tier realignment (ADR-0001 / CR-0001): split `5-views/frontend-architecture` and `5-views/frontend-information-architecture` into 6 properly-tiered templates (0/1/2/3/5) + integrated IA principles into `PRD-0000-prd.template.md §6` |
 | v5.3 | 2026-05-10 | Flow self-monitoring: project-wide flow-index aggregation template; sunnydata-flow-audit skill detecting broken refs / orphans / layering violations / stale flows / index drift |
 | v5.2 | 2026-05-10 | ERP-class foundation: Glossary (terminology source of truth); Module Boundary charter (per-module owns/NOT-owns); Domain Model (DDD aggregates + ERD + invariants); State Machine (extracted when complex); Master Data Specification (governance for long-lived shared entities) |

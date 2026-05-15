@@ -37,6 +37,6 @@ Subagent 完成後，主 agent 必須將最終產出總結寫入 `.claude/contex
 
 1. **變更涉及 flow / contract / data / architecture → 先跑 `sunnydata-change-impact-analysis` skill**（硬 gate，不可繞過）。
 2. **CIA §8「Human Decisions Required」未填寫 → 不可動 code**。
-3. **文件衝突或 status: deprecated/superseded → 停下來回報，引用具體 ID（BF-/UF-/API-/TC-），不腦補**。
+3. **文件衝突或 status: deprecated/superseded → 停下來回報，引用具體 ID（BF-/UF-/SF-/API-/TC-/SLO-/PIPE-/MODEL-/OBS-/CAP-/DISC-），不腦補**。
 
 Flow ID 命名規範見 `VibeCoding_Workflow_Templates/0-principles/PRIN-0001-flow-id-conventions.md`；Quality Gates 階段門檻見 `VibeCoding_Workflow_Templates/3-process/QG-0000-quality-gates.md`。

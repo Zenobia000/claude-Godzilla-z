@@ -1,6 +1,6 @@
 # Ownership Matrix — Human vs AI Division of Labor
 
-> **Why this exists**: 39 templates is a lot. Human architects shouldn't have to fill all of them. This matrix tells you **which files demand a human decision**, **which AI drafts and you approve**, and **which AI auto-manages without you ever opening them**.
+> **Why this exists**: 52 templates is a lot. Human architects shouldn't have to fill all of them. This matrix tells you **which files demand a human decision**, **which AI drafts and you approve**, and **which AI auto-manages without you ever opening them**.
 >
 > **Reading rule**: focus your attention on 🟥 HUMAN-ONLY files first. 🟨 HYBRID files come to you when AI proposes. 🟩 AI-AUTO files you should rarely if ever open.
 
@@ -18,7 +18,7 @@
 
 ## Per-file ownership
 
-### 🟥 HUMAN-ONLY (18 files) — your real workload
+### 🟥 HUMAN-ONLY (23 files) — your real workload
 
 These encode strategy / governance / domain knowledge. AI must not silently modify them.
 
@@ -42,10 +42,15 @@ These encode strategy / governance / domain knowledge. AI must not silently modi
 | `3-process/TP-0000-test-plan.template.md` | Test strategy — coverage targets, risk areas |
 | `3-process/PROC-0007-vendor-api-test.template.md` | Per-vendor decisions |
 | `3-process/PROC-0008-frontend-pre-merge.template.md` | Gate |
+| `3-process/PROC-0009-incident-response.template.md` | Incident severity + on-call + comms — org-specific decisions |
+| `3-process/PROC-0010-chaos-engineering.template.md` | Game day scope + blast radius — requires human judgment |
+| `3-process/PROC-0011-gitops-runbook.template.md` | Ops procedures — environment promotion policy |
+| `3-process/PROC-0012-deprecation-playbook.template.md` | Sunset lifecycle — compatibility windows, migration paths |
+| `3-process/ONBOARD-0000-team-onboarding.template.md` | Onboarding/offboarding — org-specific access, mentorship |
 
-**Total decisions you own**: ~18 files for a typical project. Some you fill once (product-principles, glossary), some grow over time (one master-data-spec per master entity).
+**Total decisions you own**: ~23 files for a typical project. Some you fill once (product-principles, glossary), some grow over time (one master-data-spec per master entity).
 
-### 🟨 HYBRID (15 files) — AI proposes, you decide
+### 🟨 HYBRID (23 files) — AI proposes, you decide
 
 AI drafts these from intent + context. You read, amend, approve. Once approved, they become contracts that AI must honor.
 
@@ -66,6 +71,14 @@ AI drafts these from intent + context. You read, amend, approve. Once approved, 
 | `4-exploration/PRD-0000-prd.template.md` | Draft from brief | Approve scope, metrics | Per feature |
 | `4-exploration/WBS-0000-wbs.template.md` | Draft from PRD | Approve sequencing | Per sprint/release |
 | `4-exploration/CIA-0000-change-impact-analysis.template.md` | Generate §1-§7 (affected artifacts, suggested order) | **Decide §8 (Human Decisions Required)** — AI cannot proceed without your decisions | Auto-fired by CIA gate |
+| `1-decisions/ARCH-0003-infra-architecture.template.md` | Draft VPC / compute / IaC / DR sections from infra scan | Approve network topology, scaling policy, DR tier | Per infra change |
+| `2-contracts/SLO-0000-slo-spec.template.md` | Draft SLI definitions + burn-rate alerts from metrics | Approve SLO targets, error budget policy | Per service |
+| `2-contracts/PIPE-0000-pipeline-contract.template.md` | Draft pipeline I/O schema + DQ gates from code | Approve SLA, blast radius, DQ thresholds | Per pipeline |
+| `2-contracts/MODEL-0000-model-card.template.md` | Draft model metrics + lineage from training artifacts | Approve bias analysis, deployment constraints | Per model version |
+| `4-exploration/EXP-0000-experiment-log.template.md` | Draft hypothesis + metrics from experiment config | Approve experiment design, success criteria | Per experiment |
+| `2-contracts/OBS-0000-observability-spec.template.md` | Draft metrics/logs/traces spec from infra scan | Approve retention policy, alerting strategy | Per service |
+| `2-contracts/CAP-0000-capacity-planning.template.md` | Draft resource model + cost projection from cloud billing | Approve budget thresholds, scaling policy | Quarterly |
+| `4-exploration/DISC-0000-discovery-research.template.md` | Draft hypotheses + competitive analysis from brief | Approve research design, go/no-go criteria | Per feature discovery |
 
 **Your action when AI proposes**: read the diff, check §8 if CIA, accept or amend.
 
@@ -142,8 +155,8 @@ You don't run these manually unless asked. AI invokes them by trigger words or a
 
 ## TL;DR — three lines
 
-1. **You touch ~16 🟥 HUMAN-ONLY files** (strategy, governance, decisions). That's your real cockpit.
-2. **AI proposes ~12 🟨 HYBRID files** for your approval. Read the diff, decide, commit.
+1. **You touch ~23 🟥 HUMAN-ONLY files** (strategy, governance, decisions). That's your real cockpit.
+2. **AI proposes ~23 🟨 HYBRID files** for your approval. Read the diff, decide, commit.
 3. **AI auto-manages 6 🟩 AI-AUTO files** invisibly. Never hand-edit them.
 
 If a file isn't in this matrix, it's a guide / README / index — read once, refer occasionally, don't fill.
