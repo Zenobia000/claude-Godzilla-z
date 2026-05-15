@@ -142,7 +142,7 @@ The rule applies to exact phrases, paraphrases, synonyms, and implications of su
 **Mandatory:**
 - After each task in subagent-driven development
 - After completing a major feature
-- Before merge to main
+- Before merge to main (typically after PR creation — `sunnydata-branch-lifecycle` invokes this skill post-PR for structured self-review)
 
 **Optional but valuable:**
 - When stuck (fresh perspective)
