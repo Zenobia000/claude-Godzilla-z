@@ -142,6 +142,6 @@ in-memory state         → Redis cache              → 分散式 cache + CDN
 
 ## 啟動
 
-`/output-style 16-Apprentice-output`
+`/output-style Apprentice-output`
 
 或自然語言：「用學徒模式」「幫我理解你的決策脈絡」

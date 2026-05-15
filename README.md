@@ -6,13 +6,13 @@
 
 **進倉。啟動。征服混沌的程式碼戰場。**
 
-[![Version](https://img.shields.io/badge/version-v5.0-blue)]()
+[![Version](https://img.shields.io/badge/version-v5.5-blue)]()
 [![Platform](https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20(WSL2)-lightgrey)]()
 [![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
 
 </div>
 
-> 一套開箱即用的 Claude Code 開發配置模板 — 12 個 MECE Skills、5-Gate Git 品質管線、Tesla StatusLine。
+> 一套開箱即用的 Claude Code 開發配置模板 — Skills、5-Gate Git 品質管線、Tesla StatusLine。
 > 複製到新專案，像駕駛員進倉一樣，直接啟動。
 
 ---
@@ -49,11 +49,11 @@ ln -s "$(pwd)/.claude/skills/sunnydata-architecture-review" \
 
 ```
 .claude/
-├── rules/           (8)   # 永遠生效的規則
-├── skills/          (13)  # 按需載入的領域知識（sunnydata-*）
+├── rules/           (11)  # 永遠生效的規則
+├── skills/          (41)  # 按需載入的領域知識（sunnydata-* / vibecoding-* / community-*）
 ├── agents/          (13)  # 專業 Agent
-├── commands/        (17)  # Slash Commands
-├── output-styles/   (16)  # 產出格式
+├── commands/        (12)  # Slash Commands
+├── output-styles/   (2)   # 產出格式（Vision / Apprentice）
 ├── settings.json          # 主設定
 ├── CLAUDE.md              # 專案指令
 ├── statusline.sh          # StatusLine（Windows）
@@ -62,7 +62,7 @@ ln -s "$(pwd)/.claude/skills/sunnydata-architecture-review" \
 
 ---
 
-## Rules（8 個，自動載入）
+## Rules（11 個，自動載入）
 
 每次對話自動生效，不需手動觸發。
 
@@ -76,12 +76,15 @@ ln -s "$(pwd)/.claude/skills/sunnydata-architecture-review" \
 | **performance** | 模型選擇策略、Context Window 管理、平行任務 |
 | **patterns** | Repository Pattern、API 信封格式、骨架專案策略 |
 | **subagent-context** | 子代理產出持久化至 `.claude/context/` |
+| **change-governance** | 變更涉及 flow/contract/data/architecture 需先跑 CIA |
+| **context-stability** | 6 tier 文件穩定性層級與讀寫規則 |
+| **primitive-selection** | command / skill / output-style 選擇決策樹 |
 
 ---
 
-## Skills（13 個，MECE 架構）
+## Skills（41 個）
 
-依開發生命週期組織，統一 `sunnydata-` 前綴。按需載入。
+依開發生命週期組織，分 `sunnydata-*`、`vibecoding-*`、`community-*` 三群組。按需載入。
 
 | 階段 | Skill | 用途 |
 | :--- | :---- | :--- |
@@ -143,8 +146,8 @@ main ──┬── feat/xxx ──── PR ──→ main
 | :--- | :--- | :--- |
 | `/task-init` | command | 建立 WBS、分析複雜度 |
 | `/task-next` | command | 取下一個任務 |
-| `superpowers:writing-plans` | skill | 規劃實作步驟 |
-| `superpowers:test-driven-development` | skill | Red-Green-Refactor |
+| `sunnydata-design` | skill | 規劃實作步驟 |
+| `sunnydata-testing` | skill | Red-Green-Refactor |
 | `vibecoding-code-review` / `sunnydata-code-review` | skill | 程式碼審查 |
 | `/verify` | command | 全面驗證 |
 | `e2e-validation-specialist` | agent | Playwright E2E |

@@ -26,7 +26,7 @@
     command                        ▼                       ▼
     e.g. /save-session         output-style              skill
                                e.g. /output-style       (auto-load
-                               15-Vision-output         or via
+                               Vision-output         or via
                                                         Skill tool)
 ```
 
@@ -59,7 +59,7 @@
 ### output-style
 **Use when**:
 - You genuinely want the *whole session* to behave differently — every response in a different voice or format.
-- Example: `/output-style 15-Vision-output` makes Claude prefer ASCII diagrams over code for the rest of the session.
+- Example: `/output-style Vision-output` makes Claude prefer ASCII diagrams over code for the rest of the session.
 
 **Don't use when**:
 - Encoding a task template (PRD, ADR, API spec). Those are skills now. The user shouldn't have to switch session mode just to draft one document.
@@ -70,7 +70,7 @@ When responding, name the primitive you're using if non-obvious:
 
 - ✅ "This is procedural — invoking `vibecoding-code-review` skill."
 - ✅ "This needs to mutate session state — using `/save-session` command."
-- ✅ "User wants visualization mode for the rest of the chat — `/output-style 15-Vision-output`."
+- ✅ "User wants visualization mode for the rest of the chat — `/output-style Vision-output`."
 - ❌ "Switching to `/output-style 01-prd-product-spec` mode" *(deprecated; that's now `vibecoding-write-prd` skill)*
 - ❌ Implicitly switching modes mid-conversation without telling the user.
 
@@ -85,9 +85,9 @@ When responding, name the primitive you're using if non-obvious:
 
 ## Cleanup history
 
-- **2026-05-10** — Removed 6 pure-indirection commands: `/plan`, `/tdd`, `/e2e`, `/review-code`, `/hub-delegate`, `/check-quality`. Replacements are skills (vibecoding-*, sunnydata-*, superpowers:*) or the Agent tool itself.
+- **2026-05-10** — Removed 6 pure-indirection commands: `/plan`, `/tdd`, `/e2e`, `/review-code`, `/hub-delegate`, `/check-quality`. Replacements are skills (vibecoding-*, sunnydata-*) or the Agent tool itself.
 - **2026-05-10** — Removed `VibeCoding_Workflow_Templates/output_style.md` (424-line stale design doc that contradicted v4 by promoting output-styles for task templates).
-- **2026-05-10** — Removed 14 task-template output-styles; migrated to `vibecoding-*` skills. Only `15-Vision-output.md` remains as a legitimate session-wide persona mode.
+- **2026-05-10** — Removed 14 task-template output-styles; migrated to `vibecoding-*` skills. Only `Vision-output.md` remains as a legitimate session-wide persona mode.
 
 ## See also
 

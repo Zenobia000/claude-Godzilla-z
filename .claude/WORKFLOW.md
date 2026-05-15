@@ -19,9 +19,9 @@
 ```
 /task-next                  # command: 從 WBS 取下一個任務（自動開始時間追蹤）
     |
-superpowers:writing-plans   # skill: 規劃實作步驟（等待確認）
+sunnydata-design            # skill: 規劃實作步驟（等待確認）
     |
-superpowers:test-driven-development  # skill: TDD（Red → Green → Refactor）
+sunnydata-testing           # skill: TDD（Red → Green → Refactor）
     |
 /build-fix                  # command: 修復建置錯誤（如有）
     |
@@ -48,7 +48,7 @@ e2e-validation-specialist   # agent (Agent tool): E2E 測試
 ## 快速模式（小功能/Bug 修復）
 
 ```
-[describe task]  →  superpowers:test-driven-development  →  /verify quick
+[describe task]  →  sunnydata-testing  →  /verify quick
 ```
 讓 AI 自動載入 writing-plans skill；無需顯式 `/plan`。
 
@@ -61,8 +61,8 @@ e2e-validation-specialist   # agent (Agent tool): E2E 測試
 | 入口類型 | 何時用 | 範例 |
 | :--- | :--- | :--- |
 | **command** (`/name`) | 觸碰 taskmaster/session/time-log 系統狀態，或有獨立程序邏輯 | `/save-session`, `/task-next`, `/verify`, `/build-fix` |
-| **skill** (auto-load 或 Skill tool) | **預設**。任何程序性知識 | `vibecoding-code-review`, `superpowers:writing-plans`, `sunnydata-debugging` |
-| **output-style** (`/output-style`) | 整個 session 持續的人格切換 | `/output-style 15-Vision-output`（視覺化模式） |
+| **skill** (auto-load 或 Skill tool) | **預設**。任何程序性知識 | `vibecoding-code-review`, `sunnydata-design`, `sunnydata-debugging` |
+| **output-style** (`/output-style`) | 整個 session 持續的人格切換 | `/output-style Vision-output`（視覺化模式） |
 
 **口訣**：預設用 skill；command 只給系統狀態工作流；output-style 只給人格切換。
 
@@ -70,7 +70,7 @@ e2e-validation-specialist   # agent (Agent tool): E2E 測試
 
 ## 指令速查
 
-### Commands（11 個，皆觸碰系統狀態或具獨立程序）
+### Commands（12 個，皆觸碰系統狀態或具獨立程序）
 
 | 指令 | 用途 | 常用參數 |
 | :--- | :--- | :--- |
@@ -85,13 +85,14 @@ e2e-validation-specialist   # agent (Agent tool): E2E 測試
 | `/suggest-mode` | 調整建議密度 | |
 | `/learn` | 擷取可重用模式 | |
 | `/save-session` | 儲存 session | |
+| `/release` | 自動化發佈（CHANGELOG + tag + push） | `<version>` |
 
 ### 已遷移至 skill 的舊 commands（**改用 skill / agent tool**）
 
 | 舊 command | 新入口 |
 | :--- | :--- |
-| `/plan` | `superpowers:writing-plans` skill |
-| `/tdd` | `superpowers:test-driven-development` 或 `vibecoding-write-tdd` skill |
+| `/plan` | `sunnydata-design` skill |
+| `/tdd` | `sunnydata-testing` 或 `vibecoding-write-tdd` skill |
 | `/e2e` | `e2e-validation-specialist` agent (via Agent tool) |
 | `/review-code` | `vibecoding-code-review` 或 `sunnydata-code-review` skill |
 | `/hub-delegate` | Agent tool 本身（已內建路由） |
@@ -139,14 +140,14 @@ e2e-validation-specialist   # agent (Agent tool): E2E 測試
 
 | Skill | 觸發時機 |
 | :--- | :--- |
-| `superpowers:test-driven-development` | TDD Red-Green-Refactor 工作流 |
+| `sunnydata-testing` | TDD Red-Green-Refactor 工作流 |
 | `vibecoding-write-tdd` | 撰寫 TDD 單元測試規格 |
 | `sunnydata-api-design` | API 設計（搭配 `2-contracts/API-0000-api-spec.template.md`） |
 | `vibecoding-code-review` | VibeCoding 模板式 code review |
 | `sunnydata-code-review` | 通用 code review 流程 |
 | `sunnydata-security` / `vibecoding-security-check` | 安全審查 |
 | `e2e-validation-specialist` (agent) | E2E 測試 |
-| `superpowers:writing-plans` | 規劃實作步驟 |
+| `sunnydata-design` | 規劃實作步驟 |
 | `sunnydata-deep-research` | 複雜問題的多源研究 |
 | `sunnydata-infrastructure` | 部署/容器化 |
 | `sunnydata-doc-freshness` | 檢查 tier-2 contract 文件鮮度 |

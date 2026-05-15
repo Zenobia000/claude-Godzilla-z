@@ -29,7 +29,7 @@ When asked about current code structure:
 When asked to update a view doc:
 1. Run the appropriate generator (tools like `pyan`, `madge`, `tree`, or AI-driven full reads)
 2. Replace the doc wholesale; do not patch in place
-3. The `/regenerate-views` skill (if available) handles this end-to-end
+3. The `sunnydata-auto-regen` skill (if available) handles this end-to-end
 
 ## How humans should maintain this tier
 

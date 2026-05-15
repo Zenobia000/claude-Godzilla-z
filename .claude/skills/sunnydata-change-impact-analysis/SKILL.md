@@ -33,7 +33,7 @@ Before AI implements code changes that touch any of these surfaces:
 - Documentation-only edits to tier-3 process guides
 - Bug fix where the bug is clearly inside one function with no contract impact
 
-For these, prefer `superpowers:writing-plans` or just write the code.
+For these, prefer `sunnydata-design` skill or just write the code.
 
 ## Procedure
 

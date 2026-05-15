@@ -19,7 +19,7 @@ When starting any non-trivial task, load tiers in this order:
 
 1. **Tier 0** — establishes worldview (mission, non-goals, technical invariants)
 2. **Tier 1** — relevant ADRs for the touched area
-3. **Tier 2** — contracts for any module/API the task touches *(after `/check-doc-freshness` passes)*
+3. **Tier 2** — contracts for any module/API the task touches *(after `sunnydata-doc-freshness` skill passes)*
 4. **Tier 3** — relevant checklists for the kind of work
 5. **Tier 4** — only if you need motivation context
 6. **Tier 5** — explore the actual code first; use views only as a sanity check
@@ -33,7 +33,7 @@ When starting any non-trivial task, load tiers in this order:
 | 2 | AI generates + human verifies | Contract change | Use `vibecoding-write-api-contract` / `vibecoding-write-tdd` skill; carry frontmatter |
 | 3 | Human curates | Quarterly | Direct edit; bump version footer |
 | 4 | AI drafts on demand | Task start | Use `vibecoding-write-prd` skill; date-stamp filename |
-| 5 | AI auto-regenerates | After refactor | Use `/regenerate-views` skill; never hand-edit |
+| 5 | AI auto-regenerates | After refactor | Use `sunnydata-auto-regen` skill; never hand-edit |
 
 ## When tiers conflict
 

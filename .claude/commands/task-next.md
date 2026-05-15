@@ -65,8 +65,8 @@ description: 從 WBS 取得下一個任務建議，分析優先級和依賴關�
 
 ```
 /task-next    → 取得任務（自動更新 wbs.md）
-superpowers:writing-plans            → 規劃實作步驟 (skill)
-superpowers:test-driven-development  → 開始開發 (skill)
+sunnydata-design                     → 規劃實作步驟 (skill)
+sunnydata-testing                    → 開始開發 (skill)
 /verify       → 完成驗證
 /task-next    → 取得下一個（自動更新 wbs.md）
 ```

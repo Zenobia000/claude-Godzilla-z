@@ -2,7 +2,7 @@
 
 # Claude Code 專案初始化範本
 
-> **版本:** v4.1 | **作者:** Sunny | **模式:** 人類主導
+> **版本:** v5.5 | **作者:** Sunny | **模式:** 人類主導
 
 當 Claude Code 偵測到此檔案時：
 1. 顯示範本資訊
@@ -74,7 +74,7 @@ Claude Code 在使用者確認後：
 ## 開發流程
 
 遵循 `.claude/WORKFLOW.md` 的標準流程：
-/task-next → superpowers:writing-plans (skill) → superpowers:test-driven-development (skill) → /verify
+/task-next → sunnydata-design (skill) → sunnydata-testing (skill) → /verify
 
 ## 專案規則
 
@@ -186,15 +186,15 @@ GitHub 儲存庫設定：
 
 配置：
 - CLAUDE.md 規則生效
-- 7 條自動載入規則 (.claude/rules/)
+- 11 條自動載入規則 (.claude/rules/)
 - 13 個專業 Agent 就緒
-- 17 個 Slash Command 可用
+- 12 個 Slash Command 可用
 - GitHub: [啟用/未啟用]
 
 下一步：
 1. /task-next                          取得第一個任務 (command)
-2. superpowers:writing-plans            規劃實作步驟 (skill)
-3. superpowers:test-driven-development  開始開發 (skill)
+2. sunnydata-design                     規劃實作步驟 (skill)
+3. sunnydata-testing                    開始開發 (skill)
 ```
 
 <!-- CLAUDE_CODE_INIT_END -->

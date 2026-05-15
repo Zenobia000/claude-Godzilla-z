@@ -1,6 +1,6 @@
 # .claude 配置目錄
 
-> **版本:** v4.3 | **更新:** 2026-03-24
+> **版本:** v5.5 | **更新:** 2026-05-15
 
 ---
 
@@ -13,14 +13,12 @@
 ├── WORKFLOW.md                # 開發流程指南
 ├── statusline.sh              # StatusLine bash 腳本（Windows）
 ├── statusline-linux.sh        # StatusLine bash 腳本（Linux）
-├── statusline-go.exe          # StatusLine Go 備用
-├── SOP.md                     # 設定 SOP
 │
 ├── agents/       (13 個)      # 專業 Agent 定義
-├── commands/     (17 個)      # Slash Command
-├── rules/        (7 個)       # 自動載入規則
-├── skills/       (8 個)       # 領域知識 Skill
-├── output-styles/ (15 個)     # 輸出樣式模板
+├── commands/     (12 個)      # Slash Command
+├── rules/        (11 個)      # 自動載入規則
+├── skills/       (41 個)      # 領域知識 Skill
+├── output-styles/ (2 個)      # 輸出樣式（Vision / Apprentice）
 ├── mcp-configs/               # MCP 推薦清單
 ├── hooks/                     # Hook 腳本庫
 ├── taskmaster-data/           # 持久化資料（WBS、時間日誌）
@@ -52,7 +50,7 @@
 | deployment-expert | sonnet | 部署運維 |
 | workflow-template-manager | sonnet | 模板管理 |
 
-### Commands（11 個）
+### Commands（12 個）
 
 在 Claude Code 中輸入 `/` 即可使用。**只保留觸碰系統狀態或具獨立程序邏輯的 commands**；其他改用 skill。詳見 `rules/primitive-selection.md`。
 
@@ -69,10 +67,11 @@
 | /task-status | 專案狀態（含時間追蹤） | 系統狀態 |
 | /time-log | 開發時間報表 | 系統狀態 |
 | /suggest-mode | 建議密度 | 系統狀態 |
+| /release | 自動化發佈（CHANGELOG + tag + push） | 程序 |
 
-**已遷移至 skill 的舊 commands**：`/plan` → `superpowers:writing-plans`；`/tdd` → `superpowers:test-driven-development` 或 `vibecoding-write-tdd`；`/e2e` → `e2e-validation-specialist` agent；`/review-code` → `vibecoding-code-review`；`/hub-delegate` → Agent tool；`/check-quality` → `sunnydata-code-review` + `sunnydata-architecture-review`。
+**已遷移至 skill 的舊 commands**：`/plan` → `sunnydata-design`；`/tdd` → `sunnydata-testing` 或 `vibecoding-write-tdd`；`/e2e` → `e2e-validation-specialist` agent；`/review-code` → `vibecoding-code-review`；`/hub-delegate` → Agent tool；`/check-quality` → `sunnydata-code-review` + `sunnydata-architecture-review`。
 
-### Rules（7 個，自動載入）
+### Rules（11 個，自動載入）
 
 放在 `rules/` 下，**每次對話自動注入 context**，無需手動觸發。
 
@@ -80,11 +79,15 @@
 | :--- | :--- |
 | coding-style | 不可變性、檔案大小、錯誤處理 |
 | development-workflow | 研究先行 → Plan → TDD → Review |
-| git-workflow | Conventional Commits |
+| git-workflow | Conventional Commits、PR 流程 |
 | security | commit 前安全檢查 |
 | testing | 80%+ 覆蓋率、TDD |
 | performance | 模型選擇、Context 管理 |
 | patterns | Repository Pattern、API 格式 |
+| change-governance | 變更治理 — CIA hard gate |
+| context-stability | 6 tier 文件穩定性 |
+| primitive-selection | command/skill/output-style 決策 |
+| subagent-context | 子代理產出持久化 |
 
 ### Skills（**主要入口**，按需載入）
 
@@ -94,13 +97,9 @@
 - `vibecoding-*`（14 個）：對應 VibeCoding 模板的生成 skills（PRD、ADR、API 契約、TDD 等）
 - `sunnydata-*`：通用工具（code-review、testing、security、debugging、design、doc-freshness 等）
 - `community-*`：社群貢獻（前端、a11y、UI 設計系統等）
-- `superpowers:*`：通用工程方法論（writing-plans、test-driven-development、brainstorming 等）
-
 完整清單見 `.claude/skills/INDEX.md`。
-| deployment-patterns | 部署規劃 |
-| docker-patterns | 容器化 |
 
-### Output Styles（15 個）
+### Output Styles（2 個）
 
 使用 `/output-style <name>` 切換，詳見 `output-styles/README.md`。
 

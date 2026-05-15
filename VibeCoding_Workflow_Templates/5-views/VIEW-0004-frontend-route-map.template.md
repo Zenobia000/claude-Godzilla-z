@@ -108,7 +108,7 @@ graph TB
 
 ```bash
 # 範例：從 React Router config 產生本檔
-$ npx claude /regenerate-views --target=frontend-route-map
+$ npx claude "use sunnydata-auto-regen skill to regenerate frontend-route-map"
 ```
 
 不要手動編輯 §1-§5。改 router → regen → commit。

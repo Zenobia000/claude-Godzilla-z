@@ -16,10 +16,10 @@ In v4 they live as Skills under `.claude/skills/vibecoding-*/` — the Skill too
 
 | File | Purpose |
 |---|---|
-| `15-Vision-output.md` | Genuine output mode: forces visualization-first responses (diagrams, comparisons, tables) instead of code |
-| `16-Apprentice-output.md` | Cognitive Apprenticeship mode: every code change includes decision chains, tradeoff reasoning, and decision previews so engineers learn alongside AI |
+| `Vision-output.md` | Genuine output mode: forces visualization-first responses (diagrams, comparisons, tables) instead of code |
+| `Apprentice-output.md` | Cognitive Apprenticeship mode: every code change includes decision chains, tradeoff reasoning, and decision previews so engineers learn alongside AI |
 
-Activate with `/output-style 15-Vision-output` or `/output-style 16-Apprentice-output`.
+Activate with `/output-style Vision-output` or `/output-style Apprentice-output`.
 
 ## Migration map (old output-style → new skill)
 
@@ -46,4 +46,4 @@ Each new Skill carries `template-ref:` frontmatter pointing to the canonical tem
 
 Only add a new file here if the user wants a **persistent voice/format change** for the whole session. If you find yourself writing one that says "produce X structured doc", it should be a Skill, not an output style.
 
-Reference: `15-Vision-output.md` is the model for how an output style is shaped.
+Reference: `Vision-output.md` is the model for how an output style is shaped.

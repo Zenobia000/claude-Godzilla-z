@@ -22,7 +22,7 @@ These documents are either **source-of-truth** (contract-first projects) or **mi
 - `sync-source: doc` → the doc is authoritative, code follows
 - `sync-source: code` → the code is authoritative, doc may be stale
 
-When in doubt, run the `/check-doc-freshness` skill before treating a contract doc as ground truth.
+When in doubt, run the `sunnydata-doc-freshness` skill before treating a contract doc as ground truth.
 
 ## How humans should maintain this tier
 

@@ -79,7 +79,7 @@ PRDs, WBS, brainstorms, change-impact analyses. Date-stamp filenames, archive wh
 - [`CIA-0000-change-impact-analysis.template.md`](./4-exploration/CIA-0000-change-impact-analysis.template.md) — **NEW v5**: CIA (CR-NNNN) — produced by `sunnydata-change-impact-analysis` skill, mandated by `change-governance` rule
 
 ### 5-views — *derived from code; do not hand-edit*
-Project structure, dependency graphs, class diagrams, frontend trees. Regenerate via `/regenerate-views` skill or language-specific tooling.
+Project structure, dependency graphs, class diagrams, frontend trees. Regenerate via `sunnydata-auto-regen` skill or language-specific tooling.
 - [`VIEW-0001-project-structure.template.md`](./5-views/VIEW-0001-project-structure.template.md)
 - [`VIEW-0002-file-dependencies.template.md`](./5-views/VIEW-0002-file-dependencies.template.md)
 - [`VIEW-0003-class-relationships.template.md`](./5-views/VIEW-0003-class-relationships.template.md)

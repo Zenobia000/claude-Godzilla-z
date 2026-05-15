@@ -175,7 +175,7 @@ Every plan MUST start with this header:
 ```markdown
 # [Feature Name] Implementation Plan
 
-> **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or the Execute Plan phase of superpowers:sunnydata-design to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
+> **For agentic workers:** Use the Agent tool or the Execute Plan phase of sunnydata-design to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
 **Goal:** [One sentence describing what this builds]
 

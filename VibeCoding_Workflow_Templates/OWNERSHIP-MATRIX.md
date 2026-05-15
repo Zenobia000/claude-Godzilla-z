@@ -1,6 +1,6 @@
 # Ownership Matrix — Human vs AI Division of Labor
 
-> **Why this exists**: 34 templates is a lot. Human architects shouldn't have to fill all of them. This matrix tells you **which files demand a human decision**, **which AI drafts and you approve**, and **which AI auto-manages without you ever opening them**.
+> **Why this exists**: 39 templates is a lot. Human architects shouldn't have to fill all of them. This matrix tells you **which files demand a human decision**, **which AI drafts and you approve**, and **which AI auto-manages without you ever opening them**.
 >
 > **Reading rule**: focus your attention on 🟥 HUMAN-ONLY files first. 🟨 HYBRID files come to you when AI proposes. 🟩 AI-AUTO files you should rarely if ever open.
 
@@ -18,7 +18,7 @@
 
 ## Per-file ownership
 
-### 🟥 HUMAN-ONLY (16 files) — your real workload
+### 🟥 HUMAN-ONLY (18 files) — your real workload
 
 These encode strategy / governance / domain knowledge. AI must not silently modify them.
 
@@ -43,9 +43,9 @@ These encode strategy / governance / domain knowledge. AI must not silently modi
 | `3-process/PROC-0007-vendor-api-test.template.md` | Per-vendor decisions |
 | `3-process/PROC-0008-frontend-pre-merge.template.md` | Gate |
 
-**Total decisions you own**: ~16 files for a typical project. Some you fill once (product-principles, glossary), some grow over time (one master-data-spec per master entity).
+**Total decisions you own**: ~18 files for a typical project. Some you fill once (product-principles, glossary), some grow over time (one master-data-spec per master entity).
 
-### 🟨 HYBRID (12 files) — AI proposes, you decide
+### 🟨 HYBRID (15 files) — AI proposes, you decide
 
 AI drafts these from intent + context. You read, amend, approve. Once approved, they become contracts that AI must honor.
 

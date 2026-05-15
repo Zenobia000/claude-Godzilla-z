@@ -125,6 +125,6 @@ WBS 已儲存至 .claude/taskmaster-data/wbs.md
 
 下一步:
   /task-next    取得第一個任務
-  superpowers:writing-plans  規劃實作步驟 (skill)
+  sunnydata-design           規劃實作步驟 (skill)
   /task-status  查看 WBS 狀態
 ```

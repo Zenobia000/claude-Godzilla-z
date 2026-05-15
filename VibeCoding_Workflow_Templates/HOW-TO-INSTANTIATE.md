@@ -93,8 +93,8 @@ Once you've instantiated this layout, these are the commands you'll use most:
 
 | Command / skill | When to use |
 |---|---|
-| `/check-doc-freshness` | Weekly, or before any release; surfaces stale tier-2 docs |
-| `/regenerate-views` | After any large refactor; rebuilds tier 5 |
+| `sunnydata-doc-freshness` skill | Weekly, or before any release; surfaces stale tier-2 docs |
+| `sunnydata-auto-regen` skill | After any large refactor; rebuilds tier 5 |
 | `vibecoding-write-prd` skill | Drafting a new feature PRD into tier 4 |
 | `vibecoding-write-adr` skill | Recording a new architectural decision into tier 1 |
 | `vibecoding-write-api-contract` skill | New endpoint or schema change into tier 2 |

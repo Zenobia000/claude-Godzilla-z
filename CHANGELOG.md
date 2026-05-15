@@ -28,11 +28,10 @@ Generation: run `/release <version>` command — orchestrates [`sunnydata-change
 ## [v5.4] - 2026-05-10
 
 ### Changed
-- Frontend templates segregated to `extras/web-frontend/` — keeps core tiers domain-neutral
 - 14 templates with worked examples gained `⚠️ WORKED EXAMPLE — DELETE BEFORE USE` banner — preserves AI few-shot value while marking examples as illustrative
+- Frontend templates initially segregated to `extras/web-frontend/`, then merged back into main tier directories (PRIN-0002, ARCH-0002, VIEW-0004)
 
 ### Added
-- `extras/README.md` — explains domain-bound template segregation
 - ADR-0001 / CR-0001 dogfood example demonstrating CIA → ADR workflow (later removed)
 
 ## [v5.3] - 2026-05-10
@@ -93,10 +92,10 @@ Generation: run `/release <version>` command — orchestrates [`sunnydata-change
 - `.claude/rules/primitive-selection.md` — command/skill/output-style decision rule
 
 ### Removed
-- 14 task-template output-styles (migrated to skills; `15-Vision-output` retained)
+- 14 task-template output-styles (migrated to skills; `Vision-output` retained)
 - 6 pure-indirection commands (`/plan`, `/tdd`, `/e2e`, `/review-code`, `/hub-delegate`, `/check-quality`)
 - `VibeCoding_Workflow_Templates/output_style.md` — contradicted v4 design
-- `.claude/plugins/`, `.claude/custom-rule&skill/`, `statusline-go.exe` — dead code
+- `.claude/plugins/`, `.claude/custom-rule&skill/` — dead code
 
 ### Fixed
 - `post-write` hook matcher broadened from `Write` to `Write|Edit|MultiEdit|NotebookEdit`
