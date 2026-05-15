@@ -35,6 +35,7 @@ When the user asks AI to "draft a PRD", "plan a sprint", or "brainstorm an appro
 
 | File | Purpose |
 |---|---|
+| `CIA-0000-change-impact-analysis.template.md` | Change Impact Analysis template for tracking change scope across flows, contracts, data, tests |
 | `PRD-0000-prd.template.md` | Product Requirement Document (problem, users, goals, scope, metrics) |
 | `WBS-0000-wbs.template.md` | Work Breakdown Structure for sprint/phase planning |
 

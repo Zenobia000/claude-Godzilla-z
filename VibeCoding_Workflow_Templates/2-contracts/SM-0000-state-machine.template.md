@@ -6,7 +6,7 @@ tier: 2-contracts
 owner: HYBRID (AI-drafts, human-approves)
 last-reviewed: <YYYY-MM-DD>
 entity: <entity-name-this-state-machine-governs>
-related_aggregate: <aggregate-root-from-domain-model>
+related-aggregate: <aggregate-root-from-domain-model>
 last-synced-with: <git-commit-sha>
 sync-source: doc                # state machine doc is authoritative; code follows
 source-paths:

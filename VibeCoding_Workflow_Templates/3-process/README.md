@@ -43,6 +43,7 @@ These documents constrain *how* AI executes — they don't dictate the architect
 | `QG-0000-quality-gates.md` | Gate 0-4 stage prerequisites (requirements / FE buildable / BE parallelizable / DB / tests) | Guide |
 | `TP-0000-test-plan.template.md` | **Strategic** test document (quality targets, test pyramid, stages, data strategy, CI gate spec, risk register) | Template |
 | `PROC-0007-vendor-api-test.template.md` | Per-vendor test prerequisites (sandbox / contract / scenarios / fallback) | Template |
+| `PROC-0008-frontend-pre-merge.template.md` | Frontend pre-merge quality gate checklist | Checklist |
 
 ## Frontmatter Schema
 

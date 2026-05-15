@@ -7,8 +7,8 @@ owner: HUMAN-ONLY
 last-reviewed: <YYYY-MM-DD>
 date: <YYYY-MM-DD>
 decider: <person-or-team>
-bounded_context: <DDD bounded context name>
-related_module: MOD-NNNN
+bounded-context: <DDD bounded context name>
+related-module: MOD-NNNN
 product-version: null
 supersedes: null
 superseded-by: null

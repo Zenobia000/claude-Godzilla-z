@@ -52,6 +52,7 @@ AI drafts these from intent + context. You read, amend, approve. Once approved, 
 | File | AI's role | Your role | Trigger |
 |---|---|---|---|
 | `1-decisions/ADR-0000-adr.template.md` | Draft from CIA outcomes | Accept / Reject; once Accepted = append-only | After CR resolved |
+| `1-decisions/ADR-0001-frontend-template-tier-realignment.md` | — (human-authored) | Append-only once accepted | — |
 | `1-decisions/ARCH-0000-architecture-overview.template.md` | Maintain C4 / DDD diagrams | Accept structural changes | Quarterly or per major feature |
 | `2-contracts/API-0000-api-spec.template.md` | Generate from code (code-first) or scaffold from intent (contract-first) | Approve schema, error codes | Per endpoint change |
 | `2-contracts/MC-0000-module-contract.template.md` | Generate DbC pre/post-conditions from code | Approve invariants | Per module |

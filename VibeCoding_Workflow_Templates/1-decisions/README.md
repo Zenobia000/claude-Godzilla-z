@@ -33,8 +33,10 @@ When generating new ADRs, AI should:
 | File | Purpose |
 |---|---|
 | `ADR-0000-adr.template.md` | Single-decision record (status, context, decision, consequences) |
+| `ADR-0001-frontend-template-tier-realignment.md` | Decision record for splitting monolithic frontend-architecture.template.md into 6 tier-aligned files |
 | `ARCH-0000-architecture-overview.template.md` | C4 / DDD level architecture snapshot |
 | `ARCH-0001-module-boundary.template.md` | Per-module charter — what it owns, what it explicitly does NOT own, dependencies, ACL with neighbors. **Critical for ERP** (prevents god-modules) |
+| `ARCH-0002-frontend-tech-stack.template.md` | Frontend technology stack decision record (framework, state management, styling) |
 | `DDD-0000-domain-model.template.md` | Per-bounded-context DDD model — aggregate roots, entities, value objects, invariants, ERD, domain events. **Critical for ERP** (accounting model is the foundation) |
 
 ## Frontmatter Schema

@@ -38,6 +38,7 @@ Mission, non-goals, quality bars, technical hard limits, naming conventions, ter
 ### 1-decisions — *append-only judgments*
 ADRs, architecture overviews, module charters, domain models. Once Accepted, never edited; superseded by writing a new decision.
 - [`ADR-0000-adr.template.md`](./1-decisions/ADR-0000-adr.template.md)
+- [`ADR-0001-frontend-template-tier-realignment.md`](./1-decisions/ADR-0001-frontend-template-tier-realignment.md) — v5.4 decision: split monolithic frontend-architecture into 6 tier-aligned files
 - [`ARCH-0000-architecture-overview.template.md`](./1-decisions/ARCH-0000-architecture-overview.template.md)
 - [`ARCH-0001-module-boundary.template.md`](./1-decisions/ARCH-0001-module-boundary.template.md) — **NEW v5.2**: per-module charter (owns / does NOT own / dependencies / ACL)
 - [`DDD-0000-domain-model.template.md`](./1-decisions/DDD-0000-domain-model.template.md) — **NEW v5.2**: per-bounded-context DDD model (aggregates, invariants, ERD, events)

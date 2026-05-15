@@ -6,7 +6,7 @@ tier: 3-process
 owner: HUMAN-ONLY
 last-reviewed: <YYYY-MM-DD>
 vendor: <vendor-name>
-contract_status: pending | active | stale | broken
+contract-status: pending | active | stale | broken
 product-version: null
 supersedes: null
 superseded-by: null

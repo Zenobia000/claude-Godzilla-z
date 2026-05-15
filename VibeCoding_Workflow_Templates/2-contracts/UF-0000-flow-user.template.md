@@ -5,7 +5,7 @@ status: draft
 tier: 2-contracts
 owner: HYBRID (AI-drafts, human-approves)
 last-reviewed: <YYYY-MM-DD>
-parent_business_flow: BF-NNNN
+parent-business-flow: BF-NNNN
 last-synced-with: <git-commit-sha>
 sync-source: doc
 source-paths: []

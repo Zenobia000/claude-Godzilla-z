@@ -6,7 +6,7 @@ tier: 2-contracts
 owner: HUMAN-ONLY
 last-reviewed: <YYYY-MM-DD>
 entity: <master-entity-name>
-authoritative_system: <system-of-record-for-this-entity>
+authoritative-system: <system-of-record-for-this-entity>
 last-synced-with: <git-commit-sha>
 sync-source: doc                # MDS is authoritative; code follows
 source-paths:

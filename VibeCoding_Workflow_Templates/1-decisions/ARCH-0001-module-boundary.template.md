@@ -7,7 +7,7 @@ owner: HUMAN-ONLY
 last-reviewed: <YYYY-MM-DD>
 date: <YYYY-MM-DD>
 decider: <person-or-team>
-bounded_context: <DDD bounded context name>
+bounded-context: <DDD bounded context name>
 product-version: null
 supersedes: null
 superseded-by: null

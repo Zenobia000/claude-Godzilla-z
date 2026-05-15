@@ -69,11 +69,13 @@ The `post-write` hook updates `last-synced-with` and `synced-at` automatically w
 | File | Purpose | Answers |
 |---|---|---|
 | `BF-0000-flow-business.template.md` | L1 Business Flow (BF) — end-to-end across roles | "How does it happen E2E?" |
+| `DS-0000-frontend-design-system.template.md` | Frontend design system and communication contract (tokens, components, API layer) | "How do frontend components communicate and stay consistent?" |
 | `UF-0000-flow-user.template.md` | L2 User Flow (UF) — single-actor surface-mapped flow | "How does *this actor* do it?" |
 | `SF-0000-flow-sub.template.md` | L3 Sub Flow (SF) — reusable building block | "How does this shared step work?" |
 | `FR-0000-functional-requirement.template.md` | Functional Requirement (FR) — business rules + acceptance criteria | "How do we judge correctness?" |
 | `API-0000-api-spec.template.md` | REST/GraphQL API contract | "How do systems exchange data?" |
 | `MC-0000-module-contract.template.md` | Module/class public contract (DbC) | "What does this module promise?" |
+| `PC-0000-page-contract.template.md` | Per-page contract (route, data deps, SEO, auth) | "What does this page need and expose?" |
 | `SM-0000-state-machine.template.md` | Per-entity state machine — states, transitions, guards, events | "How does this entity change over time?" *(extract when ≥5 states or ≥10 transitions)* |
 | `MDS-0000-master-data.template.md` | Master entity governance contract — identification, lifecycle, DQ rules, replication, GDPR | "How do we govern this long-lived shared entity?" *(critical for ERP-class systems)* |
 | `FI-0000-flow-index.template.md` | Project-wide Flow aggregation — BF/UF/SF/SM lists, coverage view, supersession ledger | "What Flows exist, and what shape are they in?" |
