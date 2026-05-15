@@ -37,6 +37,7 @@ When generating new ADRs, AI should:
 | `ARCH-0000-architecture-overview.template.md` | C4 / DDD level architecture snapshot |
 | `ARCH-0001-module-boundary.template.md` | Per-module charter — what it owns, what it explicitly does NOT own, dependencies, ACL with neighbors. **Critical for ERP** (prevents god-modules) |
 | `ARCH-0002-frontend-tech-stack.template.md` | Frontend technology stack decision record (framework, state management, styling) |
+| `ARCH-0003-infra-architecture.template.md` | Infrastructure architecture — VPC topology, compute scaling, IaC strategy, secrets management, DR. **Profile: `platform-infra`** |
 | `DDD-0000-domain-model.template.md` | Per-bounded-context DDD model — aggregate roots, entities, value objects, invariants, ERD, domain events. **Critical for ERP** (accounting model is the foundation) |
 
 ## Frontmatter Schema

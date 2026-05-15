@@ -44,6 +44,11 @@ These documents constrain *how* AI executes — they don't dictate the architect
 | `TP-0000-test-plan.template.md` | **Strategic** test document (quality targets, test pyramid, stages, data strategy, CI gate spec, risk register) | Template |
 | `PROC-0007-vendor-api-test.template.md` | Per-vendor test prerequisites (sandbox / contract / scenarios / fallback) | Template |
 | `PROC-0008-frontend-pre-merge.template.md` | Frontend pre-merge quality gate checklist | Checklist |
+| `PROC-0009-incident-response.template.md` | Incident response — SEV1-4 definitions, on-call, post-mortem, comms | Runbook |
+| `PROC-0010-chaos-engineering.template.md` | Chaos engineering — game day plan, fault injection, blast radius | Guide |
+| `PROC-0011-gitops-runbook.template.md` | GitOps — ArgoCD/Flux, environment promotion, drift detection | Runbook |
+| `PROC-0012-deprecation-playbook.template.md` | Deprecation & sunset — compatibility windows, migration paths, data retention | Playbook |
+| `ONBOARD-0000-team-onboarding.template.md` | Team onboarding & offboarding — Day 1-30, mentorship, knowledge transfer | Runbook |
 
 ## Frontmatter Schema
 
@@ -51,7 +56,7 @@ All files in this tier MUST carry this frontmatter:
 
 | Field | Required | Type | Description |
 |---|---|---|---|
-| `id` | YES | string | `PROC-NNNN`, `QG-NNNN`, or `TP-NNNN` |
+| `id` | YES | string | `PROC-NNNN`, `QG-NNNN`, `TP-NNNN`, or `ONBOARD-NNNN` |
 | `title` | YES | string | Human-readable title |
 | `status` | YES | enum | `draft` / `active` / `deprecated` / `superseded` |
 | `tier` | YES | const | `3-process` |

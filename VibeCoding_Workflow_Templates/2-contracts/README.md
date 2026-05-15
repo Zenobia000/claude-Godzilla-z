@@ -79,6 +79,11 @@ The `post-write` hook updates `last-synced-with` and `synced-at` automatically w
 | `SM-0000-state-machine.template.md` | Per-entity state machine — states, transitions, guards, events | "How does this entity change over time?" *(extract when ≥5 states or ≥10 transitions)* |
 | `MDS-0000-master-data.template.md` | Master entity governance contract — identification, lifecycle, DQ rules, replication, GDPR | "How do we govern this long-lived shared entity?" *(critical for ERP-class systems)* |
 | `FI-0000-flow-index.template.md` | Project-wide Flow aggregation — BF/UF/SF/SM lists, coverage view, supersession ledger | "What Flows exist, and what shape are they in?" |
+| `SLO-0000-slo-spec.template.md` | SLO specification — SLI definitions, error budget, burn-rate alerts, SLA mapping | "How do we measure reliability?" |
+| `PIPE-0000-pipeline-contract.template.md` | Data pipeline contract — input/output schema, DQ gates, SLA, blast radius | "What does this pipeline promise?" |
+| `MODEL-0000-model-card.template.md` | ML model card — intended use, metrics, bias analysis, deployment constraints, lineage | "What does this model do and where does it fail?" |
+| `OBS-0000-observability-spec.template.md` | Observability specification — metrics, logs, traces, dashboards, alerting strategy | "How do we know the system is healthy?" |
+| `CAP-0000-capacity-planning.template.md` | Capacity planning & cost management — resource model, growth forecast, cost allocation, scaling | "Can we handle the load, and at what cost?" |
 | `TM-0000-traceability-matrix.template.md` | Cross-layer coverage map | "What links to what?" (BF→UF→SF→FR→API→Data→TC→CI) |
 
 **flow-index vs traceability-matrix** — both are aggregation views but answer different questions:
@@ -94,7 +99,7 @@ All files in this tier MUST carry this frontmatter:
 
 | Field | Required | Type | Description |
 |---|---|---|---|
-| `id` | YES | string | `BF-NNNN`, `UF-NNNN`, `SF-NNNN`, `API-NNNN`, `FR-NNNN`, etc. |
+| `id` | YES | string | `BF-NNNN`, `UF-NNNN`, `SF-NNNN`, `API-NNNN`, `FR-NNNN`, `SLO-NNNN`, `PIPE-NNNN`, `MODEL-NNNN`, `OBS-NNNN`, `CAP-NNNN`, etc. |
 | `title` | YES | string | Human-readable title |
 | `status` | YES | enum | `draft` / `active` / `deprecated` / `superseded` |
 | `tier` | YES | const | `2-contracts` |
