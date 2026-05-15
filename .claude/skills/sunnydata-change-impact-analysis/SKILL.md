@@ -60,6 +60,9 @@ grep -l "<keyword>" docs/2-contracts/flow-*.md
 grep -l "<keyword>" docs/2-contracts/api/openapi.yaml
 grep -l "<keyword>" docs/2-contracts/module-contract.*.md
 
+# Find SLO / pipeline / model contracts that may be affected
+grep -l "<keyword>" docs/2-contracts/slo-*.md docs/2-contracts/pipeline-*.md docs/2-contracts/model-*.md 2>/dev/null
+
 # Find tests already targeting affected behavior
 grep -rln "<keyword>" tests/
 ```

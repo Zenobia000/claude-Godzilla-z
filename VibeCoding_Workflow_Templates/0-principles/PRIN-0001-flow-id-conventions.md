@@ -50,12 +50,20 @@ These prefixes extend the ID system to non-flow artifacts — templates, process
 | **DS** | Design System | 2 | `DS-0000-frontend-design-system.template.md` |
 | **PC** | Page Contract | 2 | `PC-0000-page-contract.template.md` |
 | **SM** | State Machine | 2 | `SM-0000-state-machine.template.md` |
+| **SLO** | SLO Specification | 2 | `SLO-0000-slo-spec.template.md` |
+| **PIPE** | Pipeline Contract | 2 | `PIPE-0000-pipeline-contract.template.md` |
+| **MODEL** | Model Card | 2 | `MODEL-0000-model-card.template.md` |
+| **OBS** | Observability Spec | 2 | `OBS-0000-observability-spec.template.md` |
+| **CAP** | Capacity Planning | 2 | `CAP-0000-capacity-planning.template.md` |
 | **PROC** | Process guide | 3 | `PROC-0001-workflow-manual.md` |
 | **QG** | Quality Gates | 3 | `QG-0000-quality-gates.md` |
 | **TP** | Test Plan | 3 | `TP-0000-test-plan.template.md` |
+| **ONBOARD** | Team Onboarding | 3 | `ONBOARD-0000-team-onboarding.template.md` |
 | **PRD** | Product Requirements | 4 | `PRD-0000-prd.template.md` |
 | **WBS** | Work Breakdown | 4 | `WBS-0000-wbs.template.md` |
 | **CIA** | Change Impact Analysis | 4 | `CIA-0000-change-impact-analysis.template.md` |
+| **EXP** | Experiment Log | 4 | `EXP-0000-experiment-log.template.md` |
+| **DISC** | Discovery Research | 4 | `DISC-0000-discovery-research.template.md` |
 | **VIEW** | Code-derived view | 5 | `VIEW-0001-project-structure.template.md` |
 
 ### Template vs instance numbering
