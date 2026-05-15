@@ -1,10 +1,17 @@
 ---
 id: FR-NNNN
+title: "Functional Requirement Template"
 status: draft        # draft | active | deprecated | superseded | archived
-owner: <team-or-person>
-last_reviewed: <YYYY-MM-DD>
+tier: 2-contracts
+owner: HYBRID (AI-drafts, human-approves)
+last-reviewed: <YYYY-MM-DD>
+last-synced-with: <git-commit-sha>
+sync-source: doc
+source-paths: []
+synced-at: <YYYY-MM-DD>
+product-version: null
 supersedes: null
-superseded_by: null
+superseded-by: null
 ---
 
 
@@ -18,7 +25,7 @@ superseded_by: null
 # FR-NNNN: <Functional Requirement Title — usually noun phrase, e.g. "Order creation rules">
 
 > **Tier**: 2-contracts → Functional Requirement (FR)
-> **Naming**: see `0-principles/flow-id-conventions.md`
+> **Naming**: see `0-principles/PRIN-0001-flow-id-conventions.md`
 >
 > **Scope discipline**: this document answers **"how do we judge whether the system did it correctly?"** It does NOT answer "how does the user do it" (that's Flow) or "how does the system communicate it" (that's API).
 

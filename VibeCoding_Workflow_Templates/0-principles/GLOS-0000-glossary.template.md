@@ -1,10 +1,13 @@
 ---
+id: GLOS-0000
+title: "Glossary"
 status: draft
-owner: <product-or-domain-lead>
-last_reviewed: <YYYY-MM-DD>
-domain: <accounting | inventory | sales | hr | manufacturing | …>
+tier: 0-principles
+owner: HUMAN-ONLY
+last-reviewed: <YYYY-MM-DD>
+product-version: null
 supersedes: null
-superseded_by: null
+superseded-by: null
 ---
 
 
@@ -17,7 +20,7 @@ superseded_by: null
 > useful as a structural reference — copy the shape, change the words.
 # Glossary — `<Project / Domain>`
 
-> **Tier**: 0-principles → terminology source of truth
+> **Tier**: 0-principles — terminology source of truth
 >
 > **Why**: in ERP-class systems, "Customer" / "Buyer" / "Account" / "Member" are **NOT** synonyms — and treating them as such causes data-model errors, contract bugs, and audit findings. Every term that has a specific business meaning belongs here.
 >
@@ -153,11 +156,11 @@ Track terms where the same English word means different things in different doma
 ## Maintenance
 
 - Quarterly review with domain leads
-- When superseding: mark old entry `status: superseded` + add `superseded_by` pointing at the new term name
+- When superseding: mark old entry `status: superseded` + add `superseded-by` pointing at the new term name
 - Never reuse a term name; if "Customer" gets redefined, the old definition lives on as `Customer (legacy)` archived
 
 ## See also
 
-- `1-decisions/domain-model.template.md` — entities here trace to terms here
-- `2-contracts/master-data-specification.template.md` — master entities have richer specs
+- `1-decisions/DDD-0000-domain-model.template.md` — entities here trace to terms here
+- `2-contracts/MDS-0000-master-data.template.md` — master entities have richer specs
 - `.claude/rules/change-governance.md` — terms with no glossary entry should fail the gate

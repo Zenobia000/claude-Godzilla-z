@@ -1,16 +1,24 @@
 ---
+id: VIEW-0001
+title: "專案結構指南"
 status: active
+tier: 5-views
+owner: AI-AUTO
 last-synced-with: <git-commit-sha>
-sync-source: code             # tier-5 views are derived from code
+sync-source: code
 source-paths:
   - src/
 synced-at: <YYYY-MM-DD>
 generated-by: sunnydata-auto-regen
-generation-source: <tool-used-e.g.-pyan-madge-tree>
+generated-from: <tool-used-e.g.-pyan-madge-tree>
+last-regenerated: <YYYY-MM-DD>
+product-version: null
+supersedes: null
+superseded-by: null
 ---
 # 專案結構指南 - [專案名稱]
 
-> **版本:** v1.0 | **更新:** YYYY-MM-DD
+> **Tier**: 5-views — derived from code; treat as cache. Regenerate when stale.
 
 ---
 

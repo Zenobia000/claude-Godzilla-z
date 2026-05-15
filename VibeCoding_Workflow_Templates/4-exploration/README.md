@@ -35,5 +35,23 @@ When the user asks AI to "draft a PRD", "plan a sprint", or "brainstorm an appro
 
 | File | Purpose |
 |---|---|
-| `prd.template.md` | Product Requirement Document (problem, users, goals, scope, metrics) |
-| `wbs.template.md` | Work Breakdown Structure for sprint/phase planning |
+| `PRD-0000-prd.template.md` | Product Requirement Document (problem, users, goals, scope, metrics) |
+| `WBS-0000-wbs.template.md` | Work Breakdown Structure for sprint/phase planning |
+
+## Frontmatter Schema
+
+All files in this tier MUST carry this frontmatter:
+
+| Field | Required | Type | Description |
+|---|---|---|---|
+| `id` | YES | string | `PRD-NNNN`, `WBS-NNNN`, or `CIA-NNNN` |
+| `title` | YES | string | Human-readable title |
+| `status` | YES | enum | `draft` / `active` / `deprecated` / `superseded` |
+| `tier` | YES | const | `4-exploration` |
+| `owner` | YES | enum | `HUMAN-ONLY` / `HYBRID` / `AI-AUTO` |
+| `last-reviewed` | YES | date | `YYYY-MM-DD` |
+| `created` | YES | date | Creation date |
+| `target-release` | opt | string | Target version or quarter |
+| `product-version` | opt | string | Product version this doc applies to |
+| `supersedes` | opt | string | ID of predecessor |
+| `superseded-by` | opt | string | ID of successor |

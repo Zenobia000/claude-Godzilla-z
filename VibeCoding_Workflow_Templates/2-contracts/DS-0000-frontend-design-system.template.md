@@ -1,14 +1,24 @@
 ---
+id: DS-0000
+title: "Frontend Design System & Communication Contract"
+status: draft         # draft | active | deprecated | superseded
+tier: 2-contracts
+owner: HYBRID (AI-drafts, human-approves)
+last-reviewed: <YYYY-MM-DD>
 last-synced-with: <commit-sha>
 sync-source: doc      # doc | code — which side is authoritative
-status: draft         # draft | active | deprecated | superseded
+source-paths: []
+synced-at: <YYYY-MM-DD>
+product-version: null
+supersedes: null
+superseded-by: null
 ---
 
 # Frontend Design System & Communication Contract - [專案名稱]
 
-> **版本:** v1.0 | **更新:** YYYY-MM-DD
-> **Tier**: 2-contracts → consumed by frontend code; must remain in sync.
-> **Source**: realigned from `5-views/frontend-architecture.template.md` §3+§7+§8.後半 per [ADR-0001](../1-decisions/ADR-0001-frontend-template-tier-realignment.md).
+> **Tier**: 2-contracts — frontend design system and communication contract; consumed by frontend code
+>
+> **Source**: realigned from `5-views/frontend-architecture.template.md` §3+§7+§8 per [ADR-0001](../1-decisions/ADR-0001-frontend-template-tier-realignment.md).
 
 ---
 

@@ -1,6 +1,17 @@
+---
+id: PROC-0006
+title: "文檔與維護指南"
+status: active
+tier: 3-process
+owner: HUMAN-ONLY
+last-reviewed: <YYYY-MM-DD>
+product-version: null
+supersedes: null
+superseded-by: null
+---
 # 文檔與維護指南 - [專案名稱]
 
-> **版本:** v1.0 | **更新:** YYYY-MM-DD
+> **Tier**: 3-process — documentation standards and maintenance schedule
 
 ---
 

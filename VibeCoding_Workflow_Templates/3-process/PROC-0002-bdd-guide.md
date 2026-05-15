@@ -1,6 +1,17 @@
+---
+id: PROC-0002
+title: "BDD 行為驅動情境指南"
+status: active
+tier: 3-process
+owner: HUMAN-ONLY
+last-reviewed: <YYYY-MM-DD>
+product-version: null
+supersedes: null
+superseded-by: null
+---
 # BDD 行為驅動情境指南
 
-> **版本:** v1.0 | **更新:** YYYY-MM-DD
+> **Tier**: 3-process — BDD scenario writing guide with Gherkin syntax
 
 ---
 

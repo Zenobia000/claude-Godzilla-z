@@ -1,12 +1,12 @@
 ---
 name: vibecoding-write-db-schema
 description: Generate database schema specifications: tables, relationships, indexes, migration plan. Triggers on 'database schema', 'DB design', 'schema migration', '資料庫設計'.
-template-ref: VibeCoding_Workflow_Templates/2-contracts/api-spec.template.md
+template-ref: VibeCoding_Workflow_Templates/2-contracts/API-0000-api-spec.template.md
 stability-tier: 2-contracts
 origin: migrated-from-output-style
 ---
 
-> **Template reference:** `VibeCoding_Workflow_Templates/2-contracts/api-spec.template.md`
+> **Template reference:** `VibeCoding_Workflow_Templates/2-contracts/API-0000-api-spec.template.md`
 > **Stability tier:** `2-contracts` — read tier README for usage policy.
 > Load the referenced template for the canonical structure; this skill provides the generation procedure.
 
@@ -677,7 +677,7 @@ RENAME COLUMN new_email TO email;
 
 - DDL 腳本使用 SQL 格式
 - ERD 使用 Mermaid 語法
-- 遵循 VibeCoding_Workflow_Templates/1-decisions/architecture-overview.template.md 的資料架構章節
+- 遵循 VibeCoding_Workflow_Templates/1-decisions/ARCH-0000-architecture-overview.template.md 的資料架構章節
 
 ## 審查清單
 

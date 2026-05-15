@@ -1,13 +1,17 @@
 ---
-status: draft        # draft | active | deprecated | superseded | archived
-owner: <frontend-lead>
-last_reviewed: <YYYY-MM-DD>
+id: PROC-0008
+title: "Frontend Pre-Merge Checklist"
+status: draft
+tier: 3-process
+owner: HUMAN-ONLY
+last-reviewed: <YYYY-MM-DD>
+product-version: null
 supersedes: null
-superseded_by: null
+superseded-by: null
 ---
 # Frontend Pre-Merge Checklist
 
-> **Tier**: 3-process → process guide
+> **Tier**: 3-process — frontend pre-merge quality gate
 >
 > **Purpose**: 統一前端 PR 合入前的 quality gate；對齊 `tier 0` 的 quality attributes 與 `tier 2` 的合約。
 >
@@ -48,13 +52,13 @@ superseded_by: null
 - [ ] 螢幕閱讀器宣告正確（語意 + ARIA）
 - [ ] 色彩對比度 ≥ 4.5:1（body）/ 3:1（large text）
 - [ ] 效能預算未超標（bundle size、LCP、INP）
-- [ ] 安全 checklist（依 `2-contracts/frontend-design-system.template.md §5`）通過
+- [ ] 安全 checklist（依 `2-contracts/DS-0000-frontend-design-system.template.md §5`）通過
 
 ---
 
 ## 4. 資訊架構檢查清單
 
-- [ ] 新 / 修改頁面已建立 `2-contracts/page-contract.template.md` 條目
+- [ ] 新 / 修改頁面已建立 `2-contracts/PC-0000-page-contract.template.md` 條目
 - [ ] 所有頁面定義單一職責與使用者目標
 - [ ] 核心使用者旅程已映射並有 E2E 覆蓋
 - [ ] 導航結構清晰且一致（主導航 / 麵包屑 / Footer）

@@ -1,6 +1,17 @@
+---
+id: PROC-0004
+title: "安全與生產準備檢查清單"
+status: active
+tier: 3-process
+owner: HUMAN-ONLY
+last-reviewed: <YYYY-MM-DD>
+product-version: null
+supersedes: null
+superseded-by: null
+---
 # 安全與生產準備檢查清單 - [專案名稱]
 
-> **版本:** v1.0 | **更新:** YYYY-MM-DD | **審查人員:** [安全架構師, 開發者]
+> **Tier**: 3-process — security and production readiness checklist
 
 ---
 

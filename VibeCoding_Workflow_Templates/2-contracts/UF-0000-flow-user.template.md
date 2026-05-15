@@ -1,17 +1,24 @@
 ---
-
-## id: UF-NNNN
+id: UF-NNNN
+title: "User Flow Template"
 status: draft
-owner: 
-last_reviewed: 
+tier: 2-contracts
+owner: HYBRID (AI-drafts, human-approves)
+last-reviewed: <YYYY-MM-DD>
 parent_business_flow: BF-NNNN
+last-synced-with: <git-commit-sha>
+sync-source: doc
+source-paths: []
+synced-at: <YYYY-MM-DD>
+product-version: null
 supersedes: null
-superseded_by: null
+superseded-by: null
+---
 
 # UF-NNNN: <User Flow Name — verb + noun, e.g. "Customer Create Order">
 
 > **Tier**: 2-contracts → User Flow (L2, single-actor operating one slice of a business flow)
-> **Naming**: see `0-principles/flow-id-conventions.md`
+> **Naming**: see `0-principles/PRIN-0001-flow-id-conventions.md`
 
 ---
 

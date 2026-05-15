@@ -1,24 +1,69 @@
+---
+id: PRIN-0001
+title: "Flow ID Naming Conventions"
+status: active
+tier: 0-principles
+owner: HUMAN-ONLY
+last-reviewed: 2026-05-15
+product-version: null
+supersedes: null
+superseded-by: null
+---
 # Flow ID Naming Conventions
 
-> **Stability tier**: `0-principles` (highest). This is a project-wide naming invariant — once adopted, every Flow / Spec / API / Test / Decision artifact uses these IDs forever.
+> **Tier**: 0-principles — project-wide naming invariant; once adopted, every artifact uses these IDs forever.
 >
 > **Why**: large systems can't use names like "the order flow" — front-stage? back-stage? payment? cancellation? Without IDs, traceability is impossible and AI cannot reliably reference what it changed.
 
 ---
 
-## The 9 prefixes
+## The prefix system
+
+### Core prefixes (original 9)
 
 | Prefix | Meaning | Lives in (typical) | Lifetime |
 |---|---|---|---|
-| **BF** | Business Flow | `docs/2-contracts/flow-business.<id>.md` | Long-lived; major rewrite is rare |
-| **UF** | User / Role Flow | `docs/2-contracts/flow-user.<id>.md` | Medium; changes with feature evolution |
-| **SF** | Sub Flow (reusable) | `docs/2-contracts/flow-sub.<id>.md` | Medium; shared across BF/UF |
-| **FR** | Functional Requirement | `docs/2-contracts/fr.<id>.md` or grouped | Per-release |
+| **BF** | Business Flow | `docs/2-contracts/BF-NNNN-*.md` | Long-lived; major rewrite is rare |
+| **UF** | User / Role Flow | `docs/2-contracts/UF-NNNN-*.md` | Medium; changes with feature evolution |
+| **SF** | Sub Flow (reusable) | `docs/2-contracts/SF-NNNN-*.md` | Medium; shared across BF/UF |
+| **FR** | Functional Requirement | `docs/2-contracts/FR-NNNN-*.md` or grouped | Per-release |
 | **NFR** | Non-Functional Requirement | `docs/0-principles/` (or grouped) | Long-lived |
 | **API** | API Endpoint | `docs/2-contracts/api/openapi.yaml#operationId` | Tracks contract changes |
-| **TC** | Test Case | tests/ source files; tracked in `traceability-matrix` | Per-feature |
+| **TC** | Test Case | tests/ source files; tracked in traceability matrix | Per-feature |
 | **ADR** | Architecture Decision Record | `docs/1-decisions/ADR-NNNN-*.md` | Append-only |
 | **CR** | Change Request | `docs/4-exploration/CR-NNNN-*.md` | Per-change ephemeral |
+
+### Extended prefixes (added CR-0001)
+
+These prefixes extend the ID system to non-flow artifacts — templates, process guides, and governance files — so that every file in `VibeCoding_Workflow_Templates/` has a scannable, sortable ID prefix.
+
+| Prefix | Meaning | Tier | Template filename example |
+|---|---|---|---|
+| **PRIN** | Principles | 0 | `PRIN-0000-product-principles.template.md` |
+| **GLOS** | Glossary | 0 | `GLOS-0000-glossary.template.md` |
+| **ARCH** | Architecture docs | 1 | `ARCH-0000-architecture-overview.template.md` |
+| **DDD** | Domain model | 1 | `DDD-0000-domain-model.template.md` |
+| **MC** | Module Contract | 2 | `MC-0000-module-contract.template.md` |
+| **MDS** | Master Data Spec | 2 | `MDS-0000-master-data.template.md` |
+| **FI** | Flow Index | 2 | `FI-0000-flow-index.template.md` |
+| **TM** | Traceability Matrix | 2 | `TM-0000-traceability-matrix.template.md` |
+| **DS** | Design System | 2 | `DS-0000-frontend-design-system.template.md` |
+| **PC** | Page Contract | 2 | `PC-0000-page-contract.template.md` |
+| **SM** | State Machine | 2 | `SM-0000-state-machine.template.md` |
+| **PROC** | Process guide | 3 | `PROC-0001-workflow-manual.md` |
+| **QG** | Quality Gates | 3 | `QG-0000-quality-gates.md` |
+| **TP** | Test Plan | 3 | `TP-0000-test-plan.template.md` |
+| **PRD** | Product Requirements | 4 | `PRD-0000-prd.template.md` |
+| **WBS** | Work Breakdown | 4 | `WBS-0000-wbs.template.md` |
+| **CIA** | Change Impact Analysis | 4 | `CIA-0000-change-impact-analysis.template.md` |
+| **VIEW** | Code-derived view | 5 | `VIEW-0001-project-structure.template.md` |
+
+### Template vs instance numbering
+
+- **`0000`** = the template itself (e.g. `BF-0000-flow-business.template.md`)
+- **`0001`+** = instantiated artifacts (e.g. `BF-0001-order-to-cash.md`)
+- Single-prefix files (BF, UF, API, etc.) use `0000` for their template
+- Shared-prefix files (PROC, VIEW, ARCH, etc.) use incrementing numbers for distinct guides/views
 
 ---
 
@@ -45,7 +90,7 @@ Each artifact's title in the file uses both ID and human-readable name:
 # BF-0001: Order to Cash
 ```
 
-Filenames mirror this: `flow-business.0001-order-to-cash.md`
+Filenames mirror this: `BF-0001-order-to-cash.md`
 
 ## Cross-reference syntax
 
@@ -110,15 +155,15 @@ ADR-0019 (Partial-cancel state machine choice)
 TC-0211 ~ TC-0218 (8 new test cases)
 ```
 
-This chain becomes one row in `traceability-matrix.template.md`.
+This chain becomes one row in `TM-0000-traceability-matrix.template.md`.
 
 ---
 
 ## See also
 
-- `2-contracts/flow-business.template.md` — BF template
-- `2-contracts/flow-user.template.md` — UF template
-- `2-contracts/flow-sub.template.md` — SF template
-- `2-contracts/traceability-matrix.template.md` — the Flow ID consumer
-- `1-decisions/adr.template.md` — ADR template
-- `4-exploration/change-impact-analysis.template.md` — CR-driven analysis using these IDs
+- `2-contracts/BF-0000-flow-business.template.md` — BF template
+- `2-contracts/UF-0000-flow-user.template.md` — UF template
+- `2-contracts/SF-0000-flow-sub.template.md` — SF template
+- `2-contracts/TM-0000-traceability-matrix.template.md` — the Flow ID consumer
+- `1-decisions/ADR-0000-adr.template.md` — ADR template
+- `4-exploration/CIA-0000-change-impact-analysis.template.md` — CR-driven analysis using these IDs

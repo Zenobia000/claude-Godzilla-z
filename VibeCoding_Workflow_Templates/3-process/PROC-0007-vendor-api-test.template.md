@@ -1,11 +1,15 @@
 ---
+id: PROC-0007
+title: "Vendor API Test Requirement"
 status: draft
-owner: <integration-lead-or-backend-lead>
-last_reviewed: <YYYY-MM-DD>
+tier: 3-process
+owner: HUMAN-ONLY
+last-reviewed: <YYYY-MM-DD>
 vendor: <vendor-name>
 contract_status: pending | active | stale | broken
+product-version: null
 supersedes: null
-superseded_by: null
+superseded-by: null
 ---
 
 
@@ -20,11 +24,11 @@ superseded_by: null
 
 > **Tier**: 3-process → external dependency planning
 >
-> **Purpose**: capture **what we need from the vendor BEFORE we can test the integration**. Filled per vendor; live next to `test-plan.template.md`.
+> **Purpose**: capture **what we need from the vendor BEFORE we can test the integration**. Filled per vendor; live next to `TP-0000-test-plan.template.md`.
 >
 > **Why a dedicated template**: every late-stage integration disaster starts with "oh, the vendor doesn't have a sandbox" or "the test card doesn't trigger the failure callback". This template makes that conversation happen at design time, not at integration time.
 >
-> **Companion fields**: this vendor's row in `2-contracts/traceability-matrix.template.md` § External Dependency Coverage points back here.
+> **Companion fields**: this vendor's row in `2-contracts/TM-0000-traceability-matrix.template.md` § External Dependency Coverage points back here.
 
 ---
 
@@ -178,8 +182,8 @@ If we needed to switch this vendor for any reason:
 
 ## See also
 
-- `3-process/test-plan.template.md` — vendor row in §8 points here
-- `2-contracts/traceability-matrix.template.md` — § External Dependency Coverage row points here
-- `2-contracts/api-spec.template.md` — our API surface that wraps this vendor
-- `1-decisions/adr.template.md` — vendor selection decision should have an ADR
+- `3-process/TP-0000-test-plan.template.md` — vendor row in §8 points here
+- `2-contracts/TM-0000-traceability-matrix.template.md` — § External Dependency Coverage row points here
+- `2-contracts/API-0000-api-spec.template.md` — our API surface that wraps this vendor
+- `1-decisions/ADR-0000-adr.template.md` — vendor selection decision should have an ADR
 - `.claude/rules/change-governance.md` — vendor change → CIA gate (it's "external integration")

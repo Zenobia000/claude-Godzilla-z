@@ -1,12 +1,12 @@
 ---
 name: vibecoding-impl-backend-py
 description: Implement Python backend code following module-contract specifications, with Pydantic schemas, repository pattern, and pytest coverage. Triggers on 'implement backend Python', 'write FastAPI service', 'Python 後端實作'.
-template-ref: VibeCoding_Workflow_Templates/2-contracts/module-contract.template.md
+template-ref: VibeCoding_Workflow_Templates/2-contracts/MC-0000-module-contract.template.md
 stability-tier: 2-contracts
 origin: migrated-from-output-style
 ---
 
-> **Template reference:** `VibeCoding_Workflow_Templates/2-contracts/module-contract.template.md`
+> **Template reference:** `VibeCoding_Workflow_Templates/2-contracts/MC-0000-module-contract.template.md`
 > **Stability tier:** `2-contracts` — read tier README for usage policy.
 > Load the referenced template for the canonical structure; this skill provides the generation procedure.
 

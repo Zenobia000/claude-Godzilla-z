@@ -1,8 +1,10 @@
 ---
 id: SM-NNNN
+title: "State Machine Template"
 status: draft        # draft | active | deprecated | superseded | archived
-owner: <domain-or-module-owner>
-last_reviewed: <YYYY-MM-DD>
+tier: 2-contracts
+owner: HYBRID (AI-drafts, human-approves)
+last-reviewed: <YYYY-MM-DD>
 entity: <entity-name-this-state-machine-governs>
 related_aggregate: <aggregate-root-from-domain-model>
 last-synced-with: <git-commit-sha>
@@ -11,8 +13,9 @@ source-paths:
   - src/<module>/state.py
   - src/<module>/transitions.py
 synced-at: <YYYY-MM-DD>
+product-version: null
 supersedes: null
-superseded_by: null
+superseded-by: null
 ---
 
 
@@ -27,7 +30,7 @@ superseded_by: null
 
 > **Tier**: 2-contracts → behavioral contract for stateful entities
 >
-> **Why a dedicated doc**: in ERP, an entity like Purchase Order has 12+ states with 20+ transitions, each with guards and side-effects. Burying that inside `flow-business.template.md` or `domain-model.template.md` forces those parent docs to grow uncontrollably. Extracting to a state-machine doc lets the parent stay readable while making the state machine itself testable per-transition.
+> **Why a dedicated doc**: in ERP, an entity like Purchase Order has 12+ states with 20+ transitions, each with guards and side-effects. Burying that inside `BF-0000-flow-business.template.md` or `DDD-0000-domain-model.template.md` forces those parent docs to grow uncontrollably. Extracting to a state-machine doc lets the parent stay readable while making the state machine itself testable per-transition.
 >
 > **Promotion criterion**: extract a state machine to its own doc when there are ≥ 5 states OR ≥ 10 transitions OR there are nested/parallel states. Otherwise inline it in the owning Flow / Domain Model.
 
@@ -183,9 +186,9 @@ Per principle: every state has at least one TC arriving at it; every transition 
 
 ## See also
 
-- `1-decisions/domain-model.template.md` — parent aggregate model
-- `1-decisions/module-boundary.template.md` — owning module charter
-- `2-contracts/api-spec.template.md` — APIs that drive transitions
-- `2-contracts/traceability-matrix.template.md` — TC mapping
-- `4-exploration/change-impact-analysis.template.md` — state machine changes ALWAYS need CIA
+- `1-decisions/DDD-0000-domain-model.template.md` — parent aggregate model
+- `1-decisions/ARCH-0001-module-boundary.template.md` — owning module charter
+- `2-contracts/API-0000-api-spec.template.md` — APIs that drive transitions
+- `2-contracts/TM-0000-traceability-matrix.template.md` — TC mapping
+- `4-exploration/CIA-0000-change-impact-analysis.template.md` — state machine changes ALWAYS need CIA
 - `.claude/rules/change-governance.md` — state machine is "domain model" trigger → CIA gate

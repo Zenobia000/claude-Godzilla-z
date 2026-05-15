@@ -29,6 +29,22 @@ Documents that define **what this product is** and **what it refuses to be**:
 
 | File | Purpose |
 |---|---|
-| `product-principles.template.md` | Mission, personas, non-goals, quality bars, technical invariants |
-| `flow-id-conventions.md` | 9-prefix Flow ID system (BF/UF/SF/FR/NFR/API/TC/ADR/CR) — naming invariant |
-| `glossary.template.md` | Business terminology source of truth — required for ERP-class systems where "Customer / Buyer / Account" must be unambiguous |
+| `PRIN-0000-product-principles.template.md` | Mission, personas, non-goals, quality bars, technical invariants |
+| `PRIN-0001-flow-id-conventions.md` | 9-prefix Flow ID system (BF/UF/SF/FR/NFR/API/TC/ADR/CR) — naming invariant |
+| `GLOS-0000-glossary.template.md` | Business terminology source of truth — required for ERP-class systems where "Customer / Buyer / Account" must be unambiguous |
+
+## Frontmatter Schema
+
+All files in this tier MUST carry this frontmatter:
+
+| Field | Required | Type | Description |
+|---|---|---|---|
+| `id` | YES | string | `PRIN-NNNN` or `GLOS-NNNN` |
+| `title` | YES | string | Human-readable title |
+| `status` | YES | enum | `draft` / `active` / `deprecated` / `superseded` |
+| `tier` | YES | const | `0-principles` |
+| `owner` | YES | enum | `HUMAN-ONLY` / `HYBRID` / `AI-AUTO` |
+| `last-reviewed` | YES | date | `YYYY-MM-DD` |
+| `product-version` | opt | string | Product version this doc applies to |
+| `supersedes` | opt | string | ID of predecessor |
+| `superseded-by` | opt | string | ID of successor |

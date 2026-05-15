@@ -1,10 +1,17 @@
 ---
+id: FI-0000
+title: "Flow Index"
 status: active
-owner: <architect-or-tech-lead>
-last_reviewed: <YYYY-MM-DD>
+tier: 2-contracts
+owner: AI-AUTO
+last-reviewed: <YYYY-MM-DD>
 last-synced-with: <git-commit-sha>
 sync-source: doc                # this index aggregates other tier-2 docs; doc is authoritative
+source-paths: []
 synced-at: <YYYY-MM-DD>
+product-version: null
+supersedes: null
+superseded-by: null
 ---
 
 
@@ -21,7 +28,7 @@ synced-at: <YYYY-MM-DD>
 >
 > **Why**: once a project has 30+ Flows, no one can keep the map in their head. This index is the **map**. AI uses it to answer "what BFs exist?" without scanning every file.
 >
-> **Difference from `traceability-matrix.template.md`**: this index lists **Flow existence + status**; the traceability matrix lists **cross-layer coverage** (Flow → Spec → API → Data → Test → CI). Both needed; different purposes.
+> **Difference from `TM-0000-traceability-matrix.template.md`**: this index lists **Flow existence + status**; the traceability matrix lists **cross-layer coverage** (Flow → Spec → API → Data → Test → CI). Both needed; different purposes.
 >
 > **Maintenance**: append a row whenever a new Flow is created. Update status when a Flow transitions. The `sunnydata-flow-audit` skill verifies this index matches the actual files weekly.
 
@@ -29,7 +36,7 @@ synced-at: <YYYY-MM-DD>
 
 ## How to read
 
-- **ID** — Flow ID per `0-principles/flow-id-conventions.md`
+- **ID** — Flow ID per `0-principles/PRIN-0001-flow-id-conventions.md`
 - **Status** — frontmatter status of the linked file (`draft / active / deprecated / superseded / archived`)
 - **Owner** — accountable team or person
 - **Related Modules** — which `MOD-NNNN` modules this Flow touches (forward link to `module-boundary.md`)
@@ -95,7 +102,7 @@ A blank cell means "not yet specified" (gap to fill or accept).
 
 ## Coverage View (cross-cutting summary)
 
-Quick health snapshot — full detail in `traceability-matrix.template.md`:
+Quick health snapshot — full detail in `TM-0000-traceability-matrix.template.md`:
 
 | BF | UFs | SFs | APIs | TCs | CI Jobs | Status |
 |---|---|---|---|---|---|---|
@@ -144,7 +151,7 @@ When a Flow is deprecated or superseded, log it here so the ID is **never reused
 After every CR that creates / modifies / deprecates a Flow:
 
 1. Append/update the row in the relevant section
-2. Bump `last_reviewed` (post-write hook updates `last-synced-with` automatically)
+2. Bump `last-reviewed` (post-write hook updates `last-synced-with` automatically)
 3. If deprecating, move to "Deprecation / Supersession Ledger"
 4. If aggregating an Open Question from a flow doc, add to "Open Questions Aggregation" section
 5. Run `sunnydata-flow-audit` skill to verify index matches reality
@@ -153,10 +160,10 @@ After every CR that creates / modifies / deprecates a Flow:
 
 ## See also
 
-- `0-principles/flow-id-conventions.md` — ID semantics
-- `2-contracts/flow-business.template.md`, `flow-user.template.md`, `flow-sub.template.md` — the underlying Flow files
-- `2-contracts/state-machine.template.md` — state machines listed here
-- `2-contracts/traceability-matrix.template.md` — execution-layer cross-coverage (different purpose)
-- `1-decisions/module-boundary.template.md` — modules referenced in "Related Modules" column
+- `0-principles/PRIN-0001-flow-id-conventions.md` — ID semantics
+- `2-contracts/BF-0000-flow-business.template.md`, `UF-0000-flow-user.template.md`, `SF-0000-flow-sub.template.md` — the underlying Flow files
+- `2-contracts/SM-0000-state-machine.template.md` — state machines listed here
+- `2-contracts/TM-0000-traceability-matrix.template.md` — execution-layer cross-coverage (different purpose)
+- `1-decisions/ARCH-0001-module-boundary.template.md` — modules referenced in "Related Modules" column
 - `.claude/skills/sunnydata-flow-audit/SKILL.md` — verifies this index against reality
 - `.claude/rules/change-governance.md` — CR workflow that updates this index

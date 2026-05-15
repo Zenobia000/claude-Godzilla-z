@@ -1,8 +1,10 @@
 ---
 id: MDS-NNNN
+title: "Master Data Specification Template"
 status: draft        # draft | active | deprecated | superseded | archived
-owner: <data-steward-or-domain-team>
-last_reviewed: <YYYY-MM-DD>
+tier: 2-contracts
+owner: HUMAN-ONLY
+last-reviewed: <YYYY-MM-DD>
 entity: <master-entity-name>
 authoritative_system: <system-of-record-for-this-entity>
 last-synced-with: <git-commit-sha>
@@ -11,8 +13,9 @@ source-paths:
   - src/<module>/master/<entity>.py
   - src/<module>/api/<entity>.py
 synced-at: <YYYY-MM-DD>
+product-version: null
 supersedes: null
-superseded_by: null
+superseded-by: null
 ---
 
 
@@ -41,8 +44,8 @@ superseded_by: null
 | Domain | Sales / CRM |
 | Mastered in (system of record) | CRM |
 | Replicated to | ERP-AR, Marketing, Support |
-| Glossary entry | `0-principles/glossary.template.md#Customer` |
-| Domain model entry | `1-decisions/domain-model.template.md` (Sales context) |
+| Glossary entry | `0-principles/GLOS-0000-glossary.template.md#Customer` |
+| Domain model entry | `1-decisions/DDD-0000-domain-model.template.md` (Sales context) |
 | Owning module | `MOD-NNNN` (`Sales` / `CRM`) |
 | Data steward | `@customer-master-data-team` |
 
@@ -144,7 +147,7 @@ How does a new master record come to exist?
 
 1. **Initiate**: Sales rep creates `prospect` in CRM
 2. **Enrich**: Marketing fills `industry_code`, `tags`
-3. **KYC**: Compliance triggers KYC check via vendor (`vendor-api-test-requirement.template.md` for vendor)
+3. **KYC**: Compliance triggers KYC check via vendor (`PROC-0007-vendor-api-test.template.md` for vendor)
 4. **Credit Check**: Finance pulls credit report
 5. **Approval**: Customer Master Data team transitions `onboarding` → `active`
 6. **Replication**: System emits `CustomerActivated` event; replicas pick up
@@ -234,10 +237,10 @@ For ERP go-live, the first-time data load is a major project of its own.
 
 ## See also
 
-- `0-principles/glossary.template.md` — entity term must trace here
-- `1-decisions/domain-model.template.md` — how this entity fits in the broader DDD model
-- `1-decisions/module-boundary.template.md` — module that masters this entity
-- `2-contracts/state-machine.template.md` — lifecycle state transitions
-- `2-contracts/api-spec.template.md` — APIs exposing this master data
-- `3-process/vendor-api-test-requirement.template.md` — for vendor enrichment APIs
+- `0-principles/GLOS-0000-glossary.template.md` — entity term must trace here
+- `1-decisions/DDD-0000-domain-model.template.md` — how this entity fits in the broader DDD model
+- `1-decisions/ARCH-0001-module-boundary.template.md` — module that masters this entity
+- `2-contracts/SM-0000-state-machine.template.md` — lifecycle state transitions
+- `2-contracts/API-0000-api-spec.template.md` — APIs exposing this master data
+- `3-process/PROC-0007-vendor-api-test.template.md` — for vendor enrichment APIs
 - `.claude/rules/change-governance.md` — master data schema changes are "domain model" + "DB schema" → CIA gate

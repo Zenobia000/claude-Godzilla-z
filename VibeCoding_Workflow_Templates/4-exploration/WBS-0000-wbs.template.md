@@ -1,15 +1,18 @@
 ---
 id: WBS-NNNN
-status: draft        # draft | reviewed | approved | in-progress | shipped | archived
-owner: <project-lead>
+title: "WBS 開發計劃"
+status: draft
+tier: 4-exploration
+owner: HYBRID
 created: <YYYY-MM-DD>
-target_release: <version-or-quarter>
+target-release: <version-or-quarter>
+product-version: null
 supersedes: null
-superseded_by: null
+superseded-by: null
 ---
 # WBS 開發計劃 - [專案名稱]
 
-> **版本:** v1.0 | **更新:** YYYY-MM-DD | **狀態:** 草稿/進行中/完成
+> **Tier**: 4-exploration — work breakdown structure for project planning and tracking
 
 ---
 

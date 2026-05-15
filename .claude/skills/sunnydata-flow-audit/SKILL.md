@@ -171,8 +171,8 @@ Single Markdown table + summary stats. No preamble. If clean, single-line OK. Ma
 
 ## See also
 
-- `VibeCoding_Workflow_Templates/0-principles/flow-id-conventions.md` — ID semantics this skill enforces
-- `VibeCoding_Workflow_Templates/2-contracts/flow-index.template.md` — the index this skill cross-checks
+- `VibeCoding_Workflow_Templates/0-principles/PRIN-0001-flow-id-conventions.md` — ID semantics this skill enforces
+- `VibeCoding_Workflow_Templates/2-contracts/FI-0000-flow-index.template.md` — the index this skill cross-checks
 - `.claude/skills/sunnydata-doc-freshness/SKILL.md` — tier-2 contract sync (different audit dimension)
 - `.claude/skills/sunnydata-change-impact-analysis/SKILL.md` — when CIA fires, run this first to surface pre-existing decay
 - `.claude/rules/change-governance.md` — rule that mandates Flow IDs being usable

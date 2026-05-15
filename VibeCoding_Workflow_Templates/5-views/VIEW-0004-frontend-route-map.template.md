@@ -1,7 +1,20 @@
 ---
-generated-from: <router-config-path>      # e.g. src/router.tsx, app/ directory
-last-regenerated: YYYY-MM-DD
-status: derived                            # never hand-maintained
+id: VIEW-0004
+title: "Frontend Route Map"
+status: active
+tier: 5-views
+owner: AI-AUTO
+last-synced-with: <git-commit-sha>
+sync-source: code
+source-paths:
+  - <router-config-path>
+synced-at: <YYYY-MM-DD>
+generated-by: sunnydata-auto-regen
+generated-from: <router-config-path>
+last-regenerated: <YYYY-MM-DD>
+product-version: null
+supersedes: null
+superseded-by: null
 ---
 
 # Frontend Route Map - [專案名稱]
@@ -40,7 +53,7 @@ graph TB
 | 1 | `/[path]` | `PG-0001` | [名稱] | [自動填入] | L1 |
 | 2 | `/[path]` | `PG-0002` | [名稱] | [自動填入] | L2 |
 
-> 詳細頁面職責見 `2-contracts/page-contract.template.md`。本檔只記錄路由樹，不重複合約細節。
+> 詳細頁面職責見 `2-contracts/PC-0000-page-contract.template.md`。本檔只記錄路由樹，不重複合約細節。
 
 **總計:** [N] 頁
 

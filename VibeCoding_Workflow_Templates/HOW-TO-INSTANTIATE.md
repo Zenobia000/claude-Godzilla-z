@@ -27,9 +27,9 @@ your-project/
     │       └── payment-service.md
     │
     ├── 3-process/                           # usually copied verbatim from templates
-    │   ├── code-review-checklist.md
-    │   ├── security-readiness-checklist.md
-    │   └── deployment-runbook.md
+    │   ├── PROC-0003-code-review-checklist.md
+    │   ├── PROC-0004-security-readiness-checklist.md
+    │   └── PROC-0005-deployment-runbook.md
     │
     ├── 4-exploration/                       # date-stamped, archive when done
     │   ├── PRD-2026-Q2-onboarding.md
@@ -37,9 +37,9 @@ your-project/
     │   └── archive/                         # move stale stuff here, don't delete
     │
     └── 5-views/                             # auto-generated; never hand-edit
-        ├── project-structure.md
-        ├── file-dependencies.md
-        └── class-relationships.md
+        ├── VIEW-0001-project-structure.md
+        ├── VIEW-0002-file-dependencies.md
+        └── VIEW-0003-class-relationships.md
 ```
 
 ## Why mirror the tier numbers?

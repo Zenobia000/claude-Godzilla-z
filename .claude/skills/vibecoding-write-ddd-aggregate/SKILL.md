@@ -1,12 +1,12 @@
 ---
 name: vibecoding-write-ddd-aggregate
 description: Generate Domain-Driven Design aggregate specifications: entities, value objects, invariants, repository contracts. Triggers on 'DDD aggregate', 'bounded context', '領域模型'.
-template-ref: VibeCoding_Workflow_Templates/1-decisions/architecture-overview.template.md
+template-ref: VibeCoding_Workflow_Templates/1-decisions/ARCH-0000-architecture-overview.template.md
 stability-tier: 1-decisions
 origin: migrated-from-output-style
 ---
 
-> **Template reference:** `VibeCoding_Workflow_Templates/1-decisions/architecture-overview.template.md`
+> **Template reference:** `VibeCoding_Workflow_Templates/1-decisions/ARCH-0000-architecture-overview.template.md`
 > **Stability tier:** `1-decisions` — read tier README for usage policy.
 > Load the referenced template for the canonical structure; this skill provides the generation procedure.
 
@@ -635,7 +635,7 @@ describe('Order Domain Events', () => {
 
 - 使用 TypeScript 風格的程式碼範例 (可替換為專案使用的語言)
 - 使用 Mermaid 類圖與序列圖
-- 遵循 VibeCoding_Workflow_Templates/1-decisions/architecture-overview.template.md 的 DDD 章節
+- 遵循 VibeCoding_Workflow_Templates/1-decisions/ARCH-0000-architecture-overview.template.md 的 DDD 章節
 
 ## 審查清單
 
@@ -651,8 +651,8 @@ describe('Order Domain Events', () => {
 ## 關聯文件
 
 - **架構設計**: 03-architecture-design-doc.md (C4 & Context Map)
-- **模組規格**: 2-contracts/module-contract.template.md (詳細實作)
-- **API設計**: 2-contracts/api-spec.template.md (應用服務對外接口)
+- **模組規格**: 2-contracts/MC-0000-module-contract.template.md (詳細實作)
+- **API設計**: 2-contracts/API-0000-api-spec.template.md (應用服務對外接口)
 
 
 **記住**: 聚合是 DDD 戰術設計的核心,好的聚合設計讓業務邏輯內聚、邊界清晰、易於測試與演進。

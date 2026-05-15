@@ -1,19 +1,22 @@
 ---
 id: MC-NNNN
+title: "Module Contract Template"
 status: draft        # draft | active | deprecated | superseded | archived
-owner: <module-owner-team>
-last_reviewed: <YYYY-MM-DD>
+tier: 2-contracts
+owner: HYBRID (AI-drafts, human-approves)
+last-reviewed: <YYYY-MM-DD>
 last-synced-with: <git-commit-sha>
 sync-source: code             # module contracts usually mirror code
 source-paths:
   - src/<module>/
 synced-at: <YYYY-MM-DD>
+product-version: null
 supersedes: null
-superseded_by: null
+superseded-by: null
 ---
 # 模組規格與測試案例 - [模組名稱]
 
-> **版本:** v1.0 | **更新:** YYYY-MM-DD | **狀態:** 草稿/開發中/已完成
+> **Tier**: 2-contracts — module specification and test cases; must stay synced with code
 
 **對應架構文件**: [連結]
 **對應 BDD Feature**: [連結]

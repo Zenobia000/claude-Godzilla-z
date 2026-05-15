@@ -1,16 +1,17 @@
 ---
-id: FQA-NNNN
-status: draft        # draft | active | deprecated | superseded | archived
-owner: <frontend-lead>
-last_reviewed: <YYYY-MM-DD>
+id: PRIN-0002
+title: "Frontend Quality Attributes"
+status: draft
+tier: 0-principles
+owner: HUMAN-ONLY
+last-reviewed: <YYYY-MM-DD>
+product-version: null
 supersedes: null
-superseded_by: null
+superseded-by: null
 ---
 # Frontend Quality Attributes — `<PROJECT_NAME>`
 
-> **Stability tier**: `0-principles` (highest). Change at most once per major version.
-> **Reading order for AI**: load this file first when answering frontend SLO/A11y/security questions.
-> **Source**: realigned from `5-views/frontend-architecture.template.md` §1+§4+§5+§8 per [ADR-0001](../1-decisions/ADR-0001-frontend-template-tier-realignment.md).
+> **Tier**: 0-principles — frontend performance, a11y, and monitoring quality bars
 
 ---
 

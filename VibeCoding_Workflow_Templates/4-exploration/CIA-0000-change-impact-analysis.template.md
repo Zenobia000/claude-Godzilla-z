@@ -1,11 +1,14 @@
 ---
 id: CR-NNNN
-status: draft        # draft → reviewed → approved → implemented → archived
-owner: <author>
+title: "Change Impact Analysis"
+status: draft
+tier: 4-exploration
+owner: HYBRID
 created: <YYYY-MM-DD>
-target_release: <version-or-sprint>
+target-release: <version-or-sprint>
+product-version: null
 supersedes: null
-superseded_by: null
+superseded-by: null
 ---
 
 
@@ -111,7 +114,7 @@ Once §8 is resolved, implement in this dependency-respecting order:
 5. **API** → update `API-NNNN` openapi schema + handler
 6. **Tests** → add `TC-NNNN` × 5 (use `vibecoding-write-tdd` skill)
 7. **UI** → update `UF-NNNN` cancel screen with quantity selector
-8. **Traceability** → update `traceability-matrix.template.md` with new BF/UF/SF/API/TC links
+8. **Traceability** → update `TM-0000-traceability-matrix.template.md` with new BF/UF/SF/API/TC links
 9. **Docs sync** → re-run `sunnydata-doc-freshness` to verify no tier-2 contract is left stale
 
 ## 10. Risks & Rollback

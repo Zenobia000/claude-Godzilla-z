@@ -1,15 +1,17 @@
 ---
-id: PP-NNNN
-status: draft        # draft | active | deprecated | superseded | archived
-owner: <product-or-leadership>
-last_reviewed: <YYYY-MM-DD>
+id: PRIN-0000
+title: "Product Principles"
+status: draft
+tier: 0-principles
+owner: HUMAN-ONLY
+last-reviewed: <YYYY-MM-DD>
+product-version: null
 supersedes: null
-superseded_by: null
+superseded-by: null
 ---
 # Product Principles — `<PROJECT_NAME>`
 
-> **Stability tier**: `0-principles` (highest). Change at most once per major version.
-> **Reading order for AI**: this file should be loaded first in any new conversation about this project.
+> **Tier**: 0-principles — strategic invariants; change at most once per major version
 
 ---
 

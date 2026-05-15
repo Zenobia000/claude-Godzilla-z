@@ -1,12 +1,12 @@
 ---
 name: vibecoding-code-review
 description: Perform a structured code review covering architecture, business logic, maintainability, and security. Triggers on 'review code', 'PR review', '程式碼審查', 'code review'.
-template-ref: VibeCoding_Workflow_Templates/3-process/code-review-checklist.md
+template-ref: VibeCoding_Workflow_Templates/3-process/PROC-0003-code-review-checklist.md
 stability-tier: 3-process
 origin: migrated-from-output-style
 ---
 
-> **Template reference:** `VibeCoding_Workflow_Templates/3-process/code-review-checklist.md`
+> **Template reference:** `VibeCoding_Workflow_Templates/3-process/PROC-0003-code-review-checklist.md`
 > **Stability tier:** `3-process` — read tier README for usage policy.
 > Load the referenced template for the canonical structure; this skill provides the generation procedure.
 
@@ -627,7 +627,7 @@ graph TD
 ## 輸出格式
 
 - 使用 Markdown 格式
-- 遵循 VibeCoding_Workflow_Templates/3-process/code-review-checklist.md 結構
+- 遵循 VibeCoding_Workflow_Templates/3-process/PROC-0003-code-review-checklist.md 結構
 - 使用表情符號標示嚴重程度: ✅ (良好) ⚠️ (建議改進) 🔴 (必須修正)
 
 ## 審查清單

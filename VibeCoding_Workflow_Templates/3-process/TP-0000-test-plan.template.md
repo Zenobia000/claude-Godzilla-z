@@ -1,10 +1,14 @@
 ---
+id: TP-0000
+title: "Test Plan"
 status: draft
-owner: <qa-lead-or-engineering-lead>
-last_reviewed: <YYYY-MM-DD>
-target_release: <version-or-quarter>
+tier: 3-process
+owner: HUMAN-ONLY
+last-reviewed: <YYYY-MM-DD>
+target-release: <version-or-quarter>
+product-version: null
 supersedes: null
-superseded_by: null
+superseded-by: null
 ---
 
 
@@ -19,7 +23,7 @@ superseded_by: null
 
 > **Tier**: 3-process → strategic test document
 >
-> **Purpose**: this is the **strategy** layer. It answers "**why** are we testing this, and **how** are we organizing the effort?". The execution layer (which test asserts which rule) lives in `2-contracts/traceability-matrix.template.md`.
+> **Purpose**: this is the **strategy** layer. It answers "**why** are we testing this, and **how** are we organizing the effort?". The execution layer (which test asserts which rule) lives in `2-contracts/TM-0000-traceability-matrix.template.md`.
 >
 > **Difference from traceability matrix**: matrix says "BF-0001 → TC-0001..0008 → test-order-create job". This plan says "we test order creation because order is the highest-revenue surface, target 90% line coverage on OrderService, accept 70% on Notification".
 
@@ -81,7 +85,7 @@ superseded_by: null
 | Fixtures (committed JSON) | Unit, Component | Versioned in repo | Hand-curated minimal cases |
 | Factories (factory-boy / faker) | Component, Integration | Generated per test | Schema-derived |
 | Seed (SQL bootstrap) | Integration, E2E | Reset per suite | Idempotent migration scripts |
-| Sandbox (vendor) | Contract, vendor E2E | Vendor-managed | See `vendor-api-test-requirement.template.md` |
+| Sandbox (vendor) | Contract, vendor E2E | Vendor-managed | See `PROC-0007-vendor-api-test.template.md` |
 | Anonymized prod snapshot | Performance, edge-case discovery | Quarterly refresh | Pipeline strips PII before commit |
 | Synthetic at scale | Performance | Generated | Mimas / locust dataset gen |
 
@@ -139,7 +143,7 @@ PR #1234 affects:
 
 ## 8. Vendor / External Test Strategy
 
-For each external dependency, fill `vendor-api-test-requirement.template.md` separately. Summary index here:
+For each external dependency, fill `PROC-0007-vendor-api-test.template.md` separately. Summary index here:
 
 | Vendor | Plan link | Sandbox available? | Contract test status |
 |---|---|---|---|
@@ -181,8 +185,8 @@ For each external dependency, fill `vendor-api-test-requirement.template.md` sep
 
 ## See also
 
-- `2-contracts/traceability-matrix.template.md` — execution-layer "what tests what"
-- `3-process/vendor-api-test-requirement.template.md` — per-vendor detail
-- `3-process/quality-gates.md` — Gate 4 prerequisites depend on this plan
-- `3-process/security-readiness-checklist.md` — security-test-specific checklist
+- `2-contracts/TM-0000-traceability-matrix.template.md` — execution-layer "what tests what"
+- `3-process/PROC-0007-vendor-api-test.template.md` — per-vendor detail
+- `3-process/QG-0000-quality-gates.md` — Gate 4 prerequisites depend on this plan
+- `3-process/PROC-0004-security-readiness-checklist.md` — security-test-specific checklist
 - `.claude/rules/change-governance.md` — Test Plan changes are tier-3, but big restructures should go through CIA

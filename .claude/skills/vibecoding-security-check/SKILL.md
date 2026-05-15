@@ -1,12 +1,12 @@
 ---
 name: vibecoding-security-check
 description: Run a security checklist covering authn/authz, input validation, secrets, dependencies. Triggers on 'security check', 'OWASP review', '安全檢查', 'pre-launch security'.
-template-ref: VibeCoding_Workflow_Templates/3-process/security-readiness-checklist.md
+template-ref: VibeCoding_Workflow_Templates/3-process/PROC-0004-security-readiness-checklist.md
 stability-tier: 3-process
 origin: migrated-from-output-style
 ---
 
-> **Template reference:** `VibeCoding_Workflow_Templates/3-process/security-readiness-checklist.md`
+> **Template reference:** `VibeCoding_Workflow_Templates/3-process/PROC-0004-security-readiness-checklist.md`
 > **Stability tier:** `3-process` — read tier README for usage policy.
 > Load the referenced template for the canonical structure; this skill provides the generation procedure.
 
@@ -534,7 +534,7 @@ async function fetchUrl(url: string): Promise<any> {
 ## 輸出格式
 
 - 使用 Markdown 格式
-- 遵循 VibeCoding_Workflow_Templates/3-process/security-readiness-checklist.md 結構
+- 遵循 VibeCoding_Workflow_Templates/3-process/PROC-0004-security-readiness-checklist.md 結構
 - 使用 🔴 🟠 🟡 🟢 標示風險等級
 
 ## 審查清單
@@ -552,9 +552,9 @@ async function fetchUrl(url: string): Promise<any> {
 
 ## 關聯文件
 
-- **Code Review**: 07-code-review-checklist.md (代碼層面安全)
+- **Code Review**: PROC-0003-code-review-checklist.md (代碼層面安全)
 - **API 設計**: 05-api-contract-spec.md (API 安全)
-- **部署指南**: VibeCoding_Workflow_Templates/3-process/deployment-runbook.template.md
+- **部署指南**: VibeCoding_Workflow_Templates/3-process/PROC-0005-deployment-runbook.template.md
 
 
 **記住**: 安全是持續的過程,不是一次性檢查。定期審查、更新依賴、演練事件響應,讓系統持續保持安全狀態。

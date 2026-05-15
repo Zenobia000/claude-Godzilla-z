@@ -30,59 +30,59 @@ See [HOW-TO-INSTANTIATE.md](./HOW-TO-INSTANTIATE.md) for how to use these templa
 
 ### 0-principles — *near-immutable invariants*
 Mission, non-goals, quality bars, technical hard limits, naming conventions, terminology. Reviewed every 6 months, changed only on major version. AI loads this first.
-- [`product-principles.template.md`](./0-principles/product-principles.template.md)
-- [`flow-id-conventions.md`](./0-principles/flow-id-conventions.md) — Flow ID 9-prefix system
-- [`glossary.template.md`](./0-principles/glossary.template.md) — **NEW v5.2**: business terminology source of truth (critical for ERP-class systems)
-- [`frontend-quality-attributes.template.md`](./0-principles/frontend-quality-attributes.template.md) — **NEW v5.4**: frontend SLO / Core Web Vitals / A11y / responsive breakpoints (per ADR-0001)
+- [`PRIN-0000-product-principles.template.md`](./0-principles/PRIN-0000-product-principles.template.md)
+- [`PRIN-0001-flow-id-conventions.md`](./0-principles/PRIN-0001-flow-id-conventions.md) — Flow ID 9-prefix system
+- [`GLOS-0000-glossary.template.md`](./0-principles/GLOS-0000-glossary.template.md) — **NEW v5.2**: business terminology source of truth (critical for ERP-class systems)
+- [`PRIN-0002-frontend-quality-attributes.template.md`](./0-principles/PRIN-0002-frontend-quality-attributes.template.md) — **NEW v5.4**: frontend SLO / Core Web Vitals / A11y / responsive breakpoints (per ADR-0001)
 
 ### 1-decisions — *append-only judgments*
 ADRs, architecture overviews, module charters, domain models. Once Accepted, never edited; superseded by writing a new decision.
-- [`adr.template.md`](./1-decisions/adr.template.md)
-- [`architecture-overview.template.md`](./1-decisions/architecture-overview.template.md)
-- [`module-boundary.template.md`](./1-decisions/module-boundary.template.md) — **NEW v5.2**: per-module charter (owns / does NOT own / dependencies / ACL)
-- [`domain-model.template.md`](./1-decisions/domain-model.template.md) — **NEW v5.2**: per-bounded-context DDD model (aggregates, invariants, ERD, events)
-- [`frontend-tech-stack.template.md`](./1-decisions/frontend-tech-stack.template.md) — **NEW v5.4**: frontend layered tech selection + project structure (per ADR-0001)
+- [`ADR-0000-adr.template.md`](./1-decisions/ADR-0000-adr.template.md)
+- [`ARCH-0000-architecture-overview.template.md`](./1-decisions/ARCH-0000-architecture-overview.template.md)
+- [`ARCH-0001-module-boundary.template.md`](./1-decisions/ARCH-0001-module-boundary.template.md) — **NEW v5.2**: per-module charter (owns / does NOT own / dependencies / ACL)
+- [`DDD-0000-domain-model.template.md`](./1-decisions/DDD-0000-domain-model.template.md) — **NEW v5.2**: per-bounded-context DDD model (aggregates, invariants, ERD, events)
+- [`ARCH-0002-frontend-tech-stack.template.md`](./1-decisions/ARCH-0002-frontend-tech-stack.template.md) — **NEW v5.4**: frontend layered tech selection + project structure (per ADR-0001)
 
 ### 2-contracts — *interfaces that MUST track code*
 API specs, module contracts, layered Flows, FRs, traceability. Carry frontmatter `id`, `status`, `last-synced-with`; the `sunnydata-doc-freshness` skill flags drift + lifecycle issues.
-- [`api-spec.template.md`](./2-contracts/api-spec.template.md) — "how do systems exchange data?"
-- [`module-contract.template.md`](./2-contracts/module-contract.template.md) — "what does this module promise?"
-- [`flow-business.template.md`](./2-contracts/flow-business.template.md) — L1 BF; "how does it happen E2E?"
-- [`flow-user.template.md`](./2-contracts/flow-user.template.md) — L2 UF; "how does this actor do it?"
-- [`flow-sub.template.md`](./2-contracts/flow-sub.template.md) — L3 SF; "how does this shared step work?"
-- [`functional-requirement.template.md`](./2-contracts/functional-requirement.template.md) — FR; "how do we judge correctness?"
-- [`state-machine.template.md`](./2-contracts/state-machine.template.md) — per-entity state transitions (extract when ≥5 states)
-- [`master-data-specification.template.md`](./2-contracts/master-data-specification.template.md) — master entity governance (critical for ERP)
-- [`flow-index.template.md`](./2-contracts/flow-index.template.md) — **NEW v5.3**: project-wide Flow aggregation view (paired with `sunnydata-flow-audit` skill)
-- [`traceability-matrix.template.md`](./2-contracts/traceability-matrix.template.md) — cross-layer coverage map
-- [`frontend-design-system.template.md`](./2-contracts/frontend-design-system.template.md) — **NEW v5.4**: design tokens + atomic design + API client + auth + frontend security checklist (per ADR-0001)
-- [`page-contract.template.md`](./2-contracts/page-contract.template.md) — **NEW v5.4**: per-page contract (route / responsibility / data / CTA / nav) (per ADR-0001)
+- [`API-0000-api-spec.template.md`](./2-contracts/API-0000-api-spec.template.md) — "how do systems exchange data?"
+- [`MC-0000-module-contract.template.md`](./2-contracts/MC-0000-module-contract.template.md) — "what does this module promise?"
+- [`BF-0000-flow-business.template.md`](./2-contracts/BF-0000-flow-business.template.md) — L1 BF; "how does it happen E2E?"
+- [`UF-0000-flow-user.template.md`](./2-contracts/UF-0000-flow-user.template.md) — L2 UF; "how does this actor do it?"
+- [`SF-0000-flow-sub.template.md`](./2-contracts/SF-0000-flow-sub.template.md) — L3 SF; "how does this shared step work?"
+- [`FR-0000-functional-requirement.template.md`](./2-contracts/FR-0000-functional-requirement.template.md) — FR; "how do we judge correctness?"
+- [`SM-0000-state-machine.template.md`](./2-contracts/SM-0000-state-machine.template.md) — per-entity state transitions (extract when ≥5 states)
+- [`MDS-0000-master-data.template.md`](./2-contracts/MDS-0000-master-data.template.md) — master entity governance (critical for ERP)
+- [`FI-0000-flow-index.template.md`](./2-contracts/FI-0000-flow-index.template.md) — **NEW v5.3**: project-wide Flow aggregation view (paired with `sunnydata-flow-audit` skill)
+- [`TM-0000-traceability-matrix.template.md`](./2-contracts/TM-0000-traceability-matrix.template.md) — cross-layer coverage map
+- [`DS-0000-frontend-design-system.template.md`](./2-contracts/DS-0000-frontend-design-system.template.md) — **NEW v5.4**: design tokens + atomic design + API client + auth + frontend security checklist (per ADR-0001)
+- [`PC-0000-page-contract.template.md`](./2-contracts/PC-0000-page-contract.template.md) — **NEW v5.4**: per-page contract (route / responsibility / data / CTA / nav) (per ADR-0001)
 
 ### 3-process — *how we work*
 Workflow guides, checklists, methodology references, runbooks, gates.
-- [`workflow-manual.md`](./3-process/workflow-manual.md)
-- [`bdd-guide.md`](./3-process/bdd-guide.md)
-- [`code-review-checklist.md`](./3-process/code-review-checklist.md)
-- [`security-readiness-checklist.md`](./3-process/security-readiness-checklist.md)
-- [`deployment-runbook.template.md`](./3-process/deployment-runbook.template.md)
-- [`docs-maintenance-guide.md`](./3-process/docs-maintenance-guide.md)
-- [`quality-gates.md`](./3-process/quality-gates.md) — **NEW v5**: Gate 0-4 stage prerequisites
-- [`test-plan.template.md`](./3-process/test-plan.template.md) — **NEW v5.1**: strategic test document
-- [`vendor-api-test-requirement.template.md`](./3-process/vendor-api-test-requirement.template.md) — **NEW v5.1**: per-vendor test prerequisites
-- [`frontend-pre-merge-checklist.template.md`](./3-process/frontend-pre-merge-checklist.template.md) — **NEW v5.4**: frontend test strategy + code/quality/IA checklists (per ADR-0001)
+- [`PROC-0001-workflow-manual.md`](./3-process/PROC-0001-workflow-manual.md)
+- [`PROC-0002-bdd-guide.md`](./3-process/PROC-0002-bdd-guide.md)
+- [`PROC-0003-code-review-checklist.md`](./3-process/PROC-0003-code-review-checklist.md)
+- [`PROC-0004-security-readiness-checklist.md`](./3-process/PROC-0004-security-readiness-checklist.md)
+- [`PROC-0005-deployment-runbook.template.md`](./3-process/PROC-0005-deployment-runbook.template.md)
+- [`PROC-0006-docs-maintenance-guide.md`](./3-process/PROC-0006-docs-maintenance-guide.md)
+- [`QG-0000-quality-gates.md`](./3-process/QG-0000-quality-gates.md) — **NEW v5**: Gate 0-4 stage prerequisites
+- [`TP-0000-test-plan.template.md`](./3-process/TP-0000-test-plan.template.md) — **NEW v5.1**: strategic test document
+- [`PROC-0007-vendor-api-test.template.md`](./3-process/PROC-0007-vendor-api-test.template.md) — **NEW v5.1**: per-vendor test prerequisites
+- [`PROC-0008-frontend-pre-merge.template.md`](./3-process/PROC-0008-frontend-pre-merge.template.md) — **NEW v5.4**: frontend test strategy + code/quality/IA checklists (per ADR-0001)
 
 ### 4-exploration — *per-task ephemeral intent*
 PRDs, WBS, brainstorms, change-impact analyses. Date-stamp filenames, archive when shipped.
-- [`prd.template.md`](./4-exploration/prd.template.md)
-- [`wbs.template.md`](./4-exploration/wbs.template.md)
-- [`change-impact-analysis.template.md`](./4-exploration/change-impact-analysis.template.md) — **NEW v5**: CIA (CR-NNNN) — produced by `sunnydata-change-impact-analysis` skill, mandated by `change-governance` rule
+- [`PRD-0000-prd.template.md`](./4-exploration/PRD-0000-prd.template.md)
+- [`WBS-0000-wbs.template.md`](./4-exploration/WBS-0000-wbs.template.md)
+- [`CIA-0000-change-impact-analysis.template.md`](./4-exploration/CIA-0000-change-impact-analysis.template.md) — **NEW v5**: CIA (CR-NNNN) — produced by `sunnydata-change-impact-analysis` skill, mandated by `change-governance` rule
 
 ### 5-views — *derived from code; do not hand-edit*
 Project structure, dependency graphs, class diagrams, frontend trees. Regenerate via `/regenerate-views` skill or language-specific tooling.
-- [`project-structure.template.md`](./5-views/project-structure.template.md)
-- [`file-dependencies.template.md`](./5-views/file-dependencies.template.md)
-- [`class-relationships.template.md`](./5-views/class-relationships.template.md)
-- [`frontend-route-map.template.md`](./5-views/frontend-route-map.template.md) — **NEW v5.4**: page tree + nav + route table + page-to-page data passing (derived from router config; per ADR-0001)
+- [`VIEW-0001-project-structure.template.md`](./5-views/VIEW-0001-project-structure.template.md)
+- [`VIEW-0002-file-dependencies.template.md`](./5-views/VIEW-0002-file-dependencies.template.md)
+- [`VIEW-0003-class-relationships.template.md`](./5-views/VIEW-0003-class-relationships.template.md)
+- [`VIEW-0004-frontend-route-map.template.md`](./5-views/VIEW-0004-frontend-route-map.template.md) — **NEW v5.4**: page tree + nav + route table + page-to-page data passing (derived from router config; per ADR-0001)
 
 ---
 
@@ -103,14 +103,14 @@ Project structure, dependency graphs, class diagrams, frontend trees. Regenerate
 
 | You're doing… | Reach for… |
 |---|---|
-| Starting a project | `0-principles/product-principles.template.md` |
-| Recording an architectural choice | `1-decisions/adr.template.md` |
-| Documenting a service boundary | `2-contracts/api-spec.template.md` |
-| Documenting a module's public surface | `2-contracts/module-contract.template.md` |
-| Drafting a feature spec | `4-exploration/prd.template.md` |
-| Planning a sprint | `4-exploration/wbs.template.md` |
-| Adopting BDD on a new feature | `3-process/bdd-guide.md` (read, don't fill) |
-| Pre-launch checks | `3-process/security-readiness-checklist.md` (read, don't fill) |
+| Starting a project | `0-principles/PRIN-0000-product-principles.template.md` |
+| Recording an architectural choice | `1-decisions/ADR-0000-adr.template.md` |
+| Documenting a service boundary | `2-contracts/API-0000-api-spec.template.md` |
+| Documenting a module's public surface | `2-contracts/MC-0000-module-contract.template.md` |
+| Drafting a feature spec | `4-exploration/PRD-0000-prd.template.md` |
+| Planning a sprint | `4-exploration/WBS-0000-wbs.template.md` |
+| Adopting BDD on a new feature | `3-process/PROC-0002-bdd-guide.md` (read, don't fill) |
+| Pre-launch checks | `3-process/PROC-0004-security-readiness-checklist.md` (read, don't fill) |
 | Onboarding diagrams | `5-views/*` — but **regenerate**, don't write by hand |
 
 ---
@@ -119,40 +119,40 @@ Project structure, dependency graphs, class diagrams, frontend trees. Regenerate
 
 | v3 path | v4 path |
 |---|---|
-| `01_workflow_manual.md` | `3-process/workflow-manual.md` |
-| `02_project_brief_and_prd.md` | `4-exploration/prd.template.md` |
-| `03_behavior_driven_development_guide.md` | `3-process/bdd-guide.md` |
-| `04_architecture_decision_record_template.md` | `1-decisions/adr.template.md` |
-| `05_architecture_and_design_document.md` | `1-decisions/architecture-overview.template.md` |
-| `06_api_design_specification.md` | `2-contracts/api-spec.template.md` |
-| `07_module_specification_and_tests.md` | `2-contracts/module-contract.template.md` |
-| `08_project_structure_guide.md` | `5-views/project-structure.template.md` |
-| `09_file_dependencies_template.md` | `5-views/file-dependencies.template.md` |
-| `10_class_relationships_template.md` | `5-views/class-relationships.template.md` |
-| `11_code_review_and_refactoring_guide.md` | `3-process/code-review-checklist.md` |
-| `12_frontend_architecture_specification.md` | **split across 0/1/2/3** (per [ADR-0001](../docs/1-decisions/ADR-0001-frontend-template-tier-realignment.md)): `0-principles/frontend-quality-attributes`, `1-decisions/frontend-tech-stack`, `2-contracts/frontend-design-system`, `3-process/frontend-pre-merge-checklist` |
-| `13_security_and_readiness_checklists.md` | `3-process/security-readiness-checklist.md` |
-| `14_deployment_and_operations_guide.md` | `3-process/deployment-runbook.template.md` |
-| `15_documentation_and_maintenance_guide.md` | `3-process/docs-maintenance-guide.md` |
-| `16_wbs_development_plan_template.md` | `4-exploration/wbs.template.md` |
-| `17_frontend_information_architecture_template.md` | **split** (per [ADR-0001](../docs/1-decisions/ADR-0001-frontend-template-tier-realignment.md)): `2-contracts/page-contract` (per-page contract), `5-views/frontend-route-map` (route/nav derive), `4-exploration/prd.template.md §6` (IA principles) |
-| *(new in v4)* | `0-principles/product-principles.template.md` |
-| *(new in v5)* | `0-principles/flow-id-conventions.md` |
-| *(new in v5)* | `2-contracts/flow-business.template.md` |
-| *(new in v5)* | `2-contracts/flow-user.template.md` |
-| *(new in v5)* | `2-contracts/flow-sub.template.md` |
-| *(new in v5)* | `2-contracts/traceability-matrix.template.md` |
-| *(new in v5)* | `3-process/quality-gates.md` |
-| *(new in v5)* | `4-exploration/change-impact-analysis.template.md` |
-| *(new in v5.1)* | `2-contracts/functional-requirement.template.md` |
-| *(new in v5.1)* | `3-process/test-plan.template.md` |
-| *(new in v5.1)* | `3-process/vendor-api-test-requirement.template.md` |
-| *(new in v5.2)* | `0-principles/glossary.template.md` |
-| *(new in v5.2)* | `1-decisions/module-boundary.template.md` |
-| *(new in v5.2)* | `1-decisions/domain-model.template.md` |
-| *(new in v5.2)* | `2-contracts/state-machine.template.md` |
-| *(new in v5.2)* | `2-contracts/master-data-specification.template.md` |
-| *(new in v5.3)* | `2-contracts/flow-index.template.md` |
+| `01_workflow_manual.md` | `3-process/PROC-0001-workflow-manual.md` |
+| `02_project_brief_and_prd.md` | `4-exploration/PRD-0000-prd.template.md` |
+| `03_behavior_driven_development_guide.md` | `3-process/PROC-0002-bdd-guide.md` |
+| `04_architecture_decision_record_template.md` | `1-decisions/ADR-0000-adr.template.md` |
+| `05_architecture_and_design_document.md` | `1-decisions/ARCH-0000-architecture-overview.template.md` |
+| `06_api_design_specification.md` | `2-contracts/API-0000-api-spec.template.md` |
+| `07_module_specification_and_tests.md` | `2-contracts/MC-0000-module-contract.template.md` |
+| `08_project_structure_guide.md` | `5-views/VIEW-0001-project-structure.template.md` |
+| `09_file_dependencies_template.md` | `5-views/VIEW-0002-file-dependencies.template.md` |
+| `10_class_relationships_template.md` | `5-views/VIEW-0003-class-relationships.template.md` |
+| `11_code_review_and_refactoring_guide.md` | `3-process/PROC-0003-code-review-checklist.md` |
+| `12_frontend_architecture_specification.md` | **split across 0/1/2/3** (per [ADR-0001](../docs/1-decisions/ADR-0001-frontend-template-tier-realignment.md)): `0-principles/PRIN-0002-frontend-quality-attributes`, `1-decisions/ARCH-0002-frontend-tech-stack`, `2-contracts/DS-0000-frontend-design-system`, `3-process/PROC-0008-frontend-pre-merge` |
+| `13_security_and_readiness_checklists.md` | `3-process/PROC-0004-security-readiness-checklist.md` |
+| `14_deployment_and_operations_guide.md` | `3-process/PROC-0005-deployment-runbook.template.md` |
+| `15_documentation_and_maintenance_guide.md` | `3-process/PROC-0006-docs-maintenance-guide.md` |
+| `16_wbs_development_plan_template.md` | `4-exploration/WBS-0000-wbs.template.md` |
+| `17_frontend_information_architecture_template.md` | **split** (per [ADR-0001](../docs/1-decisions/ADR-0001-frontend-template-tier-realignment.md)): `2-contracts/PC-0000-page-contract` (per-page contract), `5-views/VIEW-0004-frontend-route-map` (route/nav derive), `4-exploration/PRD-0000-prd.template.md §6` (IA principles) |
+| *(new in v4)* | `0-principles/PRIN-0000-product-principles.template.md` |
+| *(new in v5)* | `0-principles/PRIN-0001-flow-id-conventions.md` |
+| *(new in v5)* | `2-contracts/BF-0000-flow-business.template.md` |
+| *(new in v5)* | `2-contracts/UF-0000-flow-user.template.md` |
+| *(new in v5)* | `2-contracts/SF-0000-flow-sub.template.md` |
+| *(new in v5)* | `2-contracts/TM-0000-traceability-matrix.template.md` |
+| *(new in v5)* | `3-process/QG-0000-quality-gates.md` |
+| *(new in v5)* | `4-exploration/CIA-0000-change-impact-analysis.template.md` |
+| *(new in v5.1)* | `2-contracts/FR-0000-functional-requirement.template.md` |
+| *(new in v5.1)* | `3-process/TP-0000-test-plan.template.md` |
+| *(new in v5.1)* | `3-process/PROC-0007-vendor-api-test.template.md` |
+| *(new in v5.2)* | `0-principles/GLOS-0000-glossary.template.md` |
+| *(new in v5.2)* | `1-decisions/ARCH-0001-module-boundary.template.md` |
+| *(new in v5.2)* | `1-decisions/DDD-0000-domain-model.template.md` |
+| *(new in v5.2)* | `2-contracts/SM-0000-state-machine.template.md` |
+| *(new in v5.2)* | `2-contracts/MDS-0000-master-data.template.md` |
+| *(new in v5.3)* | `2-contracts/FI-0000-flow-index.template.md` |
 
 A migration script for downstream forks is at `scripts/migrate-templates-v3-to-v4.sh`.
 
@@ -162,7 +162,7 @@ A migration script for downstream forks is at `scripts/migrate-templates-v3-to-v
 
 | Version | Date | Change |
 |---|---|---|
-| v5.4 | 2026-05-10 | Frontend template tier realignment (ADR-0001 / CR-0001): split `5-views/frontend-architecture` and `5-views/frontend-information-architecture` into 6 properly-tiered templates (0/1/2/3/5) + integrated IA principles into `prd.template.md §6` |
+| v5.4 | 2026-05-10 | Frontend template tier realignment (ADR-0001 / CR-0001): split `5-views/frontend-architecture` and `5-views/frontend-information-architecture` into 6 properly-tiered templates (0/1/2/3/5) + integrated IA principles into `PRD-0000-prd.template.md §6` |
 | v5.3 | 2026-05-10 | Flow self-monitoring: project-wide flow-index aggregation template; sunnydata-flow-audit skill detecting broken refs / orphans / layering violations / stale flows / index drift |
 | v5.2 | 2026-05-10 | ERP-class foundation: Glossary (terminology source of truth); Module Boundary charter (per-module owns/NOT-owns); Domain Model (DDD aggregates + ERD + invariants); State Machine (extracted when complex); Master Data Specification (governance for long-lived shared entities) |
 | v5.1 | 2026-05-10 | "One doc, one question" enforcement: standalone Functional Requirement template (decouple FR from Flow); Test Plan strategic template; Vendor API Test Requirement template |

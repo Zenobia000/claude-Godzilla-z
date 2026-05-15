@@ -1,12 +1,12 @@
 ---
 name: vibecoding-write-api-contract
 description: Generate REST/GraphQL API contracts with OpenAPI schemas, error envelopes, versioning, and rate limiting. Triggers on 'API contract', 'OpenAPI spec', 'design endpoints', 'API 規範'.
-template-ref: VibeCoding_Workflow_Templates/2-contracts/api-spec.template.md
+template-ref: VibeCoding_Workflow_Templates/2-contracts/API-0000-api-spec.template.md
 stability-tier: 2-contracts
 origin: migrated-from-output-style
 ---
 
-> **Template reference:** `VibeCoding_Workflow_Templates/2-contracts/api-spec.template.md`
+> **Template reference:** `VibeCoding_Workflow_Templates/2-contracts/API-0000-api-spec.template.md`
 > **Stability tier:** `2-contracts` — read tier README for usage policy.
 > Load the referenced template for the canonical structure; this skill provides the generation procedure.
 
@@ -760,7 +760,7 @@ afterAll(() => server.close());
 
 - 主文件: `openapi.yaml` (OpenAPI 3.0 格式)
 - 分模組: `openapi/orders.yaml`, `openapi/products.yaml`
-- 遵循 VibeCoding_Workflow_Templates/2-contracts/api-spec.template.md
+- 遵循 VibeCoding_Workflow_Templates/2-contracts/API-0000-api-spec.template.md
 
 ## 審查清單
 
@@ -775,8 +775,8 @@ afterAll(() => server.close());
 ## 關聯文件
 
 - **架構設計**: 03-architecture-design-doc.md (Container Diagram)
-- **模組規格**: 2-contracts/module-contract.template.md (實作細節)
-- **安全檢查**: 3-process/security-readiness-checklist.md (安全審查)
+- **模組規格**: 2-contracts/MC-0000-module-contract.template.md (實作細節)
+- **安全檢查**: 3-process/PROC-0004-security-readiness-checklist.md (安全審查)
 
 
 **記住**: API 是系統的契約,好的 API 設計讓前後端並行開發,讓集成測試有明確依據,讓文檔永不過時。

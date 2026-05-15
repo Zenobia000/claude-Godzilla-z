@@ -1,11 +1,18 @@
 ---
-
-## status: active
-owner: 
-last_reviewed: 
-last-synced-with: 
+id: TM-0000
+title: "Traceability Matrix"
+status: active
+tier: 2-contracts
+owner: AI-AUTO
+last-reviewed: <YYYY-MM-DD>
+last-synced-with: <git-commit-sha>
 sync-source: doc                # this matrix IS authoritative for cross-cutting links
-synced-at: 
+source-paths: []
+synced-at: <YYYY-MM-DD>
+product-version: null
+supersedes: null
+superseded-by: null
+---
 
 # Traceability Matrix
 
@@ -30,7 +37,7 @@ Each row is a slice of system behavior wide enough to verify end-to-end. Reading
 
 - A blank cell means "no instance yet" (gap to plan or accept)
 - `—` means "deliberately not applicable" (e.g. UF that has no API surface)
-- ID columns use the prefixes from `0-principles/flow-id-conventions.md`
+- ID columns use the prefixes from `0-principles/PRIN-0001-flow-id-conventions.md`
 
 ## Coverage Matrix
 
@@ -102,7 +109,7 @@ After every CR:
 2. For each "New" item in §2-§7, append a row here
 3. For each "Modified" item, update the existing row
 4. For each "Deleted" item, mark the row `~~strikethrough~~` and move to "Deleted IDs" appendix
-5. Bump `last_reviewed` and let the post-write hook refresh `last-synced-with`
+5. Bump `last-reviewed` and let the post-write hook refresh `last-synced-with`
 
 ## Deleted IDs (do not reuse)
 
@@ -117,8 +124,8 @@ After every CR:
 
 ## See also
 
-- `0-principles/flow-id-conventions.md` — ID semantics and allocation
-- `4-exploration/change-impact-analysis.template.md` — what to update in this matrix per CR
-- `3-process/quality-gates.md` — when this matrix must be filled out
+- `0-principles/PRIN-0001-flow-id-conventions.md` — ID semantics and allocation
+- `4-exploration/CIA-0000-change-impact-analysis.template.md` — what to update in this matrix per CR
+- `3-process/QG-0000-quality-gates.md` — when this matrix must be filled out
 - `.claude/skills/sunnydata-doc-freshness/SKILL.md` — freshness verification
 

@@ -32,7 +32,25 @@ When generating new ADRs, AI should:
 
 | File | Purpose |
 |---|---|
-| `adr.template.md` | Single-decision record (status, context, decision, consequences) |
-| `architecture-overview.template.md` | C4 / DDD level architecture snapshot |
-| `module-boundary.template.md` | Per-module charter — what it owns, what it explicitly does NOT own, dependencies, ACL with neighbors. **Critical for ERP** (prevents god-modules) |
-| `domain-model.template.md` | Per-bounded-context DDD model — aggregate roots, entities, value objects, invariants, ERD, domain events. **Critical for ERP** (accounting model is the foundation) |
+| `ADR-0000-adr.template.md` | Single-decision record (status, context, decision, consequences) |
+| `ARCH-0000-architecture-overview.template.md` | C4 / DDD level architecture snapshot |
+| `ARCH-0001-module-boundary.template.md` | Per-module charter — what it owns, what it explicitly does NOT own, dependencies, ACL with neighbors. **Critical for ERP** (prevents god-modules) |
+| `DDD-0000-domain-model.template.md` | Per-bounded-context DDD model — aggregate roots, entities, value objects, invariants, ERD, domain events. **Critical for ERP** (accounting model is the foundation) |
+
+## Frontmatter Schema
+
+All files in this tier MUST carry this frontmatter:
+
+| Field | Required | Type | Description |
+|---|---|---|---|
+| `id` | YES | string | `ADR-NNNN`, `ARCH-NNNN`, or `DDD-NNNN` |
+| `title` | YES | string | Human-readable title |
+| `status` | YES | enum | `draft` / `active` / `deprecated` / `superseded` |
+| `tier` | YES | const | `1-decisions` |
+| `owner` | YES | enum | `HUMAN-ONLY` / `HYBRID` / `AI-AUTO` |
+| `last-reviewed` | YES | date | `YYYY-MM-DD` |
+| `date` | YES | date | Decision date |
+| `decider` | YES | string | Person or team |
+| `product-version` | opt | string | Product version this doc applies to |
+| `supersedes` | opt | string | ID of predecessor |
+| `superseded-by` | opt | string | ID of successor |

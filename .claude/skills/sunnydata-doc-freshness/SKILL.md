@@ -16,7 +16,7 @@ This skill assumes each contract doc carries:
 
 ```yaml
 ---
-id: BF-NNNN | UF-NNNN | API-NNNN | ...   # Flow ID (see 0-principles/flow-id-conventions.md)
+id: BF-NNNN | UF-NNNN | API-NNNN | ...   # Flow ID (see 0-principles/PRIN-0001-flow-id-conventions.md)
 status: draft | active | deprecated | superseded | archived
 owner: <team>
 last_reviewed: <YYYY-MM-DD>

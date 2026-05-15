@@ -57,7 +57,7 @@ AI 顯示 CIA + 🛑 等待人類決策
 AI 依 §9 「Suggested Implementation Order」逐步實作
     │
     ▼
-實作完成 → 更新 traceability-matrix.template.md 對應 row
+實作完成 → 更新 TM-0000-traceability-matrix.template.md 對應 row
     │
     ▼
 跑 sunnydata-doc-freshness 確認 tier-2 contract 都同步
@@ -163,7 +163,7 @@ AI 依 §9 「Suggested Implementation Order」逐步實作
 - `rules/context-stability.md` — what tier each artifact lives in (CIA outputs go to tier-4)
 - `rules/primitive-selection.md` — when CIA, when skill, when command
 - `skills/sunnydata-change-impact-analysis/SKILL.md` — gate execution skill
-- `VibeCoding_Workflow_Templates/0-principles/flow-id-conventions.md` — Flow ID system used in CIA
-- `VibeCoding_Workflow_Templates/4-exploration/change-impact-analysis.template.md` — CIA structure
-- `VibeCoding_Workflow_Templates/2-contracts/traceability-matrix.template.md` — must be updated post-implementation
-- `VibeCoding_Workflow_Templates/3-process/quality-gates.md` — gates that change-governance interacts with
+- `VibeCoding_Workflow_Templates/0-principles/PRIN-0001-flow-id-conventions.md` — Flow ID system used in CIA
+- `VibeCoding_Workflow_Templates/4-exploration/CIA-0000-change-impact-analysis.template.md` — CIA structure
+- `VibeCoding_Workflow_Templates/2-contracts/TM-0000-traceability-matrix.template.md` — must be updated post-implementation
+- `VibeCoding_Workflow_Templates/3-process/QG-0000-quality-gates.md` — gates that change-governance interacts with

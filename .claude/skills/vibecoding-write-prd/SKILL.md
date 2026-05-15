@@ -1,12 +1,12 @@
 ---
 name: vibecoding-write-prd
 description: Generate a structured Product Requirements Document (PRD) using the VibeCoding tier-4 template. Triggers on requests like 'write PRD', 'draft product spec', '建立產品需求文件', '寫產品需求'.
-template-ref: VibeCoding_Workflow_Templates/4-exploration/prd.template.md
+template-ref: VibeCoding_Workflow_Templates/4-exploration/PRD-0000-prd.template.md
 stability-tier: 4-exploration
 origin: migrated-from-output-style
 ---
 
-> **Template reference:** `VibeCoding_Workflow_Templates/4-exploration/prd.template.md`
+> **Template reference:** `VibeCoding_Workflow_Templates/4-exploration/PRD-0000-prd.template.md`
 > **Stability tier:** `4-exploration` — read tier README for usage policy.
 > Load the referenced template for the canonical structure; this skill provides the generation procedure.
 
@@ -114,7 +114,7 @@ origin: migrated-from-output-style
 
 ## 輸出格式
 
-- 使用 Markdown,遵循 VibeCoding_Workflow_Templates/4-exploration/prd.template.md 結構
+- 使用 Markdown,遵循 VibeCoding_Workflow_Templates/4-exploration/PRD-0000-prd.template.md 結構
 - 所有表格使用標準 Markdown 表格格式
 - 圖表使用 Mermaid 語法 (用戶旅程、流程圖等)
 - 數據與假設需明確標註來源
@@ -134,9 +134,9 @@ PRD 完成後,檢查以下項目:
 
 ## 關聯文件
 
-- **後續階段**: 3-process/bdd-guide.md (BDD 情境)
+- **後續階段**: 3-process/PROC-0002-bdd-guide.md (BDD 情境)
 - **架構決策**: 1-decisions/adr.template.md (技術選型)
-- **API 設計**: 2-contracts/api-spec.template.md (介面契約)
+- **API 設計**: 2-contracts/API-0000-api-spec.template.md (介面契約)
 
 
 **記住**: PRD 是團隊對齊的契約,是後續所有設計與開發決策的依據。模糊的需求會導致大量返工,精確的需求能加速交付。

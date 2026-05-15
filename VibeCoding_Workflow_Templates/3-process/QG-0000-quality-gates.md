@@ -1,3 +1,14 @@
+---
+id: QG-0000
+title: "Quality Gates"
+status: active
+tier: 3-process
+owner: HUMAN-ONLY
+last-reviewed: <YYYY-MM-DD>
+product-version: null
+supersedes: null
+superseded-by: null
+---
 # Quality Gates
 
 > **Tier**: 3-process → process guide
@@ -14,7 +25,7 @@
 
 ### Prerequisites
 
-- [ ] **Product principles** filled (`0-principles/product-principles.template.md`): mission, non-goals, quality bars, technical invariants
+- [ ] **Product principles** filled (`0-principles/PRIN-0000-product-principles.template.md`): mission, non-goals, quality bars, technical invariants
 - [ ] **Core actors** identified with roles and responsibilities
 - [ ] **Core User Flow** drafted at L1 (`BF-NNNN`) — even rough, the shape exists
 - [ ] **Non-goals** explicit ("we will NOT do X")
@@ -67,13 +78,13 @@
 ### Prerequisites
 
 - [ ] All Gate 1 items still hold
-- [ ] **OpenAPI spec** (`2-contracts/api-spec.template.md` instances) covers every endpoint frontend will call
+- [ ] **OpenAPI spec** (`2-contracts/API-0000-api-spec.template.md` instances) covers every endpoint frontend will call
 - [ ] **Mock server** stood up serving the OpenAPI spec
 - [ ] **Error envelope shape** decided and documented (one consistent format across all endpoints)
 - [ ] **Error code catalog** (at minimum: auth, validation, not-found, conflict, rate-limit, server-error)
 - [ ] **Auth/authz model** documented — token flow, refresh, scope/role mapping
 - [ ] **Main data schemas** in OpenAPI components (request/response/event payloads)
-- [ ] **`flow-id-conventions.md`** adopted; APIs have `API-NNNN` IDs
+- [ ] **`PRIN-0001-flow-id-conventions.md`** adopted; APIs have `API-NNNN` IDs
 
 ### Failure modes if you skip
 
@@ -95,7 +106,7 @@
 ### Prerequisites
 
 - [ ] All Gate 2 items still hold
-- [ ] **Domain model** documented (`1-decisions/architecture-overview.template.md` or per-aggregate `2-contracts/module-contract.template.md`)
+- [ ] **Domain model** documented (`1-decisions/ARCH-0000-architecture-overview.template.md` or per-aggregate `2-contracts/MC-0000-module-contract.template.md`)
 - [ ] **State machines** for stateful entities (Order, Payment, etc.) — every transition labeled
 - [ ] **Data lifecycle** — for each entity: how is it created, updated, soft-deleted, hard-deleted, archived?
 - [ ] **Query patterns** enumerated — read paths, write paths, hot reads, batch jobs
@@ -127,7 +138,7 @@
 ### Prerequisites
 
 - [ ] All Gate 3 items still hold
-- [ ] **Test Matrix** filled (`2-contracts/traceability-matrix.template.md`) — every BF/UF/SF has at least one TC
+- [ ] **Test Matrix** filled (`2-contracts/TM-0000-traceability-matrix.template.md`) — every BF/UF/SF has at least one TC
 - [ ] **Test categories defined** — unit, component, contract, integration, E2E, performance, security; each with what they own
 - [ ] **External dependency matrix** — every external API has a contract test + a fallback story
 - [ ] **Coverage policy** — minimum % per layer (e.g. domain ≥ 80%, infra ≥ 60%); written down
@@ -172,8 +183,8 @@ When unsure whether a gate has been met, ask:
 
 - `.claude/rules/change-governance.md` — change must re-validate the gate it touches
 - `.claude/rules/context-stability.md` — gate outputs map cleanly onto stability tiers
-- `0-principles/product-principles.template.md` — Gate 0 deliverable
-- `2-contracts/flow-business.template.md`, `flow-user.template.md` — Gate 0/1 deliverables
-- `2-contracts/api-spec.template.md` — Gate 2 deliverable
-- `2-contracts/module-contract.template.md` — Gate 3 deliverable (per aggregate)
-- `2-contracts/traceability-matrix.template.md` — Gate 4 deliverable
+- `0-principles/PRIN-0000-product-principles.template.md` — Gate 0 deliverable
+- `2-contracts/BF-0000-flow-business.template.md`, `UF-0000-flow-user.template.md` — Gate 0/1 deliverables
+- `2-contracts/API-0000-api-spec.template.md` — Gate 2 deliverable
+- `2-contracts/MC-0000-module-contract.template.md` — Gate 3 deliverable (per aggregate)
+- `2-contracts/TM-0000-traceability-matrix.template.md` — Gate 4 deliverable

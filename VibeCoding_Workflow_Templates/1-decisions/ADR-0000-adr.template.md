@@ -1,14 +1,19 @@
 ---
-id: ADR-NNNN
-status: proposed     # proposed | accepted | rejected | superseded | deprecated
+id: ADR-0000
+title: "Architecture Decision Record Template"
+status: proposed
+tier: 1-decisions
+owner: HYBRID
+last-reviewed: <YYYY-MM-DD>
 date: <YYYY-MM-DD>
-decider: <person-or-team-name>
+decider: <person-or-team>
+product-version: null
 supersedes: null
-superseded_by: null
+superseded-by: null
 ---
 # ADR-XXX: [簡短的決策標題]
 
-> **狀態:** 提議中/已接受/已取代/已棄用 | **日期:** YYYY-MM-DD | **決策者:** [人員/團隊]
+> **Tier**: 1-decisions — append-only architectural decision record
 
 ---
 

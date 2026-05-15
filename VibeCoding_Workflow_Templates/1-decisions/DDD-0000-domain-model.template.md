@@ -1,12 +1,17 @@
 ---
-id: DM-NNNN
-status: draft        # draft | active | deprecated | superseded | archived
-owner: <domain-architect>
-last_reviewed: <YYYY-MM-DD>
+id: DDD-0000
+title: "Domain Model"
+status: draft
+tier: 1-decisions
+owner: HUMAN-ONLY
+last-reviewed: <YYYY-MM-DD>
+date: <YYYY-MM-DD>
+decider: <person-or-team>
 bounded_context: <DDD bounded context name>
 related_module: MOD-NNNN
+product-version: null
 supersedes: null
-superseded_by: null
+superseded-by: null
 ---
 
 
@@ -19,7 +24,7 @@ superseded_by: null
 > useful as a structural reference — copy the shape, change the words.
 # DM-NNNN: `<Bounded Context Name>` — Domain Model
 
-> **Tier**: 1-decisions → DDD-style domain model decision
+> **Tier**: 1-decisions — DDD-style domain model decision
 >
 > **Why tier-1 (decision), not tier-5 (view)**: a domain model is an **architectural commitment**, not a snapshot of code. The model dictates the schema, the API, the events, the test cases. Putting it in `5-views` would imply "AI can regenerate from code" — but you can't reverse-engineer business meaning from a `CREATE TABLE`.
 
@@ -32,7 +37,7 @@ superseded_by: null
 | Name | Inventory Management |
 | Owning module | `MOD-NNNN` (`Inventory`) |
 | Linguistic scope | Terms in this context refer to physical-and-virtual stock. **NOT** to be conflated with Catalog (item metadata) or Cost Accounting (financial valuation). |
-| Ubiquitous language source | `0-principles/glossary.template.md` (Inventory domain entries) |
+| Ubiquitous language source | `0-principles/GLOS-0000-glossary.template.md` (Inventory domain entries) |
 
 ## 2. Aggregate Roots
 
@@ -186,11 +191,11 @@ For each invariant in §5, a TC must exist. Listing here keeps the model honest:
 
 ## See also
 
-- `0-principles/glossary.template.md` — every entity name here must trace to a glossary entry
-- `1-decisions/module-boundary.template.md` — module that owns this context
-- `1-decisions/adr.template.md` — modeling decisions go in ADRs
-- `2-contracts/state-machine.template.md` — per-aggregate state machines
-- `2-contracts/master-data-specification.template.md` — master entities (Item, Location) get richer specs
-- `2-contracts/api-spec.template.md` — APIs that expose this model
-- `5-views/class-relationships.template.md` — auto-generated view from code (SHOULD match this; if not, regenerate)
+- `0-principles/GLOS-0000-glossary.template.md` — every entity name here must trace to a glossary entry
+- `1-decisions/ARCH-0001-module-boundary.template.md` — module that owns this context
+- `1-decisions/ADR-0000-adr.template.md` — modeling decisions go in ADRs
+- `2-contracts/SM-0000-state-machine.template.md` — per-aggregate state machines
+- `2-contracts/MDS-0000-master-data.template.md` — master entities (Item, Location) get richer specs
+- `2-contracts/API-0000-api-spec.template.md` — APIs that expose this model
+- `5-views/VIEW-0003-class-relationships.template.md` — auto-generated view from code (SHOULD match this; if not, regenerate)
 - `.claude/rules/change-governance.md` — domain model changes are "domain model" trigger → CIA gate

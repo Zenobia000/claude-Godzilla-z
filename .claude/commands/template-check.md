@@ -9,35 +9,35 @@ description: 驗證專案是否符合指定的 VibeCoding 工作流模板規範�
 ## 可用模板
 
 ### 階段 0: 流程
-1. **workflow-manual** → `3-process/workflow-manual.md`
+1. **workflow-manual** → `3-process/PROC-0001-workflow-manual.md`
 
 ### 階段 1: 規劃 (02-03)
-2. **project-brief** → `4-exploration/prd.template.md`
-3. **bdd** → `3-process/bdd-guide.md`
+2. **project-brief** → `4-exploration/PRD-0000-prd.template.md`
+3. **bdd** → `3-process/PROC-0002-bdd-guide.md`
 
 ### 階段 2: 架構設計 (04-06)
-4. **adr** → `1-decisions/adr.template.md`
-5. **architecture** → `1-decisions/architecture-overview.template.md`
-6. **api** → `2-contracts/api-spec.template.md`
+4. **adr** → `1-decisions/ADR-0000-adr.template.md`
+5. **architecture** → `1-decisions/ARCH-0000-architecture-overview.template.md`
+6. **api** → `2-contracts/API-0000-api-spec.template.md`
 
 ### 階段 3: 詳細設計 (07-10)
-7. **tests** → `2-contracts/module-contract.template.md`
-8. **structure** → `5-views/project-structure.template.md`
-9. **dependencies** → `5-views/file-dependencies.template.md`
-10. **classes** → `5-views/class-relationships.template.md`
+7. **tests** → `2-contracts/MC-0000-module-contract.template.md`
+8. **structure** → `5-views/VIEW-0001-project-structure.template.md`
+9. **dependencies** → `5-views/VIEW-0002-file-dependencies.template.md`
+10. **classes** → `5-views/VIEW-0003-class-relationships.template.md`
 
 ### 階段 4: 開發品質 (11-12, 17)
-11. **code-review** → `3-process/code-review-checklist.md`
-12. **frontend-arch** → `5-views/frontend-architecture.template.md`
-13. **frontend-ia** → `5-views/frontend-information-architecture.template.md`
+11. **code-review** → `3-process/PROC-0003-code-review-checklist.md`
+12. **frontend-design** → `2-contracts/DS-0000-frontend-design-system.template.md`
+13. **page-contract** → `2-contracts/PC-0000-page-contract.template.md`
 
 ### 階段 5: 安全部署 (13-14)
-14. **security** → `3-process/security-readiness-checklist.md`
-15. **deployment** → `3-process/deployment-runbook.template.md`
+14. **security** → `3-process/PROC-0004-security-readiness-checklist.md`
+15. **deployment** → `3-process/PROC-0005-deployment-runbook.template.md`
 
 ### 階段 6: 維護管理 (15-16)
-16. **documentation** → `3-process/docs-maintenance-guide.md`
-17. **wbs** → `4-exploration/wbs.template.md`
+16. **documentation** → `3-process/PROC-0006-docs-maintenance-guide.md`
+17. **wbs** → `4-exploration/WBS-0000-wbs.template.md`
 
 ## 合規分析
 

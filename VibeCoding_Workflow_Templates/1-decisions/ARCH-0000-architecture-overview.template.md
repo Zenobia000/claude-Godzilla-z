@@ -1,14 +1,19 @@
 ---
-id: ARCH-NNNN
-status: draft        # draft | active | deprecated | superseded | archived
-owner: <architect-or-tech-lead>
-last_reviewed: <YYYY-MM-DD>
+id: ARCH-0000
+title: "Architecture Overview"
+status: draft
+tier: 1-decisions
+owner: HYBRID
+last-reviewed: <YYYY-MM-DD>
+date: <YYYY-MM-DD>
+decider: <person-or-team>
+product-version: null
 supersedes: null
-superseded_by: null
+superseded-by: null
 ---
 # 架構與設計文件 - [專案名稱]
 
-> **版本:** v1.0 | **更新:** YYYY-MM-DD | **狀態:** 草稿/審核中/已批准
+> **Tier**: 1-decisions — system-wide architecture overview and tech selection
 
 ---
 
@@ -160,7 +165,7 @@ graph TD
 
 - **對應 BDD**: [連結]
 - **職責**: [簡述]
-- **API 設計**: -> 參考 2-contracts/api-spec.template.md
+- **API 設計**: -> 參考 2-contracts/API-0000-api-spec.template.md
 - **資料模型**: [Schema 或說明]
 - **關鍵邏輯**: [偽碼或流程]
 

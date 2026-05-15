@@ -1,10 +1,17 @@
 ---
 id: SF-NNNN
+title: "Sub Flow Template"
 status: draft
-owner: <team-or-person>
-last_reviewed: <YYYY-MM-DD>
+tier: 2-contracts
+owner: HYBRID (AI-drafts, human-approves)
+last-reviewed: <YYYY-MM-DD>
+last-synced-with: <git-commit-sha>
+sync-source: doc
+source-paths: []
+synced-at: <YYYY-MM-DD>
+product-version: null
 supersedes: null
-superseded_by: null
+superseded-by: null
 ---
 
 
@@ -18,7 +25,7 @@ superseded_by: null
 # SF-NNNN: <Sub-Flow Name — usually verb phrase>
 
 > **Tier**: 2-contracts → Sub Flow (L3, reusable building block consumed by multiple BF/UF)
-> **Naming**: see `0-principles/flow-id-conventions.md`
+> **Naming**: see `0-principles/PRIN-0001-flow-id-conventions.md`
 >
 > **Reuse signal**: if this sub-flow is only used by one BF/UF, it probably belongs inside that flow rather than as a standalone SF. Promote to SF only when 2+ consumers exist or are imminent.
 

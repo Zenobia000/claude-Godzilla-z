@@ -1,13 +1,23 @@
 ---
+id: PC-0000
+title: "Page Contract"
+status: draft         # draft | active | deprecated | superseded
+tier: 2-contracts
+owner: HYBRID (AI-drafts, human-approves)
+last-reviewed: <YYYY-MM-DD>
 last-synced-with: <commit-sha>
 sync-source: doc      # doc | code — which side is authoritative
-status: draft         # draft | active | deprecated | superseded
+source-paths: []
+synced-at: <YYYY-MM-DD>
+product-version: null
+supersedes: null
+superseded-by: null
 ---
 
 # Page Contract - [專案名稱]
 
-> **版本:** v1.0 | **更新:** YYYY-MM-DD
-> **Tier**: 2-contracts → each page declares its own job; consumed by router + tests.
+> **Tier**: 2-contracts — per-page contract; each page declares its own job, consumed by router + tests
+>
 > **Source**: realigned from `5-views/frontend-information-architecture.template.md` §6 per [ADR-0001](../1-decisions/ADR-0001-frontend-template-tier-realignment.md).
 
 ---
@@ -25,7 +35,7 @@ status: draft         # draft | active | deprecated | superseded
 | 項目 | 內容 |
 | :--- | :--- |
 | **路由** | `/path` |
-| **Page ID** | `PG-NNNN`（與 `flow-index.template.md` 對應） |
+| **Page ID** | `PG-NNNN`（與 `FI-0000-flow-index.template.md` 對應） |
 | **單一職責** | [一句話描述此頁存在的唯一目的] |
 | **使用者目標** | [使用者來到此頁要完成什麼] |
 | **資料需求** | API: `[GET /xxx]` / Store: `[stores/yyy]` / URL params: `[?z=...]` |
@@ -59,6 +69,6 @@ _(為每個核心頁面複製上方區塊)_
 
 ## 2. Sync Discipline
 
-- 新增 / 移除頁面：必須同步更新 `5-views/frontend-route-map.template.md` 的路由表
+- 新增 / 移除頁面：必須同步更新 `5-views/VIEW-0004-frontend-route-map.template.md` 的路由表
 - 修改頁面職責：必須同步更新對應 BDD feature 與 E2E 測試
 - `sunnydata-doc-freshness` 會比對 `last-synced-with` 與 router config commit

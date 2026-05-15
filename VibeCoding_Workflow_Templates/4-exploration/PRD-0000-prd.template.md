@@ -1,15 +1,18 @@
 ---
 id: PRD-NNNN
-status: draft        # draft | reviewed | approved | shipped | archived
-owner: <product-owner>
+title: "專案簡報與產品需求文件 (PRD)"
+status: draft
+tier: 4-exploration
+owner: HYBRID
 created: <YYYY-MM-DD>
-target_release: <version-or-quarter>
+target-release: <version-or-quarter>
+product-version: null
 supersedes: null
-superseded_by: null
+superseded-by: null
 ---
 # 專案簡報與產品需求文件 (PRD) - [專案名稱]
 
-> **版本:** v1.0 | **更新:** YYYY-MM-DD | **狀態:** 草稿/審核中/已批准
+> **Tier**: 4-exploration — product requirements document for feature scoping and planning
 
 ---
 
@@ -67,7 +70,7 @@ superseded_by: null
 
 ## 6. 前端資訊架構概覽（前端產品適用）
 
-> 本章節僅描述「使用者體驗的意圖」；技術選型見 `1-decisions/frontend-tech-stack.template.md`，頁面合約見 `2-contracts/page-contract.template.md`，路由樹見 `5-views/frontend-route-map.template.md`。
+> 本章節僅描述「使用者體驗的意圖」；技術選型見 `1-decisions/ARCH-0002-frontend-tech-stack.template.md`，頁面合約見 `2-contracts/PC-0000-page-contract.template.md`，路由樹見 `5-views/VIEW-0004-frontend-route-map.template.md`。
 
 ### 6.1 核心價值主張
 

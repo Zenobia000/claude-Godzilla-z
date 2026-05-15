@@ -1,16 +1,19 @@
 ---
-id: FTS-NNNN
-status: draft        # draft | active | deprecated | superseded | archived
-owner: <frontend-architect-or-lead>
-last_reviewed: <YYYY-MM-DD>
+id: ARCH-0002
+title: "Frontend Tech Stack & Project Structure"
+status: draft
+tier: 1-decisions
+owner: HUMAN-ONLY
+last-reviewed: <YYYY-MM-DD>
+date: <YYYY-MM-DD>
+decider: <person-or-team>
+product-version: null
 supersedes: null
-superseded_by: null
+superseded-by: null
 ---
 # Frontend Tech Stack & Project Structure - [專案名稱]
 
-> **版本:** v1.0 | **更新:** YYYY-MM-DD | **狀態:** 草稿/審核中/已接受
-> **Tier**: 1-decisions → ADR-class technical selection
-> **Source**: realigned from `5-views/frontend-architecture.template.md` §2+§6 per [ADR-0001](./ADR-0001-frontend-template-tier-realignment.md).
+> **Tier**: 1-decisions — frontend framework, tooling, and project structure decisions
 
 ---
 

@@ -141,7 +141,7 @@ e2e-validation-specialist   # agent (Agent tool): E2E 測試
 | :--- | :--- |
 | `superpowers:test-driven-development` | TDD Red-Green-Refactor 工作流 |
 | `vibecoding-write-tdd` | 撰寫 TDD 單元測試規格 |
-| `sunnydata-api-design` | API 設計（搭配 `2-contracts/api-spec.template.md`） |
+| `sunnydata-api-design` | API 設計（搭配 `2-contracts/API-0000-api-spec.template.md`） |
 | `vibecoding-code-review` | VibeCoding 模板式 code review |
 | `sunnydata-code-review` | 通用 code review 流程 |
 | `sunnydata-security` / `vibecoding-security-check` | 安全審查 |

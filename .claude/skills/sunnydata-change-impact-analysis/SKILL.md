@@ -52,7 +52,7 @@ If you can't write this in one sentence, the change isn't well-defined yet — s
 
 ### Step 3: Identify affected artifacts
 
-For each surface in scope, search and list. Use the project's Flow IDs (see `VibeCoding_Workflow_Templates/0-principles/flow-id-conventions.md`):
+For each surface in scope, search and list. Use the project's Flow IDs (see `VibeCoding_Workflow_Templates/0-principles/PRIN-0001-flow-id-conventions.md`):
 
 ```bash
 # Find existing flows the change might touch
@@ -66,7 +66,7 @@ grep -rln "<keyword>" tests/
 
 ### Step 4: Fill the CIA template
 
-Open `VibeCoding_Workflow_Templates/4-exploration/change-impact-analysis.template.md` as the structure. Write the result to `docs/4-exploration/CR-NNNN-<short-kebab>.md`.
+Open `VibeCoding_Workflow_Templates/4-exploration/CIA-0000-change-impact-analysis.template.md` as the structure. Write the result to `docs/4-exploration/CR-NNNN-<short-kebab>.md`.
 
 Required sections (in order):
 1. **Change statement** (the one-sentence as-is/to-be/driver from Step 1)

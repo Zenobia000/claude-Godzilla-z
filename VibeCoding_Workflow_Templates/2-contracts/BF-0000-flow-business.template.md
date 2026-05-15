@@ -1,10 +1,17 @@
 ---
 id: BF-NNNN
+title: "Business Flow Template"
 status: draft        # draft | active | deprecated | superseded | archived
-owner: <team-or-person>
-last_reviewed: <YYYY-MM-DD>
+tier: 2-contracts
+owner: HYBRID (AI-drafts, human-approves)
+last-reviewed: <YYYY-MM-DD>
+last-synced-with: <git-commit-sha>
+sync-source: doc
+source-paths: []
+synced-at: <YYYY-MM-DD>
+product-version: null
 supersedes: null
-superseded_by: null
+superseded-by: null
 ---
 
 
@@ -18,7 +25,7 @@ superseded_by: null
 # BF-NNNN: <Business Flow Name>
 
 > **Tier**: 2-contracts → Business Flow (L1, end-to-end across roles)
-> **Naming**: see `0-principles/flow-id-conventions.md`
+> **Naming**: see `0-principles/PRIN-0001-flow-id-conventions.md`
 
 ---
 
@@ -103,7 +110,7 @@ Numbered, role-attributed, observable steps. **No implementation detail** — th
 
 ## 11. Related Tests
 
-Specific test cases live in `traceability-matrix.template.md`. Quick links:
+Specific test cases live in `TM-0000-traceability-matrix.template.md`. Quick links:
 
 - `TC-NNNN` — Happy path: order to cash succeeds
 - `TC-NNNN` — Inventory exhausted mid-flow

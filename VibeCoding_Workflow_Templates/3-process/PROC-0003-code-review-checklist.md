@@ -1,6 +1,17 @@
+---
+id: PROC-0003
+title: "程式碼審查與重構指南"
+status: active
+tier: 3-process
+owner: HUMAN-ONLY
+last-reviewed: <YYYY-MM-DD>
+product-version: null
+supersedes: null
+superseded-by: null
+---
 # 程式碼審查與重構指南
 
-> **版本:** v1.0 | **更新:** YYYY-MM-DD
+> **Tier**: 3-process — code review and refactoring checklist
 
 ---
 

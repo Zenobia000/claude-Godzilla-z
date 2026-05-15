@@ -1,16 +1,21 @@
 ---
-
-## id: MOD-NNNN
-status: draft        # draft | active | deprecated | superseded | archived
-owner: 
-last_reviewed: 
-bounded_context: 
+id: ARCH-0001
+title: "Module Boundary"
+status: draft
+tier: 1-decisions
+owner: HUMAN-ONLY
+last-reviewed: <YYYY-MM-DD>
+date: <YYYY-MM-DD>
+decider: <person-or-team>
+bounded_context: <DDD bounded context name>
+product-version: null
 supersedes: null
-superseded_by: null
+superseded-by: null
+---
 
 # MOD-NNNN: `<Module Name>` — Module Boundary
 
-> **Tier**: 1-decisions → architectural module charter
+> **Tier**: 1-decisions — architectural module charter
 >
 > **Why a dedicated doc per module**: in ERP-class systems, the most expensive long-term failure is a module that quietly took on a neighbor's responsibility (Sales doing inventory math, Inventory doing pricing). This document is the **charter**: what this module owns, what it explicitly refuses, and how it touches its neighbors.
 >
@@ -198,10 +203,10 @@ If a consumer depends on internals, that's a bug — open a ticket to expose a p
 
 ## See also
 
-- `1-decisions/architecture-overview.template.md` — system-wide context
-- `1-decisions/domain-model.template.md` — entities listed in §3 mapped here
-- `1-decisions/adr.template.md` — every boundary change should produce an ADR
-- `2-contracts/state-machine.template.md` — per-entity state machines
-- `2-contracts/master-data-specification.template.md` — for master entities owned here
+- `1-decisions/ARCH-0000-architecture-overview.template.md` — system-wide context
+- `1-decisions/DDD-0000-domain-model.template.md` — entities listed in §3 mapped here
+- `1-decisions/ADR-0000-adr.template.md` — every boundary change should produce an ADR
+- `2-contracts/SM-0000-state-machine.template.md` — per-entity state machines
+- `2-contracts/MDS-0000-master-data.template.md` — for master entities owned here
 - `.claude/rules/change-governance.md` — boundary changes are "architecture boundary" → CIA gate
 

@@ -1,13 +1,13 @@
 ---
 name: vibecoding-write-frontend-bdd
 description: Generate frontend component BDD scenarios mapping user journeys to component behavior. Triggers on 'frontend BDD', 'component scenarios', '前端 BDD'.
-template-ref: VibeCoding_Workflow_Templates/5-views/frontend-architecture.template.md
-stability-tier: 5-views
+template-ref: VibeCoding_Workflow_Templates/2-contracts/PC-0000-page-contract.template.md
+stability-tier: 2-contracts
 origin: migrated-from-output-style
 ---
 
-> **Template reference:** `VibeCoding_Workflow_Templates/5-views/frontend-architecture.template.md`
-> **Stability tier:** `5-views` — read tier README for usage policy.
+> **Template reference:** `VibeCoding_Workflow_Templates/2-contracts/PC-0000-page-contract.template.md`
+> **Stability tier:** `2-contracts` — read tier README for usage policy.
 > Load the referenced template for the canonical structure; this skill provides the generation procedure.
 
 
@@ -693,7 +693,7 @@ export const OrderSummaryCard = ({ order, onViewDetail, onCancel }: Props) => {
 
 - **API 設計**: 05-api-contract-spec.md (數據結構依據)
 - **測試規範**: 06-tdd-unit-spec.md (測試原則)
-- **前端架構**: VibeCoding_Workflow_Templates/5-views/frontend-architecture.template.md
+- **頁面合約**: VibeCoding_Workflow_Templates/2-contracts/PC-0000-page-contract.template.md
 
 
 **記住**: 前端元件測試應關注用戶行為而非實作細節。使用 Storybook 讓設計與開發並行,用互動測試保證行為正確,用可存取性測試確保包容性。

@@ -1,12 +1,12 @@
 ---
 name: vibecoding-ci-quality-gates
 description: Design CI/CD quality gates: lint, test, coverage thresholds, security scans, deployment checks. Triggers on 'CI quality gates', 'pipeline design', 'CI/CD setup', 'quality pipeline'.
-template-ref: VibeCoding_Workflow_Templates/3-process/deployment-runbook.template.md
+template-ref: VibeCoding_Workflow_Templates/3-process/PROC-0005-deployment-runbook.template.md
 stability-tier: 3-process
 origin: migrated-from-output-style
 ---
 
-> **Template reference:** `VibeCoding_Workflow_Templates/3-process/deployment-runbook.template.md`
+> **Template reference:** `VibeCoding_Workflow_Templates/3-process/PROC-0005-deployment-runbook.template.md`
 > **Stability tier:** `3-process` — read tier README for usage policy.
 > Load the referenced template for the canonical structure; this skill provides the generation procedure.
 

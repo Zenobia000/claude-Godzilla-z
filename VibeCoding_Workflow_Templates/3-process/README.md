@@ -18,9 +18,9 @@
 ## How AI should use this tier
 
 **Read the relevant process file before starting a category of work**:
-- About to write a new feature? → load `bdd-guide.md` and `code-review-checklist.md`
-- About to deploy? → load `deployment-runbook.template.md` and `security-readiness-checklist.md`
-- About to write tests? → load `bdd-guide.md`
+- About to write a new feature? → load `PROC-0002-bdd-guide.md` and `PROC-0003-code-review-checklist.md`
+- About to deploy? → load `PROC-0005-deployment-runbook.template.md` and `PROC-0004-security-readiness-checklist.md`
+- About to write tests? → load `PROC-0002-bdd-guide.md`
 
 These documents constrain *how* AI executes — they don't dictate the architecture (that's tier 0/1).
 
@@ -34,12 +34,28 @@ These documents constrain *how* AI executes — they don't dictate the architect
 
 | File | Purpose | Type |
 |---|---|---|
-| `workflow-manual.md` | How to choose between full-process and MVP-mode workflows | Guide |
-| `bdd-guide.md` | Gherkin scenarios, step definition patterns | Guide |
-| `code-review-checklist.md` | Reviewer-side and author-side checklists | Checklist |
-| `security-readiness-checklist.md` | Pre-launch security gates | Checklist |
-| `deployment-runbook.template.md` | Per-service deployment + rollback steps | Template |
-| `docs-maintenance-guide.md` | When to write/update/delete documentation | Guide |
-| `quality-gates.md` | Gate 0-4 stage prerequisites (requirements / FE buildable / BE parallelizable / DB / tests) | Guide |
-| `test-plan.template.md` | **Strategic** test document (quality targets, test pyramid, stages, data strategy, CI gate spec, risk register) | Template |
-| `vendor-api-test-requirement.template.md` | Per-vendor test prerequisites (sandbox / contract / scenarios / fallback) | Template |
+| `PROC-0001-workflow-manual.md` | How to choose between full-process and MVP-mode workflows | Guide |
+| `PROC-0002-bdd-guide.md` | Gherkin scenarios, step definition patterns | Guide |
+| `PROC-0003-code-review-checklist.md` | Reviewer-side and author-side checklists | Checklist |
+| `PROC-0004-security-readiness-checklist.md` | Pre-launch security gates | Checklist |
+| `PROC-0005-deployment-runbook.template.md` | Per-service deployment + rollback steps | Template |
+| `PROC-0006-docs-maintenance-guide.md` | When to write/update/delete documentation | Guide |
+| `QG-0000-quality-gates.md` | Gate 0-4 stage prerequisites (requirements / FE buildable / BE parallelizable / DB / tests) | Guide |
+| `TP-0000-test-plan.template.md` | **Strategic** test document (quality targets, test pyramid, stages, data strategy, CI gate spec, risk register) | Template |
+| `PROC-0007-vendor-api-test.template.md` | Per-vendor test prerequisites (sandbox / contract / scenarios / fallback) | Template |
+
+## Frontmatter Schema
+
+All files in this tier MUST carry this frontmatter:
+
+| Field | Required | Type | Description |
+|---|---|---|---|
+| `id` | YES | string | `PROC-NNNN`, `QG-NNNN`, or `TP-NNNN` |
+| `title` | YES | string | Human-readable title |
+| `status` | YES | enum | `draft` / `active` / `deprecated` / `superseded` |
+| `tier` | YES | const | `3-process` |
+| `owner` | YES | enum | `HUMAN-ONLY` / `HYBRID` / `AI-AUTO` |
+| `last-reviewed` | YES | date | `YYYY-MM-DD` |
+| `product-version` | opt | string | Product version this doc applies to |
+| `supersedes` | opt | string | ID of predecessor |
+| `superseded-by` | opt | string | ID of successor |

@@ -1,12 +1,12 @@
 ---
 name: vibecoding-data-contract-evolution
 description: Plan and document data contract evolution: schema versioning, migration strategy, backward compatibility. Triggers on 'data contract evolution', 'schema migration plan', 'API versioning'.
-template-ref: VibeCoding_Workflow_Templates/2-contracts/api-spec.template.md
+template-ref: VibeCoding_Workflow_Templates/2-contracts/API-0000-api-spec.template.md
 stability-tier: 2-contracts
 origin: migrated-from-output-style
 ---
 
-> **Template reference:** `VibeCoding_Workflow_Templates/2-contracts/api-spec.template.md`
+> **Template reference:** `VibeCoding_Workflow_Templates/2-contracts/API-0000-api-spec.template.md`
 > **Stability tier:** `2-contracts` — read tier README for usage policy.
 > Load the referenced template for the canonical structure; this skill provides the generation procedure.
 

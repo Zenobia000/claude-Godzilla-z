@@ -1,12 +1,12 @@
 ---
 name: vibecoding-write-integration-tests
 description: Generate integration test contracts covering cross-module flows, API endpoints, external service mocks. Triggers on 'integration tests', 'contract tests', '整合測試'.
-template-ref: VibeCoding_Workflow_Templates/2-contracts/module-contract.template.md
+template-ref: VibeCoding_Workflow_Templates/2-contracts/MC-0000-module-contract.template.md
 stability-tier: 2-contracts
 origin: migrated-from-output-style
 ---
 
-> **Template reference:** `VibeCoding_Workflow_Templates/2-contracts/module-contract.template.md`
+> **Template reference:** `VibeCoding_Workflow_Templates/2-contracts/MC-0000-module-contract.template.md`
 > **Stability tier:** `2-contracts` — read tier README for usage policy.
 > Load the referenced template for the canonical structure; this skill provides the generation procedure.
 

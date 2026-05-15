@@ -1,12 +1,12 @@
 ---
 name: vibecoding-write-tdd
 description: Generate TDD unit specifications: pre/post conditions, invariants, AAA-pattern test cases. Triggers on 'TDD spec', 'unit test design', '單元測試規格', 'DbC contract'.
-template-ref: VibeCoding_Workflow_Templates/2-contracts/module-contract.template.md
+template-ref: VibeCoding_Workflow_Templates/2-contracts/MC-0000-module-contract.template.md
 stability-tier: 2-contracts
 origin: migrated-from-output-style
 ---
 
-> **Template reference:** `VibeCoding_Workflow_Templates/2-contracts/module-contract.template.md`
+> **Template reference:** `VibeCoding_Workflow_Templates/2-contracts/MC-0000-module-contract.template.md`
 > **Stability tier:** `2-contracts` — read tier README for usage policy.
 > Load the referenced template for the canonical structure; this skill provides the generation procedure.
 
@@ -601,7 +601,7 @@ it('works correctly', () => {});
 ## 輸出格式
 
 - 測試文件命名: `*.test.ts` 或 `*.spec.ts`
-- 遵循 VibeCoding_Workflow_Templates/2-contracts/module-contract.template.md 結構
+- 遵循 VibeCoding_Workflow_Templates/2-contracts/MC-0000-module-contract.template.md 結構
 - 使用專案統一的測試框架 (Jest/Vitest/Mocha等)
 
 ## 審查清單
@@ -619,8 +619,8 @@ it('works correctly', () => {});
 ## 關聯文件
 
 - **領域模型**: 04-ddd-aggregate-spec.md (聚合不變量測試)
-- **模組規格**: VibeCoding_Workflow_Templates/2-contracts/module-contract.template.md
-- **Code Review**: 07-code-review-checklist.md (測試質量審查)
+- **模組規格**: VibeCoding_Workflow_Templates/2-contracts/MC-0000-module-contract.template.md
+- **Code Review**: PROC-0003-code-review-checklist.md (測試質量審查)
 
 
 **記住**: TDD 不只是測試技術,更是設計方法。讓測試驅動設計,讓設計簡單可測。紅綠重構的節奏讓代碼持續改進。

@@ -24,24 +24,24 @@ These encode strategy / governance / domain knowledge. AI must not silently modi
 
 | File | Why human-only |
 |---|---|
-| `0-principles/product-principles.template.md` | Mission, non-goals — strategic invariants |
-| `0-principles/flow-id-conventions.md` | Naming convention — once set, immutable |
-| `0-principles/glossary.template.md` | Business terminology — definitional |
-| `0-principles/frontend-quality-attributes.template.md` | Quality bars — performance/a11y/browser support targets |
-| `1-decisions/module-boundary.template.md` | Architectural charter — what each module owns / does NOT own |
-| `1-decisions/domain-model.template.md` | DDD model — aggregate boundaries, invariants |
-| `1-decisions/frontend-tech-stack.template.md` | Framework / build tooling choice |
-| `2-contracts/master-data-specification.template.md` | Master data governance — DQ rules, lifecycle, GDPR |
-| `3-process/workflow-manual.md` | Process choice — full vs MVP mode |
-| `3-process/bdd-guide.md` | Methodology |
-| `3-process/code-review-checklist.md` | Process gate |
-| `3-process/security-readiness-checklist.md` | Pre-launch gate |
-| `3-process/deployment-runbook.template.md` | Ops procedures — humans run these |
-| `3-process/docs-maintenance-guide.md` | Process |
-| `3-process/quality-gates.md` | Stage prerequisites — gate definition |
-| `3-process/test-plan.template.md` | Test strategy — coverage targets, risk areas |
-| `3-process/vendor-api-test-requirement.template.md` | Per-vendor decisions |
-| `3-process/frontend-pre-merge-checklist.template.md` | Gate |
+| `0-principles/PRIN-0000-product-principles.template.md` | Mission, non-goals — strategic invariants |
+| `0-principles/PRIN-0001-flow-id-conventions.md` | Naming convention — once set, immutable |
+| `0-principles/GLOS-0000-glossary.template.md` | Business terminology — definitional |
+| `0-principles/PRIN-0002-frontend-quality-attributes.template.md` | Quality bars — performance/a11y/browser support targets |
+| `1-decisions/ARCH-0001-module-boundary.template.md` | Architectural charter — what each module owns / does NOT own |
+| `1-decisions/DDD-0000-domain-model.template.md` | DDD model — aggregate boundaries, invariants |
+| `1-decisions/ARCH-0002-frontend-tech-stack.template.md` | Framework / build tooling choice |
+| `2-contracts/MDS-0000-master-data.template.md` | Master data governance — DQ rules, lifecycle, GDPR |
+| `3-process/PROC-0001-workflow-manual.md` | Process choice — full vs MVP mode |
+| `3-process/PROC-0002-bdd-guide.md` | Methodology |
+| `3-process/PROC-0003-code-review-checklist.md` | Process gate |
+| `3-process/PROC-0004-security-readiness-checklist.md` | Pre-launch gate |
+| `3-process/PROC-0005-deployment-runbook.template.md` | Ops procedures — humans run these |
+| `3-process/PROC-0006-docs-maintenance-guide.md` | Process |
+| `3-process/QG-0000-quality-gates.md` | Stage prerequisites — gate definition |
+| `3-process/TP-0000-test-plan.template.md` | Test strategy — coverage targets, risk areas |
+| `3-process/PROC-0007-vendor-api-test.template.md` | Per-vendor decisions |
+| `3-process/PROC-0008-frontend-pre-merge.template.md` | Gate |
 
 **Total decisions you own**: ~16 files for a typical project. Some you fill once (product-principles, glossary), some grow over time (one master-data-spec per master entity).
 
@@ -51,20 +51,20 @@ AI drafts these from intent + context. You read, amend, approve. Once approved, 
 
 | File | AI's role | Your role | Trigger |
 |---|---|---|---|
-| `1-decisions/adr.template.md` | Draft from CIA outcomes | Accept / Reject; once Accepted = append-only | After CR resolved |
-| `1-decisions/architecture-overview.template.md` | Maintain C4 / DDD diagrams | Accept structural changes | Quarterly or per major feature |
-| `2-contracts/api-spec.template.md` | Generate from code (code-first) or scaffold from intent (contract-first) | Approve schema, error codes | Per endpoint change |
-| `2-contracts/module-contract.template.md` | Generate DbC pre/post-conditions from code | Approve invariants | Per module |
-| `2-contracts/flow-business.template.md` | Draft BF from intent | Approve actors, scope, exception flow | Per business capability |
-| `2-contracts/flow-user.template.md` | Draft UF from BF | Approve actor flow, AC | Per user-facing feature |
-| `2-contracts/flow-sub.template.md` | Extract reusable sub-flow | Approve idempotency, side effects | When 2+ flows share logic |
-| `2-contracts/functional-requirement.template.md` | Draft FR rules + AC | Approve MUST/SHALL rules | Per business rule |
-| `2-contracts/state-machine.template.md` | Draft state catalog + transitions | Approve forbidden transitions | Per stateful entity |
-| `2-contracts/page-contract.template.md` | Draft from route + component scan | Approve auth, data sources | Per route |
-| `2-contracts/frontend-design-system.template.md` | Generate token tables from CSS / Figma export | Approve component contracts | Per design system change |
-| `4-exploration/prd.template.md` | Draft from brief | Approve scope, metrics | Per feature |
-| `4-exploration/wbs.template.md` | Draft from PRD | Approve sequencing | Per sprint/release |
-| `4-exploration/change-impact-analysis.template.md` | Generate §1-§7 (affected artifacts, suggested order) | **Decide §8 (Human Decisions Required)** — AI cannot proceed without your decisions | Auto-fired by CIA gate |
+| `1-decisions/ADR-0000-adr.template.md` | Draft from CIA outcomes | Accept / Reject; once Accepted = append-only | After CR resolved |
+| `1-decisions/ARCH-0000-architecture-overview.template.md` | Maintain C4 / DDD diagrams | Accept structural changes | Quarterly or per major feature |
+| `2-contracts/API-0000-api-spec.template.md` | Generate from code (code-first) or scaffold from intent (contract-first) | Approve schema, error codes | Per endpoint change |
+| `2-contracts/MC-0000-module-contract.template.md` | Generate DbC pre/post-conditions from code | Approve invariants | Per module |
+| `2-contracts/BF-0000-flow-business.template.md` | Draft BF from intent | Approve actors, scope, exception flow | Per business capability |
+| `2-contracts/UF-0000-flow-user.template.md` | Draft UF from BF | Approve actor flow, AC | Per user-facing feature |
+| `2-contracts/SF-0000-flow-sub.template.md` | Extract reusable sub-flow | Approve idempotency, side effects | When 2+ flows share logic |
+| `2-contracts/FR-0000-functional-requirement.template.md` | Draft FR rules + AC | Approve MUST/SHALL rules | Per business rule |
+| `2-contracts/SM-0000-state-machine.template.md` | Draft state catalog + transitions | Approve forbidden transitions | Per stateful entity |
+| `2-contracts/PC-0000-page-contract.template.md` | Draft from route + component scan | Approve auth, data sources | Per route |
+| `2-contracts/DS-0000-frontend-design-system.template.md` | Generate token tables from CSS / Figma export | Approve component contracts | Per design system change |
+| `4-exploration/PRD-0000-prd.template.md` | Draft from brief | Approve scope, metrics | Per feature |
+| `4-exploration/WBS-0000-wbs.template.md` | Draft from PRD | Approve sequencing | Per sprint/release |
+| `4-exploration/CIA-0000-change-impact-analysis.template.md` | Generate §1-§7 (affected artifacts, suggested order) | **Decide §8 (Human Decisions Required)** — AI cannot proceed without your decisions | Auto-fired by CIA gate |
 
 **Your action when AI proposes**: read the diff, check §8 if CIA, accept or amend.
 
@@ -74,12 +74,12 @@ AI regenerates these from authoritative sources. They are **caches**, not source
 
 | File | Source of truth | Regenerated by |
 |---|---|---|
-| `2-contracts/flow-index.template.md` | Frontmatter scan of all `flow-*.md` files | `sunnydata-auto-regen` skill |
-| `2-contracts/traceability-matrix.template.md` | Cross-reference of Flow ID mentions across docs + tests | `sunnydata-auto-regen` skill |
-| `5-views/project-structure.template.md` | `tree` / `eza --tree` of `src/` | `sunnydata-auto-regen` skill |
-| `5-views/file-dependencies.template.md` | Language-specific (`pyan` / `madge` / `go list`) | `sunnydata-auto-regen` skill |
-| `5-views/class-relationships.template.md` | UML extractor or AI full-read | `sunnydata-auto-regen` skill |
-| `5-views/frontend-route-map.template.md` | Router config + component graph | `sunnydata-auto-regen` skill |
+| `2-contracts/FI-0000-flow-index.template.md` | Frontmatter scan of all `flow-*.md` files | `sunnydata-auto-regen` skill |
+| `2-contracts/TM-0000-traceability-matrix.template.md` | Cross-reference of Flow ID mentions across docs + tests | `sunnydata-auto-regen` skill |
+| `5-views/VIEW-0001-project-structure.template.md` | `tree` / `eza --tree` of `src/` | `sunnydata-auto-regen` skill |
+| `5-views/VIEW-0002-file-dependencies.template.md` | Language-specific (`pyan` / `madge` / `go list`) | `sunnydata-auto-regen` skill |
+| `5-views/VIEW-0003-class-relationships.template.md` | UML extractor or AI full-read | `sunnydata-auto-regen` skill |
+| `5-views/VIEW-0004-frontend-route-map.template.md` | Router config + component graph | `sunnydata-auto-regen` skill |
 
 **Your action**: never. If you need a current view, run `sunnydata-auto-regen` skill. AI handles the rest.
 

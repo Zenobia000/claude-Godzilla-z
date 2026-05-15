@@ -1,14 +1,18 @@
 ---
-status: draft        # draft | active | deprecated | superseded | archived
-owner: <sre-or-devops-lead>
-last_reviewed: <YYYY-MM-DD>
+id: PROC-0005
+title: "部署與運維指南"
+status: draft
+tier: 3-process
+owner: HUMAN-ONLY
+last-reviewed: <YYYY-MM-DD>
 service: <service-name>
+product-version: null
 supersedes: null
-superseded_by: null
+superseded-by: null
 ---
 # 部署與運維指南 - [專案名稱]
 
-> **版本:** v1.0 | **更新:** YYYY-MM-DD
+> **Tier**: 3-process — deployment and operations runbook
 
 ---
 

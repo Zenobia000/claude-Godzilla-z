@@ -1,12 +1,12 @@
 ---
 name: vibecoding-write-architecture
 description: Generate a System Architecture Document covering C4 model, DDD bounded contexts, ATAM tradeoffs, and ADRs. Triggers on 'design architecture', 'SAD', '架構設計文檔', 'C4 圖'.
-template-ref: VibeCoding_Workflow_Templates/1-decisions/architecture-overview.template.md
+template-ref: VibeCoding_Workflow_Templates/1-decisions/ARCH-0000-architecture-overview.template.md
 stability-tier: 1-decisions
 origin: migrated-from-output-style
 ---
 
-> **Template reference:** `VibeCoding_Workflow_Templates/1-decisions/architecture-overview.template.md`
+> **Template reference:** `VibeCoding_Workflow_Templates/1-decisions/ARCH-0000-architecture-overview.template.md`
 > **Stability tier:** `1-decisions` — read tier README for usage policy.
 > Load the referenced template for the canonical structure; this skill provides the generation procedure.
 
@@ -156,7 +156,7 @@ C4Component
 
 #### 2.4 Level 4: 代碼視圖 (可選,關鍵模組)
 
-關鍵類別與交互序列圖 (詳見 5-views/class-relationships.template.md)
+關鍵類別與交互序列圖 (詳見 5-views/VIEW-0003-class-relationships.template.md)
 
 ### 3. DDD 戰略設計 (Strategic Design)
 
@@ -390,7 +390,7 @@ graph TB
 ## 輸出格式
 
 - 使用 Markdown + Mermaid 圖表
-- 遵循 VibeCoding_Workflow_Templates/1-decisions/architecture-overview.template.md 結構
+- 遵循 VibeCoding_Workflow_Templates/1-decisions/ARCH-0000-architecture-overview.template.md 結構
 - 關鍵決策必須鏈接到對應的 ADR 文件
 - 所有圖表需提供文字說明,不可僅有圖無說明
 
@@ -407,11 +407,11 @@ graph TB
 
 ## 關聯文件
 
-- **需求來源**: 4-exploration/prd.template.md (PRD)
-- **決策記錄**: 1-decisions/adr.template.md (ADR)
-- **API設計**: 2-contracts/api-spec.template.md (介面契約)
+- **需求來源**: 4-exploration/PRD-0000-prd.template.md (PRD)
+- **決策記錄**: 1-decisions/ADR-0000-adr.template.md (ADR)
+- **API設計**: 2-contracts/API-0000-api-spec.template.md (介面契約)
 - **領域設計**: 04-ddd-aggregate-spec.md (聚合詳細設計)
-- **類別關係**: 5-views/class-relationships.template.md (靜態結構)
+- **類別關係**: 5-views/VIEW-0003-class-relationships.template.md (靜態結構)
 
 
 **記住**: 架構是為業務目標服務的,好的架構平衡了當前需求與未來演進,是團隊共識的結晶。
