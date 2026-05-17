@@ -79,7 +79,7 @@ This lets old PRDs link forward to what they became, preserving the rationale tr
 
 ## Profile Selection Table
 
-Not every project needs all 47 templates. Choose a **profile** that matches your product type, then instantiate only the templates marked for that profile. Templates outside your profile can still be added later.
+Not every project needs all 53 templates. Choose a **profile** that matches your product type, then instantiate only the templates marked for that profile. Templates outside your profile can still be added later.
 
 Legend: **R** = required, **O** = optional, **—** = skip
 
@@ -90,6 +90,7 @@ Legend: **R** = required, **O** = optional, **—** = skip
 | PRIN-0001 Flow ID Conventions | R | O | O | R |
 | GLOS-0000 Glossary | R | R | O | R |
 | PRIN-0002 Frontend Quality Attributes | R | — | — | R |
+| STD-0000 Coding Standard | R | R | R | R |
 | **Tier 1 — Decisions** | | | | |
 | ADR-0000 ADR template | R | R | R | R |
 | ARCH-0000 Architecture Overview | R | R | R | R |
@@ -144,10 +145,10 @@ Legend: **R** = required, **O** = optional, **—** = skip
 | VIEW-0004 Frontend Route Map | R | — | — | R |
 
 **Quick counts:**
-- `web-product`: 33 R + 8 O = 41 relevant (skip 11)
-- `data-ml`: 14 R + 23 O = 37 relevant (skip 15)
-- `platform-infra`: 15 R + 19 O = 34 relevant (skip 18)
-- `full`: 52 R (all templates)
+- `web-product`: 34 R + 8 O = 42 relevant (skip 11)
+- `data-ml`: 15 R + 23 O = 38 relevant (skip 15)
+- `platform-infra`: 16 R + 19 O = 35 relevant (skip 18)
+- `full`: 53 R (all templates)
 
 ---
 

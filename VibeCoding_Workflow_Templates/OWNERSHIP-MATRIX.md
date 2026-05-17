@@ -1,6 +1,7 @@
 # Ownership Matrix — Human vs AI Division of Labor
 
-> **Why this exists**: 52 templates is a lot. Human architects shouldn't have to fill all of them. This matrix tells you **which files demand a human decision**, **which AI drafts and you approve**, and **which AI auto-manages without you ever opening them**.
+> **Version:** v5.7 — last updated 2026-05-17
+> **Why this exists**: 53 templates is a lot. Human architects shouldn't have to fill all of them. This matrix tells you **which files demand a human decision**, **which AI drafts and you approve**, and **which AI auto-manages without you ever opening them**.
 >
 > **Reading rule**: focus your attention on 🟥 HUMAN-ONLY files first. 🟨 HYBRID files come to you when AI proposes. 🟩 AI-AUTO files you should rarely if ever open.
 
@@ -18,7 +19,7 @@
 
 ## Per-file ownership
 
-### 🟥 HUMAN-ONLY (23 files) — your real workload
+### 🟥 HUMAN-ONLY (24 files) — your real workload
 
 These encode strategy / governance / domain knowledge. AI must not silently modify them.
 
@@ -28,6 +29,7 @@ These encode strategy / governance / domain knowledge. AI must not silently modi
 | `0-principles/PRIN-0001-flow-id-conventions.md` | Naming convention — once set, immutable |
 | `0-principles/GLOS-0000-glossary.template.md` | Business terminology — definitional |
 | `0-principles/PRIN-0002-frontend-quality-attributes.template.md` | Quality bars — performance/a11y/browser support targets |
+| `0-principles/STD-0000-coding-standard.template.md` | Team-specific coding convention overrides — encodes "team vs textbook" divergences AI must honor |
 | `1-decisions/ARCH-0001-module-boundary.template.md` | Architectural charter — what each module owns / does NOT own |
 | `1-decisions/DDD-0000-domain-model.template.md` | DDD model — aggregate boundaries, invariants |
 | `1-decisions/ARCH-0002-frontend-tech-stack.template.md` | Framework / build tooling choice |
@@ -48,7 +50,7 @@ These encode strategy / governance / domain knowledge. AI must not silently modi
 | `3-process/PROC-0012-deprecation-playbook.template.md` | Sunset lifecycle — compatibility windows, migration paths |
 | `3-process/ONBOARD-0000-team-onboarding.template.md` | Onboarding/offboarding — org-specific access, mentorship |
 
-**Total decisions you own**: ~23 files for a typical project. Some you fill once (product-principles, glossary), some grow over time (one master-data-spec per master entity).
+**Total decisions you own**: ~24 files for a typical project. Some you fill once (product-principles, glossary, coding-standard), some grow over time (one master-data-spec per master entity).
 
 ### 🟨 HYBRID (23 files) — AI proposes, you decide
 
@@ -155,7 +157,7 @@ You don't run these manually unless asked. AI invokes them by trigger words or a
 
 ## TL;DR — three lines
 
-1. **You touch ~23 🟥 HUMAN-ONLY files** (strategy, governance, decisions). That's your real cockpit.
+1. **You touch ~24 🟥 HUMAN-ONLY files** (strategy, governance, decisions). That's your real cockpit.
 2. **AI proposes ~23 🟨 HYBRID files** for your approval. Read the diff, decide, commit.
 3. **AI auto-manages 6 🟩 AI-AUTO files** invisibly. Never hand-edit them.
 

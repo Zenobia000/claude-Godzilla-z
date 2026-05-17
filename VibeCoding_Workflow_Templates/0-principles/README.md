@@ -33,6 +33,7 @@ Documents that define **what this product is** and **what it refuses to be**:
 | `PRIN-0001-flow-id-conventions.md` | Flow ID prefix system (9 core + 22 extended) — naming invariant |
 | `PRIN-0002-frontend-quality-attributes.template.md` | Frontend quality attributes (performance budgets, accessibility, responsive breakpoints) |
 | `GLOS-0000-glossary.template.md` | Business terminology source of truth — required for ERP-class systems where "Customer / Buyer / Account" must be unambiguous |
+| `STD-0000-coding-standard.template.md` | Team-specific coding convention overrides — records only where the team diverges from mainstream language style guides, so AI stops re-deriving the team's instincts every conversation |
 
 ## Frontmatter Schema
 
@@ -40,7 +41,7 @@ All files in this tier MUST carry this frontmatter:
 
 | Field | Required | Type | Description |
 |---|---|---|---|
-| `id` | YES | string | `PRIN-NNNN` or `GLOS-NNNN` |
+| `id` | YES | string | `PRIN-NNNN`, `GLOS-NNNN`, or `STD-NNNN` |
 | `title` | YES | string | Human-readable title |
 | `status` | YES | enum | `draft` / `active` / `deprecated` / `superseded` |
 | `tier` | YES | const | `0-principles` |

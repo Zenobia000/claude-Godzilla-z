@@ -1,7 +1,7 @@
 # VibeCoding Workflow Templates
 
-> **Version:** v5.6 — Profile-based template selection + multi-role coverage
-> **Updated:** 2026-05-15
+> **Version:** v5.7 — Add coding-standard tier-0 template + L5 boundary clarification
+> **Updated:** 2026-05-17
 > **🚪 New here?** Start at [OWNERSHIP-MATRIX.md](./OWNERSHIP-MATRIX.md) — tells you which files demand human decisions vs which AI auto-manages.
 
 ---
@@ -50,6 +50,7 @@ Mission, non-goals, quality bars, technical hard limits, naming conventions, ter
 - [`PRIN-0001-flow-id-conventions.md`](./0-principles/PRIN-0001-flow-id-conventions.md) — Flow ID prefix system (9 core + 22 extended)
 - [`GLOS-0000-glossary.template.md`](./0-principles/GLOS-0000-glossary.template.md) — **NEW v5.2**: business terminology source of truth (critical for ERP-class systems)
 - [`PRIN-0002-frontend-quality-attributes.template.md`](./0-principles/PRIN-0002-frontend-quality-attributes.template.md) — **NEW v5.4**: frontend SLO / Core Web Vitals / A11y / responsive breakpoints (per ADR-0001)
+- [`STD-0000-coding-standard.template.md`](./0-principles/STD-0000-coding-standard.template.md) — **NEW v5.7**: team-specific coding convention overrides (records only divergences from mainstream language style guides)
 
 ### 1-decisions — *append-only judgments*
 ADRs, architecture overviews, module charters, domain models. Once Accepted, never edited; superseded by writing a new decision.
@@ -129,6 +130,32 @@ Project structure, dependency graphs, class diagrams, frontend trees. Regenerate
 
 ---
 
+## Scope boundary — what this template repo does NOT cover
+
+These tiers cover **product / architecture / contract / process** documentation. They deliberately do NOT include:
+
+- **Agent runtime rules** (Allowed / Needs-approval / Forbidden tool use, permission policy, hook config) — this lives in the **platform-specific entry file** that ships with your AI tooling: `CLAUDE.md` (Claude Code), `AGENTS.md` (Codex / generic), `.cursorrules` (Cursor), `GEMINI.md` (Gemini CLI), or a system prompt. Naming differs per platform; the *content* (the three-section Allowed / Needs-approval / Forbidden split) is what matters.
+- **Per-session task templates** (PRD drafting flow, code review flow, debug flow) — these belong in **skills** (`vibecoding-*`, `sunnydata-*`), not in the templates repo. The templates here are the *artifacts* skills produce; the skills themselves live under `.claude/skills/`.
+- **Repo-level CLAUDE.md / per-directory CLAUDE.md** — these layer project-specific instructions on top of the templates. They reference these templates; they are not duplicated here.
+
+If your downstream project is missing a runtime-rules entry file, **that is a real gap** — but fix it in your `.claude/` (or equivalent) directory, not by adding a template here. See `references/copilot-tools.md` / `references/codex-tools.md` inside the `superpowers:using-superpowers` skill for platform-specific equivalents.
+
+---
+
+## Template maturity flags
+
+Not every template in this repo has equal field-validation. When picking templates for a new project, weight them by maturity:
+
+| Maturity | Meaning | Templates |
+|---|---|---|
+| **stable** | Used in 2+ real projects; structure unlikely to change | `PRIN-0000`, `ADR-0000`, `ARCH-0000`, `API-0000`, `MC-0000`, `BF/UF/SF`, `FR-0000`, `TM-0000`, `PRD-0000`, `WBS-0000`, `PROC-0001..0006`, `QG-0000`, `VIEW-0001..0003` |
+| **field-tested** | Used in 1 real project; structure mostly stable | `GLOS-0000`, `DDD-0000`, `MDS-0000`, `SM-0000`, `FI-0000`, `CIA-0000`, `TP-0000`, `PROC-0007/0008`, frontend split (`PRIN-0002`, `ARCH-0002`, `DS-0000`, `PC-0000`, `VIEW-0004`), `STD-0000` |
+| **experimental** | Added in v5.6 to cover `data-ml` / `platform-infra` profiles, **not yet validated in a real project**. Use with awareness that fields may shift in v6 | `ARCH-0003`, `SLO-0000`, `PIPE-0000`, `MODEL-0000`, `OBS-0000`, `CAP-0000`, `PROC-0009..0012`, `ONBOARD-0000`, `EXP-0000`, `DISC-0000` |
+
+Instantiating an `experimental` template is fine — but if its structure does not fit your situation, **deviate freely**: report what you needed back to this repo so the next version can stabilize it.
+
+---
+
 ## How humans should pick a template to fill
 
 | You're doing… | Reach for… |
@@ -196,6 +223,7 @@ Project structure, dependency graphs, class diagrams, frontend trees. Regenerate
 | *(new in v5.6)* | `3-process/PROC-0012-deprecation-playbook.template.md` |
 | *(new in v5.6)* | `3-process/ONBOARD-0000-team-onboarding.template.md` |
 | *(new in v5.6)* | `4-exploration/DISC-0000-discovery-research.template.md` |
+| *(new in v5.7)* | `0-principles/STD-0000-coding-standard.template.md` |
 
 A migration script for downstream forks is at `scripts/migrate-templates-v3-to-v4.sh`.
 
@@ -205,6 +233,7 @@ A migration script for downstream forks is at `scripts/migrate-templates-v3-to-v
 
 | Version | Date | Change |
 |---|---|---|
+| v5.7 | 2026-05-17 | Add tier-0 `STD-0000-coding-standard` template (records team-specific divergences from mainstream language style guides — closes anti-slop L3 gap); add **Scope boundary** section clarifying agent runtime rules live in `.claude/` / `AGENTS.md` not in this repo (closes anti-slop L5 gap); add **Template maturity flags** marking v5.6 additions as `experimental` until field-validated; fix `47 templates` → `52 templates` count drift in HOW-TO-INSTANTIATE |
 | v5.6 | 2026-05-15 | Profile-based template selection + lifecycle completion: Domain Scope declaration, 4 profiles (web-product / data-ml / platform-infra / full); 13 new templates — SRE (SLO, incident response, chaos engineering, observability), DevOps (infra architecture, GitOps runbook, capacity planning), Data Scientist (pipeline contract, model card, experiment log), Lifecycle (deprecation playbook, team onboarding, discovery research) |
 | v5.4 | 2026-05-10 | Frontend template tier realignment (ADR-0001 / CR-0001): split `5-views/frontend-architecture` and `5-views/frontend-information-architecture` into 6 properly-tiered templates (0/1/2/3/5) + integrated IA principles into `PRD-0000-prd.template.md §6` |
 | v5.3 | 2026-05-10 | Flow self-monitoring: project-wide flow-index aggregation template; sunnydata-flow-audit skill detecting broken refs / orphans / layering violations / stale flows / index drift |
