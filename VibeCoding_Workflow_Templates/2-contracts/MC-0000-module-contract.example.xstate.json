@@ -1,0 +1,71 @@
+{
+  "$schema": "https://stately.ai/schemas/xstate.json",
+  "id": "SM-0000-work-order",
+  "_template_metadata": {
+    "kind": "VibeCoding template example",
+    "purpose": "Canonical machine-readable form for SM-0000-state-machine.template.md",
+    "replace_when_instantiating": [
+      "id", "states", "events", "context", "guards", "actions"
+    ],
+    "see_also": [
+      "SM-0000-state-machine.template.md",
+      "0-principles/PRIN-0003-engineering-contract-stack.md §L2.2"
+    ]
+  },
+  "initial": "draft",
+  "context": {
+    "tenant_id": null,
+    "owner_id": null,
+    "cancel_fee_amount": 0,
+    "version": 0
+  },
+  "states": {
+    "draft": {
+      "on": {
+        "SUBMIT": { "target": "pending_approval", "guard": "isComplete" },
+        "DISCARD": { "target": "discarded" }
+      }
+    },
+    "pending_approval": {
+      "on": {
+        "APPROVE": { "target": "scheduled", "guard": "approverHasPermission" },
+        "REJECT": { "target": "rejected" }
+      }
+    },
+    "scheduled": {
+      "on": {
+        "DISPATCH": { "target": "in_progress" },
+        "RESCHEDULE": { "target": "scheduled", "actions": ["bumpVersion"] },
+        "CANCEL": { "target": "cancelled_with_fee", "actions": ["computeCancelFee"] }
+      }
+    },
+    "in_progress": {
+      "on": {
+        "COMPLETE": { "target": "completed" },
+        "PAUSE": { "target": "paused" },
+        "FAIL": { "target": "failed", "actions": ["recordFailureReason"] }
+      }
+    },
+    "paused": {
+      "on": {
+        "RESUME": { "target": "in_progress" },
+        "ABANDON": { "target": "failed" }
+      }
+    },
+    "completed": { "type": "final" },
+    "cancelled_with_fee": { "type": "final" },
+    "rejected": { "type": "final" },
+    "discarded": { "type": "final" },
+    "failed": { "type": "final" }
+  },
+  "_invariants": [
+    "context.cancel_fee_amount >= 0",
+    "context.version monotonically increases",
+    "Once in a final state, no transitions are allowed (xstate enforces via type:final)"
+  ],
+  "_forbidden_transitions": [
+    "draft → in_progress (must pass through pending_approval + scheduled)",
+    "completed → anything (final)",
+    "rejected → scheduled (must restart via DISCARD + new draft)"
+  ]
+}

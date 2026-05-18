@@ -1,0 +1,52 @@
+# CIG-0009 — Reverse-Import Lint
+#
+# Enforces L3.1 (Auth/Policy) layer boundary. Lower-layer code (db / repository)
+# MUST NOT import auth/policy context. This prevents accidental policy bypass
+# where a repository function checks "if user.is_admin" instead of going
+# through the policy engine.
+#
+# Stack-agnostic: rules expressed as regex patterns. Customize per project.
+#
+# Required: PR-blocking if policy module exists.
+# See: PRIN-0003 §L3.1, POL-0000-policy-as-code.template.md
+
+name: CIG-0009 reverse-import-lint
+
+on:
+  pull_request:
+    paths:
+      - "src/**"
+      - "api/**"
+      - "web/src/**"
+
+jobs:
+  reverse-import:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check forbidden imports
+        run: |
+          # Rules — adapt to your project layout. Each rule:
+          #   <lower-layer-glob> :: <forbidden-import-pattern>
+          set +e
+          declare -a RULES=(
+            "src/repositories/**::from\s+(api\.auth|api\.policy|core\.policy)"
+            "src/db/**::from\s+(api\.auth|api\.policy)"
+            "src/models/**::from\s+(api\.handlers|api\.routes)"
+          )
+
+          fail=0
+          for rule in "${RULES[@]}"; do
+            glob="${rule%%::*}"
+            pat="${rule##*::}"
+            # shellcheck disable=SC2086
+            matches=$(grep -rEn "$pat" $glob 2>/dev/null)
+            if [ -n "$matches" ]; then
+              echo "::error::Reverse import violation in $glob"
+              echo "$matches"
+              fail=1
+            fi
+          done
+          exit $fail

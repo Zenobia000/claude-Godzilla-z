@@ -30,8 +30,9 @@ Documents that define **what this product is** and **what it refuses to be**:
 | File | Purpose |
 |---|---|
 | `PRIN-0000-product-principles.template.md` | Mission, personas, non-goals, quality bars, technical invariants |
-| `PRIN-0001-flow-id-conventions.md` | Flow ID prefix system (9 core + 22 extended) — naming invariant |
+| `PRIN-0001-flow-id-conventions.md` | Flow ID prefix system (9 core + 28 extended) — naming invariant |
 | `PRIN-0002-frontend-quality-attributes.template.md` | Frontend quality attributes (performance budgets, accessibility, responsive breakpoints) |
+| `PRIN-0003-engineering-contract-stack.md` | **The 10-layer engineering contract stack map** (L1 wire → L5 frontend) — defines what contract types exist, what enforces them, when to touch which layer |
 | `GLOS-0000-glossary.template.md` | Business terminology source of truth — required for ERP-class systems where "Customer / Buyer / Account" must be unambiguous |
 
 ## Frontmatter Schema

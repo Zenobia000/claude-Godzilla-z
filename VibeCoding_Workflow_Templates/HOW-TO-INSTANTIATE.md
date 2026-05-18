@@ -1,52 +1,58 @@
 # How to Instantiate VibeCoding Templates in Your Project
 
-> This template repository provides **empty forms** (the `*.template.md` files) and **read-only guides**. When you use them in a real project, the **filled-in instances** belong in your project's own directory tree, not here.
+> v6.0 — 20 templates total. Read [`BEDROCK.md`](./BEDROCK.md) first.
 
-## Recommended `docs/` layout for end-user projects
+This repo provides empty forms (`*.template.md`) + read-only guides. Your project's filled-in instances live in YOUR repo, not here.
 
-Mirror the same 6-tier structure inside your project:
+---
+
+## Recommended `docs/` layout
+
+Mirror the 4-tier structure inside your project (tier 5 is gone in v6.0):
 
 ```
 your-project/
-├── src/                                     # the code
-├── tests/                                   # the tests
+├── src/                                 # the code
+├── tests/                               # the tests
 └── docs/
+    ├── BEDROCK.md                       # COPY from this repo; your entry point
     ├── 0-principles/
-    │   └── PRODUCT-PRINCIPLES.md            # one file, filled from template
+    │   ├── PRIN-0000-product-principles.md     # 1 file, filled from template
+    │   ├── PRIN-0001-flow-id-conventions.md    # 1 file, near-immutable
+    │   └── PRIN-0003-engineering-contract-stack.md
     │
     ├── 1-decisions/
-    │   ├── ADR-0001-database-choice.md      # append-only, numbered
-    │   ├── ADR-0002-auth-strategy.md
-    │   └── ARCHITECTURE-OVERVIEW.md         # one file, updated per-quarter
+    │   ├── ARCH-0000-architecture-overview.md  # 1 file, quarterly update
+    │   └── ADR-0001-database-choice.md         # append-only, numbered
     │
-    ├── 2-contracts/                         # MUST stay synced with code
+    ├── 2-contracts/                     # MUST stay synced with code
     │   ├── api/
-    │   │   └── v1.openapi.yaml
-    │   └── modules/
-    │       ├── user-service.md
-    │       └── payment-service.md
+    │   │   ├── openapi.yaml             # canonical wire spec
+    │   │   └── asyncapi.yaml            # if async channels exist
+    │   ├── FLOW-0001-order-to-cash.md
+    │   ├── MC-0001-cart-service.md (+ .example.xstate.json sibling if SM)
+    │   ├── FR-0001-pricing-rules.md
+    │   ├── DATA-0001-customer-master.md
+    │   ├── AI-0001-support-triage.md    # only if AI features
+    │   ├── SRE-0001-order-service.md
+    │   └── EDGE-0001-billing.md
     │
-    ├── 3-process/                           # usually copied verbatim from templates
-    │   ├── PROC-0003-code-review-checklist.md
-    │   ├── PROC-0004-security-readiness-checklist.md
-    │   └── PROC-0005-deployment-runbook.md
+    ├── 3-process/                       # usually copied verbatim
+    │   ├── PROC-0001-developer-handbook.md
+    │   ├── PROC-0002-ops-runbook.md     # if production traffic
+    │   ├── TEST-0000-testing-strategy.md
+    │   └── QG-0000-quality-gates.md
     │
-    ├── 4-exploration/                       # date-stamped, archive when done
-    │   ├── PRD-2026-Q2-onboarding.md
-    │   ├── WBS-2026-Q2.md
-    │   └── archive/                         # move stale stuff here, don't delete
-    │
-    └── 5-views/                             # auto-generated; never hand-edit
-        ├── VIEW-0001-project-structure.md
-        ├── VIEW-0002-file-dependencies.md
-        └── VIEW-0003-class-relationships.md
+    └── 4-exploration/                   # date-stamped; archive when done
+        ├── PRD-2026-q3-triage.md
+        ├── PLAN-2026-q3.md
+        ├── CR-0042-cancellation-rule.md
+        └── archive/
 ```
 
-## Why mirror the tier numbers?
+Tier-5 views (project structure, file deps, route map) — generated on demand via `sunnydata-auto-regen` skill; do not commit static copies.
 
-Two reasons:
-1. **Cognitive transfer**: anyone who knows VibeCoding tiers immediately understands your `docs/` layout
-2. **AI context efficiency**: `0-principles` always loads first; `5-views` is read with skepticism. The path itself encodes that policy.
+---
 
 ## Mandatory frontmatter for tier 2 (contracts)
 
@@ -54,121 +60,80 @@ Every file in `docs/2-contracts/` carries:
 
 ```yaml
 ---
+id: FLOW-0001
+title: "Order to Cash"
+status: active
+tier: 2-contracts
+owner: HYBRID
 last-synced-with: <git-commit-sha>
-sync-source: code | doc                # which side is authoritative
+sync-source: code | doc
 source-paths:
-  - src/api/users.py
-  - src/models/user.py
-synced-at: 2026-05-10
+  - src/orders/
+synced-at: 2026-05-17
 ---
 ```
 
-The `post-write` hook auto-updates `last-synced-with` and `synced-at` when you save the file. The `sunnydata-doc-freshness` skill flags docs whose source has moved on.
+`post-write` hook auto-updates `last-synced-with` and `synced-at` on save. `sunnydata-doc-freshness` skill flags docs whose source moved on. `CIG-0007` blocks PR if source changed but doc didn't.
 
-## Optional frontmatter for tier 4 (exploration)
+---
+
+## Optional `essence` frontmatter (carries through from this template repo)
 
 ```yaml
----
-status: draft | accepted | shipped | archived
-shipped-as: ADR-0007, src/payments/v2/
-shipped-at: 2026-04-01
----
+essence: bedrock      # always-needed
+essence: specialized  # opt-in based on situation
 ```
 
-This lets old PRDs link forward to what they became, preserving the rationale trail.
-
-## Profile Selection Table
-
-Not every project needs all 47 templates. Choose a **profile** that matches your product type, then instantiate only the templates marked for that profile. Templates outside your profile can still be added later.
-
-Legend: **R** = required, **O** = optional, **—** = skip
-
-| Template | `web-product` | `data-ml` | `platform-infra` | `full` |
-|---|---|---|---|---|
-| **Tier 0 — Principles** | | | | |
-| PRIN-0000 Product Principles | R | R | R | R |
-| PRIN-0001 Flow ID Conventions | R | O | O | R |
-| GLOS-0000 Glossary | R | R | O | R |
-| PRIN-0002 Frontend Quality Attributes | R | — | — | R |
-| **Tier 1 — Decisions** | | | | |
-| ADR-0000 ADR template | R | R | R | R |
-| ARCH-0000 Architecture Overview | R | R | R | R |
-| ARCH-0001 Module Boundary | R | O | O | R |
-| DDD-0000 Domain Model | R | O | — | R |
-| ARCH-0002 Frontend Tech Stack | R | — | — | R |
-| ARCH-0003 Infra Architecture | O | O | R | R |
-| **Tier 2 — Contracts** | | | | |
-| API-0000 API Spec | R | O | O | R |
-| MC-0000 Module Contract | R | O | O | R |
-| BF-0000 Business Flow | R | O | O | R |
-| UF-0000 User Flow | R | O | — | R |
-| SF-0000 Sub Flow | R | O | — | R |
-| FR-0000 Functional Requirement | R | O | O | R |
-| SM-0000 State Machine | O | O | O | R |
-| MDS-0000 Master Data | R | O | — | R |
-| FI-0000 Flow Index | R | — | — | R |
-| TM-0000 Traceability Matrix | R | O | O | R |
-| DS-0000 Design System | R | — | — | R |
-| PC-0000 Page Contract | R | — | — | R |
-| SLO-0000 SLO Spec | O | O | R | R |
-| PIPE-0000 Pipeline Contract | — | R | O | R |
-| MODEL-0000 Model Card | — | R | — | R |
-| OBS-0000 Observability Spec | O | O | R | R |
-| CAP-0000 Capacity Planning | O | O | R | R |
-| **Tier 3 — Process** | | | | |
-| PROC-0001 Workflow Manual | R | R | O | R |
-| PROC-0002 BDD Guide | R | O | — | R |
-| PROC-0003 Code Review Checklist | R | R | R | R |
-| PROC-0004 Security Readiness | R | O | R | R |
-| PROC-0005 Deployment Runbook | R | O | R | R |
-| PROC-0006 Docs Maintenance | R | O | O | R |
-| QG-0000 Quality Gates | R | O | O | R |
-| TP-0000 Test Plan | R | R | O | R |
-| PROC-0007 Vendor API Test | O | O | O | R |
-| PROC-0008 Frontend Pre-merge | R | — | — | R |
-| PROC-0009 Incident Response | O | O | R | R |
-| PROC-0010 Chaos Engineering | — | — | R | R |
-| PROC-0011 GitOps Runbook | — | — | R | R |
-| PROC-0012 Deprecation Playbook | O | O | O | R |
-| ONBOARD-0000 Team Onboarding | R | R | R | R |
-| **Tier 4 — Exploration** | | | | |
-| PRD-0000 PRD | R | R | O | R |
-| WBS-0000 WBS | R | R | O | R |
-| CIA-0000 Change Impact Analysis | R | O | O | R |
-| EXP-0000 Experiment Log | — | R | — | R |
-| DISC-0000 Discovery Research | O | R | O | R |
-| **Tier 5 — Views** | | | | |
-| VIEW-0001 Project Structure | R | R | R | R |
-| VIEW-0002 File Dependencies | R | O | O | R |
-| VIEW-0003 Class Relationships | R | O | — | R |
-| VIEW-0004 Frontend Route Map | R | — | — | R |
-
-**Quick counts:**
-- `web-product`: 33 R + 8 O = 41 relevant (skip 11)
-- `data-ml`: 14 R + 23 O = 37 relevant (skip 15)
-- `platform-infra`: 15 R + 19 O = 34 relevant (skip 18)
-- `full`: 52 R (all templates)
+Bedrock files: AI must load on every non-trivial conversation. Specialized: load when relevant.
 
 ---
 
-## Anti-patterns to avoid
+## Profiles (v6.0 — drastically simplified)
 
-| Anti-pattern | Why it's bad | What to do instead |
+v5.x had a 5-column profile table. v6.0 collapses to: **start with all 10 bedrock; add specialized as you hit pain**. No more "do I need this for data-ml? for ai-native?" — your project's situation tells you.
+
+| Project shape | Bedrock 10 | Likely additions |
 |---|---|---|
-| One huge `docs/` folder, flat | Same problem the templates had | Use the 6-tier structure |
-| Hand-maintaining `5-views/` | Always becomes stale | Generate from code, regenerate often |
-| Editing old ADRs in place | Loses rationale history | Write a new ADR that supersedes the old |
-| PRDs without dates in filename | Can't tell which era they describe | Always date-stamp |
-| Mixing tier 0 + tier 4 in one file ("vision doc") | Tier mismatch — different update cadences | Split: principles in tier 0, current bet in tier 4 |
+| Solo dev, MVP | All 10 | None |
+| Small team, pre-PMF | All 10 | + PRD (when PM joins) |
+| Production-traffic SaaS | All 10 | + PROC-0002 + TEST + DATA + QG |
+| AI-native (LLMs core) | All 10 | + AI + TEST + DATA |
+| Multi-quarter roadmap | All 10 | + PLAN + PRD + CIA + ADR |
+| Regulated / enterprise | All 10 | + ADR + CIA + everything |
+
+Don't pick a profile up-front. Add a template the day you cannot answer its question without one.
+
+---
+
+## Anti-patterns
+
+| Anti-pattern | Why bad | Fix |
+|---|---|---|
+| One huge `docs/` folder, flat | Same problem these templates fixed | Use the 4-tier structure |
+| Hand-maintaining `5-views/` (doesn't exist in v6.0) | Decays in a week | Run `sunnydata-auto-regen` skill |
+| Editing accepted ADRs | Loses history | Write new ADR with `supersedes` |
+| PRD without `target-release` date | Becomes timeless wishlist | Date-stamp; archive when shipped |
+| Mixing tier-0 invariants with tier-4 PRDs | Stability semantic broken | Mirror 4-tier structure strictly |
+
+---
 
 ## Skill / command quick reference
 
-Once you've instantiated this layout, these are the commands you'll use most:
-
-| Command / skill | When to use |
+| Tool | When |
 |---|---|
-| `sunnydata-doc-freshness` skill | Weekly, or before any release; surfaces stale tier-2 docs |
-| `sunnydata-auto-regen` skill | After any large refactor; rebuilds tier 5 |
-| `vibecoding-write-prd` skill | Drafting a new feature PRD into tier 4 |
-| `vibecoding-write-adr` skill | Recording a new architectural decision into tier 1 |
-| `vibecoding-write-api-contract` skill | New endpoint or schema change into tier 2 |
+| `sunnydata-design` skill | Before non-trivial implementation |
+| `sunnydata-change-impact-analysis` skill | Before any change touching flow/contract/data/architecture |
+| `sunnydata-doc-freshness` skill | Weekly maintenance |
+| `sunnydata-auto-regen` skill | After major refactor (regen tier-5 views) |
+| `sunnydata-contract-stack-audit` skill | Pre-release (Gate 5) |
+| `sunnydata-changelog-sync` skill | Before tagging release |
+| `vibecoding-write-*` skills | When drafting a specific tier-2 contract |
+
+---
+
+## See also
+
+- [`BEDROCK.md`](./BEDROCK.md) — entry point (read first)
+- [`INDEX.md`](./INDEX.md) — full template catalog
+- [`OWNERSHIP-MATRIX.md`](./OWNERSHIP-MATRIX.md) — who edits what
+- `.claude/coordination/migration-v5-to-v6.md` — upgrading from v5.x

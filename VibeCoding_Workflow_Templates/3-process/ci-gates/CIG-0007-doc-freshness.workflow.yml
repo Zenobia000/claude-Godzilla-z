@@ -1,0 +1,80 @@
+# CIG-0007 — Doc Freshness
+#
+# Enforces tier-2 contract sync. Every tier-2 markdown carries
+# `last-synced-with: <commit-sha>` + `source-paths: [...]` frontmatter.
+# This gate fails if source-paths have been modified since last-synced-with.
+#
+# Required: PR-blocking + weekly scheduled run.
+# See: PRIN-0003 §L4.4, context-stability.md, sunnydata-doc-freshness skill
+
+name: CIG-0007 doc-freshness
+
+on:
+  pull_request:
+    paths:
+      - "docs/2-contracts/**"
+      - "src/**"
+      - "api/**"
+      - "web/src/**"
+  schedule:
+    - cron: "0 4 * * 1"   # Monday 04:00 UTC
+
+jobs:
+  freshness:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0   # full history needed
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - run: pip install pyyaml
+
+      - name: Check freshness
+        run: |
+          python3 <<'EOF'
+          import re, subprocess, sys, yaml
+          from pathlib import Path
+
+          stale = []
+          for md in Path("docs/2-contracts").rglob("*.md"):
+              text = md.read_text()
+              fm = re.match(r"---\n(.*?)\n---", text, re.DOTALL)
+              if not fm: continue
+              try:
+                  meta = yaml.safe_load(fm.group(1))
+              except yaml.YAMLError:
+                  print(f"::warning file={md}::Invalid frontmatter")
+                  continue
+              if not meta: continue
+              synced = meta.get("last-synced-with")
+              source_paths = meta.get("source-paths") or []
+              if not synced or not source_paths:
+                  continue  # template / not yet synced
+              for src in source_paths:
+                  src_path = Path(src)
+                  if not src_path.exists():
+                      continue
+                  # has src_path been modified since `synced` commit?
+                  try:
+                      out = subprocess.check_output(
+                          ["git", "log", "--format=%H", f"{synced}..HEAD", "--", src],
+                          stderr=subprocess.DEVNULL,
+                      ).decode().strip()
+                  except subprocess.CalledProcessError:
+                      out = ""
+                  if out:
+                      stale.append((str(md), src, synced))
+
+          if stale:
+              print("::error::Stale tier-2 contracts:")
+              for md, src, sha in stale[:20]:
+                  print(f"  {md} (source {src} changed since {sha[:7]})")
+              sys.exit(1)
+          print("All tier-2 contracts fresh.")
+          EOF

@@ -1,14 +1,16 @@
 ---
 id: FR-NNNN
-title: "Functional Requirement Template"
-status: draft        # draft | active | deprecated | superseded | archived
+title: "Functional Requirement — Rules + Page Contract"
+status: active
 tier: 2-contracts
-owner: HYBRID (AI-drafts, human-approves)
-last-reviewed: <YYYY-MM-DD>
-last-synced-with: <git-commit-sha>
+owner: HYBRID
+essence: bedrock
+absorbs: [PC-0000-page-contract]
+last-reviewed: null
+last-synced-with: null
 sync-source: doc
 source-paths: []
-synced-at: <YYYY-MM-DD>
+synced-at: null
 product-version: null
 supersedes: null
 superseded-by: null
@@ -176,3 +178,81 @@ BF (how it happens E2E)
 ```
 
 **Anti-pattern to refuse**: don't let an FR include flow steps ("first the customer clicks X, then ...") — that belongs in UF/SF. FR rules apply *whenever* the conditions in §4 hold, regardless of how the user got there.
+
+---
+
+## §page-contract (absorbs PC-0000)
+
+> Use when this FR has a user-facing surface (web / mobile page). One §page-contract block per route this FR drives.
+
+### Route
+
+| Field | Value |
+|---|---|
+| Route ID | `PC-A12` (page IDs use `PC-` prefix even though no standalone file) |
+| Path | `/orders/[order_id]` |
+| Surface | web / mobile / SSR / CSR / RSC |
+| Auth | required / anonymous / role-gated |
+| Layout parent | `DashboardLayout` |
+
+### Data dependencies
+
+| Source | Endpoint | Cache strategy |
+|---|---|---|
+| Order | `GET /api/orders/{id}` | RSC fetch + revalidate 60s |
+| Customer | `GET /api/customers/{id}` | TanStack Query, 5min stale |
+| Permissions | `OPA evaluation` | Per-request (no cache) |
+
+### Primary CTAs
+
+| CTA | Action | Permission needed | Goes to |
+|---|---|---|---|
+| "Cancel order" | `POST /api/orders/{id}/cancel` | `orders.cancel` | Same page; toast |
+| "Print invoice" | client-side render | `invoices.read` | `/invoices/[id].pdf` |
+
+### State surfaces (one per case)
+
+| State | UI |
+|---|---|
+| Loading | Skeleton (per `ARCH-NNNN §frontend §6.2`) |
+| Empty | "No order found" CTA → `/orders` |
+| Error | Error envelope per `API-NNNN §3` Problem; toast + retry button |
+| Partial | Visible fields only; "loading remaining…" |
+| Success | Full render |
+
+### i18n keys this page emits
+
+```
+order_detail.title
+order_detail.cancel_cta
+order_detail.cancel_confirm
+error.PERMISSION_DENIED
+error.RESOURCE_NOT_FOUND
+```
+
+(Enforced by `CIG-0005` across locales.)
+
+### SEO (if public)
+
+| Field | Value |
+|---|---|
+| `<title>` | "Order #{order_id} — {brand}" |
+| Meta description | Templated; max 160 chars |
+| Open Graph | image generated server-side |
+| `noindex`? | Yes if `order.state != "completed"` |
+
+### A11y bar
+
+Per `PRIN-NNNN §6.4`: WCAG 2.2 AA; keyboard navigable; focus trapping in cancel modal; ARIA announce on state change.
+
+### Navigation context
+
+- Entered from: `PC-A11 Inbox` (link click) / `PC-A10 Dashboard` (recent orders widget)
+- Exits to: `PC-A11 Inbox` (after cancel) / `/invoices/[id]` (after print)
+- Breadcrumb: `Home > Orders > #{order_id}`
+
+### Forbidden patterns on this page
+
+- Showing `customer.email` when viewer is anonymous (PII leak)
+- Auto-redirect on 404 (back-button trap)
+- Modal stacked > 2 deep (UX) 

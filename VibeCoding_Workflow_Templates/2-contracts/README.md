@@ -85,6 +85,23 @@ The `post-write` hook updates `last-synced-with` and `synced-at` automatically w
 | `OBS-0000-observability-spec.template.md` | Observability specification — metrics, logs, traces, dashboards, alerting strategy | "How do we know the system is healthy?" |
 | `CAP-0000-capacity-planning.template.md` | Capacity planning & cost management — resource model, growth forecast, cost allocation, scaling | "Can we handle the load, and at what cost?" |
 | `TM-0000-traceability-matrix.template.md` | Cross-layer coverage map | "What links to what?" (BF→UF→SF→FR→API→Data→TC→CI) |
+| `ERR-0000-error-envelope.template.md` | L1.3 wire/error contract — RFC 7807 Problem Details + error-code registry | "How do we communicate failures?" |
+| `ASYNC-0000-async-api.template.md` | L1.2 wire/async contract — AsyncAPI 2.6 + CloudEvents 1.0 + producer/consumer guarantees | "How do systems exchange async messages?" |
+| `MIG-0000-schema-migration.template.md` | L2.3 schema migration baseline — Alembic head + per-CR migration policy | "How do we evolve persistent schema safely?" |
+| `POL-0000-policy-as-code.template.md` | L3.1 auth/RBAC policy as code — OPA Rego / AWS Cedar | "Who can do what to which resource?" |
+| `CT-0000-contract-test.template.md` | L4.1 contract test recipe — Pact + Schemathesis | "How do we prove the spec matches the code?" |
+
+### Machine-readable example files (siblings to markdown templates)
+
+Per `PRIN-0003 §3` (10-layer map), tier-2 contracts where mid-stack tooling exists carry a sibling `<ID>-<slug>.example.<format>.<ext>` file. These are canonical references — when instantiating, copy and rename.
+
+| File | Format | Powers |
+|---|---|---|
+| `SM-0000-state-machine.example.xstate.json` | xstate JSON | Runtime state machine + Stately Studio visualization |
+| `DS-0000-frontend-design-system.example.style-dictionary.json` | Style Dictionary JSON | Multi-platform token build (CSS / iOS / Android) |
+| `MIG-0000-schema-migration.example.alembic-env.py` | Python | Alembic environment config |
+| `POL-0000-policy-as-code.example.rego` | Rego | OPA policy evaluation |
+| `ASYNC-0000-async-api.example.asyncapi.yaml` | AsyncAPI 2.6 | Async channel spec + CloudEvents schema |
 
 **flow-index vs traceability-matrix** — both are aggregation views but answer different questions:
 - `flow-index` lists Flow **existence + status** (which BFs do we have, what's their state?)

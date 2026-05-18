@@ -1,0 +1,76 @@
+# CIG-0006 — Test Case Coverage
+#
+# Enforces L4.2 (BDD acceptance) + L4.4 (Traceability).
+# Checks that every FR-NNNN / API-NNNN listed in tier-2 has at least one
+# TC-NNNN entry in test-cases/registry.yaml, and that the registry's TC IDs
+# match the actual *.feature files / pytest -k markers.
+#
+# Required: PR-blocking.
+# See: PRIN-0003 §L4.2, §L4.4, TM-0000-traceability-matrix.template.md
+
+name: CIG-0006 test-case-coverage
+
+on:
+  pull_request:
+    paths:
+      - "docs/2-contracts/test-cases/**"
+      - "docs/2-contracts/FR-*.md"
+      - "docs/2-contracts/API-*.md"
+      - "tests/features/**"
+
+jobs:
+  test-case-coverage:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install deps
+        run: pip install pyyaml
+
+      - name: Coverage check
+        run: |
+          python3 <<'EOF'
+          import yaml, re, glob, sys
+          from pathlib import Path
+
+          registry_path = Path("docs/2-contracts/test-cases/registry.yaml")
+          if not registry_path.exists():
+              print("::warning::No test-case registry; skipping (create per CT-0000)")
+              sys.exit(0)
+          registry = yaml.safe_load(registry_path.read_text())
+          registered_tcs = {tc["id"] for tc in (registry.get("test_cases") or [])}
+          covered_targets = set()
+          for tc in (registry.get("test_cases") or []):
+              for t in tc.get("covers", []):
+                  covered_targets.add(t)
+
+          # Find all FR/API IDs in tier-2
+          target_ids = set()
+          for f in glob.glob("docs/2-contracts/FR-*.md") + glob.glob("docs/2-contracts/API-*.md"):
+              m = re.search(r"id:\s*(FR-\d{4}|API-\d{4})", Path(f).read_text())
+              if m: target_ids.add(m.group(1))
+
+          uncovered = target_ids - covered_targets
+          if uncovered:
+              print(f"::error::FR/API without TC coverage: {sorted(uncovered)}")
+              sys.exit(1)
+
+          # Cross-check: every TC referenced exists in tests/
+          test_files = " ".join(glob.glob("tests/features/**/*.feature", recursive=True) +
+                                glob.glob("tests/**/test_*.py", recursive=True))
+          missing_impl = []
+          for tc in registered_tcs:
+              if tc not in test_files and not any(tc in Path(f).read_text() for f in glob.glob("tests/**/*", recursive=True) if Path(f).is_file()):
+                  missing_impl.append(tc)
+          if missing_impl:
+              print(f"::error::TC IDs in registry but no test implements them: {sorted(missing_impl)[:10]}")
+              sys.exit(1)
+
+          print(f"OK: {len(target_ids)} FR/API entries, all covered by {len(registered_tcs)} TCs")
+          EOF

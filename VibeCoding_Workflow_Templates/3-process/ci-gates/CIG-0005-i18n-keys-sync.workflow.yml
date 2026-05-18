@@ -1,0 +1,76 @@
+# CIG-0005 — i18n Keys Sync
+#
+# Enforces L4.3 (i18n) + L5.4 (Design tokens). Ensures every locale file
+# carries the same set of keys; a key added to en.json without zh-TW.json
+# (or vice versa) blocks the PR.
+#
+# Required: PR-blocking for any frontend project.
+# See: PRIN-0003 §L4.3, ERR-0000-error-envelope.template.md (error.<code> keys)
+
+name: CIG-0005 i18n-keys-sync
+
+on:
+  pull_request:
+    paths:
+      - "web/src/i18n/messages/**"
+      - "docs/2-contracts/ERR-*.template.md"
+
+jobs:
+  i18n-sync:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Check key parity across locales
+        run: |
+          python3 <<'EOF'
+          import glob, json, sys
+          locales = {}
+          for f in glob.glob("web/src/i18n/messages/*.json"):
+              locales[f] = set(_flatten(json.load(open(f))))
+          if not locales:
+              print("::warning::No locale files found at web/src/i18n/messages/")
+              sys.exit(0)
+          all_keys = set().union(*locales.values())
+          fail = False
+          for f, keys in locales.items():
+              missing = all_keys - keys
+              if missing:
+                  print(f"::error file={f}::Missing keys: {sorted(missing)[:10]}")
+                  fail = True
+          sys.exit(1 if fail else 0)
+
+          def _flatten(d, prefix=""):
+              out = []
+              for k, v in d.items():
+                  if isinstance(v, dict):
+                      out.extend(_flatten(v, f"{prefix}{k}."))
+                  else:
+                      out.append(f"{prefix}{k}")
+              return out
+          EOF
+
+      - name: Check error-code coverage
+        # Every code in ERR-0000 §3 must have a matching `error.<code>` key
+        # in every locale file.
+        run: |
+          python3 <<'EOF'
+          import re, glob, json, sys
+          err_doc = open("docs/2-contracts/ERR-0000-error-envelope.template.md").read()
+          codes = set(re.findall(r"`([A-Z_]+)`\s*\|\s*\d{3}", err_doc))
+          fail = False
+          for f in glob.glob("web/src/i18n/messages/*.json"):
+              data = json.load(open(f))
+              error_keys = set((data.get("error") or {}).keys())
+              missing = codes - error_keys
+              if missing:
+                  print(f"::error file={f}::Missing error keys: {sorted(missing)}")
+                  fail = True
+          sys.exit(1 if fail else 0)
+          EOF
