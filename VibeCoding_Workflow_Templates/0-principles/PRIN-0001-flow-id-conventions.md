@@ -41,6 +41,7 @@ These prefixes name the **20 canonical templates** in v6.0 (+ CIG workflow files
 | Prefix | Meaning | Tier | Canonical file |
 |---|---|---|---|
 | **PRIN** | Principles (mission + quality bars + glossary + unit-economics) | 0 | `PRIN-0000-product-principles.template.md` |
+| **STD** | Coding Standard (team divergences from textbook) | 0 | `STD-0000-coding-standard.template.md` |
 | **ARCH** | Architecture (C4 + modules + stack + infra + DDD + capacity-est + security + frontend) | 1 | `ARCH-0000-architecture-overview.template.md` |
 | **ADR** | Architecture Decision Record (append-only) | 1 | `ADR-0000-adr.template.md` |
 | **FLOW** | Flow (BF + UF + SF — 3 scopes in one) | 2 | `FLOW-0000-flow.template.md` |

@@ -25,6 +25,7 @@ These encode strategy / governance / domain knowledge. AI must not silently modi
 | `0-principles/PRIN-0000-product-principles.template.md` | Mission, non-goals, glossary, unit-economics, quality bars, invariants |
 | `0-principles/PRIN-0001-flow-id-conventions.md` | Naming convention — once set, immutable |
 | `0-principles/PRIN-0003-engineering-contract-stack.md` | 10-layer map — invariant once adopted |
+| `0-principles/STD-0000-coding-standard.template.md` | Team coding-standard divergences from textbook — AI must honor these |
 | `1-decisions/ARCH-0000-architecture-overview.template.md` | C4 + modules + DDD + security — the system charter |
 | `3-process/PROC-0001-developer-handbook.template.md` | Onboarding + workflow + review + security — team culture |
 | `3-process/PROC-0002-ops-runbook.template.md` | Incident response + on-call — org-specific |

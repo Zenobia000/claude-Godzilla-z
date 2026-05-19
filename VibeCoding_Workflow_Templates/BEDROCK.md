@@ -6,7 +6,7 @@
 
 ---
 
-## The 10 BEDROCK templates (every non-trivial project)
+## The 11 BEDROCK templates (every non-trivial project)
 
 If you don't have these, your engineers and AI will hallucinate the answers. Order matters — read them in this order.
 
@@ -15,6 +15,7 @@ If you don't have these, your engineers and AI will hallucinate the answers. Ord
 | 1 | [`0-principles/PRIN-0000-product-principles.template.md`](./0-principles/PRIN-0000-product-principles.template.md) | What is this product? Who is it for? What are we NOT building? |
 | 2 | [`0-principles/PRIN-0001-flow-id-conventions.md`](./0-principles/PRIN-0001-flow-id-conventions.md) | How do we name flows, contracts, decisions? |
 | 3 | [`0-principles/PRIN-0003-engineering-contract-stack.md`](./0-principles/PRIN-0003-engineering-contract-stack.md) | Where does this contract live? (the 10-layer map) |
+| 3b | [`0-principles/STD-0000-coding-standard.template.md`](./0-principles/STD-0000-coding-standard.template.md) | What's our team divergence from textbook coding style? (so AI stops re-guessing it) |
 | 4 | [`1-decisions/ARCH-0000-architecture-overview.template.md`](./1-decisions/ARCH-0000-architecture-overview.template.md) | What's the system shape? (C4 + modules + stack + infra + security + frontend) |
 | 5 | [`2-contracts/FLOW-0000-flow.template.md`](./2-contracts/FLOW-0000-flow.template.md) | How does the business / user / sub-task happen? |
 | 6 | [`2-contracts/API-0000-api-spec.template.md`](./2-contracts/API-0000-api-spec.template.md) | What crosses the wire? (REST + async + errors + idempotency) |

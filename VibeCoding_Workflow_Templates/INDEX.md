@@ -1,8 +1,8 @@
 # VibeCoding Workflow Templates
 
-> **Version:** v6.0 — Linus-minimum convergence (20 templates; 71 → 20 = -72%)
-> **Updated:** 2026-05-17
-> **🚪 NEW HERE? Read [`BEDROCK.md`](./BEDROCK.md) first** — 5 minutes, lists the 10 essentials.
+> **Version:** v6.0 — Linus-minimum convergence (21 templates; 71 → 21 = -70%)
+> **Updated:** 2026-05-19
+> **🚪 NEW HERE? Read [`BEDROCK.md`](./BEDROCK.md) first** — 5 minutes, lists the essentials.
 
 ---
 
@@ -22,12 +22,13 @@ Tier 5 (auto-regen views) was deleted in v6.0 — generated on demand via `sunny
 
 ---
 
-## The 20 canonical templates
+## The 21 canonical templates
 
-### Tier 0 — Principles (3, all bedrock)
+### Tier 0 — Principles (4, all bedrock)
 - [`PRIN-0000-product-principles.template.md`](./0-principles/PRIN-0000-product-principles.template.md) — mission · personas · non-goals · glossary · unit-economics · quality bars · invariants
 - [`PRIN-0001-flow-id-conventions.md`](./0-principles/PRIN-0001-flow-id-conventions.md) — naming invariant
 - [`PRIN-0003-engineering-contract-stack.md`](./0-principles/PRIN-0003-engineering-contract-stack.md) — 10-layer map (where every contract lives)
+- [`STD-0000-coding-standard.template.md`](./0-principles/STD-0000-coding-standard.template.md) — team coding-standard divergences from textbook (merged from dev `v5.7`)
 
 ### Tier 1 — Decisions (2)
 - [`ARCH-0000-architecture-overview.template.md`](./1-decisions/ARCH-0000-architecture-overview.template.md) **bedrock** — C4 + modules + stack + infra + DDD + capacity-est + security + frontend
@@ -77,7 +78,7 @@ Tier 5 (auto-regen views) was deleted in v6.0 — generated on demand via `sunny
 
 | Version | Date | Change |
 |---|---|---|
-| **v6.0** | **2026-05-17** | **Linus-minimum convergence**. 71 templates → 20. Deleted 5-views/, GLOS, DDD, ARCH-0001/2/3, MDS, MIG, PIPE, MODEL, ERR, ASYNC, SLO, OBS, CAP, POL, DS, FI, TM, BF/UF/SF, SM, PC, CT, TP, EXP, PROMPT, AGENT, RAG, AISAFE, AICAP, LLMEVAL, PERS, UE, EST, ABT, GTM, RM, WBS, DISC, ONBOARD, PRIN-0002, ADR-0001, PROC-0002..0012. Content merged into 8 new consolidated templates: `FLOW`, `DATA`, `AI`, `SRE`, `TEST`, `PLAN`, `PROC-0001` (handbook), `PROC-0002` (ops runbook). New entry point: `BEDROCK.md`. Profile system simplified. CI gates unchanged. |
+| **v6.0** | **2026-05-19** | **Linus-minimum convergence**. 71 templates → 21 (20 v6.0 canonical + STD-0000 merged from dev `v5.7`). Deleted 5-views/, GLOS, DDD, ARCH-0001/2/3, MDS, MIG, PIPE, MODEL, ERR, ASYNC, SLO, OBS, CAP, POL, DS, FI, TM, BF/UF/SF, SM, PC, CT, TP, EXP, PROMPT, AGENT, RAG, AISAFE, AICAP, LLMEVAL, PERS, UE, EST, ABT, GTM, RM, WBS, DISC, ONBOARD, PRIN-0002, ADR-0001, PROC-0002..0012. Content merged into 8 new consolidated templates: `FLOW`, `DATA`, `AI`, `SRE`, `TEST`, `PLAN`, `PROC-0001` (handbook), `PROC-0002` (ops runbook). New entry point: `BEDROCK.md`. Profile system simplified. CI gates unchanged. |
 | v5.8 | 2026-05-17 | AI-native + startup completion (13 new templates: 6 AI, 5 product, 2 system-design) |
 | v5.7 | 2026-05-16 | Engineering contract stack distillation (PRIN-0003 10-layer map + 6 contracts + 10 CI gates) |
 | v5.6 | 2026-05-15 | Profile-based template selection + lifecycle completion (13 new templates) |
