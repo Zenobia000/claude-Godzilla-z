@@ -1,11 +1,12 @@
 ---
-id: CR-NNNN
-title: "Change Impact Analysis"
-status: draft
+id: CIA-0000
+title: "Change Impact Analysis — Template"
+status: active
 tier: 4-exploration
 owner: HYBRID
-created: <YYYY-MM-DD>
-target-release: <version-or-sprint>
+essence: specialized
+created: null
+target-release: null
 product-version: null
 supersedes: null
 superseded-by: null

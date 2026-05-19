@@ -1,10 +1,11 @@
 ---
 id: STD-0000
-title: "Coding Standard"
-status: draft
+title: "Coding Standard — Team Divergences"
+status: active
 tier: 0-principles
 owner: HUMAN-ONLY
-last-reviewed: <YYYY-MM-DD>
+essence: bedrock
+last-reviewed: 2026-05-17
 product-version: null
 supersedes: null
 superseded-by: null

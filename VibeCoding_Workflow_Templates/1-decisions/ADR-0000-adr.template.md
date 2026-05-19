@@ -1,12 +1,13 @@
 ---
 id: ADR-0000
-title: "Architecture Decision Record Template"
-status: proposed
+title: "Architecture Decision Record — Template"
+status: active
 tier: 1-decisions
 owner: HYBRID
-last-reviewed: <YYYY-MM-DD>
-date: <YYYY-MM-DD>
-decider: <person-or-team>
+essence: specialized
+last-reviewed: null
+date: null
+decider: null
 product-version: null
 supersedes: null
 superseded-by: null

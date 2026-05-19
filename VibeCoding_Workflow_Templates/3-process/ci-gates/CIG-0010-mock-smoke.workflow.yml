@@ -1,0 +1,70 @@
+# CIG-0010 — Mock Server Smoke
+#
+# Advisory gate (NOT PR-blocking): boots a Prism-based mock from openapi.yaml
+# and runs a smoke test ensuring example responses are coherent.
+#
+# Useful as an early-warning before Schemathesis. Lighter than CIG-0004
+# because it doesn't require a built service.
+#
+# Required: Advisory.
+# See: PRIN-0003 §L1.1
+
+name: CIG-0010 mock-smoke
+
+on:
+  pull_request:
+    paths:
+      - "docs/2-contracts/api/openapi.yaml"
+
+jobs:
+  mock-smoke:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    continue-on-error: true   # advisory only
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install Prism
+        run: npm install -g @stoplight/prism-cli@5
+
+      - name: Start mock server
+        run: |
+          prism mock docs/2-contracts/api/openapi.yaml --port 4010 &
+          for i in $(seq 1 30); do
+            curl -fsS http://localhost:4010 >/dev/null && break
+            sleep 1
+          done
+
+      - name: Smoke test — every operationId returns a non-error example
+        run: |
+          python3 <<'EOF'
+          import json, subprocess, sys, yaml, urllib.request
+          spec = yaml.safe_load(open("docs/2-contracts/api/openapi.yaml"))
+          failures = []
+          for path, methods in (spec.get("paths") or {}).items():
+              for method, op in methods.items():
+                  if method not in {"get", "post", "put", "patch", "delete"}: continue
+                  url = f"http://localhost:4010{path}"
+                  # naive: replace {var} with "1"
+                  url = url.replace("{", "").replace("}", "")
+                  url = __import__("re").sub(r"/[^/]+_id\b", "/1", url)
+                  try:
+                      req = urllib.request.Request(url, method=method.upper())
+                      with urllib.request.urlopen(req, timeout=3) as r:
+                          status = r.status
+                  except Exception as e:
+                      status = getattr(e, "code", 599)
+                  if status >= 500:
+                      failures.append((method.upper(), path, status))
+
+          if failures:
+              for f in failures:
+                  print(f"::warning::{f[0]} {f[1]} → {f[2]}")
+              sys.exit(0)  # advisory
+          print("Mock smoke OK")
+          EOF

@@ -4,7 +4,8 @@ title: "Quality Gates"
 status: active
 tier: 3-process
 owner: HUMAN-ONLY
-last-reviewed: <YYYY-MM-DD>
+essence: specialized
+last-reviewed: 2026-05-17
 product-version: null
 supersedes: null
 superseded-by: null
@@ -158,6 +159,53 @@ superseded-by: null
 
 ---
 
+## Gate 5 — Release Ready (Contract Stack Sealed)
+
+> *Pass before tagging a release. Verifies that the 10-layer engineering contract stack (per `PRIN-0003`) is fully wired — every layer has at least one CI gate enforcing it.*
+
+### Prerequisites
+
+- [ ] All Gate 4 items still hold
+- [ ] **Contract stack audit passes** — run `sunnydata-contract-stack-audit` skill; report must show every layer (L1–L5) backed by ≥1 CI gate
+- [ ] **All required CIGs green** — see `3-process/ci-gates/README.md` §2 for required-vs-advisory split
+- [ ] **No tier-2 doc is `stale`** — `CIG-0007` clean
+- [ ] **No orphan Flow IDs** — `CIG-0008` clean
+- [ ] **CHANGELOG.md updated** — release notes drafted per `sunnydata-changelog-sync` skill
+- [ ] **ADRs accepted** — no `status: draft` ADR introduced this release window
+
+### Failure modes if you skip
+
+- "Code is fine but spec was never updated" → consumers break in week 2
+- "Tests pass but the contract drifted" → integration partners hit edge cases in prod
+- AI in next session reads stale tier-2 docs as source of truth → generates wrong code
+
+### Forbidden until passed
+
+- Cutting a git tag (`vX.Y.Z`)
+- Triggering production deploy
+- Closing the release CR
+
+### Automated enforcement
+
+Wire this gate into your release workflow:
+
+```yaml
+# .github/workflows/release.yml (excerpt)
+jobs:
+  contract-stack-audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run audit via Claude Code skill
+        # The audit skill is wrapped by a CLI invocation; see SKILL.md for usage
+        run: ./scripts/run-contract-stack-audit.sh
+      - name: Block release if any layer uncovered
+        run: |
+          jq -e '.layers[] | select(.gates | length == 0)' audit.json && exit 1 || exit 0
+```
+
+---
+
 ## Gate Decision Cheat Sheet
 
 When unsure whether a gate has been met, ask:
@@ -168,6 +216,7 @@ When unsure whether a gate has been met, ask:
 | Can frontend mock-up a complete user journey without asking the backend a question? | Gate 2 not met |
 | If we shipped this schema today, what would we regret in 6 months? | Gate 3 not met |
 | If CI goes green, can the on-call sleep tonight? | Gate 4 not met |
+| Does every L1–L5 layer in `PRIN-0003` have at least one passing CIG? | Gate 5 not met |
 
 ---
 

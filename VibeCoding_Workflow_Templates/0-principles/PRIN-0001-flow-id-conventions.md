@@ -4,7 +4,8 @@ title: "Flow ID Naming Conventions"
 status: active
 tier: 0-principles
 owner: HUMAN-ONLY
-last-reviewed: 2026-05-15
+essence: bedrock
+last-reviewed: 2026-05-17
 product-version: null
 supersedes: null
 superseded-by: null
@@ -33,38 +34,45 @@ superseded-by: null
 | **ADR** | Architecture Decision Record | `docs/1-decisions/ADR-NNNN-*.md` | Append-only |
 | **CR** | Change Request | `docs/4-exploration/CR-NNNN-*.md` | Per-change ephemeral |
 
-### Extended prefixes (added CR-0001)
+### Extended prefixes (v6.0 — 17 canonical)
 
-These prefixes extend the ID system to non-flow artifacts — templates, process guides, and governance files — so that every file in `VibeCoding_Workflow_Templates/` has a scannable, sortable ID prefix.
+These prefixes name the **20 canonical templates** in v6.0 (+ CIG workflow files). Sub-concepts that used to have their own prefix now live as §sections inside a canonical template.
 
-| Prefix | Meaning | Tier | Template filename example |
+| Prefix | Meaning | Tier | Canonical file |
 |---|---|---|---|
-| **PRIN** | Principles | 0 | `PRIN-0000-product-principles.template.md` |
-| **GLOS** | Glossary | 0 | `GLOS-0000-glossary.template.md` |
-| **ARCH** | Architecture docs | 1 | `ARCH-0000-architecture-overview.template.md` |
-| **DDD** | Domain model | 1 | `DDD-0000-domain-model.template.md` |
-| **MC** | Module Contract | 2 | `MC-0000-module-contract.template.md` |
-| **MDS** | Master Data Spec | 2 | `MDS-0000-master-data.template.md` |
-| **FI** | Flow Index | 2 | `FI-0000-flow-index.template.md` |
-| **TM** | Traceability Matrix | 2 | `TM-0000-traceability-matrix.template.md` |
-| **DS** | Design System | 2 | `DS-0000-frontend-design-system.template.md` |
-| **PC** | Page Contract | 2 | `PC-0000-page-contract.template.md` |
-| **SM** | State Machine | 2 | `SM-0000-state-machine.template.md` |
-| **SLO** | SLO Specification | 2 | `SLO-0000-slo-spec.template.md` |
-| **PIPE** | Pipeline Contract | 2 | `PIPE-0000-pipeline-contract.template.md` |
-| **MODEL** | Model Card | 2 | `MODEL-0000-model-card.template.md` |
-| **OBS** | Observability Spec | 2 | `OBS-0000-observability-spec.template.md` |
-| **CAP** | Capacity Planning | 2 | `CAP-0000-capacity-planning.template.md` |
-| **PROC** | Process guide | 3 | `PROC-0001-workflow-manual.md` |
+| **PRIN** | Principles (mission + quality bars + glossary + unit-economics) | 0 | `PRIN-0000-product-principles.template.md` |
+| **STD** | Coding Standard (team divergences from textbook) | 0 | `STD-0000-coding-standard.template.md` |
+| **ARCH** | Architecture (C4 + modules + stack + infra + DDD + capacity-est + security + frontend) | 1 | `ARCH-0000-architecture-overview.template.md` |
+| **ADR** | Architecture Decision Record (append-only) | 1 | `ADR-0000-adr.template.md` |
+| **FLOW** | Flow (BF + UF + SF — 3 scopes in one) | 2 | `FLOW-0000-flow.template.md` |
+| **API** | API spec (REST + Async + Errors + Idempotency) | 2 | `API-0000-api-spec.template.md` |
+| **MC** | Module Contract (DbC + State machine) | 2 | `MC-0000-module-contract.template.md` |
+| **FR** | Functional Requirement (rules + Page contract) | 2 | `FR-0000-functional-requirement.template.md` |
+| **DATA** | Data Contract (master data + migration + pipeline + model card) | 2 | `DATA-0000-data-contract.template.md` |
+| **AI** | AI System (prompt + agent + RAG + safety + capacity) | 2 | `AI-0000-ai-system-contract.template.md` |
+| **SRE** | Reliability (SLO + observability + capacity) | 2 | `SRE-0000-reliability.template.md` |
+| **EDGE** | Edge case catalog | 2 | `EDGE-0000-edge-case-catalog.template.md` |
+| **PROC** | Process guide (handbook OR ops runbook; instance-numbered) | 3 | `PROC-0001-developer-handbook.template.md`, `PROC-0002-ops-runbook.template.md` |
 | **QG** | Quality Gates | 3 | `QG-0000-quality-gates.md` |
-| **TP** | Test Plan | 3 | `TP-0000-test-plan.template.md` |
-| **ONBOARD** | Team Onboarding | 3 | `ONBOARD-0000-team-onboarding.template.md` |
-| **PRD** | Product Requirements | 4 | `PRD-0000-prd.template.md` |
-| **WBS** | Work Breakdown | 4 | `WBS-0000-wbs.template.md` |
+| **TEST** | Testing strategy (unit + contract + BDD + LLM-eval + experiment) | 3 | `TEST-0000-testing-strategy.template.md` |
+| **CIG** | CI Gate workflow (enforcement; not a fillable template) | 3 | `3-process/ci-gates/CIG-0001..0010.workflow.yml` |
+| **PRD** | Product Requirements (discovery + personas + spec + experiments + launch) | 4 | `PRD-0000-prd.template.md` |
+| **PLAN** | Planning (roadmap + WBS) | 4 | `PLAN-0000-planning.template.md` |
 | **CIA** | Change Impact Analysis | 4 | `CIA-0000-change-impact-analysis.template.md` |
-| **EXP** | Experiment Log | 4 | `EXP-0000-experiment-log.template.md` |
-| **DISC** | Discovery Research | 4 | `DISC-0000-discovery-research.template.md` |
-| **VIEW** | Code-derived view | 5 | `VIEW-0001-project-structure.template.md` |
+
+### Sub-prefixes (used inside §sections; no standalone files)
+
+These names still appear in flow ID references but live as §sections of canonical templates:
+
+| Sub-prefix | Lives in | Identifies |
+|---|---|---|
+| **BF / UF / SF** | `FLOW-NNNN` §1 / §2 / §3 — instance-numbered per scope | Business / User / Sub flow at three scopes |
+| **TC** | `tests/features/*.feature` + `tests/llmeval/*.jsonl` (registry) | Test case |
+| **CR** | `4-exploration/CR-NNNN-*.md` | Change request |
+| **PC** | `FR-NNNN §page-contract` | Page contract |
+| **SM** | `MC-NNNN §state-machine` + `MC-NNNN-<slug>.example.xstate.json` | State machine |
+
+**v5.x prefixes retired** (content merged): GLOS, DDD, ARCH-0001/0002/0003, MDS, MIG, PIPE, MODEL, ERR, ASYNC, SLO, OBS, CAP, POL, DS, FI, TM, PROMPT, AGENT, RAG, AISAFE, AICAP, PERS, UE, EST, CT, LLMEVAL, ONBOARD, TP, DISC, EXP, ABT, GTM, RM, WBS, VIEW. See `migration-v5-to-v6.md` for which §section each became.
 
 ### Template vs instance numbering
 
@@ -169,6 +177,7 @@ This chain becomes one row in `TM-0000-traceability-matrix.template.md`.
 
 ## See also
 
+- `0-principles/PRIN-0003-engineering-contract-stack.md` — the 10-layer map; consumer of every prefix above
 - `2-contracts/BF-0000-flow-business.template.md` — BF template
 - `2-contracts/UF-0000-flow-user.template.md` — UF template
 - `2-contracts/SF-0000-flow-sub.template.md` — SF template

@@ -1,0 +1,46 @@
+# CIG-0002 — API Types Sync (OpenAPI → TypeScript)
+#
+# Enforces L1.1 + L5.3: the generated TS types in web/types/api.generated.ts
+# MUST match the current openapi.yaml. If a PR changes the spec without
+# regenerating types (or vice versa), this gate fails.
+#
+# Required: PR-blocking for any change touching openapi.yaml or web/types/api.generated.ts.
+# See: PRIN-0003 §L5.3, API-0000-api-spec.template.md
+
+name: CIG-0002 api-types-sync
+
+on:
+  pull_request:
+    paths:
+      - "docs/2-contracts/api/openapi.yaml"
+      - "web/types/api.generated.ts"
+      - "scripts/generate-api-types.sh"
+
+jobs:
+  types-sync:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install openapi-typescript
+        run: npm install -g openapi-typescript@7
+
+      - name: Regenerate types
+        run: |
+          openapi-typescript docs/2-contracts/api/openapi.yaml \
+            --output web/types/api.generated.ts.fresh
+
+      - name: Diff against committed types
+        run: |
+          if ! diff -q web/types/api.generated.ts web/types/api.generated.ts.fresh; then
+            echo "::error::Generated types do not match openapi.yaml"
+            echo "Run: scripts/generate-api-types.sh and commit the result"
+            diff -u web/types/api.generated.ts web/types/api.generated.ts.fresh || true
+            exit 1
+          fi

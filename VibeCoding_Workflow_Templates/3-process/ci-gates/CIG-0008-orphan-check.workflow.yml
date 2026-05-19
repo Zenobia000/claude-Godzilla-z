@@ -1,0 +1,62 @@
+# CIG-0008 — Orphan Check (Flow ID Cross-Reference)
+#
+# Enforces L4.4 (Traceability). Greps the repo for every BF/UF/SF/FR/API/TC/SM
+# reference and verifies the referenced file exists. Catches:
+#   - "see BF-0007" but BF-0007 doesn't exist (or was renamed)
+#   - A test cites TC-0099 that's not in registry
+#   - A route file references PC-A99 that's not in 2-contracts/pages/
+#
+# Required: PR-blocking.
+# See: PRIN-0003 §L4.4, PRIN-0001-flow-id-conventions.md, sunnydata-flow-audit
+
+name: CIG-0008 orphan-check
+
+on:
+  pull_request:
+
+jobs:
+  orphan-check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Find existing IDs
+        run: |
+          python3 <<'EOF'
+          import re, subprocess, sys
+          from pathlib import Path
+
+          # ID prefixes to check (sync with PRIN-0001)
+          prefixes = ["BF", "UF", "SF", "FR", "API", "TC", "MC", "SM", "PC",
+                      "MDS", "ADR", "CR", "ERR", "ASYNC", "MIG", "POL", "CT",
+                      "SLO", "PIPE", "MODEL", "OBS", "CAP"]
+          pattern = re.compile(r"\b(" + "|".join(prefixes) + r")-(\d{4})\b")
+
+          # Step 1: collect all IDs that DO exist (declared somewhere)
+          existing = set()
+          for f in list(Path("docs").rglob("*.md")) + list(Path("VibeCoding_Workflow_Templates").rglob("*.md")):
+              for m in pattern.finditer(f.read_text()):
+                  if f.stem.startswith(f"{m.group(1)}-{m.group(2)}"):
+                      existing.add(f"{m.group(1)}-{m.group(2)}")
+
+          # Step 2: collect all IDs that are REFERENCED
+          referenced = set()
+          for f in list(Path("docs").rglob("*.md")) + list(Path("src").rglob("*.*")) + list(Path("tests").rglob("*.*")) if Path("src").exists() else list(Path("docs").rglob("*.md")):
+              try: text = f.read_text(errors="ignore")
+              except Exception: continue
+              for m in pattern.finditer(text):
+                  referenced.add(f"{m.group(1)}-{m.group(2)}")
+
+          # Orphans = referenced - existing - templates (0000)
+          orphans = {r for r in (referenced - existing) if not r.endswith("-0000")}
+          if orphans:
+              print(f"::error::Orphan references (referenced but no declaration found): {sorted(orphans)[:20]}")
+              sys.exit(1)
+          print(f"OK: {len(existing)} declared IDs, {len(referenced)} references, 0 orphans")
+          EOF

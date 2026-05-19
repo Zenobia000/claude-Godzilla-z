@@ -1,0 +1,54 @@
+# CIG-0001 — OpenAPI Spec Lint (Spectral)
+#
+# Enforces L1.1 (REST API) and L1.3 (Error envelope) contracts.
+# Catches: invalid OpenAPI, missing operationIds, missing Problem schema refs,
+# RFC 7807 violations, pagination/idempotency convention drift.
+#
+# Required: PR-blocking.
+# See: PRIN-0003 §L1.1, ERR-0000-error-envelope.template.md, API-0000-api-spec.template.md
+
+name: CIG-0001 spec-lint
+
+on:
+  pull_request:
+    paths:
+      - "docs/2-contracts/api/openapi.yaml"
+      - ".spectral.yaml"
+
+jobs:
+  spec-lint:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install Spectral
+        run: npm install -g @stoplight/spectral-cli@6
+
+      - name: Lint OpenAPI
+        run: |
+          spectral lint docs/2-contracts/api/openapi.yaml \
+            --ruleset .spectral.yaml \
+            --fail-severity=warn
+
+      # Suggested .spectral.yaml ruleset (project-tunable):
+      #
+      # extends: ["spectral:oas", "spectral:asyncapi"]
+      # rules:
+      #   operation-operationId: error
+      #   operation-tags: error
+      #   no-$ref-siblings: error
+      #   error-response-uses-problem-schema:
+      #     description: All 4xx/5xx responses must $ref components/schemas/Problem
+      #     given: "$.paths[*][*].responses[?(@property.match(/^(4|5)/))]"
+      #     then:
+      #       field: "content.application/problem+json.schema.$ref"
+      #       function: pattern
+      #       functionOptions:
+      #         match: "Problem$"
+      #     severity: error

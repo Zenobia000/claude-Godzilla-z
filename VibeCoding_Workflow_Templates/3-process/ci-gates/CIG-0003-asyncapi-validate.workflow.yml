@@ -1,0 +1,64 @@
+# CIG-0003 — AsyncAPI Validate
+#
+# Enforces L1.2 (async/event wire contract). Checks asyncapi.yaml lints clean
+# against AsyncAPI 2.6 spec and that channel definitions are CloudEvents 1.0 compatible.
+#
+# Required: PR-blocking if project has any async channel.
+# See: PRIN-0003 §L1.2, ASYNC-0000-async-api.template.md
+
+name: CIG-0003 asyncapi-validate
+
+on:
+  pull_request:
+    paths:
+      - "docs/2-contracts/api/asyncapi.yaml"
+      - "docs/2-contracts/ASYNC-*.example.asyncapi.yaml"
+
+jobs:
+  asyncapi-validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install AsyncAPI CLI
+        run: npm install -g @asyncapi/cli@1
+
+      - name: Validate AsyncAPI spec
+        run: |
+          asyncapi validate docs/2-contracts/api/asyncapi.yaml
+
+      - name: Validate ASYNC-NNNN example files
+        run: |
+          shopt -s nullglob
+          for f in docs/2-contracts/ASYNC-*.example.asyncapi.yaml; do
+            echo "Validating $f"
+            asyncapi validate "$f"
+          done
+
+      - name: Lint CloudEvents 1.0 conformance
+        run: |
+          # CloudEvents 1.0 required attributes: specversion, type, source, id
+          # All event payloads in asyncapi.yaml should reference a schema that
+          # includes these fields.
+          python3 <<'EOF'
+          import yaml, sys
+          spec = yaml.safe_load(open("docs/2-contracts/api/asyncapi.yaml"))
+          required = {"specversion", "type", "source", "id"}
+          missing = []
+          for name, schema in (spec.get("components", {}).get("schemas") or {}).items():
+              if name.endswith("CloudEvent"):
+                  props = set((schema.get("required") or []))
+                  gap = required - props
+                  if gap:
+                      missing.append((name, gap))
+          if missing:
+              for n, g in missing:
+                  print(f"::error::CloudEvent schema {n} missing required: {g}")
+              sys.exit(1)
+          EOF

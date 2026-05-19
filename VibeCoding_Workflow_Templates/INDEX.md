@@ -1,231 +1,76 @@
 # VibeCoding Workflow Templates
 
-> **Version:** v5.7 — Add coding-standard tier-0 template + L5 boundary clarification
-> **Updated:** 2026-05-17
-> **🚪 New here?** Start at [OWNERSHIP-MATRIX.md](./OWNERSHIP-MATRIX.md) — tells you which files demand human decisions vs which AI auto-manages.
+> **Version:** v6.0 — Linus-minimum convergence (21 templates; 71 → 21 = -70%)
+> **Updated:** 2026-05-19
+> **🚪 NEW HERE? Read [`BEDROCK.md`](./BEDROCK.md) first** — 5 minutes, lists the essentials.
 
 ---
 
 ## Why this layout
 
-Templates are organized by **stability tier**, not by workflow phase. The path prefix (`0-`, `1-`, ..., `5-`) tells you and your AI **how often this kind of doc changes** — which is the metadata that matters most when deciding whether to trust a doc as ground truth.
-
-Lower number = more stable. Higher number = changes more often.
+Templates are organized by **stability tier**. Path prefix (`0-`, `1-`, ..., `4-`) tells you and AI **how often this kind of doc changes** — which is the metadata that matters most for trust.
 
 ```
-0-principles  ←  read first, trust most
+0-principles  ←  trust most; changes < 1×/year
 1-decisions
 2-contracts
 3-process
-4-exploration
-5-views        ←  read last, trust least (regenerate from code)
+4-exploration ←  trust as motivation; changes per task
 ```
 
-See [HOW-TO-INSTANTIATE.md](./HOW-TO-INSTANTIATE.md) for how to use these templates inside your own project.
+Tier 5 (auto-regen views) was deleted in v6.0 — generated on demand via `sunnydata-auto-regen` skill instead.
 
 ---
 
-## Domain Scope & Profiles
+## The 21 canonical templates
 
-These templates are **not universal** — they're opinionated toward specific product types. The table below shows current coverage:
+### Tier 0 — Principles (4, all bedrock)
+- [`PRIN-0000-product-principles.template.md`](./0-principles/PRIN-0000-product-principles.template.md) — mission · personas · non-goals · glossary · unit-economics · quality bars · invariants
+- [`PRIN-0001-flow-id-conventions.md`](./0-principles/PRIN-0001-flow-id-conventions.md) — naming invariant
+- [`PRIN-0003-engineering-contract-stack.md`](./0-principles/PRIN-0003-engineering-contract-stack.md) — 10-layer map (where every contract lives)
+- [`STD-0000-coding-standard.template.md`](./0-principles/STD-0000-coding-standard.template.md) — team coding-standard divergences from textbook (merged from dev `v5.7`)
 
-| Profile | Coverage | Key templates |
-|---|---|---|
-| 🟢 **web-product** (Full Stack) | 95% | API spec, DB schema, flows, frontend contracts, CI/CD, security |
-| 🟡 **platform-infra** (DevOps / SRE) | 60% | Deployment runbook, SLO spec, incident response, chaos engineering, GitOps, infra architecture |
-| 🟡 **data-ml** (Data Scientist) | 40% | Pipeline contract, model card, experiment log |
-| 🟢 **full** | — | All templates |
+### Tier 1 — Decisions (2)
+- [`ARCH-0000-architecture-overview.template.md`](./1-decisions/ARCH-0000-architecture-overview.template.md) **bedrock** — C4 + modules + stack + infra + DDD + capacity-est + security + frontend
+- [`ADR-0000-adr.template.md`](./1-decisions/ADR-0000-adr.template.md) specialized — append-only decision record
 
-When initializing a project with `/task-init`, choose the profile that matches your product type. Templates outside your profile can still be used — the profile just controls which ones are instantiated by default.
+### Tier 2 — Contracts (8)
+- [`FLOW-0000-flow.template.md`](./2-contracts/FLOW-0000-flow.template.md) **bedrock** — BF / UF / SF (3 scopes, one template)
+- [`API-0000-api-spec.template.md`](./2-contracts/API-0000-api-spec.template.md) **bedrock** — REST + async + errors + idempotency
+- [`MC-0000-module-contract.template.md`](./2-contracts/MC-0000-module-contract.template.md) **bedrock** — DbC + state machine (+ xstate JSON sibling)
+- [`FR-0000-functional-requirement.template.md`](./2-contracts/FR-0000-functional-requirement.template.md) **bedrock** — rules + page contract
+- [`SRE-0000-reliability.template.md`](./2-contracts/SRE-0000-reliability.template.md) **bedrock** — SLO + observability + capacity
+- [`DATA-0000-data-contract.template.md`](./2-contracts/DATA-0000-data-contract.template.md) specialized — master data / migration / pipeline / model card
+- [`AI-0000-ai-system-contract.template.md`](./2-contracts/AI-0000-ai-system-contract.template.md) specialized — prompt / agent / RAG / safety / capacity
+- [`EDGE-0000-edge-case-catalog.template.md`](./2-contracts/EDGE-0000-edge-case-catalog.template.md) **bedrock** — production memory (10 classes)
 
-See the **Profile Selection Table** in [HOW-TO-INSTANTIATE.md](./HOW-TO-INSTANTIATE.md) for the full per-template breakdown.
+### Tier 3 — Process (4)
+- [`PROC-0001-developer-handbook.template.md`](./3-process/PROC-0001-developer-handbook.template.md) **bedrock** — onboarding + workflow + code review + security review + BDD
+- [`PROC-0002-ops-runbook.template.md`](./3-process/PROC-0002-ops-runbook.template.md) specialized — deploy + gitops + incident + chaos + deprecation
+- [`TEST-0000-testing-strategy.template.md`](./3-process/TEST-0000-testing-strategy.template.md) specialized — unit + contract + BDD + LLM-eval + experiment
+- [`QG-0000-quality-gates.md`](./3-process/QG-0000-quality-gates.md) specialized — Gate 0–5 stage prerequisites
 
----
+### Tier 4 — Exploration (3, all specialized)
+- [`PRD-0000-prd.template.md`](./4-exploration/PRD-0000-prd.template.md) — discovery + personas + spec + experiments + launch
+- [`PLAN-0000-planning.template.md`](./4-exploration/PLAN-0000-planning.template.md) — roadmap + WBS
+- [`CIA-0000-change-impact-analysis.template.md`](./4-exploration/CIA-0000-change-impact-analysis.template.md) — CR-driven impact
 
-## The 6 tiers
+### Tier 3 — CI Gates (10 enforcement workflows, not templates)
 
-### 0-principles — *near-immutable invariants*
-Mission, non-goals, quality bars, technical hard limits, naming conventions, terminology. Reviewed every 6 months, changed only on major version. AI loads this first.
-- [`PRIN-0000-product-principles.template.md`](./0-principles/PRIN-0000-product-principles.template.md)
-- [`PRIN-0001-flow-id-conventions.md`](./0-principles/PRIN-0001-flow-id-conventions.md) — Flow ID prefix system (9 core + 22 extended)
-- [`GLOS-0000-glossary.template.md`](./0-principles/GLOS-0000-glossary.template.md) — **NEW v5.2**: business terminology source of truth (critical for ERP-class systems)
-- [`PRIN-0002-frontend-quality-attributes.template.md`](./0-principles/PRIN-0002-frontend-quality-attributes.template.md) — **NEW v5.4**: frontend SLO / Core Web Vitals / A11y / responsive breakpoints (per ADR-0001)
-- [`STD-0000-coding-standard.template.md`](./0-principles/STD-0000-coding-standard.template.md) — **NEW v5.7**: team-specific coding convention overrides (records only divergences from mainstream language style guides)
-
-### 1-decisions — *append-only judgments*
-ADRs, architecture overviews, module charters, domain models. Once Accepted, never edited; superseded by writing a new decision.
-- [`ADR-0000-adr.template.md`](./1-decisions/ADR-0000-adr.template.md)
-- [`ADR-0001-frontend-template-tier-realignment.md`](./1-decisions/ADR-0001-frontend-template-tier-realignment.md) — v5.4 decision: split monolithic frontend-architecture into 6 tier-aligned files
-- [`ARCH-0000-architecture-overview.template.md`](./1-decisions/ARCH-0000-architecture-overview.template.md)
-- [`ARCH-0001-module-boundary.template.md`](./1-decisions/ARCH-0001-module-boundary.template.md) — **NEW v5.2**: per-module charter (owns / does NOT own / dependencies / ACL)
-- [`DDD-0000-domain-model.template.md`](./1-decisions/DDD-0000-domain-model.template.md) — **NEW v5.2**: per-bounded-context DDD model (aggregates, invariants, ERD, events)
-- [`ARCH-0002-frontend-tech-stack.template.md`](./1-decisions/ARCH-0002-frontend-tech-stack.template.md) — **NEW v5.4**: frontend layered tech selection + project structure (per ADR-0001)
-- [`ARCH-0003-infra-architecture.template.md`](./1-decisions/ARCH-0003-infra-architecture.template.md) — **NEW v5.6**: infrastructure architecture (VPC, compute, IaC, DR) — profile: `platform-infra`
-
-### 2-contracts — *interfaces that MUST track code*
-API specs, module contracts, layered Flows, FRs, traceability. Carry frontmatter `id`, `status`, `last-synced-with`; the `sunnydata-doc-freshness` skill flags drift + lifecycle issues.
-- [`API-0000-api-spec.template.md`](./2-contracts/API-0000-api-spec.template.md) — "how do systems exchange data?"
-- [`MC-0000-module-contract.template.md`](./2-contracts/MC-0000-module-contract.template.md) — "what does this module promise?"
-- [`BF-0000-flow-business.template.md`](./2-contracts/BF-0000-flow-business.template.md) — L1 BF; "how does it happen E2E?"
-- [`UF-0000-flow-user.template.md`](./2-contracts/UF-0000-flow-user.template.md) — L2 UF; "how does this actor do it?"
-- [`SF-0000-flow-sub.template.md`](./2-contracts/SF-0000-flow-sub.template.md) — L3 SF; "how does this shared step work?"
-- [`FR-0000-functional-requirement.template.md`](./2-contracts/FR-0000-functional-requirement.template.md) — FR; "how do we judge correctness?"
-- [`SM-0000-state-machine.template.md`](./2-contracts/SM-0000-state-machine.template.md) — per-entity state transitions (extract when ≥5 states)
-- [`MDS-0000-master-data.template.md`](./2-contracts/MDS-0000-master-data.template.md) — master entity governance (critical for ERP)
-- [`FI-0000-flow-index.template.md`](./2-contracts/FI-0000-flow-index.template.md) — **NEW v5.3**: project-wide Flow aggregation view (paired with `sunnydata-flow-audit` skill)
-- [`TM-0000-traceability-matrix.template.md`](./2-contracts/TM-0000-traceability-matrix.template.md) — cross-layer coverage map
-- [`DS-0000-frontend-design-system.template.md`](./2-contracts/DS-0000-frontend-design-system.template.md) — **NEW v5.4**: design tokens + atomic design + API client + auth + frontend security checklist (per ADR-0001)
-- [`PC-0000-page-contract.template.md`](./2-contracts/PC-0000-page-contract.template.md) — **NEW v5.4**: per-page contract (route / responsibility / data / CTA / nav) (per ADR-0001)
-- [`SLO-0000-slo-spec.template.md`](./2-contracts/SLO-0000-slo-spec.template.md) — **NEW v5.6**: SLO specification (SLI / error budget / burn-rate alerts / SLA mapping) — profile: `platform-infra`
-- [`PIPE-0000-pipeline-contract.template.md`](./2-contracts/PIPE-0000-pipeline-contract.template.md) — **NEW v5.6**: data pipeline contract (input/output schema / DQ gates / SLA) — profile: `data-ml`
-- [`MODEL-0000-model-card.template.md`](./2-contracts/MODEL-0000-model-card.template.md) — **NEW v5.6**: ML model card (intended use / metrics / bias / lineage) — profile: `data-ml`
-- [`OBS-0000-observability-spec.template.md`](./2-contracts/OBS-0000-observability-spec.template.md) — **NEW v5.6**: observability specification (metrics / logs / traces / dashboards / alerting) — profile: `platform-infra`
-- [`CAP-0000-capacity-planning.template.md`](./2-contracts/CAP-0000-capacity-planning.template.md) — **NEW v5.6**: capacity planning & cost management (resource model / cost allocation / scaling) — profile: `platform-infra`
-
-### 3-process — *how we work*
-Workflow guides, checklists, methodology references, runbooks, gates.
-- [`PROC-0001-workflow-manual.md`](./3-process/PROC-0001-workflow-manual.md)
-- [`PROC-0002-bdd-guide.md`](./3-process/PROC-0002-bdd-guide.md)
-- [`PROC-0003-code-review-checklist.md`](./3-process/PROC-0003-code-review-checklist.md)
-- [`PROC-0004-security-readiness-checklist.md`](./3-process/PROC-0004-security-readiness-checklist.md)
-- [`PROC-0005-deployment-runbook.template.md`](./3-process/PROC-0005-deployment-runbook.template.md)
-- [`PROC-0006-docs-maintenance-guide.md`](./3-process/PROC-0006-docs-maintenance-guide.md)
-- [`QG-0000-quality-gates.md`](./3-process/QG-0000-quality-gates.md) — **NEW v5**: Gate 0-4 stage prerequisites
-- [`TP-0000-test-plan.template.md`](./3-process/TP-0000-test-plan.template.md) — **NEW v5.1**: strategic test document
-- [`PROC-0007-vendor-api-test.template.md`](./3-process/PROC-0007-vendor-api-test.template.md) — **NEW v5.1**: per-vendor test prerequisites
-- [`PROC-0008-frontend-pre-merge.template.md`](./3-process/PROC-0008-frontend-pre-merge.template.md) — **NEW v5.4**: frontend test strategy + code/quality/IA checklists (per ADR-0001)
-- [`PROC-0009-incident-response.template.md`](./3-process/PROC-0009-incident-response.template.md) — **NEW v5.6**: incident response (SEV1-4 / on-call / post-mortem / comms) — profile: `platform-infra`
-- [`PROC-0010-chaos-engineering.template.md`](./3-process/PROC-0010-chaos-engineering.template.md) — **NEW v5.6**: chaos engineering (game day / fault injection / blast radius) — profile: `platform-infra`
-- [`PROC-0011-gitops-runbook.template.md`](./3-process/PROC-0011-gitops-runbook.template.md) — **NEW v5.6**: GitOps runbook (ArgoCD/Flux / environment promotion / drift detection) — profile: `platform-infra`
-- [`PROC-0012-deprecation-playbook.template.md`](./3-process/PROC-0012-deprecation-playbook.template.md) — **NEW v5.6**: deprecation & sunset playbook (compatibility windows / migration paths / data retention) — profile: `full`
-- [`ONBOARD-0000-team-onboarding.template.md`](./3-process/ONBOARD-0000-team-onboarding.template.md) — **NEW v5.6**: team onboarding & knowledge transfer (Day 1-30 / offboarding / handoff) — profile: `full`
-
-### 4-exploration — *per-task ephemeral intent*
-PRDs, WBS, brainstorms, change-impact analyses. Date-stamp filenames, archive when shipped.
-- [`PRD-0000-prd.template.md`](./4-exploration/PRD-0000-prd.template.md)
-- [`WBS-0000-wbs.template.md`](./4-exploration/WBS-0000-wbs.template.md)
-- [`CIA-0000-change-impact-analysis.template.md`](./4-exploration/CIA-0000-change-impact-analysis.template.md) — **NEW v5**: CIA (CR-NNNN) — produced by `sunnydata-change-impact-analysis` skill, mandated by `change-governance` rule
-- [`EXP-0000-experiment-log.template.md`](./4-exploration/EXP-0000-experiment-log.template.md) — **NEW v5.6**: ML experiment log (hypothesis / dataset / results / reproducibility) — profile: `data-ml`
-- [`DISC-0000-discovery-research.template.md`](./4-exploration/DISC-0000-discovery-research.template.md) — **NEW v5.6**: discovery & user research (hypotheses / competitive analysis / opportunity sizing) — profile: `full`
-
-### 5-views — *derived from code; do not hand-edit*
-Project structure, dependency graphs, class diagrams, frontend trees. Regenerate via `sunnydata-auto-regen` skill or language-specific tooling.
-- [`VIEW-0001-project-structure.template.md`](./5-views/VIEW-0001-project-structure.template.md)
-- [`VIEW-0002-file-dependencies.template.md`](./5-views/VIEW-0002-file-dependencies.template.md)
-- [`VIEW-0003-class-relationships.template.md`](./5-views/VIEW-0003-class-relationships.template.md)
-- [`VIEW-0004-frontend-route-map.template.md`](./5-views/VIEW-0004-frontend-route-map.template.md) — **NEW v5.4**: page tree + nav + route table + page-to-page data passing (derived from router config; per ADR-0001)
+`3-process/ci-gates/CIG-0001..0010.workflow.yml` — see [`ci-gates/README.md`](./3-process/ci-gates/README.md).
 
 ---
 
-## How AI should consume these templates
+## How AI should consume these
 
-| Tier | When to load | How to treat the content |
+| Tier | When to load | How to treat |
 |---|---|---|
 | 0-principles | Every new conversation | Hard constraint — overrides downstream |
 | 1-decisions | Before proposing architecture | Honor or escalate; never silently contradict |
 | 2-contracts | When touching public interfaces | Check `last-synced-with` first |
-| 3-process | Before category of work (review, deploy, test) | Follow the checklist |
+| 3-process | Before category of work (review / deploy / test) | Follow checklist |
 | 4-exploration | For motivation context | Don't assume current behavior |
-| 5-views | Almost never directly | Read the code, then optionally compare |
-
----
-
-## Scope boundary — what this template repo does NOT cover
-
-These tiers cover **product / architecture / contract / process** documentation. They deliberately do NOT include:
-
-- **Agent runtime rules** (Allowed / Needs-approval / Forbidden tool use, permission policy, hook config) — this lives in the **platform-specific entry file** that ships with your AI tooling: `CLAUDE.md` (Claude Code), `AGENTS.md` (Codex / generic), `.cursorrules` (Cursor), `GEMINI.md` (Gemini CLI), or a system prompt. Naming differs per platform; the *content* (the three-section Allowed / Needs-approval / Forbidden split) is what matters.
-- **Per-session task templates** (PRD drafting flow, code review flow, debug flow) — these belong in **skills** (`vibecoding-*`, `sunnydata-*`), not in the templates repo. The templates here are the *artifacts* skills produce; the skills themselves live under `.claude/skills/`.
-- **Repo-level CLAUDE.md / per-directory CLAUDE.md** — these layer project-specific instructions on top of the templates. They reference these templates; they are not duplicated here.
-
-If your downstream project is missing a runtime-rules entry file, **that is a real gap** — but fix it in your `.claude/` (or equivalent) directory, not by adding a template here. See `references/copilot-tools.md` / `references/codex-tools.md` inside the `superpowers:using-superpowers` skill for platform-specific equivalents.
-
----
-
-## Template maturity flags
-
-Not every template in this repo has equal field-validation. When picking templates for a new project, weight them by maturity:
-
-| Maturity | Meaning | Templates |
-|---|---|---|
-| **stable** | Used in 2+ real projects; structure unlikely to change | `PRIN-0000`, `ADR-0000`, `ARCH-0000`, `API-0000`, `MC-0000`, `BF/UF/SF`, `FR-0000`, `TM-0000`, `PRD-0000`, `WBS-0000`, `PROC-0001..0006`, `QG-0000`, `VIEW-0001..0003` |
-| **field-tested** | Used in 1 real project; structure mostly stable | `GLOS-0000`, `DDD-0000`, `MDS-0000`, `SM-0000`, `FI-0000`, `CIA-0000`, `TP-0000`, `PROC-0007/0008`, frontend split (`PRIN-0002`, `ARCH-0002`, `DS-0000`, `PC-0000`, `VIEW-0004`), `STD-0000` |
-| **experimental** | Added in v5.6 to cover `data-ml` / `platform-infra` profiles, **not yet validated in a real project**. Use with awareness that fields may shift in v6 | `ARCH-0003`, `SLO-0000`, `PIPE-0000`, `MODEL-0000`, `OBS-0000`, `CAP-0000`, `PROC-0009..0012`, `ONBOARD-0000`, `EXP-0000`, `DISC-0000` |
-
-Instantiating an `experimental` template is fine — but if its structure does not fit your situation, **deviate freely**: report what you needed back to this repo so the next version can stabilize it.
-
----
-
-## How humans should pick a template to fill
-
-| You're doing… | Reach for… |
-|---|---|
-| Starting a project | `0-principles/PRIN-0000-product-principles.template.md` |
-| Recording an architectural choice | `1-decisions/ADR-0000-adr.template.md` |
-| Documenting a service boundary | `2-contracts/API-0000-api-spec.template.md` |
-| Documenting a module's public surface | `2-contracts/MC-0000-module-contract.template.md` |
-| Drafting a feature spec | `4-exploration/PRD-0000-prd.template.md` |
-| Planning a sprint | `4-exploration/WBS-0000-wbs.template.md` |
-| Adopting BDD on a new feature | `3-process/PROC-0002-bdd-guide.md` (read, don't fill) |
-| Pre-launch checks | `3-process/PROC-0004-security-readiness-checklist.md` (read, don't fill) |
-| Onboarding diagrams | `5-views/*` — but **regenerate**, don't write by hand |
-
----
-
-## Old-numbering → new-path migration table
-
-| v3 path | v4 path |
-|---|---|
-| `01_workflow_manual.md` | `3-process/PROC-0001-workflow-manual.md` |
-| `02_project_brief_and_prd.md` | `4-exploration/PRD-0000-prd.template.md` |
-| `03_behavior_driven_development_guide.md` | `3-process/PROC-0002-bdd-guide.md` |
-| `04_architecture_decision_record_template.md` | `1-decisions/ADR-0000-adr.template.md` |
-| `05_architecture_and_design_document.md` | `1-decisions/ARCH-0000-architecture-overview.template.md` |
-| `06_api_design_specification.md` | `2-contracts/API-0000-api-spec.template.md` |
-| `07_module_specification_and_tests.md` | `2-contracts/MC-0000-module-contract.template.md` |
-| `08_project_structure_guide.md` | `5-views/VIEW-0001-project-structure.template.md` |
-| `09_file_dependencies_template.md` | `5-views/VIEW-0002-file-dependencies.template.md` |
-| `10_class_relationships_template.md` | `5-views/VIEW-0003-class-relationships.template.md` |
-| `11_code_review_and_refactoring_guide.md` | `3-process/PROC-0003-code-review-checklist.md` |
-| `12_frontend_architecture_specification.md` | **split across 0/1/2/3** (per [ADR-0001](../docs/1-decisions/ADR-0001-frontend-template-tier-realignment.md)): `0-principles/PRIN-0002-frontend-quality-attributes`, `1-decisions/ARCH-0002-frontend-tech-stack`, `2-contracts/DS-0000-frontend-design-system`, `3-process/PROC-0008-frontend-pre-merge` |
-| `13_security_and_readiness_checklists.md` | `3-process/PROC-0004-security-readiness-checklist.md` |
-| `14_deployment_and_operations_guide.md` | `3-process/PROC-0005-deployment-runbook.template.md` |
-| `15_documentation_and_maintenance_guide.md` | `3-process/PROC-0006-docs-maintenance-guide.md` |
-| `16_wbs_development_plan_template.md` | `4-exploration/WBS-0000-wbs.template.md` |
-| `17_frontend_information_architecture_template.md` | **split** (per [ADR-0001](../docs/1-decisions/ADR-0001-frontend-template-tier-realignment.md)): `2-contracts/PC-0000-page-contract` (per-page contract), `5-views/VIEW-0004-frontend-route-map` (route/nav derive), `4-exploration/PRD-0000-prd.template.md §6` (IA principles) |
-| *(new in v4)* | `0-principles/PRIN-0000-product-principles.template.md` |
-| *(new in v5)* | `0-principles/PRIN-0001-flow-id-conventions.md` |
-| *(new in v5)* | `2-contracts/BF-0000-flow-business.template.md` |
-| *(new in v5)* | `2-contracts/UF-0000-flow-user.template.md` |
-| *(new in v5)* | `2-contracts/SF-0000-flow-sub.template.md` |
-| *(new in v5)* | `2-contracts/TM-0000-traceability-matrix.template.md` |
-| *(new in v5)* | `3-process/QG-0000-quality-gates.md` |
-| *(new in v5)* | `4-exploration/CIA-0000-change-impact-analysis.template.md` |
-| *(new in v5.1)* | `2-contracts/FR-0000-functional-requirement.template.md` |
-| *(new in v5.1)* | `3-process/TP-0000-test-plan.template.md` |
-| *(new in v5.1)* | `3-process/PROC-0007-vendor-api-test.template.md` |
-| *(new in v5.2)* | `0-principles/GLOS-0000-glossary.template.md` |
-| *(new in v5.2)* | `1-decisions/ARCH-0001-module-boundary.template.md` |
-| *(new in v5.2)* | `1-decisions/DDD-0000-domain-model.template.md` |
-| *(new in v5.2)* | `2-contracts/SM-0000-state-machine.template.md` |
-| *(new in v5.2)* | `2-contracts/MDS-0000-master-data.template.md` |
-| *(new in v5.3)* | `2-contracts/FI-0000-flow-index.template.md` |
-| *(new in v5.6)* | `1-decisions/ARCH-0003-infra-architecture.template.md` |
-| *(new in v5.6)* | `2-contracts/SLO-0000-slo-spec.template.md` |
-| *(new in v5.6)* | `2-contracts/PIPE-0000-pipeline-contract.template.md` |
-| *(new in v5.6)* | `2-contracts/MODEL-0000-model-card.template.md` |
-| *(new in v5.6)* | `3-process/PROC-0009-incident-response.template.md` |
-| *(new in v5.6)* | `3-process/PROC-0010-chaos-engineering.template.md` |
-| *(new in v5.6)* | `3-process/PROC-0011-gitops-runbook.template.md` |
-| *(new in v5.6)* | `4-exploration/EXP-0000-experiment-log.template.md` |
-| *(new in v5.6)* | `2-contracts/OBS-0000-observability-spec.template.md` |
-| *(new in v5.6)* | `2-contracts/CAP-0000-capacity-planning.template.md` |
-| *(new in v5.6)* | `3-process/PROC-0012-deprecation-playbook.template.md` |
-| *(new in v5.6)* | `3-process/ONBOARD-0000-team-onboarding.template.md` |
-| *(new in v5.6)* | `4-exploration/DISC-0000-discovery-research.template.md` |
-| *(new in v5.7)* | `0-principles/STD-0000-coding-standard.template.md` |
-
-A migration script for downstream forks is at `scripts/migrate-templates-v3-to-v4.sh`.
+| (5-views removed) | — | Use `sunnydata-auto-regen` skill for on-demand views |
 
 ---
 
@@ -233,15 +78,13 @@ A migration script for downstream forks is at `scripts/migrate-templates-v3-to-v
 
 | Version | Date | Change |
 |---|---|---|
-| v5.7 | 2026-05-17 | Add tier-0 `STD-0000-coding-standard` template (records team-specific divergences from mainstream language style guides — closes anti-slop L3 gap); add **Scope boundary** section clarifying agent runtime rules live in `.claude/` / `AGENTS.md` not in this repo (closes anti-slop L5 gap); add **Template maturity flags** marking v5.6 additions as `experimental` until field-validated; fix `47 templates` → `52 templates` count drift in HOW-TO-INSTANTIATE |
-| v5.6 | 2026-05-15 | Profile-based template selection + lifecycle completion: Domain Scope declaration, 4 profiles (web-product / data-ml / platform-infra / full); 13 new templates — SRE (SLO, incident response, chaos engineering, observability), DevOps (infra architecture, GitOps runbook, capacity planning), Data Scientist (pipeline contract, model card, experiment log), Lifecycle (deprecation playbook, team onboarding, discovery research) |
-| v5.4 | 2026-05-10 | Frontend template tier realignment (ADR-0001 / CR-0001): split `5-views/frontend-architecture` and `5-views/frontend-information-architecture` into 6 properly-tiered templates (0/1/2/3/5) + integrated IA principles into `PRD-0000-prd.template.md §6` |
-| v5.3 | 2026-05-10 | Flow self-monitoring: project-wide flow-index aggregation template; sunnydata-flow-audit skill detecting broken refs / orphans / layering violations / stale flows / index drift |
-| v5.2 | 2026-05-10 | ERP-class foundation: Glossary (terminology source of truth); Module Boundary charter (per-module owns/NOT-owns); Domain Model (DDD aggregates + ERD + invariants); State Machine (extracted when complex); Master Data Specification (governance for long-lived shared entities) |
-| v5.1 | 2026-05-10 | "One doc, one question" enforcement: standalone Functional Requirement template (decouple FR from Flow); Test Plan strategic template; Vendor API Test Requirement template |
-| v5.0 | 2026-05-10 | Change Governance: Flow ID system (BF/UF/SF/FR/NFR/API/TC/ADR/CR), layered Flow templates, Traceability Matrix, Quality Gates, CIA template & skill, change-governance hard-gate rule, lifecycle frontmatter (status/supersedes) |
-| v4.0 | 2026-05-10 | Stability-tier layout; added 0-principles; .template.md naming; sync metadata for tier 2 |
-| v3.0 | 2026-03-16 | Phase-based numbering, removed cookbook, unified zh-TW |
-| v2.1 | 2025-10-03 | Added 17 (frontend IA) |
-| v2.0 | 2025-10-03 | Reorganized numbering, added INDEX |
-| v1.0 | 2025-10-01 | Initial release |
+| **v6.0** | **2026-05-19** | **Linus-minimum convergence**. 71 templates → 21 (20 v6.0 canonical + STD-0000 merged from dev `v5.7`). Deleted 5-views/, GLOS, DDD, ARCH-0001/2/3, MDS, MIG, PIPE, MODEL, ERR, ASYNC, SLO, OBS, CAP, POL, DS, FI, TM, BF/UF/SF, SM, PC, CT, TP, EXP, PROMPT, AGENT, RAG, AISAFE, AICAP, LLMEVAL, PERS, UE, EST, ABT, GTM, RM, WBS, DISC, ONBOARD, PRIN-0002, ADR-0001, PROC-0002..0012. Content merged into 8 new consolidated templates: `FLOW`, `DATA`, `AI`, `SRE`, `TEST`, `PLAN`, `PROC-0001` (handbook), `PROC-0002` (ops runbook). New entry point: `BEDROCK.md`. Profile system simplified. CI gates unchanged. |
+| v5.8 | 2026-05-17 | AI-native + startup completion (13 new templates: 6 AI, 5 product, 2 system-design) |
+| v5.7 | 2026-05-16 | Engineering contract stack distillation (PRIN-0003 10-layer map + 6 contracts + 10 CI gates) |
+| v5.6 | 2026-05-15 | Profile-based template selection + lifecycle completion (13 new templates) |
+| v5.4 | 2026-05-10 | Frontend template tier realignment |
+| v5.3 | 2026-05-10 | Flow self-monitoring |
+| v5.2 | 2026-05-10 | ERP foundation (Glossary, Module Boundary, DDD, SM, MDS) |
+| v5.1 | 2026-05-10 | "One doc, one question" enforcement |
+| v5.0 | 2026-05-10 | Change governance: Flow ID system, layered Flow templates, CIA |
+| v4.0 | 2026-05-10 | Stability-tier layout |

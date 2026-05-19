@@ -1,0 +1,69 @@
+# CIG-0004 — Schemathesis Contract Test
+#
+# Enforces L1.1 + L4.1: property-based contract testing. Generates test cases
+# from openapi.yaml and fuzzes the running service for spec conformance.
+#
+# Catches:
+#   - Responses missing fields declared in spec
+#   - Undeclared 4xx/5xx
+#   - Server crash on edge-case input (long strings, negative numbers, unicode)
+#   - Idempotency replay violations (paired with custom hooks)
+#
+# Required: PR-blocking. Nightly run with higher example count.
+# See: PRIN-0003 §L4.1, CT-0000-contract-test.template.md
+
+name: CIG-0004 schemathesis-contract
+
+on:
+  pull_request:
+  schedule:
+    - cron: "0 3 * * *"   # nightly deep fuzz
+
+jobs:
+  schemathesis:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    services:
+      app:
+        image: ghcr.io/example/app:pr-${{ github.event.pull_request.number || 'latest' }}
+        ports:
+          - 8000:8000
+        # TODO: configure healthcheck
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install Schemathesis
+        run: pip install schemathesis==3.*
+
+      - name: Wait for service
+        run: |
+          for i in $(seq 1 60); do
+            curl -fsS http://localhost:8000/health && exit 0
+            sleep 1
+          done
+          exit 1
+
+      - name: Run Schemathesis
+        env:
+          MAX_EXAMPLES: ${{ github.event_name == 'schedule' && '500' || '100' }}
+        run: |
+          schemathesis run \
+            --base-url=http://localhost:8000 \
+            --hypothesis-deadline=5000 \
+            --hypothesis-max-examples=${MAX_EXAMPLES} \
+            --checks=all \
+            --workers=4 \
+            --report=schemathesis-report.tar.gz \
+            docs/2-contracts/api/openapi.yaml
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: schemathesis-report
+          path: schemathesis-report.tar.gz
