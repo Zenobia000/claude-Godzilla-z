@@ -5,6 +5,11 @@
 # Claude Code 個人設定
 .claude/settings.local.json
 
+# TaskMaster 執行期狀態（每 session 變動，屬個人資料）
+.claude/taskmaster-data/.session-*
+.claude/taskmaster-data/.current-task
+.claude/taskmaster-data/timelog.jsonl
+
 # Node
 node_modules/
 
