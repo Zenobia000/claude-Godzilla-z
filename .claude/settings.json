@@ -6,7 +6,6 @@
       "Bash(pwd:*)",
       "Bash(tree:*)",
       "Bash(mkdir:*)",
-      "Bash(rm:*)",
       "Bash(mv:*)",
       "Bash(cp:*)",
       "Bash(tee:*)",
@@ -38,7 +37,6 @@
       "Bash(chmod:*)",
       "Bash(jq:*)",
       "Bash(bash:*)",
-      "Bash(sudo:*)",
       "Bash(dnf:*)",
       "Bash(yum:*)",
       "Bash(apt:*)",
@@ -50,14 +48,17 @@
       "Grep(*)"
     ],
     "deny": [],
-    "ask": []
+    "ask": [
+      "Bash(rm:*)",
+      "Bash(sudo:*)"
+    ]
   },
   "statusLine": {
     "type": "command",
     "command": "bash .claude/statusline.sh",
     "padding": 0
   },
-  "model": "opus",
+  "model": "claude-fable-5",
   "hooks": {
     "SessionStart": [
       {
