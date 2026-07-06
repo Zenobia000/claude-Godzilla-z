@@ -1,6 +1,6 @@
 # Skills 索引
 
-MECE 架構：12 個 skill 對齊開發生命週期，統一 `sunnydata-` 前綴。
+MECE 架構：13 個 skill 對齊開發生命週期，統一 `sunnydata-` 前綴。
 
 ## 命名原則
 

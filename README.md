@@ -12,7 +12,7 @@
 
 </div>
 
-> 一套開箱即用的 Claude Code 開發配置模板 — 12 個 MECE Skills、5-Gate Git 品質管線、Tesla StatusLine。
+> 一套開箱即用的 Claude Code 開發配置模板 — 13 個 MECE Skills、5-Gate Git 品質管線、Tesla StatusLine。
 > 複製到新專案，像駕駛員進倉一樣，直接啟動。
 
 ---
@@ -21,7 +21,7 @@
 
 ```bash
 # 1. 複製到新專案
-cp -r claude-GUNDAM-zh-tw/.claude your-project/.claude
+cp -r claude-Godzilla-z/.claude your-project/.claude
 
 # 2. 設定 MCP（填入 API keys）
 cp .mcp.json.linux.example .mcp.json   # Linux
