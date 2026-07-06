@@ -1,0 +1,12 @@
+{
+  "name": "claude-Godzilla-z",
+  "created": "2026-07-06",
+  "mode": "MVP",
+  "language": "Markdown/Bash（配置模板倉庫）",
+  "wbsFile": ".claude/taskmaster-data/wbs.md",
+  "suggestMode": "medium",
+  "github": {
+    "setup": "existing",
+    "remote": "https://github.com/MMJSUN/claude-Godzilla-z.git"
+  }
+}
