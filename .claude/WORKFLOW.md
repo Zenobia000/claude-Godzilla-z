@@ -122,16 +122,23 @@
 
 `.claude/skills/` 下的 skill 提供特定領域的深度知識：
 
-| Skill | 搭配指令 |
+| Skill | 搭配指令/時機 |
 | :--- | :--- |
-| tdd-workflow | `/tdd` |
-| api-design | 06_api 模板 |
-| security-review | `/review-code` |
-| e2e-testing | `/e2e` |
-| coding-standards | 所有開發 |
-| deep-research | 複雜問題 |
-| deployment-patterns | `/verify pre-pr` |
-| docker-patterns | 容器化 |
+| sunnydata-design | `/plan`、多步驟實作前 |
+| sunnydata-testing | `/tdd`、`/e2e` |
+| sunnydata-api-design | 06_api 模板、API 端點設計 |
+| sunnydata-shadcn-ui | 前端 UI 開發 |
+| sunnydata-security | `/review-code`（安全面）、auth/輸入處理 |
+| sunnydata-code-review | `/review-code`、commit/PR 前 |
+| sunnydata-architecture-review | 架構審查、設計債盤點 |
+| sunnydata-infrastructure | `/verify pre-pr`、容器化與部署 |
+| sunnydata-branch-lifecycle | 分支收尾（merge/PR/cleanup） |
+| sunnydata-debugging | `/build-fix`、bug 與測試失敗 |
+| sunnydata-deep-research | 複雜問題調查 |
+| sunnydata-parallel-agents | 2+ 獨立任務平行派發 |
+| sunnydata-skill-authoring | 新增/修改 skill |
+
+完整索引見 `.claude/skills/INDEX.md`。
 
 ---
 

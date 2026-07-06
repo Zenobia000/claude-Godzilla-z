@@ -15,13 +15,13 @@
 | 1.2 | 環境驗證（hooks/skills/commands 全數可用） | ✅ 完成 | 高 | - | 0.5h | 煙霧測試通過 |
 | 1.3 | MCP 設定檔建立（.mcp.json） | ✅ 完成 | 高 | - | 0.5h | 免金鑰 server 可直接用 |
 | 1.4 | 填入 MCP API keys 並驗證 6 個 server 載入 | 🚫 阻塞 | 中 | 1.3 | 0.5h | 需使用者提供 Brave/Context7/GitHub 金鑰 |
-| 2.1 | 修正 WORKFLOW.md「Skills 參考」表舊名稱 | ⏳ 待處理 | 高 | - | 0.5h | tdd-workflow 等舊名 → sunnydata-* 現名 |
+| 2.1 | 修正 WORKFLOW.md「Skills 參考」表舊名稱 | ✅ 完成 | 高 | - | 0.5h | 13 個 sunnydata-* 全數對齊，實際 ~15m |
 | 2.2 | 更新 rules/performance.md 模型選擇表 | ⏳ 待處理 | 中 | - | 0.5h | 對齊現行 Claude 模型家族 |
-| 2.3 | 校對 PROJECT_STRUCTURE.md 與實際目錄一致性 | ⏳ 待處理 | 中 | - | 1h | 含 skills/commands/hooks 清單 |
+| 2.3 | 校對 PROJECT_STRUCTURE.md 與實際目錄一致性 | ⏳ 待處理 | 中 | - | 1h | 含 skills/commands/hooks 清單；.claude/README.md 與 PROJECT_STRUCTURE.md 掃出舊 skill 名殘留 |
 | 3.1 | 盤點 17 份 VibeCoding 模板翻新狀態 | ⏳ 待處理 | 高 | - | 1h | 05/12/17 已翻新，其餘待評估 |
 | 3.2 | 依盤點結果逐一翻新待處理模板 | ⏳ 待處理 | 中 | 3.1 | 待估 | 完成 3.1 後拆成子任務 |
 | 4.1 | /template-check 全倉庫合規掃描 | ⏳ 待處理 | 中 | 2.x | 0.5h | |
-| 4.2 | skills INDEX.md 與實際目錄一致性驗證 | ⏳ 待處理 | 低 | 2.x | 0.5h | |
+| 4.2 | skills INDEX.md 與實際目錄一致性驗證 | ⏳ 待處理 | 低 | 2.x | 0.5h | 已知缺口：INDEX 標題寫 13 個但生命週期表僅 12 列，缺 architecture-review |
 
 ### 狀態說明
 - ✅ 完成
