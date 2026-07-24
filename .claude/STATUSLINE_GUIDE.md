@@ -7,7 +7,7 @@
 - 尋找或讀取 Claude Code credential。
 - 呼叫 Anthropic 私有或未公開的 HTTP endpoint。
 - 建立 usage cache、session snapshot 或時間日誌。
-- 讀寫 `.claude/taskmaster-data/`。
+- 讀寫任何專案狀態檔或 runtime 資料。
 - 修改 Git 或工作區內容。
 
 ## 啟用方式

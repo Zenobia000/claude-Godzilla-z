@@ -58,8 +58,6 @@ Claude Code 已將自訂 commands 與 skills 統一為 slash-command 入口。�
 - 原生 Task list 處理暫態工作
 - 規格、issue、ADR 與測試證據處理長期狀態
 
-本機舊資料可留在 `taskmaster-data/`，但 runtime 檔案已忽略。
-
 ## Settings 與 StatusLine
 
 `settings.json` 使用最小權限基線，並以 deny 保護內建 Read/Edit 不讀寫敏感路徑；個人 MCP 與額外權限應放進不入版控的 `settings.local.json`。

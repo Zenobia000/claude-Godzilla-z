@@ -20,10 +20,7 @@ claude-Godzilla-z/
 │   ├── agents/                   # 8 個隔離型專業執行角色
 │   ├── output-styles/
 │   │   └── 15-Vision-output.md   # 唯一呈現樣式
-│   ├── hooks/                    # 停用的舊腳本與 Hook 設計說明
-│   ├── taskmaster-data/          # 退役 runtime 說明；本機舊資料忽略
-│   ├── context/                  # 退役 shared-memory 說明
-│   └── coordination/             # 選用的協作參考
+│   └── hooks/                    # 停用的舊腳本與 Hook 設計說明
 │
 ├── VibeCoding_Workflow_Templates/
 │   ├── INDEX.md                  # 文件選用與模板索引

@@ -11,12 +11,6 @@
 .claude/logs/*
 !.claude/logs/.gitignore
 
-# 已退役 TaskMaster 的本機執行狀態（不忽略 WBS／專案來源資料）
-.claude/taskmaster-data/.session-*
-.claude/taskmaster-data/.current-task
-.claude/taskmaster-data/timelog.jsonl
-.claude/taskmaster-data/*.log
-
 # Node
 node_modules/
 
