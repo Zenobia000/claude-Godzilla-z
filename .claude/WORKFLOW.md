@@ -22,6 +22,12 @@ PRD／BDD／SAD／ADR／Traceability
 證據、缺口與真實完成狀態
 ```
 
+## 這個 repo 的定位
+
+這是**文件驅動開發的啟動寶（startup kit）**：只放可重用的模板、`rules/` 與 `skills/`，**不放任何專案的 Excel 或需求資料**。每次開新專案把它當基底，實際產出長在你的專案裡。
+
+流程最上游的「Excel／訪談／既有系統」是你**每個專案自己帶進來的輸入**（需求訪談表、業務 Excel、舊系統文件），住在你的實際專案，不在這個 repo。你在專案裡維護的「Excel B 區」就是 [`18 需求決策紀錄`](../VibeCoding_Workflow_Templates/18_requirement_decision_record.md) 的形態。先前隨附的 SmartLock 四本 Excel 只是一份「填好的範例」，已抽離——**移除的是範例，不是 Excel 這個概念**。
+
 ## 四個入口
 
 | 入口 | 何時使用 | 主要輸入 | 完成條件 |
@@ -80,16 +86,36 @@ Excel 是業務／PM 的視覺治理介面，Markdown 是工程契約與版本�
 
 四本治理活頁簿（規劃書／BOM／驗收控制表／整合測試計畫）是可重用的**視覺治理 pattern**，不是必備清單；欄位 owner、B/E/G/D 分權與需求決策 schema 見 [`docs/document-system/architecture.md`](docs/document-system/architecture.md) 與模板 18。新專案從 owner 拍板的需求決策起手，不必複製任何特定領域的實例規模。
 
-## Subagent
+## 協作模型：Rules × Skills × Agents
 
-主 Agent 預設完成一般規劃與實作。只有下列情況才委派：
+三者不是各自獨立的東西，而是三層疊在一起同時運作：
 
-- 大量搜尋或測試輸出需要隔離 context
-- 可安全平行的獨立工作
-- 需要唯讀架構／安全／Code Review 第二意見
-- 需要限制工具或外部操作權限
+- **Rules（恆定約束層）**：`rules/` 的 [golden-rules](rules/golden-rules.md)、[git-workflow](rules/git-workflow.md)、[language-register](rules/language-register.md) 約束**每一步**，不因階段或 Skill 改變。任何 Skill 或 Agent 的產出都不得違反；來源與 Rules 衝突時指出並以權威來源為準。
+- **Skills（方法／編排層）**：四個 Action Skill（`/intake→/verify`）是入口，決定當前階段做什麼，並依任務語意載入能力 Skill（`sunnydata-*`／`community-*`，如 debugging、testing、security、api-design）。能力 Skill 是「怎麼做」的知識，用完即走、不常駐 context。
+- **Agents（執行邊界層）**：由主 Agent（跟著 Skill 跑時）在需要**隔離 context／限制工具權限／安全平行／獨立第二意見**時，透過 Task 委派。Agent 是邊界，不是另一套流程——不在 Agent prompt 複製 Skill 的方法。
 
-Agent 是執行邊界，Skill 才是方法與知識；不要在 Agent prompt 再複製一套流程。
+一句話：**Skill 決定做什麼、Rule 約束怎麼做才合規、Agent 是需要隔離時的執行容器。**
+
+### 階段 × 該考慮的 Agent
+
+預設由主 Agent 直接做；只有隔離確有價值才委派，不為每件事都開 Agent。
+
+| 階段 | 主要 Skill | 典型可委派的 Agent |
+|---|---|---|
+| `/intake` | intake | `documentation-specialist`（大型來源正規化）|
+| `/specify` | specify | `architect`（架構第二意見）|
+| `/deliver` | deliver | `test-automation-engineer`、`build-error-resolver` |
+| `/verify` | verify | `code-quality-specialist`、`security-infrastructure-auditor`、`end-to-end-validation-specialist` |
+| 部署規劃 | 能力 Skill | `deployment-expert` |
+
+### 一個走查（新增一個付款 API）
+
+1. `/intake` 讀你專案的 Excel／訪談（L1 業務語域；Rules 要求來源可追溯），把需求種進模板 18，等 owner 拍板優先序與範圍。
+2. owner 在模板 18 簽核 → `/specify` 過硬閘，在 L2 把需求翻成 FR/NFR、ACPT 與 API 契約；架構有疑慮時委派 `architect` 拿第二意見，載入 `sunnydata-api-design`。
+3. `/deliver` 實作垂直切片（L3 工程語域），載入 `sunnydata-testing`；build 壞了委派 `build-error-resolver`。
+4. `/verify` 跑實際測試與 trace，委派 `code-quality-specialist`、`security-infrastructure-auditor` 做隔離審查，用證據判定。
+
+全程 git-workflow 約束 commit／push／文件同步，language-register 約束每份產出的語域。
 
 ## 狀態與證據
 

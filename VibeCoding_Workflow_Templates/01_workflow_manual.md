@@ -92,7 +92,7 @@ Word 指南是文件 catalog，VibeCoding 是填寫格式，正式專案文件�
 | G — Generated contract | 工程文件／程式碼 | 由 canonical source 重建 |
 | D — Derived | 公式／生成器 | 唯讀、可重算 |
 
-生成的活頁簿是 published snapshots；在 B/E preservation-safe round-trip 完成前，不把它們當成可直接編輯的雙向 SSOT。需求決策（B 區）以 [`18 需求決策紀錄`](./18_requirement_decision_record.md) 為權威。
+這個啟動寶不隨附 Excel 產生器；B/E/G/D 是你在**專案自己的活頁簿**裡組織欄位所有權的 pattern。需求決策（B 區）以 [`18 需求決策紀錄`](./18_requirement_decision_record.md) 為權威。若專案自建產生器投影 G/D，生成欄不得覆寫 B/E，且在 preservation-safe round-trip 完成前不當雙向 SSOT。
 
 ## 8. Gate 判定
 

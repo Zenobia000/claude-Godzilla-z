@@ -39,6 +39,8 @@ Subagent 僅在需要隔離時使用，目前保留 8 個互斥度較高的角�
 
 一般規劃、通用研究、TDD 方法、重構與模板選擇由主 Agent 搭配 Skills 處理，不再各自註冊一個重疊 Agent。
 
+Rules、Skills 與 Agents 三層怎麼一起運作（含階段 × Agent 對照與走查）見 [WORKFLOW.md 協作模型](./WORKFLOW.md#協作模型rules--skills--agents)。
+
 ## Commands 與 Skills
 
 Claude Code 已將自訂 commands 與 skills 統一為 slash-command 入口。本專案以 Skill 為單一格式，避免同名 command 與 Skill 漂移。
