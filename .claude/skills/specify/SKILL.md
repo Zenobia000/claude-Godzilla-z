@@ -18,13 +18,14 @@ engineering artifact assert business intent that no source ID backs.
 
 **Thinking mode** (see [../../rules/thinking-boundary.md](../../rules/thinking-boundary.md)).
 Architectural judgment (VOC→FR/NFR translation, component/design/tech trade-offs)
-is a user growth area. In **深思 mode** (default when the decision is real and
-heading toward production): do not silently auto-translate or auto-decide —
-present options with trade-offs and the key open questions, let the human make
-the call, and record it as an ADR (context/options/decision/consequences). In
-**速通 mode** (low-difficulty or prototype): recommend one option plus a one-line
-trade-off for a fast human pick, keep it lean, and defer exhaustive
-regulatory/permission/edge-case analysis to a later production-bound pass.
+is a user growth area. **速通 is the default**: recommend one option plus a
+one-line trade-off for a fast human pick, keep it lean, and defer exhaustive
+regulatory/permission/edge-case analysis to a later production-bound pass. Switch
+to **深思 mode only when the user asks** — then do not auto-translate or
+auto-decide: present options with trade-offs and the key open questions, let the
+human make the call, and record it as an ADR. At a clearly high-risk or
+irreversible point you may ask once whether to go 深思, but do not switch on your
+own.
 
 ## Inputs and authority
 
