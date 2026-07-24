@@ -11,6 +11,7 @@
 - **風險裁剪：** 建立協作與驗收真正需要的文件，不為了完整而填模板。
 - **小步交付：** 以穩定 ID 串接需求、驗收、設計、程式碼、測試與證據。
 - **狀態分離：** Requirement、Code reality、Verification、Release 不共用一個狀態。
+- **降認知負載：** 看板（Excel 駕駛艙）給眼睛掃、docs 給訂版；AI 更新結構化欄位與 docs，回報只給短 delta，不倒大段說明，減少文件切換與注意力耗散。見 [workbook-guide](../../docs/document-system/workbook-guide.md)。
 
 角色縮寫：Business / PM / Product / BA / ARCH / DEV / QA / SEC / SRE / OPS
 
