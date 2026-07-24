@@ -11,7 +11,8 @@
 - **風險裁剪：** 建立協作與驗收真正需要的文件，不為了完整而填模板。
 - **小步交付：** 以穩定 ID 串接需求、驗收、設計、程式碼、測試與證據。
 - **狀態分離：** Requirement、Code reality、Verification、Release 不共用一個狀態。
-- **降認知負載：** 看板（Excel 駕駛艙）給眼睛掃、docs 給訂版；AI 更新結構化欄位與 docs，回報只給短 delta，不倒大段說明，減少文件切換與注意力耗散。見 [workbook-guide](../../docs/document-system/workbook-guide.md)。
+- **降認知負載：** 看板（角色追蹤 Excel）給眼睛掃、docs 給訂版；AI 更新結構化欄位與 docs，回報只給短 delta，不倒大段說明，減少文件切換與注意力耗散。見 [workbook-guide](../../docs/document-system/workbook-guide.md)。
+- **思考模式（速通 vs 深思）：** 低難度/雛形用速通（AI 給推薦選項、你快選）；架構判斷與商業決策這兩個成長標的用深思（AI 只 provoke、你親自判斷並記錄理由）。雛形不前置法規/權限的過度分析，先雛形→打掉→重構迭代。見 [`.claude/rules/thinking-boundary.md`](../../.claude/rules/thinking-boundary.md)。
 
 角色縮寫：Business / PM / Product / BA / ARCH / DEV / QA / SEC / SRE / OPS
 

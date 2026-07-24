@@ -16,6 +16,16 @@ only legal channel translating business language (L1) into engineering language
 (L3). State each business term beside its engineering ID, and never let an
 engineering artifact assert business intent that no source ID backs.
 
+**Thinking mode** (see [../../rules/thinking-boundary.md](../../rules/thinking-boundary.md)).
+Architectural judgment (VOC→FR/NFR translation, component/design/tech trade-offs)
+is a user growth area. In **深思 mode** (default when the decision is real and
+heading toward production): do not silently auto-translate or auto-decide —
+present options with trade-offs and the key open questions, let the human make
+the call, and record it as an ADR (context/options/decision/consequences). In
+**速通 mode** (low-difficulty or prototype): recommend one option plus a one-line
+trade-off for a fast human pick, keep it lean, and defer exhaustive
+regulatory/permission/edge-case analysis to a later production-bound pass.
+
 ## Inputs and authority
 
 1. Read `docs/document-system/INDEX.md` when present, then only the approved

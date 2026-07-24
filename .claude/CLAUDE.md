@@ -6,7 +6,7 @@
 
 ## 元件責任
 
-- `rules/`：每次工作都成立的規則。`golden-rules.md` 是跨技術棧的底線；`git-workflow.md` 是 Git／push／PR 操作規範；`language-register.md` 定義業務／橋接／工程三層語域與各階段角色定位。
+- `rules/`：每次工作都成立的規則。`golden-rules.md` 是跨技術棧的底線；`git-workflow.md` 是 Git／push／PR 操作規範；`language-register.md` 定義業務／橋接／工程三層語域；`thinking-boundary.md` 定義速通/深思模式與「哪些必須使用者親自思考、AI 只 provoke」。
 - `skills/`：能力資料庫與可重用方法；四個 Action Skills 是主要入口。
 - `agents/`：需要獨立 context、權限邊界、平行處理或專業驗證時才使用。
 - `output-styles/`：只改變回答呈現方式，不承載開發流程。
