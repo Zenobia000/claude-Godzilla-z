@@ -1,18 +1,22 @@
 ---
 name: sunnydata-testing
-description: Test-driven development workflow with unit, integration, and E2E testing patterns. Red-Green-Refactor cycle, 80%+ coverage target, Playwright E2E with Page Object Model. Use when writing features, fixing bugs, or setting up test infrastructure.
+description: Risk-based test development workflow with unit, integration, and E2E patterns. Use Red-Green-Refactor where it improves feedback, and apply project-defined coverage and evidence thresholds when writing features, fixing bugs, or setting up test infrastructure.
 origin: merged(tdd-workflow + e2e-testing)
 ---
 
-<!-- 繁中摘要：此技能整合了 TDD 工作流程與 Playwright E2E 測試模式。涵蓋單元、整合、E2E 三層測試，紅綠重構循環，80% 覆蓋率要求，及 CI/CD 整合。 -->
+<!-- 繁中摘要：此技能整合 TDD 與 Playwright E2E，依風險選擇單元、整合、E2E 層級；覆蓋率門檻由專案政策與關鍵行為決定。 -->
 
 # Testing
 
-> See `.claude/rules/testing.md` for minimum coverage requirements.
+> Project-wide evidence rules are in `.claude/rules/golden-rules.md`; this Skill
+> owns testing methods. Discover thresholds from project configuration, CI, NFRs,
+> or approved quality policy instead of inventing a universal percentage.
 
 ## Overview
 
-All features are developed using TDD: write failing tests first, implement to pass, then refactor. The three test layers work together to achieve 80%+ coverage:
+Prefer a failing test or reproducible check before implementation when practical,
+then implement and refactor with feedback. Choose the test layers needed to cover
+approved behavior and material risk:
 
 - **Unit tests** — individual functions, utilities, components
 - **Integration tests** — API endpoints, database operations, service interactions
@@ -77,10 +81,14 @@ npm test
 **Step 7: Verify Coverage**
 ```bash
 npm run test:coverage
-# Target: 80%+ on branches, functions, lines, statements
+# Compare with the repository's configured thresholds and changed-risk areas.
 ```
 
-### Coverage Thresholds (jest config)
+### Coverage Thresholds (optional project policy example)
+
+The following `80` values are an example only. Keep existing repository
+thresholds, or have the responsible team approve new ones.
+
 ```json
 {
   "jest": {
@@ -551,9 +559,10 @@ it('returns 400 on invalid parameters', async () => { /* ... */ })
 
 ## Success Metrics
 
-- 80%+ code coverage (branches, functions, lines, statements)
-- All tests passing — zero skipped or disabled without tracked issue
-- Unit tests execute in < 30s total; individual unit tests < 50ms each
+- Project-defined coverage gates pass, with critical paths and changed risk
+  directly exercised
+- All applicable tests pass; skipped or disabled tests have an explicit reason
+- Test feedback time meets the repository or CI budget
 - E2E tests cover all critical user flows
 - No flaky tests in CI (quarantine with tracked issue if needed)
 - Tests catch regressions before production

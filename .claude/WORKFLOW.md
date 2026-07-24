@@ -1,161 +1,103 @@
-# 開發工作流指南
+# 文件驅動開發工作流
 
-## 完整開發流程
+本模板不再用 Hook 維護第二套 TaskMaster 狀態。開發主線由四個可手動觸發的 Action Skills 串接：
 
-```
-專案初始化 → 任務管理循環 → 結束保存
-```
-
-### Phase 0: 專案初始化
-
-```bash
-/task-init          # 建立 WBS、分析複雜度、配置 Hub 策略
-```
-
-產出：WBS 任務清單、專案配置、里程碑規劃
-
-### Phase 1: 任務循環（每個任務重複）
-
-```
-/task-next          # 從 WBS 取下一個任務（自動開始時間追蹤）
-    |
-/plan               # 規劃該任務的實作步驟（等待確認）
-    |
-/tdd                # 測試驅動開發（Red → Green → Refactor）
-    |
-/build-fix          # 修復建置錯誤（如有）
-    |
-/review-code        # 程式碼審查
-    |
-/e2e                # 端到端測試（關鍵流程）
-    |
-/verify full        # 全面驗證（建置+型別+lint+測試+安全）
-    |
-/task-status        # 確認進度（含預估 vs 實際時間），回到 /task-next
+```text
+Excel／訪談／既有系統
+          ↓
+       /intake
+          ↓
+來源登錄＋需求候選＋待確認事項
+          ↓
+       /specify
+          ↓
+PRD／BDD／SAD／ADR／Traceability
+          ↓
+       /deliver
+          ↓
+可驗收的垂直切片＋程式碼＋測試
+          ↓
+       /verify
+          ↓
+證據、缺口與真實完成狀態
 ```
 
-### Phase 2: 收尾
+## 四個入口
 
-```bash
-/time-log           # 查看今日/累計開發時間
-/verify pre-pr      # PR 前完整檢查（含安全掃描）
-/save-session       # 儲存 session 狀態供下次恢復
-```
+| 入口 | 何時使用 | 主要輸入 | 完成條件 |
+|---|---|---|---|
+| `/intake` | 新專案、需求訪談表、Excel、既有資料進件 | 原始來源與權威 owner | 來源座標、穩定 ID、需求決策紀錄已種好待 owner 拍板 |
+| `/specify` | 將白話需求工程化 | **已由 owner 核准的需求決策**、驗收、限制 | 只產生當前階段必要的工程契約，ID 互相連接 |
+| `/deliver` | 規格已足以實作 | 核准範圍與驗收標準 | 一個可測的垂直切片完成，未偷改範圍 |
+| `/verify` | 任務、PR、里程碑或上線前 | 變更、驗收標準、測試環境 | 實際證據支持狀態；未驗證部分清楚標示 |
 
----
+四個 Skill 設為手動呼叫，是為了保留人類決定工作階段與變更範圍的控制權。它們會視需要載入除錯、測試、安全、API、UI 或架構等能力 Skill。
 
-## 快速模式（小功能/Bug 修復）
+**需求決策 vs 工程決策的硬邊界**：優先序、範圍、里程碑、Gate、業務驗收屬**需求決策**，由產品 owner 於 Excel B 區／[`18 需求決策紀錄`](../VibeCoding_Workflow_Templates/18_requirement_decision_record.md) 拍板，AI 不得自動衍生。`/specify` 在 owner 簽核前不得把需求工程化。這條線與 [`rules/language-register.md`](rules/language-register.md) 的 L1（業務）→ L2（中介）→ L3（工程）分水嶺是同一條。
 
-```
-/plan [描述]  →  /tdd  →  /verify quick
-```
+## 文件深度
 
----
+不要一開始生成整套企業文件。依交付風險選擇：
 
-## 指令速查
+### Fast Track
 
-### 核心工作流（按使用順序）
+適合單一 bug、小型功能或短期實驗。
 
-| 指令 | 用途 | 常用參數 |
-| :--- | :--- | :--- |
-| `/task-init` | 專案初始化 | |
-| `/task-next` | 取下一個任務（自動追蹤時間） | |
-| `/task-status` | 查看專案進度（含時間追蹤） | `--detailed`, `--metrics` |
-| `/time-log` | 開發時間報表 | `--today`, `--by-task`, `--week`, `--month` |
-| `/plan` | 規劃實作步驟 | [功能描述] |
-| `/tdd` | 測試驅動開發 | [功能描述] |
-| `/build-fix` | 修復建置錯誤 | |
-| `/review-code` | 程式碼審查 | [路徑] |
-| `/e2e` | E2E 測試 | [流程描述] |
-| `/verify` | 全面驗證 | `quick`, `full`, `pre-commit`, `pre-pr` |
+- 來源／問題與影響
+- 可驗收行為或重現步驟
+- 最小設計說明（需要決策才建 ADR）
+- 實作、回歸測試與證據
 
-### 輔助指令
+### Product Track
 
-| 指令 | 用途 |
-| :--- | :--- |
-| `/hub-delegate` | 委派 agent 執行任務 |
-| `/check-quality` | 品質評估 |
-| `/refactor-clean` | 死碼清理 |
-| `/template-check` | 模板合規檢查 |
-| `/time-log` | 開發時間報表（每日/每任務） |
-| `/suggest-mode` | 調整建議密度 |
-| `/learn` | 擷取可重用模式 |
-| `/save-session` | 儲存 session |
+適合一般產品功能或跨模組變更。
 
----
+- PRD、BDD／驗收
+- 受影響的 SAD／API／資料契約
+- 垂直切片與 Traceability
+- 整合測試與發布準備
 
-## Agent 使用時機
+### Governed Track
 
-| 場景 | 自動使用的 Agent |
-| :--- | :--- |
-| 複雜功能需求 | planner (opus) |
-| 架構決策 | architect (opus) |
-| 寫完程式碼後 | code-quality-specialist |
-| Bug 修復/新功能 | tdd-guide |
-| 建置失敗 | build-error-resolver |
-| 安全敏感程式碼 | security-infrastructure-auditor |
-| E2E 測試 | e2e-validation-specialist |
-| 死碼清理 | refactor-cleaner |
-| 更新文檔 | documentation-specialist |
-| 部署上線 | deployment-expert |
-| 模板整合 | workflow-template-manager |
+適合客戶驗收、法規、高風險或企業治理。
 
----
+- Excel 文件管制與核准
+- SRS／NFR、SAD／SDS、ADR、介面與資料契約
+- SIT／UAT、RACI、Runbook、變更與證據紀錄
+- 權威矩陣與完整追溯
 
-## Rules 自動載入
+企業文件全景請參考根目錄 Word 指南；可直接填寫的格式請使用 `VibeCoding_Workflow_Templates/`。
 
-`.claude/rules/` 下的規則在每次對話中自動生效：
+## Excel 與 Markdown
 
-| 規則 | 強制內容 |
-| :--- | :--- |
-| coding-style | 不可變性、檔案大小限制、錯誤處理 |
-| development-workflow | 研究先行、Plan-TDD-Review 流程 |
-| git-workflow | Conventional Commits、PR 流程 |
-| security | 每次 commit 前安全檢查清單 |
-| testing | 80%+ 覆蓋率、TDD 強制 |
-| performance | 模型選擇、context 管理 |
-| patterns | Repository Pattern、API 格式 |
+Excel 是業務／PM 的視覺治理介面，Markdown 是工程契約與版本差異介面。兩者不是互相取代：
 
----
+1. 先在 `docs/document-system/architecture.md` 指定欄位 owner。
+2. 保留來源檔、sheet、row、cell/range 與來源列 ID。
+3. 用穩定的 `SRC-* → REQ-* → FR/NFR → ACPT-* → SCN-* → TC-*` 串接；`AC-*` 保留給既有架構選項，不作驗收 ID。
+4. 自動生成只覆寫標示為 generated 的區域，不覆寫人工核准或標註。
+5. 同步後執行 ID、連結、驗收與證據完整性檢查。
 
-## Skills 參考
+四本治理活頁簿（規劃書／BOM／驗收控制表／整合測試計畫）是可重用的**視覺治理 pattern**，不是必備清單；欄位 owner、B/E/G/D 分權與需求決策 schema 見 [`docs/document-system/architecture.md`](docs/document-system/architecture.md) 與模板 18。新專案從 owner 拍板的需求決策起手，不必複製任何特定領域的實例規模。
 
-`.claude/skills/` 下的 skill 提供特定領域的深度知識：
+## Subagent
 
-| Skill | 搭配指令 |
-| :--- | :--- |
-| tdd-workflow | `/tdd` |
-| api-design | 06_api 模板 |
-| security-review | `/review-code` |
-| e2e-testing | `/e2e` |
-| coding-standards | 所有開發 |
-| deep-research | 複雜問題 |
-| deployment-patterns | `/verify pre-pr` |
-| docker-patterns | 容器化 |
+主 Agent 預設完成一般規劃與實作。只有下列情況才委派：
 
----
+- 大量搜尋或測試輸出需要隔離 context
+- 可安全平行的獨立工作
+- 需要唯讀架構／安全／Code Review 第二意見
+- 需要限制工具或外部操作權限
 
-## MCP Server
+Agent 是執行邊界，Skill 才是方法與知識；不要在 Agent prompt 再複製一套流程。
 
-| Server | 用途 |
-| :--- | :--- |
-| brave-search | 網路搜尋 |
-| context7 | 即時文檔查詢（套件文檔） |
-| github | GitHub 操作 |
-| playwright | 瀏覽器自動化 |
-| sequential-thinking | 鏈式推理 |
-| memory | 跨 session 記憶 |
+## 狀態與證據
 
-更多可用 server 見 `.claude/mcp-configs/README.md`。
+至少分開記錄：
 
----
+- Requirement／Document：Draft、Review、Approved、Deprecated
+- Code reality：TO-BE、PARTIAL、AS-BUILT
+- Verification：Not run、Failed、Passed、Blocked
+- Evidence：命令、報告、檔案或外部紀錄位置
 
-## 新專案設定指南
-
-1. 複製本模板目錄到新專案
-2. 複製 MCP 範本並填入 API keys:
-   - Windows: `cp .mcp.json.windows.example .mcp.json`
-   - Linux: `cp .mcp.json.linux.example .mcp.json`
-3. 根據專案語言，從 everything-claude 複製對應的語言規則到 `.claude/rules/`
-4. 根據專案需求，複製額外的 skills 到 `.claude/skills/`
-5. 啟動 Claude Code，執行 `/task-init`
+只有最後一項有實際證據，才能宣告驗證通過。

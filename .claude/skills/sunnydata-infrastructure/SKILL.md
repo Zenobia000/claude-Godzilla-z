@@ -641,7 +641,8 @@ npx prisma migrate resolve --rolled-back <migration-name>
 - [ ] SSL/TLS enabled on all endpoints
 
 #### Security
-> See `.claude/rules/security.md` for the full security checklist (secrets, CORS, rate limiting, auth, security headers, CVE scanning).
+> Load `sunnydata-security` for the technology-specific checklist (secrets,
+> CORS, rate limiting, auth, security headers, CVE scanning).
 
 #### Monitoring
 - [ ] Application metrics exported (request rate, latency, error rate)

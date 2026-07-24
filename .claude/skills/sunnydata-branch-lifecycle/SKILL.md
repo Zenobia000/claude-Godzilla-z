@@ -151,7 +151,7 @@ Before presenting options, review the commit log for quality:
 git log --oneline <base-branch>..HEAD
 ```
 
-**Check each commit against `.claude/rules/git-workflow.md`:**
+**Use this advisory commit-quality review (project-specific conventions take precedence):**
 
 | Check | Fail action |
 |-------|-------------|
@@ -251,7 +251,8 @@ Analyze ALL commits (not just the latest) to write an accurate summary:
 git log --oneline <base-branch>..HEAD
 ```
 
-Create PR following `.claude/rules/git-workflow.md` PR quality standard:
+Create a PR using the repository template when present; otherwise use this
+project-neutral baseline:
 
 ```bash
 gh pr create --title "<type>(<scope>): <subject>" --body "$(cat <<'EOF'
@@ -375,4 +376,5 @@ Interrupted mid-work on a worktree?
 
 **Pairs with:**
 - `sunnydata-code-review` skill — run Phase 1 of sunnydata-code-review before finalizing Phase 2 here
-- `.claude/rules/git-workflow.md` — commit and PR message format reference
+- Project `CLAUDE.md`, contribution guide, and PR template — repository-specific
+  commit and PR conventions

@@ -8,7 +8,8 @@ origin: merged (security-review + owasp-web-security + security-best-practices-o
 
 # Security
 
-> Baseline rules: see `.claude/rules/security.md`
+> Project-wide safety principles are in `.claude/rules/golden-rules.md`; this
+> Skill owns the detailed, technology-specific security workflow.
 
 ## Overview
 

@@ -1,56 +1,74 @@
-# Skills 索引
+# Skills Catalog
 
-MECE 架構：12 個 skill 對齊開發生命週期，統一 `sunnydata-` 前綴。
+Skills 是這套生態系的能力資料庫。它們分成「人工啟動的流程入口」與「按任務載入的專業能力」，不再與 Rules、Agents 或 Output Styles 重複。
 
-## 命名原則
+## Action Skills
 
-```
-sunnydata-{lifecycle-phase}
-```
+這四個入口會顯示為 slash commands，並以 `disable-model-invocation: true` 保留人類階段控制：
 
-| 前綴 | 意義 |
-| :--- | :--- |
-| `sunnydata-` | SunnyData 團隊標準 skill |
+| Skill | 輸入 | 主要產出 | 邊界 |
+|---|---|---|---|
+| `/intake` | Excel／需求訪談來源 | 來源登錄、需求候選、待確認項 | 唯讀原始工作簿；保留 sheet/row/cell |
+| `/specify` | 已核准需求 | PRD、BDD、SAD、ADR、追溯 | 不實作 production code |
+| `/deliver` | 已核准 REQ／Scenario | 一個可驗收垂直切片 | 本機實作；外部行動另行授權 |
+| `/verify` | 變更範圍／REQ ID | 各 gate 證據與 verdict | 預設唯讀，不順手修復 |
 
-## 開發生命週期
+詳細流程見 [../WORKFLOW.md](../WORKFLOW.md)。
 
-| 階段 | Skill | 用途 | 觸發時機 |
-| :--- | :---- | :--- | :------- |
-| THINK+PLAN+DO | **sunnydata-design** | 探索意圖 → 撰寫計畫 → 依檢查點執行 | 新功能、多步驟實作前 |
-| BUILD (API) | **sunnydata-api-design** | REST API 設計最佳實踐 | 設計 API 端點 |
-| BUILD (UI) | **sunnydata-shadcn-ui** | shadcn/ui 元件管理與規則 | 前端 UI 開發 |
-| BUILD+TEST | **sunnydata-testing** | TDD 流程 + Unit/Integration/E2E (Playwright) | 寫功能、修 bug、建測試 |
-| VERIFY (安全) | **sunnydata-security** | OWASP 分類 + 實作 checklist + 語言特定實踐 | 安全審查、auth、輸入處理 |
-| VERIFY (審查) | **sunnydata-code-review** | 驗證 → 發起 review → 消化回饋 | 完成任務、commit/PR 前 |
-| SHIP (基礎設施) | **sunnydata-infrastructure** | Docker + CI/CD + 部署策略 + 生產就緒 | 容器化、部署規劃 |
-| SHIP (分支) | **sunnydata-branch-lifecycle** | 建立 worktree → 收尾分支 (merge/PR/cleanup) | 功能隔離、分支收尾 |
-| DEBUG | **sunnydata-debugging** | 四階段結構化除錯 | bug、測試失敗、異常行為 |
-| RESEARCH | **sunnydata-deep-research** | 多來源深度研究 (firecrawl/exa MCP) | 複雜問題調查 |
-| ORCHESTRATE | **sunnydata-parallel-agents** | 獨立任務平行派發 | 2+ 個不相關問題同時處理 |
-| META | **sunnydata-skill-authoring** | 撰寫/驗證 SKILL.md | 新增或修改 skill |
+## SunnyData 能力庫
 
-## 永遠生效的規則（非 skill）
+| 類別 | Skill | 使用時機 |
+|---|---|---|
+| 探索與設計 | `sunnydata-design` | 模糊問題、方案探索、複雜計畫 |
+| API | `sunnydata-api-design` | API 契約與介面設計 |
+| UI | `sunnydata-shadcn-ui` | shadcn/ui 元件與組合 |
+| 測試 | `sunnydata-testing` | Unit／Integration／E2E、test-first |
+| 除錯 | `sunnydata-debugging` | 可重現失敗與根因分析 |
+| 安全 | `sunnydata-security` | 信任邊界、auth、輸入、秘密、供應鏈 |
+| Code Review | `sunnydata-code-review` | 變更完成後的高信心審查 |
+| 架構 Review | `sunnydata-architecture-review` | 架構 smells、principles、fixes |
+| 基礎設施 | `sunnydata-infrastructure` | 容器、CI/CD、部署與生產就緒 |
+| 分支生命週期 | `sunnydata-branch-lifecycle` | worktree、commit、PR／merge 收尾 |
+| 深度研究 | `sunnydata-deep-research` | 需要多個權威來源的調查 |
+| 平行協作 | `sunnydata-parallel-agents` | 2 個以上真正獨立且可安全合併的子任務 |
+| Skill 作者工具 | `sunnydata-skill-authoring` | 新增、裁剪與驗證 Skill |
 
-以下在 `.claude/rules/` 目錄，每次對話自動載入：
+Action Skill 只載入當前步驟必要的能力；不要為了「完整」一次預載全部。
 
-| 檔案 | 涵蓋 |
-| :--- | :--- |
-| `coding-style.md` | 不可變性、檔案組織、命名慣例、品質清單 |
-| `security.md` | commit 前安全檢查、秘密管理 |
-| `testing.md` | 最低覆蓋率 80%、TDD 強制 |
-| `git-workflow.md` | Conventional Commits、PR 流程 |
-| `patterns.md` | 骨架專案策略、Repository Pattern、API 信封格式 |
-| `development-workflow.md` | 研究 → 規劃 → TDD → 審查 → 提交 |
-| `performance.md` | 模型選擇、Context Window 管理 |
+## Community 能力庫
 
-## 擴充方式
+| Skill | 用途 |
+|---|---|
+| `community-a11y-audit` | 可存取性稽核 |
+| `community-frontend-design` | 前端視覺與互動設計 |
+| `community-react-composition` | React composition patterns |
+| `community-react-native` | React Native 實務 |
+| `community-react-performance` | React／Next.js 效能 |
+| `community-ui-design-system` | UI/UX 設計系統與資料庫 |
+| `community-ux-bencium-controlled` | 保守、受控的 UX 規格 |
+| `community-ux-bencium-innovative` | 創新型 UX 規格 |
+| `community-web-guidelines` | Web interface guidelines |
 
-```bash
-cp -r /path/to/skill-folder .claude/skills/sunnydata-<name>/
-```
+這些是資料庫，不代表每個專案都要啟用。
 
-| 情境 | 建議來源 |
-| :--- | :------- |
-| 合約/深度安全審計 | `trailofbits/skills` 依 plugin 挑選 |
-| 更多 Superpowers | [obra/superpowers](https://github.com/obra/superpowers) |
-| shadcn 元件 | [shadcn-ui/ui skills](https://github.com/shadcn-ui/ui/tree/main/skills/shadcn) |
+## 責任檢查
+
+新增內容前先判斷：
+
+- 每次任務都必須遵守嗎？才放 `rules/golden-rules.md`
+- 是知識、清單或可重用做法嗎？放 Skill
+- 是人工觸發的端到端流程嗎？做 Action Skill
+- 需要獨立 context、工具或權限嗎？使用 Agent，並預載現有 Skill
+- 只是回答格式嗎？放 Output Style
+- 是確定、快速、低頻且無隱性狀態的自動化嗎？才考慮 Hook
+
+## 擴充與來源
+
+新增 Skill 時保留來源、授權與更新方式，先檢查是否已有重疊能力。可參考：
+
+- [obra/superpowers](https://github.com/obra/superpowers)
+- [Anthropic skills](https://github.com/anthropics/skills)
+- [Trail of Bits skills](https://github.com/trailofbits/skills)
+- [shadcn/ui skills](https://github.com/shadcn-ui/ui/tree/main/skills/shadcn)
+
+舊版 runtime prompts 保存在 `docs/legacy/claude-runtime/`，不會自動載入。
