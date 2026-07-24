@@ -50,7 +50,7 @@ approval_status: Draft
 
 工程文件如何填寫：`VibeCoding_Workflow_Templates/`
 
-需求決策（Excel B 區）：`VibeCoding_Workflow_Templates/18_requirement_decision_record.md`
+需求決策（Excel B 區）：`VibeCoding_Workflow_Templates/01_requirements/requirement_decision_record.md`
 
 ## Phase 3：工程化規格
 

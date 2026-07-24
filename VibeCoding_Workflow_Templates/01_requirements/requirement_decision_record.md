@@ -4,7 +4,7 @@
 
 這份文件是**需求決策的權威來源**，由產品 owner 填寫，AI 不得代為拍板。它是 `/intake → /specify` 之間那條硬邊界的檢查對象：**在此表把需求決策標為「已核准」並簽名之前，`/specify` 不得把該項需求工程化。**
 
-對照 [`docs/document-system/architecture.md`](../docs/document-system/architecture.md) 的 Excel **B 區（Business-owned）**：此表是 B 區的 Markdown 形態，Excel 視圖是它的投影。工程衍生的 FR/NFR 文字、元件映射、測試設計屬 G 區，不在此表人工維護。語域屬 L1 業務語言，見 [`.claude/rules/language-register.md`](../.claude/rules/language-register.md)。
+對照 [`docs/document-system/architecture.md`](../../docs/document-system/architecture.md) 的 Excel **B 區（Business-owned）**：此表是 B 區的 Markdown 形態，Excel 視圖是它的投影。工程衍生的 FR/NFR 文字、元件映射、測試設計屬 G 區，不在此表人工維護。語域屬 L1 業務語言，見 [`.claude/rules/language-register.md`](../../.claude/rules/language-register.md)。
 
 ---
 
@@ -41,7 +41,7 @@
 
 ## 3. Gate 決策紀錄
 
-里程碑與階段放行由 owner 在此簽核。對應 `01_workflow_manual.md` 的 Gate 判定與 `architecture.md` 的階段生命週期。
+里程碑與階段放行由 owner 在此簽核。對應 `../00_meta/workflow_manual.md` 的 Gate 判定與 `architecture.md` 的階段生命週期。
 
 | Gate ID | Gate 名稱 | 對應里程碑 | 前置條件（範圍/驗收） | 決策 | 決策者 | 日期 | 備註 |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |

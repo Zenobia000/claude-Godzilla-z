@@ -5,7 +5,7 @@
 ## 1. 使用原則
 
 - **用問題管理文件：** 文件是降低誤解、支援決策、可驗收的同步工具，不是交付物。不能減少下一次返工的文件就別寫。
-- **決策分兩類：** **需求決策**（優先序、範圍、里程碑、Gate、業務驗收）由產品 owner 拍板，落在 Excel B 區 / [`18 需求決策紀錄`](./18_requirement_decision_record.md)；**工程決策**（架構、契約、測試設計）由工程與 AI 協作。兩者之間是硬邊界，owner 未核准需求決策前不進 `/specify`。
+- **決策分兩類：** **需求決策**（優先序、範圍、里程碑、Gate、業務驗收）由產品 owner 拍板，落在 Excel B 區 / [`18 需求決策紀錄`](../01_requirements/requirement_decision_record.md)；**工程決策**（架構、契約、測試設計）由工程與 AI 協作。兩者之間是硬邊界，owner 未核准需求決策前不進 `/specify`。
 - **來源先行：** 先確認 Excel、訪談、既有文件與程式碼的 owner。
 - **欄位級 SSOT：** 同一資訊只有一個人工維護來源；其他載體是投影或索引。
 - **風險裁剪：** 建立協作與驗收真正需要的文件，不為了完整而填模板。
@@ -73,7 +73,7 @@ flowchart LR
 
 ## 6. Governed Track
 
-在 Product Track 之上，依 [`artifact-map.md`](../docs/document-system/artifact-map.md) 選用：
+在 Product Track 之上，依 [`artifact-map.md`](../../docs/document-system/artifact-map.md) 選用：
 
 - 文件管制、SRS/NFR、SAD/SDS、ADR、API/Event/DB 契約
 - WBS、RACI、Change Request
@@ -92,7 +92,7 @@ Word 指南是文件 catalog，VibeCoding 是填寫格式，正式專案文件�
 | G — Generated contract | 工程文件／程式碼 | 由 canonical source 重建 |
 | D — Derived | 公式／生成器 | 唯讀、可重算 |
 
-這個啟動寶不隨附 Excel 產生器；B/E/G/D 是你在**專案自己的活頁簿**裡組織欄位所有權的 pattern。需求決策（B 區）以 [`18 需求決策紀錄`](./18_requirement_decision_record.md) 為權威。若專案自建產生器投影 G/D，生成欄不得覆寫 B/E，且在 preservation-safe round-trip 完成前不當雙向 SSOT。
+這個啟動寶不隨附 Excel 產生器；B/E/G/D 是你在**專案自己的活頁簿**裡組織欄位所有權的 pattern。需求決策（B 區）以 [`18 需求決策紀錄`](../01_requirements/requirement_decision_record.md) 為權威。若專案自建產生器投影 G/D，生成欄不得覆寫 B/E，且在 preservation-safe round-trip 完成前不當雙向 SSOT。
 
 ## 8. Gate 判定
 
@@ -118,7 +118,7 @@ Word 指南是文件 catalog，VibeCoding 是填寫格式，正式專案文件�
 | AI／不確定性產品 | + 03 BDD 邊界場景、13 安全 | 評估與回歸集 | — |
 | 客戶驗收／正式上線 | + 07 測試、UAT、14 部署 | Runbook、Monitoring | — |
 
-三階段文件組合（對應 Fast/Product/Governed）：**MVP ≈ 9 份、Pilot ≈ 13 份、Enterprise ≈ 27 份**；深度依風險升級，見 [artifact-map.md](../docs/document-system/artifact-map.md)。
+三階段文件組合（對應 Fast/Product/Governed）：**MVP ≈ 9 份、Pilot ≈ 13 份、Enterprise ≈ 27 份**；深度依風險升級，見 [artifact-map.md](../../docs/document-system/artifact-map.md)。
 
 ## 10. 命名規範
 
@@ -155,4 +155,4 @@ DEC-001-line-intake-reliability.md   # 需求決策可獨立成檔時
 
 ## 12. 模板選用
 
-完整清單與 profile 對照見 [INDEX.md](./INDEX.md)。使用時只複製必要章節；模板中的範例值不是專案政策。
+完整清單與 profile 對照見 [INDEX.md](../INDEX.md)。使用時只複製必要章節；模板中的範例值不是專案政策。

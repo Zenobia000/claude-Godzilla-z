@@ -25,7 +25,7 @@ engineering artifact assert business intent that no source ID backs.
    only the paths required by this invocation.
 3. **Hard gate — owner requirement decisions.** Before engineering any in-scope
    item, confirm it has an owner-approved decision in the Requirement Decision
-   Record (`VibeCoding_Workflow_Templates/18_requirement_decision_record.md`, the
+   Record (`VibeCoding_Workflow_Templates/01_requirements/requirement_decision_record.md`, the
    Excel B-region in Markdown form): a matching row with `決策狀態 = 已核准`, a named
    decider, a date, and non-empty priority/scope/milestone that are not unaccepted
    auto-derived values. If a crossing milestone gate applies, its decision must be
@@ -41,11 +41,11 @@ engineering artifact assert business intent that no source ID backs.
 
 Read only the applicable repository template sections:
 
-- PRD: `VibeCoding_Workflow_Templates/02_project_brief_and_prd.md`
-- BDD: `VibeCoding_Workflow_Templates/03_behavior_driven_development_guide.md`
-- SAD: `VibeCoding_Workflow_Templates/05_architecture_and_design_document.md`
-- ADR: `VibeCoding_Workflow_Templates/04_architecture_decision_record_template.md`
-- Mode and gates: `VibeCoding_Workflow_Templates/01_workflow_manual.md`
+- PRD: `VibeCoding_Workflow_Templates/01_requirements/project_brief_and_prd.md`
+- BDD: `VibeCoding_Workflow_Templates/01_requirements/bdd_guide.md`
+- SAD: `VibeCoding_Workflow_Templates/03_architecture/architecture_and_design.md`
+- ADR: `VibeCoding_Workflow_Templates/03_architecture/adr.md`
+- Mode and gates: `VibeCoding_Workflow_Templates/00_meta/workflow_manual.md`
 
 Do not copy an entire template. Retain only sections justified by the approved
 scope, risks, NFRs, or existing document convention.

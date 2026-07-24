@@ -81,7 +81,7 @@ introduce schemas, identifiers, or implementation terms at intake.
 ## Seed the requirement decision record
 
 Alongside the derived register, seed or update the Requirement Decision Record
-(`VibeCoding_Workflow_Templates/18_requirement_decision_record.md` as the format;
+(`VibeCoding_Workflow_Templates/01_requirements/requirement_decision_record.md` as the format;
 the Excel B-region is its visual instance). Create one `DEC-*` row per requirement
 candidate carrying the business-language VOC. Leave the owner-decision columns —
 priority, scope in/out, milestone, business acceptance, gate — **empty or marked

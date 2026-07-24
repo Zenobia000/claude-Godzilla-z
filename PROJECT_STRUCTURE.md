@@ -22,12 +22,17 @@ claude-Godzilla-z/
 │   │   └── 15-Vision-output.md   # 唯一呈現樣式
 │   └── hooks/                    # 停用的舊腳本與 Hook 設計說明
 │
-├── VibeCoding_Workflow_Templates/
+├── VibeCoding_Workflow_Templates/    # 依 Word 九層分類的模板
 │   ├── INDEX.md                  # 文件選用與模板索引
-│   └── 01..18                    # 工程師可直接填寫的工作文件（18＝需求決策紀錄）
+│   ├── 00_meta/                  # workflow_manual、output_style
+│   ├── 01_requirements/          # 需求決策紀錄、PRD、BDD
+│   ├── 02_ux_ui/ 03_architecture/ 04_design/
+│   ├── 05_qa/ 06_ops/ 07_governance/
+│   └── governance_workbook_template.xlsx  # 治理活頁簿 Excel 範本
 │
 ├── docs/document-system/
 │   ├── architecture.md           # Excel／Markdown／Word 權威與同步架構
+│   ├── workbook-guide.md         # 四本活頁簿序程與 Excel 範本說明
 │   └── artifact-map.md           # 企業文件分類對應模板
 │
 ├── software_development_documentation_guide_zh_tw.docx

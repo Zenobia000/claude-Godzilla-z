@@ -14,7 +14,7 @@
 
 **鐵律：L1 與 L3 之間唯一合法的轉換通道是 L2。** 不允許在業務文件裡偷渡實作細節，也不允許工程文件憑空長出沒有來源的業務主張。跨層時，用穩定 ID（`SRC-* → REQ-* → FR/NFR → ACPT-* → SCN-* → SAD/ADR → 實作 → 證據`）與術語對照把兩邊接起來。
 
-L1→L2 的分水嶺同時是**需求決策的硬邊界**：優先序、範圍、里程碑、Gate、業務驗收由產品 owner 於 `VibeCoding_Workflow_Templates/18_requirement_decision_record.md`（Excel B 區的 MD 形態）拍板，owner 未核准前 `/specify` 不得工程化。語域切換與決策交還是同一件事的兩面。
+L1→L2 的分水嶺同時是**需求決策的硬邊界**：優先序、範圍、里程碑、Gate、業務驗收由產品 owner 於 `VibeCoding_Workflow_Templates/01_requirements/requirement_decision_record.md`（Excel B 區的 MD 形態）拍板，owner 未核准前 `/specify` 不得工程化。語域切換與決策交還是同一件事的兩面。
 
 ## 階段角色定位
 

@@ -212,7 +212,7 @@ git diff {BASE_SHA}..{HEAD_SHA}
 docs/adr/ADR-<NNNN>-<topic-slug>.md
 ```
 
-使用 `VibeCoding_Workflow_Templates/04_architecture_decision_record_template.md`；
+使用 `VibeCoding_Workflow_Templates/03_architecture/adr.md`；
 只有決策 owner 能將狀態改為 Accepted。審查報告本身不另寫入 runtime context。
 
 ---

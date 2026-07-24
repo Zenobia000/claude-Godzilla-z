@@ -288,7 +288,7 @@ candidate；使用目標專案的正式 ADR 目錄與既有命名。只有修 bu
 - 主 agent 想保留 context window
 
 dispatch 後的結論回傳主 Agent 整合。只有需要長期保存的決策才依
-`VibeCoding_Workflow_Templates/04_architecture_decision_record_template.md`
+`VibeCoding_Workflow_Templates/03_architecture/adr.md`
 寫入正式 ADR；不自動建立 runtime context 報告。
 
 ### Reference loading
