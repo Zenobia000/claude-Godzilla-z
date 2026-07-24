@@ -1,200 +1,123 @@
-<!-- CLAUDE_CODE_PROJECT_TEMPLATE_V4 -->
+<!-- CLAUDE_CODE_PROJECT_TEMPLATE_V6 -->
 
-# Claude Code 專案初始化範本
+# Claude Code 專案啟動範本
 
-> **版本:** v4.1 | **作者:** Sunny | **模式:** 人類主導
+> **模式：** 人類主導、文件驅動、證據閉環
 
-當 Claude Code 偵測到此檔案時：
-1. 顯示範本資訊
-2. 詢問：「偵測到專案初始化範本，要開始設定嗎？」
-3. 同意後執行 `/task-init`
-4. 完成後刪除此檔案
+這份檔案是新專案的啟動提示，不是 TaskMaster 狀態檔。保留或刪除皆由使用者決定。
 
----
+## 啟動方式
 
-## Phase 1: 基礎資訊收集
+有既有需求訪談表、Excel、合約或舊系統文件時：
 
-```
-1. 專案名稱？ → [PROJECT_NAME]
-2. 專案簡述？ → [PROJECT_DESCRIPTION]
-3. 主要語言？ (Python/TypeScript/Go/Java/其他)
-4. 設定 GitHub？ (新建/現有/跳過)
+```text
+/intake [來源檔案或資料夾]
 ```
 
-## Phase 2: VibeCoding 7 問快速澄清
+只有口頭構想時，先以 `/intake` 進行訪談並建立來源登錄；不要直接生成完整文件套件或開始實作。
 
+## Phase 1：來源與權威
+
+確認：
+
+1. 專案名稱、目的與主要利害關係人
+2. 原始來源位置（Excel／Word／會議紀錄／舊系統）
+3. 哪些欄位由業務、PM、SA、RD、QA 負責
+4. 哪些內容已核准，哪些只是草稿或推論
+5. 資料敏感性、不可寫入來源與外部操作限制
+
+Excel 來源必須保留：
+
+```yaml
+source_file: path/to/interview.xlsx
+sheet: 業務需求
+row: 12
+cell_range: B12:H12
+source_id: SRC-0012
+requirement_id: REQ-0042
+approval_status: Draft
 ```
-1. 核心問題：這個專案主要解決什麼問題？
-2. 核心功能：3-5 個最重要的功能？
-3. 技術約束：技術偏好和限制？
-4. 使用體驗：期望的使用體驗？
-5. 規模需求：預期用戶規模和效能？
-6. 時程資源：時間和資源限制？
-7. 成功標準：如何衡量成功？
+
+## Phase 2：選擇文件深度
+
+| Profile | 適用情境 | 最小文件 |
+|---|---|---|
+| Fast Track | bug、小功能、實驗 | 問題／來源、驗收或重現、必要決策、測試證據 |
+| Product Track | 一般產品功能、跨模組 | PRD、BDD、受影響設計／契約、Traceability |
+| Governed Track | 客戶驗收、法規、高風險 | 文件管制、SRS/NFR、SAD/SDS、ADR、SIT/UAT、Runbook |
+
+企業文件如何選用：`software_development_documentation_guide_zh_tw.docx`（治理智慧已萃取進模板 01）
+
+工程文件如何填寫：`VibeCoding_Workflow_Templates/`
+
+需求決策（Excel B 區）：`VibeCoding_Workflow_Templates/18_requirement_decision_record.md`
+
+## Phase 3：工程化規格
+
+```text
+/specify [範圍或 REQ ID]
 ```
 
-## Phase 3: 確認設定
+只建立當前交付需要的文件，並滿足：
 
+- 需求、驗收、設計、測試使用穩定 ID 串接
+- 假設與待確認事項不混入核准內容
+- AS-BUILT、PARTIAL、TO-BE 分開
+- 新決策才新增 ADR，既有決策以連結引用
+- 同一欄位只有一個權威 owner
+
+## Phase 4：垂直切片交付
+
+規格可驗收後：
+
+```text
+/deliver [FR/NFR/SCN 範圍]
 ```
-推薦結構：[簡易/標準/AI-ML]
-建議密度：[HIGH/MEDIUM/LOW]
-複雜度：[依分析結果]
 
-確認？(y/N)
+一次完成一個可測的垂直切片。細部 API、UI、測試、安全、除錯或架構能力由 `/deliver` 按任務載入對應 Skill；不需要手動串接十幾個 Commands。
+
+## Phase 5：證據關卡
+
+```text
+/verify [範圍]
 ```
 
----
+完成報告至少包含：
 
-## 初始化執行
+- 實際執行的驗證與結果
+- `REQ → FR/NFR → ACPT/SCN → code → test → evidence` 對應
+- 未執行項目、阻塞與殘餘風險
+- Requirement、Code reality、Verification 三種獨立狀態
 
-Claude Code 在使用者確認後：
+## 建議生成的專案指令
 
-1. **建立專案結構** -- 依選擇的類型
-2. **生成 CLAUDE.md** -- 包含專案資訊和開發規則
-3. **載入 VibeCoding 模板** -- 依專案類型選擇
-4. **初始化 Git** -- .gitignore + 初始 commit
-5. **設定 GitHub** -- 如使用者選擇
-6. **建立 WBS** -- 任務分解結構
-7. **刪除此範本**
-
----
-
-## CLAUDE.md 生成模板
-
-初始化後產生的 CLAUDE.md 應包含：
+目標專案的 `CLAUDE.md` 應短小，只記錄該專案特有資訊：
 
 ```markdown
-# CLAUDE.md - [PROJECT_NAME]
+# [PROJECT_NAME]
 
-> **專案:** [PROJECT_NAME]
-> **描述:** [PROJECT_DESCRIPTION]
-> **語言:** [LANGUAGE]
-> **建立:** [DATE]
+## Purpose
+[產品／系統目的]
 
-## 開發流程
+## Source authority
+- 業務需求與核准：[路徑與 owner]
+- 工程契約：[路徑與 owner]
+- 程式碼現況：[路徑]
+- 測試與證據：[路徑]
 
-遵循 `.claude/WORKFLOW.md` 的標準流程：
-/task-next → /plan → /tdd → /verify
+## Technical context
+- Stack: [LANGUAGE / FRAMEWORK]
+- Build: [COMMAND]
+- Test: [COMMAND]
+- Lint / typecheck: [COMMAND]
 
-## 專案規則
+## Project constraints
+- [只有此專案才成立的限制]
 
-已載入 `.claude/rules/` 中的通用規則（自動生效）：
-- coding-style: 不可變性、檔案大小
-- development-workflow: 研究先行、Plan-TDD-Review
-- security: commit 前安全檢查
-- testing: 80%+ 覆蓋率
-- git-workflow: Conventional Commits
-
-## 禁止事項
-
-- 不在根目錄建立原始碼檔案 → 使用 src/
-- 不建立重複檔案 (v2, enhanced_, new_) → 擴展現有
-- 不硬編碼可配置的值 → 使用環境變數
-- 不靜默吞噬錯誤 → 明確處理
-- 不複製貼上程式碼 → 提取共用函式
-
-## 強制要求
-
-- 每完成一個功能後 commit
-- 先搜尋現有實作再建立新檔案
-- 超過 30 秒的操作使用 Task Agent
-- 3 步驟以上的任務先用 TodoWrite 拆解
-
-## 專案結構
-
-[依選擇的類型填入]
-
-## 技術棧
-
-[依收集的資訊填入]
+## Workflow
+使用 `/intake → /specify → /deliver → /verify`，並遵循 `.claude/rules/golden-rules.md`。
 ```
 
----
-
-## 專案結構範本
-
-### 簡易型
-```
-project/
-├── CLAUDE.md
-├── src/
-│   ├── main.[ext]
-│   └── utils.[ext]
-├── tests/
-├── docs/
-└── output/
-```
-
-### 標準型
-```
-project/
-├── CLAUDE.md
-├── src/
-│   ├── core/        # 核心邏輯
-│   ├── utils/       # 工具函式
-│   ├── models/      # 資料模型
-│   ├── services/    # 服務層
-│   └── api/         # API 端點
-├── tests/
-│   ├── unit/
-│   └── integration/
-├── docs/
-├── configs/
-└── scripts/
-```
-
-### AI/ML 型
-```
-project/
-├── CLAUDE.md
-├── src/
-│   ├── core/
-│   ├── models/
-│   ├── training/
-│   ├── inference/
-│   └── evaluation/
-├── data/
-│   ├── raw/
-│   └── processed/
-├── notebooks/
-├── experiments/
-├── tests/
-└── docs/
-```
-
----
-
-## GitHub 設定
-
-初始 commit 後詢問：
-
-```
-GitHub 儲存庫設定：
-1. 建立新的 GitHub repo
-2. 連接現有 repo
-3. 跳過（僅本地 Git）
-```
-
-選 1 或 2 後自動設定 remote 和推送。
-
----
-
-## 初始化完成後顯示
-
-```
-專案 "[PROJECT_NAME]" 初始化成功！
-
-配置：
-- CLAUDE.md 規則生效
-- 7 條自動載入規則 (.claude/rules/)
-- 13 個專業 Agent 就緒
-- 17 個 Slash Command 可用
-- GitHub: [啟用/未啟用]
-
-下一步：
-1. /task-next  取得第一個任務
-2. /plan       規劃實作步驟
-3. /tdd        開始開發
-```
+不要把通用 coding style、固定覆蓋率、整套 Git 流程或所有 Skill 內容複製進專案 `CLAUDE.md`。
 
 <!-- CLAUDE_CODE_INIT_END -->

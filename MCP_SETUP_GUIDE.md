@@ -1,6 +1,6 @@
 # MCP Server 設定指南
 
-> **版本:** v4.2 | **更新:** 2026-03-16
+> **版本:** v5.0 | **更新:** 2026-07-24
 
 ---
 
@@ -16,6 +16,8 @@ cp .mcp.json.linux.example .mcp.json
 
 然後編輯 `.mcp.json` 填入你的 API keys。
 
+GitHub MCP 的範例使用官方 Docker image，因此需先安裝並啟動 Docker。
+
 ---
 
 ## 目前已啟用（6 個）
@@ -24,7 +26,7 @@ cp .mcp.json.linux.example .mcp.json
 | :--- | :--- | :--- |
 | brave-search | 網路搜尋 | BRAVE_API_KEY |
 | context7 | 即時套件文檔查詢 | CONTEXT7_API_KEY |
-| github | GitHub PR/Issue 操作 | GITHUB_PERSONAL_ACCESS_TOKEN |
+| github | GitHub PR/Issue 操作（官方 Docker image） | GITHUB_PERSONAL_ACCESS_TOKEN |
 | playwright | 瀏覽器自動化與 E2E | 不需要 |
 | sequential-thinking | 鏈式推理 | 不需要 |
 | memory | 跨 session 記憶 | 不需要 |
@@ -83,9 +85,10 @@ MCP 設定變更後需要重啟 session 才會生效。
 
 ---
 
-## 推薦的 MCP Server
+## 選用 MCP Server 參考
 
-> 建議總數 < 10 個，避免佔用過多 context window。
+下列為歷史候選清單，不代表本模板預設啟用或已替每個第三方套件背書。加入前先查官方來源、
+確認目前套件名稱與權限，並只啟用當前工作流需要的 server。
 
 ### 開發工具
 
@@ -137,6 +140,13 @@ MCP 設定變更後需要重啟 session 才會生效。
 - `.mcp.json` 包含 API keys，**不要提交到公開 Git repo**
 - 確認 `.gitignore` 已包含 `.mcp.json`
 - 每個 MCP server 會佔用部分 context window，不要裝太多
-- Windows: command 用 `"cmd"`, args 用 `["/c", "npx", "-y", "..."]`
+- Windows 的 npm 型 server 可使用 `"cmd"`；Docker 型 server 直接使用 `"docker"`
 - Linux: command 直接用 `"npx"`, args 用 `["-y", "..."]`
 - 使用對應平台的 `.mcp.json.*.example` 即可，無需手動調整格式
+- 不要在 prompt 或可提交的設定中寫入 token；給每個 server 最小必要權限
+- 更新或新增套件前先檢視版本、來源與 release notes，避免未審查的供應鏈變更
+
+目前範例採用：
+
+- [Brave Search MCP 官方 server](https://github.com/brave/brave-search-mcp-server)
+- [GitHub MCP Server 官方 image](https://github.com/github/github-mcp-server)

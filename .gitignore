@@ -5,6 +5,18 @@
 # Claude Code 個人設定
 .claude/settings.local.json
 
+# Claude Code 本機 runtime 與日誌（保留已提交的來源腳本／指南）
+.claude/runtime/
+.claude/cache/
+.claude/logs/*
+!.claude/logs/.gitignore
+
+# 已退役 TaskMaster 的本機執行狀態（不忽略 WBS／專案來源資料）
+.claude/taskmaster-data/.session-*
+.claude/taskmaster-data/.current-task
+.claude/taskmaster-data/timelog.jsonl
+.claude/taskmaster-data/*.log
+
 # Node
 node_modules/
 
@@ -13,6 +25,9 @@ __pycache__/
 *.py[cod]
 venv/
 .env
+.env.*
+!.env.example
+!.env.*.example
 
 # OS
 .DS_Store

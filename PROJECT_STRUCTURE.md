@@ -1,167 +1,93 @@
-# 專案結構總覽
+# 專案結構
 
-> **版本:** v4.3 | **更新:** 2026-03-24
+本專案分成三層：Claude Code 執行期、軟體工程能力庫、文件治理範例。
 
----
-
-## 目錄結構
-
-```
-claude_v2026/
-├── README.md                           # 系統總覽、快速開始
-├── CLAUDE_TEMPLATE.md                  # 新專案初始化範本
-├── PROJECT_STRUCTURE.md                # 本檔案
-├── MCP_SETUP_GUIDE.md                  # MCP Server 設定指南
-├── .mcp.json                           # MCP Server 定義（不入 Git）
-├── .mcp.json.windows.example           # MCP 範本（Windows）
-├── .mcp.json.linux.example             # MCP 範本（Linux）
+```text
+claude-Godzilla-z/
+├── .claude/
+│   ├── CLAUDE.md                 # 生態系入口與責任邊界
+│   ├── settings.json             # 最小設定；內建 Read/Edit 敏感路徑 deny
+│   ├── WORKFLOW.md               # 四階段文件驅動流程
+│   ├── rules/
+│   │   └── golden-rules.md       # 唯一常駐規則
+│   ├── skills/
+│   │   ├── intake/               # Excel／訪談來源進件
+│   │   ├── specify/              # PRD／BDD／SAD／ADR／追溯
+│   │   ├── deliver/              # 已核准垂直切片交付
+│   │   ├── verify/               # 證據型驗證關卡
+│   │   ├── sunnydata-*/          # 軟體工程能力庫
+│   │   └── community-*/          # 社群 UI／UX／效能能力
+│   ├── agents/                   # 8 個隔離型專業執行角色
+│   ├── output-styles/
+│   │   └── 15-Vision-output.md   # 唯一呈現樣式
+│   ├── hooks/                    # 停用的舊腳本與 Hook 設計說明
+│   ├── taskmaster-data/          # 退役 runtime 說明；本機舊資料忽略
+│   ├── context/                  # 退役 shared-memory 說明
+│   └── coordination/             # 選用的協作參考
 │
-├── .claude/                            # Claude Code 核心配置
-│   ├── settings.json                   # 專案設定（權限、StatusLine、Model）
-│   ├── settings.local.json             # 個人設定（MCP 啟用）
-│   ├── WORKFLOW.md                     # 開發流程指南
-│   ├── statusline.sh                   # StatusLine bash 腳本（Windows）
-│   ├── statusline-linux.sh            # StatusLine bash 腳本（Linux）
-│   ├── statusline-go.exe              # StatusLine Go 備用
-│   ├── SOP.md                          # 設定 SOP
-│   │
-│   ├── agents/          (13 個)
-│   │   ├── general-purpose.md          # 通用問題解決
-│   │   ├── planner.md                  # 功能規劃（opus）
-│   │   ├── architect.md                # 系統架構（opus）
-│   │   ├── code-quality-specialist.md  # 程式碼審查
-│   │   ├── security-infrastructure-auditor.md  # 安全稽核
-│   │   ├── test-automation-engineer.md # 測試自動化
-│   │   ├── tdd-guide.md               # TDD 引導
-│   │   ├── e2e-validation-specialist.md # E2E 測試
-│   │   ├── build-error-resolver.md     # 建置錯誤修復
-│   │   ├── refactor-cleaner.md         # 死碼清理
-│   │   ├── documentation-specialist.md # 文檔專家
-│   │   ├── deployment-expert.md        # 部署專家
-│   │   └── workflow-template-manager.md # 模板管理
-│   │
-│   ├── commands/        (17 個)
-│   │   ├── plan.md                     # 規劃實作步驟
-│   │   ├── tdd.md                      # 測試驅動開發
-│   │   ├── build-fix.md               # 修復建置錯誤
-│   │   ├── e2e.md                      # E2E 測試
-│   │   ├── verify.md                   # 全面驗證
-│   │   ├── refactor-clean.md          # 死碼清理
-│   │   ├── review-code.md             # 程式碼審查
-│   │   ├── check-quality.md           # 品質評估
-│   │   ├── learn.md                    # 擷取模式
-│   │   ├── save-session.md            # 儲存 session
-│   │   ├── task-init.md               # 專案初始化
-│   │   ├── task-status.md             # 專案狀態（含時間追蹤）
-│   │   ├── task-next.md               # 下個任務（自動追蹤時間）
-│   │   ├── time-log.md                # 開發時間報表
-│   │   ├── hub-delegate.md            # Agent 委派
-│   │   ├── suggest-mode.md            # 建議密度
-│   │   └── template-check.md          # 模板合規
-│   │
-│   ├── rules/           (7 個，自動載入)
-│   │   ├── coding-style.md            # 編碼風格
-│   │   ├── development-workflow.md    # 開發流程
-│   │   ├── git-workflow.md            # Git 流程
-│   │   ├── security.md               # 安全規範
-│   │   ├── testing.md                 # 測試要求
-│   │   ├── performance.md            # 效能優化
-│   │   └── patterns.md               # 通用模式
-│   │
-│   ├── skills/          (8 個精選)
-│   │   ├── INDEX.md                   # 索引與擴充指南
-│   │   ├── tdd-workflow/              # TDD 流程
-│   │   ├── api-design/               # API 設計
-│   │   ├── security-review/          # 安全審查
-│   │   ├── e2e-testing/              # E2E 測試
-│   │   ├── coding-standards/         # 編碼標準
-│   │   ├── deep-research/            # 深度研究
-│   │   ├── deployment-patterns/      # 部署模式
-│   │   └── docker-patterns/          # Docker 模式
-│   │
-│   ├── output-styles/   (15 個)
-│   │   ├── 01-prd-product-spec.md    # PRD
-│   │   ├── 02-bdd-scenario-spec.md   # BDD
-│   │   ├── ...                        # 03-15
-│   │   └── README.md                 # 使用指南
-│   │
-│   ├── mcp-configs/
-│   │   └── README.md                  # MCP 推薦清單
-│   │
-│   ├── hooks/                         # Hook 腳本庫
-│   ├── taskmaster-data/               # 持久化資料（自動產生）
-│   │   ├── wbs.md                     # WBS 任務清單
-│   │   ├── project.json               # 專案元資料
-│   │   ├── timelog.jsonl              # 開發時間日誌（每 session 一筆）
-│   │   ├── wbs-history.log           # WBS 更新審計軌跡
-│   │   ├── .session-start             # 暫存：session 開始時間
-│   │   ├── .session-snapshot          # 暫存：最新 session 快照
-│   │   └── .current-task              # 暫存：當前進行中的任務編號
-│   ├── context/                       # 跨 Agent 上下文共享
-│   │   ├── decisions/                 # 技術決策記錄
-│   │   ├── quality/                   # 品質報告
-│   │   ├── testing/                   # 測試報告
-│   │   ├── e2e/                       # E2E 報告
-│   │   ├── security/                  # 安全報告
-│   │   ├── deployment/               # 部署報告
-│   │   ├── docs/                      # 文檔報告
-│   │   └── workflow/                  # 工作流報告
-│   │
-│   ├── coordination/                  # Agent 協調
-│   │   └── human_ai_collaboration_config.md
-│   │
-│   └── plugins/
-│       └── config.json
+├── VibeCoding_Workflow_Templates/
+│   ├── INDEX.md                  # 文件選用與模板索引
+│   └── 01..18                    # 工程師可直接填寫的工作文件（18＝需求決策紀錄）
 │
-├── VibeCoding_Workflow_Templates/     # 工作流模板庫（17 個）
-│   ├── INDEX.md                       # 模板索引
-│   ├── 01_workflow_manual.md          # 流程總覽
-│   ├── 02_project_brief_and_prd.md   # PRD
-│   ├── 03_behavior_driven_development_guide.md  # BDD
-│   ├── 04_architecture_decision_record_template.md  # ADR
-│   ├── 05_architecture_and_design_document.md  # 架構設計
-│   ├── 06_api_design_specification.md # API 規範
-│   ├── 07_module_specification_and_tests.md  # 模組規格
-│   ├── 08_project_structure_guide.md  # 專案結構
-│   ├── 09_file_dependencies_template.md  # 依賴分析
-│   ├── 10_class_relationships_template.md  # 類別關係
-│   ├── 11_code_review_and_refactoring_guide.md  # Code Review
-│   ├── 12_frontend_architecture_specification.md  # 前端架構
-│   ├── 13_security_and_readiness_checklists.md  # 安全檢查
-│   ├── 14_deployment_and_operations_guide.md  # 部署運維
-│   ├── 15_documentation_and_maintenance_guide.md  # 文檔維護
-│   ├── 16_wbs_development_plan_template.md  # WBS 計劃
-│   ├── 17_frontend_information_architecture_template.md  # 前端 IA
-│   └── output_style.md               # Output Style 參考
+├── docs/document-system/
+│   ├── architecture.md           # Excel／Markdown／Word 權威與同步架構
+│   └── artifact-map.md           # 企業文件分類對應模板
 │
-├── everything-claude/                 # 參考資源庫（不直接使用）
-│   └── everything-claude-code/
-│       ├── agents/                    # 更多 agent 參考
-│       ├── skills/     (95 個)       # 更多 skill 可按需複製
-│       ├── rules/      (45 個)       # 語言特定規則可按需複製
-│       ├── commands/                  # 更多 command 參考
-│       └── mcp-configs/              # MCP 設定參考
-│
-└── status-line/                       # StatusLine 原始碼參考
-    └── claude-statusline/
+├── software_development_documentation_guide_zh_tw.docx
+│                                  # 企業文件全景與選用參考
+├── CLAUDE_TEMPLATE.md             # 新專案啟動範本
+├── README.md
+├── MCP_SETUP_GUIDE.md
+└── .mcp.json.*.example
 ```
 
----
+## 執行期載入
 
-## 配置層次
+| 元件 | 載入時機 | 設計限制 |
+|---|---|---|
+| `CLAUDE.md` | 專案啟動 | 只放入口與責任 |
+| `rules/*.md` | 每次對話 | 只放 Golden Rules |
+| `skills/*/SKILL.md` | 人工或語意觸發 | 方法與知識可漸進載入 |
+| `agents/*.md` | 明確委派 | 隔離 context／工具／權限 |
+| `output-styles/*.md` | 人工選擇 | 只改呈現 |
+| `hooks` | settings 有註冊才執行 | 基礎模板目前為零 Hook |
 
-| 層級               | 檔案                            | 用途                           |
-| :----------------- | :------------------------------ | :----------------------------- |
-| **專案共用** | `.claude/settings.json`       | 權限、StatusLine、Model、Hooks |
-| **個人設定** | `.claude/settings.local.json` | 個人權限、MCP 啟用清單         |
-| **MCP 定義** | `.mcp.json`                   | MCP Server 設定（含 API keys） |
-| **規則**     | `.claude/rules/*.md`          | 自動載入，每次對話生效         |
-| **技能**     | `.claude/skills/*/SKILL.md`   | 領域知識，按需參考             |
+`commands/` 已由四個 Action Skills 取代。Claude Code 會把 Skill 暴露成 slash command，避免維護兩套格式。
 
----
+## 文件層
 
-## 擴充指南
+```text
+企業文件指南（要不要有）
+          ↓
+VibeCoding Templates（怎麼寫）
+          ↓
+專案實例文件（實際內容）
+          ↕ stable IDs
+Excel 統控介面（對焦／核准／追蹤）
+```
 
-### 新增 MCP Server
+- Word 指南是分類與裁剪依據，不逐章複製到每個專案。
+- VibeCoding templates 是工程工作格式，可依 Fast／Product／Governed profile 選取。
+- Excel 保存業務語言、顏色、排序、核准與管理視圖。
+- Markdown／code-native contracts 保存可 diff、可 review、可讓 AI 與 CI 消化的工程內容。
+- 每個欄位只能指定一個 owner；其他格式是 projection 或索引。
 
-見 [MCP_SETUP_GUIDE.md](MCP_SETUP_GUIDE.md)
+## Agent 邊界
+
+保留的 Agents 分成：
+
+- 唯讀第二意見：architecture、code review、security
+- 高雜訊執行：test、E2E、build repair
+- 大型專門 context：documentation、deployment
+
+一般規劃、通用研究、TDD 方法、模板選擇與重構不另建 Agent，由主 Agent 搭配 Skills 完成。
+
+## Runtime 退役項目
+
+- TaskMaster prompt 攔截、snapshot、timelog 自動寫入
+- 每次 Subagent 強制落地 context
+- Agent monitor hooks
+- PRD／BDD／TDD 等全域 Output Styles
+- 17 個重複 Commands
+
+舊 Hook 腳本和 runtime 說明暫時保留，便於理解遷移；它們沒有在 `settings.json` 註冊。
