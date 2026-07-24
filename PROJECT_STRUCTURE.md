@@ -28,7 +28,7 @@ claude-Godzilla-z/
 │   ├── 01_requirements/          # 需求決策紀錄、PRD、BDD
 │   ├── 02_ux_ui/ 03_architecture/ 04_design/
 │   ├── 05_qa/ 06_ops/ 07_governance/
-│   └── governance_workbook_template.xlsx  # 治理活頁簿 Excel 範本
+│   └── (角色追蹤 Excel 分放各資料夾：需求/工程/QA tracker)
 │
 ├── docs/document-system/
 │   ├── architecture.md           # Excel／Markdown／Word 權威與同步架構

@@ -41,9 +41,17 @@ docs/
 
 命名規範見 [`00_meta/workflow_manual.md`](../../VibeCoding_Workflow_Templates/00_meta/workflow_manual.md) §10。
 
-## 4. 四本治理活頁簿（Excel 視覺層）
+## 4. 三個角色追蹤 Excel（追蹤層）
 
-Excel 承載業務／PM／QA 的視覺對焦與簽核（B/E 欄位），工作表序程依真實團隊流排序。詳細序程與可填的 `.xlsx` 範本見 [`workbook-guide.md`](workbook-guide.md)。需求決策（B 區）的權威是 [`01_requirements/requirement_decision_record`](../../VibeCoding_Workflow_Templates/01_requirements/requirement_decision_record.md)。
+沒有 Jira／Confluence 時，用三個**角色各自擁有**的 Excel 追蹤狀態與決策，R&R 靠 owner 分開、串連靠 ID 骨幹：
+
+| 檔 | Owner | ID | 接上游 |
+|---|---|---|---|
+| `01_requirements/requirements_tracker.xlsx` | PM／BA | `REQ/DEC-*` | — |
+| `03_architecture/engineering_tracker.xlsx` | 架構師 | `FR/NFR-*` | 來源需求＝`DEC-*` |
+| `05_qa/qa_tracker.xlsx` | QA | `TC/QTM-*` | 來源＝`FR/NFR-*` |
+
+Excel 只放骨架＋狀態＋連結，細節在 docs（訂版）。序程、欄位與認知負載原則見 [`workbook-guide.md`](workbook-guide.md)。需求決策欄位的權威定義見 [`01_requirements/requirement_decision_record`](../../VibeCoding_Workflow_Templates/01_requirements/requirement_decision_record.md)。
 
 ## 5. Trace ID 模型
 
