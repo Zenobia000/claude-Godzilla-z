@@ -1,4 +1,9 @@
-一句話結論：**把「需求→設計→行為→單元」用可切換的 Claude Code Output Styles 固化成標準作業：SDD/DDD 定義邊界，BDD/TDD 驅動正確性，前後端與跨系統各就各位。**
+> **歷史參考：** 此文件保存早期把 PRD、BDD、架構與 Review 流程建模成
+> Output Styles 的研究。現行架構只把 Output Style 用於回答呈現；流程改由
+> `/intake`、`/specify`、`/deliver`、`/verify` 與本目錄模板承接。
+> 下列內容不會自動註冊到 Claude Code runtime。
+
+一句話結論（歷史設計）：**把「需求→設計→行為→單元」用可切換的 Claude Code Output Styles 固化成標準作業：SDD/DDD 定義邊界，BDD/TDD 驅動正確性，前後端與跨系統各就各位。**
 
 ---
 

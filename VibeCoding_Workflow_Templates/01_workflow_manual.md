@@ -1,105 +1,158 @@
 # 產品開發流程使用說明書
 
-> **版本:** v2.0 | **更新:** YYYY-MM-DD | **狀態:** 活躍
-
----
+> **版本：** v3.0 | **更新：** 2026-07-24 | **狀態：** 活躍
 
 ## 1. 使用原則
 
-- **以文檔為契約**: 所有決策以文檔為單一事實來源 (SSOT)
-- **小步快跑**: 優先小批量交付，保留 ADR 以利回溯
-- **風險前置**: 用審查 Gate 降低重大偏差風險
-- **模式可升降級**: MVP 可升級為完整流程；完整流程可在低風險子專案降級
+- **用問題管理文件：** 文件是降低誤解、支援決策、可驗收的同步工具，不是交付物。不能減少下一次返工的文件就別寫。
+- **決策分兩類：** **需求決策**（優先序、範圍、里程碑、Gate、業務驗收）由產品 owner 拍板，落在 Excel B 區 / [`18 需求決策紀錄`](./18_requirement_decision_record.md)；**工程決策**（架構、契約、測試設計）由工程與 AI 協作。兩者之間是硬邊界，owner 未核准需求決策前不進 `/specify`。
+- **來源先行：** 先確認 Excel、訪談、既有文件與程式碼的 owner。
+- **欄位級 SSOT：** 同一資訊只有一個人工維護來源；其他載體是投影或索引。
+- **風險裁剪：** 建立協作與驗收真正需要的文件，不為了完整而填模板。
+- **小步交付：** 以穩定 ID 串接需求、驗收、設計、程式碼、測試與證據。
+- **狀態分離：** Requirement、Code reality、Verification、Release 不共用一個狀態。
 
-**角色縮寫 (RACI):** PM / TL / ARCH / DEV / QA / SRE / SEC / OPS
+角色縮寫：Business / PM / Product / BA / ARCH / DEV / QA / SEC / SRE / OPS
 
----
-
-## 2. 模式選擇
-
-| 條件 | 完整流程 | MVP 快速迭代 |
-| :--- | :--- | :--- |
-| 金流/法遵/隱私資料 | V | |
-| 高可用與規模化 | V | |
-| 跨 3+ 團隊協作 | V | |
-| 快速驗證價值假設 | | V |
-| 時間/預算有限 | | V |
-
-**升級觸發**: 觸及敏感資料、DAU > 10k / TPS > 100、引入新服務/多團隊、轉為核心營收
-
----
-
-## 3. 模式 A: 完整流程
+## 2. 工作入口
 
 ```mermaid
-graph LR
-  A0[Kickoff] --> A1[PRD] --> A2[架構設計] --> A3[模組/API] --> A4[開發驗證] --> A5[品質Gate] --> A6[上線]
+flowchart LR
+    A[Excel／訪談／舊系統] --> B[/intake]
+    B --> C[/specify]
+    C --> D[/deliver]
+    D --> E[/verify]
+    E -->|規格缺口| C
+    E -->|實作缺陷| D
 ```
 
-| 階段 | 目標 | 產出 | Gate |
-| :--- | :--- | :--- | :--- |
-| A0 啟動 | 對齊目標、邊界、風險 | 啟動簡報、里程碑 | 利益相關者共識 |
-| A1 PRD | 定義問題、受眾、範圍、KPI | `02_prd.md` | PRD 簽核、KPI 可量測 |
-| A2 架構 | 系統邊界、技術選型、NFR | `05_architecture.md` + `04_adr.md` | ADR 齊備、NFR 可驗證 |
-| A3 詳細設計 | 可實作規格與契約 | `07_module.md` + `06_api.md` + `08_structure.md` | 契約穩定、測試策略完整 |
-| A4 開發 | 增量交付 | 程式碼、測試、建置產物 | 測試綠燈、覆蓋率達標 |
-| A5 品質 | 消除高風險弱點 | `13_security.md` | 高/中風險已整改 |
-| A6 上線 | 可靠性、可觀測性就緒 | Go/No-Go 簽核 | SLO/Alert 就緒、回滾演練通過 |
+| Action | 目的 | 人類控制點 |
+|---|---|---|
+| `/intake` | 唯讀盤點來源、建立來源座標與需求候選 | 解決衝突、核准需求 |
+| `/specify` | 裁剪模板，產生必要的工程契約 | 核准 PRD／BDD／ADR／設計 |
+| `/deliver` | 實作一個已核准垂直切片 | 外部操作與 scope change 另行授權 |
+| `/verify` | 用實際命令、測試與 trace 證據判定 | 接受風險、退回規格或實作 |
 
-**跨階段**: 變更需更新 ADR 與相依文檔；重大變更需重過 Gate。
+## 3. Profile 選擇
 
----
+| 條件 | Fast | Product | Governed |
+|---|:---:|:---:|:---:|
+| 單一 bug、小功能、可逆實驗 | ✓ | | |
+| 一般產品功能、跨模組 | | ✓ | |
+| 多團隊、外部契約、正式 UAT | | | ✓ |
+| 個資、法規、安全或不可逆遷移 | | | ✓ |
+| 正式 on-call、高可用、稽核 | | | ✓ |
 
-## 4. 模式 B: MVP 快速迭代
+Profile 可以升級；高風險子範圍不可因整體專案是 MVP 就省略必要設計或證據。
+
+## 4. Fast Track
 
 ```mermaid
-graph LR
-  B0[Tech Spec] --> B1[Iter 1] --> B2[Iter 2] --> Bn[Iter n] --> BL[Light Launch]
+flowchart LR
+    A[問題／來源] --> B[驗收或重現]
+    B --> C[必要決策]
+    C --> D[最小實作]
+    D --> E[回歸證據]
 ```
 
-### B0 Sprint 0: Tech Spec
-一份輕量文件合併 PRD/SA/SDD/API 最小集合：
-- 問題/目標用戶/成功指標 (最多 3 條)
-- 高層設計 + 1 張元件圖
-- 必要 API 契約 (僅核心端點)
-- 1-2 張資料表 Schema
-- 風險與手動替代方案
+最低集合：
 
-### B1-Bn 迭代循環
-- 每次交付: 可運行版本 + 指標驗證 + 回顧
-- 最低限度: 安全檢查 (Secrets/認證/輸入驗證) + 可觀測性 (日誌/健康檢查)
+- 問題、影響、來源座標或 bug 重現
+- 一個可觀察的驗收行為
+- 只有在重要取捨時才建立 ADR
+- 最小 code/test 變更與實際驗證
 
-### MVP 上線 Gate
-- [ ] 有最小可運營 Runbook
-- [ ] 資料備份已啟用
-- [ ] 風險與債務列入後續 Backlog
+## 5. Product Track
 
----
+| 階段 | 必要產出 | Gate |
+|---|---|---|
+| Intake | 來源登錄、REQ、衝突與待確認 | Product/Business 核准範圍 |
+| Specify | Lean PRD、BDD、受影響 SAD／API／資料契約 | 行為可驗收、重要決策已處理 |
+| Deliver | 一個垂直切片、測試與必要文件更新 | 沒有偷改核准範圍 |
+| Verify | build/type/lint/test/security/trace 的適用證據 | 阻擋問題關閉或明確接受 |
 
-## 5. 文檔產出對照
+## 6. Governed Track
 
-| 階段 | 完整流程 | MVP |
-| :--- | :--- | :--- |
-| 規劃 | `02_prd.md` | Tech Spec PRD 區塊 |
-| 架構 | `05_architecture.md` + `04_adr.md` | Tech Spec SA/ADR 區塊 |
-| 規格 | `07_module.md` + `06_api.md` | Tech Spec SDD/API 區塊 |
-| 品質 | `13_security.md` | 簡化安全檢查 |
-| 結構 | `08_structure.md` | Tech Spec 結構區塊 |
+在 Product Track 之上，依 [`artifact-map.md`](../docs/document-system/artifact-map.md) 選用：
 
----
+- 文件管制、SRS/NFR、SAD/SDS、ADR、API/Event/DB 契約
+- WBS、RACI、Change Request
+- Test Plan/Cases、Traceability、SIT/UAT
+- Deployment、Runbook、Monitoring、Release evidence
+- Excel B/E preservation、完整追溯與稽核
 
-## 6. Gate 度量 (通用)
+Word 指南是文件 catalog，VibeCoding 是填寫格式，正式專案文件才是工程契約。
 
-- **準入**: 輸入文檔完整、角色對齊、風險已登記
-- **準出**: 產出完成度 >= 90%、審查簽核、指標可驗證
-- **共同度量**: 需求穩定度、缺陷密度、Lead Time / Cycle Time、SLO 達成率、MTTR
+## 7. Excel 與工程文件
 
----
+| 區域 | Owner | 行為 |
+|---|---|---|
+| B — Business-owned | Business／Product／PM | 人工維護，生成不得覆寫 |
+| E — Evidence-owned | QA／UAT／Release | 依穩定 ID 無損合併 |
+| G — Generated contract | 工程文件／程式碼 | 由 canonical source 重建 |
+| D — Derived | 公式／生成器 | 唯讀、可重算 |
 
-## 7. 附錄: 檢查清單
+生成的活頁簿是 published snapshots；在 B/E preservation-safe round-trip 完成前，不把它們當成可直接編輯的雙向 SSOT。需求決策（B 區）以 [`18 需求決策紀錄`](./18_requirement_decision_record.md) 為權威。
 
-- **PRD**: 問題陳述、非目標、量化 KPI?
-- **架構**: 權衡與 ADR? NFR 可測?
-- **設計**: 資料模型/索引、API 契約、錯誤處理、可觀測性?
-- **安全**: Secrets 管理、認證授權、輸入驗證、依賴風險?
-- **上線**: 備份、監控、告警、回滾方案與演練?
+## 8. Gate 判定
+
+不要用固定「文件完成度 90%」或通用覆蓋率取代專案風險判斷。每個 Gate 應回答：
+
+- 哪些 REQ／AC／Scenario 在範圍內？
+- 適用的驗證命令是什麼，是否實際執行？
+- 需求、程式碼、驗證與發布狀態各是什麼？
+- 證據在哪裡，誰核准？
+- 哪些項目未執行、阻擋或接受風險？
+
+只有證據支持的 gate 才能標記 PASS。
+
+## 9. 文件選用矩陣
+
+不是每個專案都建立每一份文件。以「團隊現在缺什麼共識」對應要補的文件：
+
+| 情境／缺口 | 最低必要 | 建議補充 | 一開始先不做 |
+|---|---|---|---|
+| MVP、可逆、單團隊 | 18 需求決策、02 PRD、03 BDD | 04 ADR（僅重大決策）| SDS、完整 SIT/UAT |
+| 前後端分工 | + 12 前端架構、17 前端 IA | 06 API 契約 | Design System 全套 |
+| 企業流程／多系統整合 | + 05 SAD、06 API、SRS/NFR | 04 ADR、DB 設計 | — |
+| AI／不確定性產品 | + 03 BDD 邊界場景、13 安全 | 評估與回歸集 | — |
+| 客戶驗收／正式上線 | + 07 測試、UAT、14 部署 | Runbook、Monitoring | — |
+
+三階段文件組合（對應 Fast/Product/Governed）：**MVP ≈ 9 份、Pilot ≈ 13 份、Enterprise ≈ 27 份**；深度依風險升級，見 [artifact-map.md](../docs/document-system/artifact-map.md)。
+
+## 10. 命名規範
+
+檔名帶語意與版本，讓人不開檔也能判斷內容與時序：
+
+```
+ADR-001-use-kafka-for-event-stream.md
+openapi-work-order-v1.yaml
+UAT_WorkOrder_Pilot_ClientA_20260701.xlsx
+DEC-001-line-intake-reliability.md   # 需求決策可獨立成檔時
+```
+
+- 正式 ID 前綴不可重用；取消保留 tombstone。
+- 日期用 `YYYYMMDD` 或 `YYYY-MM-DD`；版本用 `vN`。
+
+## 11. 反模式與完成度檢查
+
+上線或提交前，對照常見反模式（表面現象 → 真正問題 → 修正）：
+
+| 表面現象 | 真正問題 | 修正 |
+|---|---|---|
+| 設計只給 Figma | 缺狀態與互動規格 | 補 UI/Interaction Spec（12/17）|
+| 優先序/範圍由 AI 或規則自動判 | 需求決策沒交還 owner | 回 18 需求決策紀錄由 owner 簽核 |
+| 一個「狀態」欄想代表全部 | Requirement/Code/Verify/Release 混用 | 拆四個狀態軸 |
+| 文件填滿但沒人讀 | 為完整而寫，非為共識 | 依風險裁剪 |
+| 決策理由只在對話裡 | 無法回查為什麼 | 寫 ADR 或決策沿革 |
+
+完成度檢查（每個 Gate）：
+
+- [ ] 範圍內的需求決策已由 owner 核准（18 需求決策紀錄）。
+- [ ] 適用的驗證命令已實際執行，有證據。
+- [ ] 四個狀態軸分別標記，未混用。
+- [ ] 追溯鏈無孤兒 ID，B/E 欄位未被生成覆寫。
+
+## 12. 模板選用
+
+完整清單與 profile 對照見 [INDEX.md](./INDEX.md)。使用時只複製必要章節；模板中的範例值不是專案政策。
