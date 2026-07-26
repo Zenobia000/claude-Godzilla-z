@@ -24,7 +24,7 @@ claude-Godzilla-z/
 │
 ├── VibeCoding_Workflow_Templates/    # 依 Word 九層分類的模板
 │   ├── INDEX.md                  # 文件選用與模板索引
-│   ├── 00_meta/                  # workflow_manual、output_style
+│   ├── 00_meta/                  # workflow_manual
 │   ├── 01_requirements/          # 需求決策紀錄、PRD、BDD
 │   ├── 02_ux_ui/ 03_architecture/ 04_design/
 │   ├── 05_qa/ 06_ops/ 07_governance/
