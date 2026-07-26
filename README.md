@@ -53,7 +53,7 @@ Excel／訪談／舊系統
 |---|---|---|
 | 文件 catalog | [Software Development Documentation Guide](software_development_documentation_guide_zh_tw.docx) | 這個風險與組織規模需要哪些文件？ |
 | 作業模板 | [VibeCoding Workflow Templates](VibeCoding_Workflow_Templates/INDEX.md) | 選中的工程文件要怎麼寫？ |
-| 需求決策 | [需求決策紀錄](VibeCoding_Workflow_Templates/01_requirements/requirement_decision_record.md) | owner 拍板優先序、範圍、Gate；Excel B 區的權威 |
+| 需求決策 | [需求決策紀錄](VibeCoding_Workflow_Templates/01_requirements/requirement_decision_record.md) | owner 拍板優先序、範圍、Gate；追蹤視圖為 `requirements_tracker.xlsx` ①需求決策 |
 | 正式契約 | 目標專案文件、程式碼、測試 | 實際核准與可執行的內容是什麼？ |
 
 詳細整合設計：
@@ -64,16 +64,15 @@ Excel／訪談／舊系統
 
 ### Excel 的關鍵結論
 
-不是「Excel 或 Markdown 誰是唯一真相」，而是每個欄位指定一個 owner：
+不是「Excel 或 Markdown 誰是唯一真相」，而是一檔一個 owner：三個角色追蹤簿由各自的 owner 人工維護，以 `REQ/DEC-* → FR/NFR-* → TC/QTM-*` 的 ID 骨幹串連，細節放 docs 訂版層（見 [workbook-guide](docs/document-system/workbook-guide.md)）：
 
-| 區域 | Owner | 生成行為 |
+| 追蹤簿 | Owner | 內容 |
 |---|---|---|
-| B — Business-owned | Business／Product／PM | 必須保留，不得覆寫 |
-| E — Evidence-owned | QA／UAT／Release | 依穩定 ID 無損合併 |
-| G — Generated contract | 工程文件／程式碼 | 可重建，禁止雙邊人工維護 |
-| D — Derived | 公式／生成器 | 唯讀、可重算 |
+| `requirements_tracker.xlsx` | PM／BA | 需求決策、決策沿革 |
+| `engineering_tracker.xlsx` | 架構師 | 規格追溯、模組 BOM |
+| `qa_tracker.xlsx` | QA | 測試設計、執行證據 |
 
-需求決策（B 區）由 owner 在 [需求決策紀錄](VibeCoding_Workflow_Templates/01_requirements/requirement_decision_record.md) 拍板；工程契約與生成投影（G/D）由 Markdown 與程式碼衍生。在 B/E preservation-safe round-trip 完成前，生成欄位不當成可雙向編輯主檔。
+需求決策由 owner 在 [需求決策紀錄](VibeCoding_Workflow_Templates/01_requirements/requirement_decision_record.md) 拍板；工程契約由 Markdown 與程式碼承載。生成流程不得覆寫人工維護欄位；自建生成活頁簿在 preservation-safe round-trip 完成前只當發布快照。
 
 ## Claude Code 元件邊界
 

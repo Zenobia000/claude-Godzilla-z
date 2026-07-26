@@ -24,7 +24,7 @@
 | [`06_ops/`](./06_ops/) | DevOps／維運（ch11） | [deployment_and_operations](./06_ops/deployment_and_operations.md)、[runbook](./06_ops/runbook.md)、[monitoring_spec](./06_ops/monitoring_spec.md)、[incident_postmortem](./06_ops/incident_postmortem.md) | `/specify`、`/verify` |
 | [`07_governance/`](./07_governance/) | 專案治理（ch12） | [wbs_development_plan](./07_governance/wbs_development_plan.md)、[change_request](./07_governance/change_request.md)、[release_note](./07_governance/release_note.md) | `/specify`、`/verify` |
 
-> `01_requirements/requirement_decision_record` 是需求側起手件：owner 拍板的優先序、範圍、Gate（Excel B 區的 MD 形態），是 `/specify` 硬閘的檢查對象。工程契約由其餘模板產生。
+> `01_requirements/requirement_decision_record` 是需求側起手件：owner 拍板的優先序、範圍、Gate（追蹤視圖：`requirements_tracker.xlsx` ①需求決策），是 `/specify` 硬閘的檢查對象。工程契約由其餘模板產生。
 >
 > 三個 `*_tracker.xlsx` 是角色追蹤簿（看板層），以 `REQ/DEC-* → FR/NFR-* → TC/QTM-*` 的 ID 骨幹互相串連；模板 md 是訂版層。分工見 [workbook-guide](../docs/document-system/workbook-guide.md)。
 >
@@ -59,7 +59,7 @@ flowchart LR
 2. 複製必要章節到目標專案的正式文件，不直接在模板內填專案資料。
 3. 已存在的文件做最小更新，不為同一概念建立第二份文件。
 4. 模板中的數字、門檻與技術選項是提示，應由專案 NFR／政策決定。
-5. Excel B/E 欄位負責業務／證據，工程契約負責 G 投影；不可雙邊人工維護。
+5. 追蹤簿由各自 owner 維護骨架（ID＋狀態＋連結），細節在工程契約；同一資訊不可雙邊人工維護。
 6. 只有測試與證據能改變 verification 狀態。
 
 ## 版本記錄

@@ -4,7 +4,7 @@
 
 這份文件是**需求決策的權威來源**，由產品 owner 填寫，AI 不得代為拍板。它是 `/intake → /specify` 之間那條硬邊界的檢查對象：**在此表把需求決策標為「已核准」並簽名之前，`/specify` 不得把該項需求工程化。**
 
-對照 [`docs/document-system/architecture.md`](../../docs/document-system/architecture.md) 的 Excel **B 區（Business-owned）**：此表是 B 區的 Markdown 形態，Excel 視圖是它的投影。工程衍生的 FR/NFR 文字、元件映射、測試設計屬 G 區，不在此表人工維護。語域屬 L1 業務語言，見 [`.claude/rules/language-register.md`](../../.claude/rules/language-register.md)。
+此表是需求決策的 Markdown 權威；`requirements_tracker.xlsx` **①需求決策**是它的追蹤視圖（見 [workbook-guide](../../docs/document-system/workbook-guide.md)）。工程衍生的 FR/NFR 文字、元件映射、測試設計屬 Markdown 工程契約，不在此表人工維護。語域屬 L1 業務語言，見 [`.claude/rules/language-register.md`](../../.claude/rules/language-register.md)。
 
 ---
 
@@ -12,8 +12,8 @@
 
 | 決策類型 | 誰拍板 | 內容 | 落在哪 |
 | :--- | :--- | :--- | :--- |
-| **需求決策** | 產品 owner（人）| 優先序、範圍納入/排除、里程碑、Gate 核准、業務驗收、商業例外 | 本表（Excel B 區）|
-| **工程決策** | 工程 + AI 協作 | FR/NFR 措辭、架構、元件映射、API/資料契約、測試設計 | Markdown 工程契約（G 區）|
+| **需求決策** | 產品 owner（人）| 優先序、範圍納入/排除、里程碑、Gate 核准、業務驗收、商業例外 | 本表（追蹤視圖：requirements_tracker ①需求決策）|
+| **工程決策** | 工程 + AI 協作 | FR/NFR 措辭、架構、元件映射、API/資料契約、測試設計 | Markdown 工程契約 |
 
 鐵律：**需求決策不可由規則或 AI 自動衍生**。若某欄目前是系統自動推斷（例如以關鍵字判優先序），必須由 owner 覆寫或明確接受，才算數。
 

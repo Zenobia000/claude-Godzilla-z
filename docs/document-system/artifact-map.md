@@ -68,8 +68,8 @@ SRC → REQ → BR/PRD → FR/NFR → ACPT → BDD/SCN
 |---|---|---|
 | 來源座標 | `SRC-CRM-2026-R18-C4` | 原始來源 + intake register |
 | 進件需求 | `REQ-0001` | intake requirements register |
-| 需求決策 | `DEC-001` | 需求決策紀錄（Excel B 區）|
-| 商業需求 | `BR-LOCK-001` | BRD/PRD MD + Excel B |
+| 需求決策 | `DEC-001` | 需求決策紀錄（追蹤視圖：requirements_tracker ①需求決策）|
+| 商業需求 | `BR-LOCK-001` | BRD/PRD MD |
 | 功能／非功能 | `FR-AGT-001`、`NFR-SEC-001` | SRS/NFR MD |
 | 驗收條件 | `ACPT-LOCK-001` | PRD/SRS MD |
 | BDD 場景 | `SCN-LOCK-001` | BDD MD |
@@ -78,7 +78,7 @@ SRC → REQ → BR/PRD → FR/NFR → ACPT → BDD/SCN
 | 測試 | `TS-01`、`QTM-*`、`TC-*`、`CASE-*` | Test Plan/Cases |
 | 證據／發布 | `EV-*`、`REL-*`、`CR-*`、`WBS-*` | 證據庫／Release／Change/Plan |
 
-每筆跨文件 trace 至少保存 `id / type / source_artifact / source_locator / upstream_ids[] / downstream_ids[] / status / owner / version / evidence[] / supersedes[]`。驗證器至少檢查：ID 唯一且合法、upstream/downstream 雙向一致、無孤兒 FR/NFR/ACPT/TC/證據、四種狀態（requirement/code reality/verification/release）未混用、B/E 欄位在活頁簿重建前後保留。
+每筆跨文件 trace 至少保存 `id / type / source_artifact / source_locator / upstream_ids[] / downstream_ids[] / status / owner / version / evidence[] / supersedes[]`。驗證器至少檢查：ID 唯一且合法、upstream/downstream 雙向一致、無孤兒 FR/NFR/ACPT/TC/證據、四種狀態（requirement/code reality/verification/release）未混用、追蹤簿人工欄位未被生成流程覆寫。
 
 ## 6. MVP／Pilot／Enterprise 文件量
 

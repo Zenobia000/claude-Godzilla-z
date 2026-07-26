@@ -26,7 +26,7 @@ PRD／BDD／SAD／ADR／Traceability
 
 這是**文件驅動開發的啟動寶（startup kit）**：只放可重用的模板、`rules/` 與 `skills/`，**不放任何專案的 Excel 或需求資料**。每次開新專案把它當基底，實際產出長在你的專案裡。
 
-流程最上游的「Excel／訪談／既有系統」是你**每個專案自己帶進來的輸入**（需求訪談表、業務 Excel、舊系統文件），住在你的實際專案，不在這個 repo。你在專案裡維護的「Excel B 區」就是 [需求決策紀錄](../VibeCoding_Workflow_Templates/01_requirements/requirement_decision_record.md) 的形態。先前隨附的 SmartLock 四本 Excel 只是一份「填好的範例」，已抽離——**移除的是範例，不是 Excel 這個概念**。
+流程最上游的「Excel／訪談／既有系統」是你**每個專案自己帶進來的輸入**（需求訪談表、業務 Excel、舊系統文件），住在你的實際專案，不在這個 repo。你在專案裡維護的需求決策，權威是 [需求決策紀錄](../VibeCoding_Workflow_Templates/01_requirements/requirement_decision_record.md)，追蹤視圖是 `requirements_tracker.xlsx` ①需求決策。先前隨附的 SmartLock 四本 Excel 只是一份「填好的範例」，已抽離；現行追蹤層是三個角色追蹤簿——**移除的是範例，不是 Excel 這個概念**。
 
 ## 四個入口
 
@@ -39,7 +39,7 @@ PRD／BDD／SAD／ADR／Traceability
 
 四個 Skill 設為手動呼叫，是為了保留人類決定工作階段與變更範圍的控制權。它們會視需要載入除錯、測試、安全、API、UI 或架構等能力 Skill。
 
-**需求決策 vs 工程決策的硬邊界**：優先序、範圍、里程碑、Gate、業務驗收屬**需求決策**，由產品 owner 於 Excel B 區／[需求決策紀錄](../VibeCoding_Workflow_Templates/01_requirements/requirement_decision_record.md) 拍板，AI 不得自動衍生。`/specify` 在 owner 簽核前不得把需求工程化。這條線與 [`rules/language-register.md`](rules/language-register.md) 的 L1（業務）→ L2（中介）→ L3（工程）分水嶺是同一條。
+**需求決策 vs 工程決策的硬邊界**：優先序、範圍、里程碑、Gate、業務驗收屬**需求決策**，由產品 owner 於 [需求決策紀錄](../VibeCoding_Workflow_Templates/01_requirements/requirement_decision_record.md)（追蹤視圖：`requirements_tracker.xlsx`）拍板，AI 不得自動衍生。`/specify` 在 owner 簽核前不得把需求工程化。這條線與 [`rules/language-register.md`](rules/language-register.md) 的 L1（業務）→ L2（中介）→ L3（工程）分水嶺是同一條。
 
 ## 文件深度
 
@@ -78,13 +78,13 @@ PRD／BDD／SAD／ADR／Traceability
 
 Excel 是業務／PM 的視覺治理介面，Markdown 是工程契約與版本差異介面。兩者不是互相取代：
 
-1. 先在 `docs/document-system/architecture.md` 指定欄位 owner。
+1. 一檔一個 owner：三個角色追蹤簿的分工見 `docs/document-system/workbook-guide.md`。
 2. 保留來源檔、sheet、row、cell/range 與來源列 ID。
 3. 用穩定的 `SRC-* → REQ-* → FR/NFR → ACPT-* → SCN-* → TC-*` 串接；`AC-*` 保留給既有架構選項，不作驗收 ID。
 4. 自動生成只覆寫標示為 generated 的區域，不覆寫人工核准或標註。
 5. 同步後執行 ID、連結、驗收與證據完整性檢查。
 
-四本治理活頁簿（規劃書／BOM／驗收控制表／測試計畫）是可重用的**視覺治理 pattern**，不是必備清單；工作表序程與可填 Excel 範本見 [`docs/document-system/workbook-guide.md`](../docs/document-system/workbook-guide.md)，欄位 owner 與 B/E/G/D 分權見 [`docs/document-system/architecture.md`](../docs/document-system/architecture.md)。新專案從 owner 拍板的需求決策起手，不必複製任何特定領域的實例規模。
+追蹤層是三個**角色追蹤簿**（需求／工程／測試，各一個 owner），用法與欄位見 [`docs/document-system/workbook-guide.md`](../docs/document-system/workbook-guide.md)；所有權模型與自建生成活頁簿的注意事項見 [`docs/document-system/architecture.md`](../docs/document-system/architecture.md)。新專案從 owner 拍板的需求決策起手，不必複製任何特定領域的實例規模。
 
 ## 協作模型：Rules × Skills × Agents
 

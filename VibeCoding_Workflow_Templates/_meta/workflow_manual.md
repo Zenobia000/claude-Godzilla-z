@@ -81,7 +81,7 @@ flowchart LR
 - WBS、RACI、Change Request
 - Test Plan／Test Cases、Traceability、SIT／UAT
 - Deployment、Runbook、Monitoring、Release evidence
-- Excel B/E preservation、完整追溯與稽核
+- 追蹤簿人工欄位保存、完整追溯與稽核
 
 Word 指南是文件 catalog，VibeCoding 是填寫格式，正式專案文件才是工程契約。
 
@@ -95,16 +95,9 @@ Word 指南是文件 catalog，VibeCoding 是填寫格式，正式專案文件�
 | 工程追蹤 | 架構師 | `../03_architecture/engineering_tracker.xlsx` |
 | 測試追蹤 | QA | `../05_qa/qa_tracker.xlsx` |
 
-欄位所有權採 B/E/G/D 分區 pattern（適用於追蹤簿與任何專案自建的活頁簿）：
+所有權以檔為單位：一檔一個 owner，只有 owner 的角色人工維護；AI 只依穩定 ID 更新結構化欄位並回報短 delta。追蹤簿只放骨架（ID＋狀態＋一句話＋連結），細節在 docs 訂版層。
 
-| 區域 | Owner | 行為 |
-|---|---|---|
-| B — Business-owned | Business／Product／PM | 人工維護，生成不得覆寫 |
-| E — Evidence-owned | QA／UAT／Release | 依穩定 ID 無損合併 |
-| G — Generated contract | 工程文件／程式碼 | 由 canonical source 重建 |
-| D — Derived | 公式／生成器 | 唯讀、可重算 |
-
-需求決策（B 區）以 [需求決策紀錄](../01_requirements/requirement_decision_record.md) 為權威。本啟動包不隨附 Excel 產生器；若專案自建產生器投影 G/D，生成欄不得覆寫 B/E，且在 preservation-safe round-trip 完成前不當雙向 SSOT。
+需求決策以 [需求決策紀錄](../01_requirements/requirement_decision_record.md) 為權威，`requirements_tracker.xlsx` ①需求決策是它的追蹤視圖。本啟動包不隨附 Excel 產生器；若專案自建生成活頁簿，生成流程不得覆寫人工維護欄位，且在 preservation-safe round-trip 完成前只當發布快照、不當雙向 SSOT。
 
 ## 8. Gate 判定
 
@@ -168,7 +161,7 @@ DEC-001-line-intake-reliability.md   # 需求決策可獨立成檔時
 - [ ] 範圍內的需求決策已由 owner 核准（需求決策紀錄）。
 - [ ] 適用的驗證命令已實際執行，有證據。
 - [ ] 四個狀態軸分別標記，未混用。
-- [ ] 追溯鏈無孤兒 ID，B/E 欄位未被生成覆寫。
+- [ ] 追溯鏈無孤兒 ID，追蹤簿人工欄位未被生成覆寫。
 
 ## 12. 模板選用
 
