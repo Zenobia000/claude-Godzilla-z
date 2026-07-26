@@ -17,14 +17,15 @@ docs/
 │   │   └── requirements-register.md
 │   ├── traceability.md
 │   └── verification/            # evidence records
-├── 00_strategy/                 # product_vision, roadmap
-├── 01_requirements/             # prd, brd, srs, requirement decision record, *.feature
-├── 02_ux_ui/                    # ux research, ia, ui specs
-├── 03_architecture/             # sad, nfr, adr/ADR-NNNN-*
-├── 04_design/                   # sds, lld, openapi-*.yaml, asyncapi-*.yaml, db designs
-├── 05_qa/                       # test plans, uat, qa reports
-├── 06_ops/                      # deployment, runbooks, monitoring, incidents
-└── 07_release/                  # release notes, change requests
+├── 01_requirements/             # prd, brd, srs, requirements tracker
+├── 02_ux_ui/                    # ux research, ui specs
+├── 03_architecture/             # sad, adr/ADR-NNNN-*
+├── 04_design/                   # api spec, openapi-*.yaml, db designs
+├── 05_qa/                       # test plans, uat, qa tracker
+└── 06_ops/                      # deployment, runbooks
+
+Enterprise layers (00_strategy, 07_release, NFR/SDS/monitoring docs) are added
+per the Word guide only when the project reaches that stage.
 ```
 
 Create only required files and directories — the folders are a taxonomy, not a

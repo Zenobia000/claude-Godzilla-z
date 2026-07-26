@@ -8,22 +8,22 @@
 
 ## 2. 九層文件分類 → 模板資料夾
 
+模板庫只內建 Pilot 核心 13 份＋3 本追蹤簿；標「依需增建」的層**未內建模板**，進企業級時按 Word 指南建立。
+
 | Word 章 | 文件層 | 這一層的文件（範例）| 模板 |
 |---|---|---|---|
-| 4 | 產品與商業 | Vision、MRD、PRD、Roadmap | `00_strategy/`（product_vision、roadmap）＋ `01_requirements/prd` |
-| 5 | 需求分析 | BRD、SRS、User Story、Use Case、AC | `01_requirements/`（brd、srs、prd、bdd_guide、requirements_tracker）|
-| 6 | UX | Research、Journey、User Flow、IA、Wireframe | `02_ux_ui/`（ux_research_and_journey、information_architecture）|
-| 7 | UI／前端設計 | UI Spec、Interaction、Design System、Frontend Tech | `02_ux_ui/`（ui_spec、frontend_technical_design）|
-| 8 | 系統架構 | SAD、C4、ADR、NFR | `03_architecture/`（sad、adr、nfr）|
-| 9 | 技術設計 | SDS、LLD、API、Event、DB、Sequence、State Machine | `04_design/`（sds、lld、api_spec＋openapi.yaml、event_spec＋asyncapi.yaml、db_design）|
+| 4 | 產品與商業 | Vision、MRD、PRD、Roadmap | `01_requirements/prd`；vision/roadmap 依需增建 |
+| 5 | 需求分析 | BRD、SRS、User Story、Use Case、AC | `01_requirements/`（brd、srs、prd、requirements_tracker）|
+| 6 | UX | Research、Journey、User Flow、IA、Wireframe | `02_ux_ui/ux_research_and_journey`；IA 依需增建 |
+| 7 | UI／前端設計 | UI Spec、Interaction、Design System、Frontend Tech | `02_ux_ui/ui_spec`；前端技術設計依需增建 |
+| 8 | 系統架構 | SAD、C4、ADR、NFR | `03_architecture/`（sad、adr）；NFR 依需增建 |
+| 9 | 技術設計 | SDS、LLD、API、Event、DB、Sequence、State Machine | `04_design/`（api_spec＋openapi.yaml、db_design）；SDS/LLD/Event 依需增建 |
 | 10 | QA／測試 | Test Plan、Test Case、UAT、Traceability、QA Report | `05_qa/`（test_plan、uat_plan）＋追蹤簿 |
-| 11 | DevOps／維運 | Deployment、Runbook、Monitoring、Incident | `06_ops/`（deployment_and_operations、runbook、monitoring_spec、incident_postmortem）|
-| 12 | 專案治理 | Project Plan、RACI、Risk、Change Request、Release Note | `07_governance/`（wbs_development_plan＋RACI、change_request、release_note）|
-| — | 安全（跨層）| Security Design、威脅模型、上線關卡 | `05_qa/`（security_and_readiness）|
+| 11 | DevOps／維運 | Deployment、Runbook、Monitoring、Incident | `06_ops/`（deployment_and_operations、runbook）；監控/覆盤依需增建 |
+| 12 | 專案治理 | Project Plan、RACI、Risk、Change Request、Release Note | 依需增建（WBS/CR/release note）|
+| — | 安全（跨層）| Security Design、威脅模型、上線關卡 | 依需增建；Pilot 階段以 test_plan 與部署檢查清單承載必要項 |
 
-Sequence 與 State Machine 不另立模板，收在 `sds.md` §2–3（符合 Word 對 SDS 的定義）；專案結構、模組依賴與類別關係合併在 `lld.md`（C4 Code 層）；Wireframe／Prototype／Design System 以 Figma 為載體，交付邊界寫在 `ui_spec` §9。Code review 與文件維護是流程實踐，不設文件模板——由 `.claude/rules/git-workflow.md` 與對應 Skills 承接。
-
-安全類跨系統架構、技術設計與 QA；本套件把它放在 `05_qa/security_and_readiness`，並在架構與部署階段引用。
+Wireframe／Prototype／Design System 以 Figma 為載體，交付邊界寫在 `ui_spec` §9。Sequence 與 State Machine 在 Pilot 階段收在 api_spec／db_design 附註，需要正式 SDS 時再增建。Code review 與文件維護是流程實踐，不設文件模板——由 `.claude/rules/git-workflow.md` 與對應 Skills 承接。
 
 ## 3. 專案文件的建議資料夾（Word §15）
 

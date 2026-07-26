@@ -22,16 +22,15 @@ claude-Godzilla-z/
 │   │   └── 15-Vision-output.md   # 唯一呈現樣式
 │   └── hooks/                    # Hook 設計指南（零註冊）
 │
-├── VibeCoding_Workflow_Templates/    # 依 Word 指南九層分類與文件詞彙的模板
+├── VibeCoding_Workflow_Templates/    # Pilot 核心 13 份模板＋3 本角色追蹤簿（企業級文件依需增建）
 │   ├── INDEX.md                  # 文件選用與模板索引
 │   ├── _meta/                    # workflow_manual
-│   ├── 00_strategy/              # product_vision、roadmap
-│   ├── 01_requirements/          # requirements_tracker、prd、brd、srs、bdd_guide
-│   ├── 02_ux_ui/                 # ux_research、ia、ui_spec、frontend_technical_design
-│   ├── 03_architecture/          # sad、adr、nfr
-│   ├── 04_design/                # sds、lld、api_spec+openapi、event_spec+asyncapi、db_design
-│   ├── 05_qa/ 06_ops/ 07_governance/  # test/uat、deploy/runbook/monitoring、wbs/cr/release
-│   └── (角色追蹤 Excel 分放各資料夾：需求/工程/QA tracker)
+│   ├── 01_requirements/          # requirements_tracker、prd、brd、srs
+│   ├── 02_ux_ui/                 # ux_research_and_journey、ui_spec
+│   ├── 03_architecture/          # sad、adr、engineering_tracker
+│   ├── 04_design/                # api_spec+openapi、db_design
+│   ├── 05_qa/                    # test_plan、uat_plan、qa_tracker
+│   └── 06_ops/                   # deployment_and_operations、runbook
 │
 ├── docs/document-system/
 │   ├── architecture.md           # Excel／Markdown／Word 權威與同步架構

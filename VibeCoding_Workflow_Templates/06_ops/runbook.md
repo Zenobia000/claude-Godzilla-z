@@ -11,7 +11,7 @@
 
 - [API p95 latency > 1s]
 - [Error rate > 5%]
-- [對應的 alert 名稱，見 `monitoring_spec.md`]
+- [對應的 alert 名稱與告警來源]
 
 ## Impact（影響）
 
@@ -59,4 +59,4 @@
 
 ---
 
-事故結束後 48 小時內完成 [`incident_postmortem.md`](./incident_postmortem.md)。
+事故結束後 48 小時內完成覆盤紀錄（正式覆盤文件依需增建）。

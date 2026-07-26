@@ -57,18 +57,20 @@ Route through `VibeCoding_Workflow_Templates/INDEX.md` — the folder taxonomy
 mirrors the Word documentation guide, so pick templates by the layer the gap
 lives in. Core set for most invocations:
 
-- PRD: `VibeCoding_Workflow_Templates/01_requirements/prd.md`
-- BDD: `VibeCoding_Workflow_Templates/01_requirements/bdd_guide.md`
+- PRD (problem, scope, FR/NFR, ACPT in Given/When/Then):
+  `VibeCoding_Workflow_Templates/01_requirements/prd.md`
 - SAD: `VibeCoding_Workflow_Templates/03_architecture/sad.md`
 - ADR: `VibeCoding_Workflow_Templates/03_architecture/adr.md`
 - Mode and gates: `VibeCoding_Workflow_Templates/_meta/workflow_manual.md`
 
 Add by risk and affected contracts: `srs`/`brd` (formal or process-heavy
-requirements), `nfr` (quantified quality attributes), `api_spec`+`openapi.yaml`
-and `event_spec`+`asyncapi.yaml` (interface contracts), `db_design` (schema),
-`sds`/`lld` (service internals), `ui_spec`/`information_architecture`/
-`frontend_technical_design` (frontend split), `test_plan`/`uat_plan` (formal
-acceptance).
+requirements), `api_spec`+`openapi.yaml` (interface contracts), `db_design`
+(schema), `ux_research_and_journey`/`ui_spec` (UX/UI), `test_plan`/`uat_plan`
+(formal acceptance), `deployment_and_operations`/`runbook` (ops). The bundle
+stops at these Pilot-core 13; enterprise documents (NFR, SDS/LLD, event
+spec/AsyncAPI, monitoring, postmortem, WBS/CR/release notes) have no bundled
+template — create them per the Word guide only when the project actually
+needs them.
 
 Do not copy an entire template. Retain only sections justified by the approved
 scope, risks, NFRs, or existing document convention.

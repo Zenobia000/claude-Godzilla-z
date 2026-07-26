@@ -57,7 +57,7 @@ flowchart LR
 ```
 
 - 每條 flow 標注：入口、決策點、例外路徑、完成的可觀察結果。
-- 頁面層級的導覽與路由歸 [`information_architecture.md`](./information_architecture.md)。
+- 頁面層級的導覽與路由寫在各頁 [`ui_spec.md`](./ui_spec.md)；全站資訊架構文件依需增建。
 
 ---
 

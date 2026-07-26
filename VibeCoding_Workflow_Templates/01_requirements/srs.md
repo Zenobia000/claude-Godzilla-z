@@ -17,7 +17,7 @@
 
 ## 2. 非功能需求 (NFR)
 
-量化指標與驗證方法統一維護在 [`../03_architecture/nfr.md`](../03_architecture/nfr.md)；此處只列本專案適用的 NFR ID 與範圍。
+量化指標與驗證方法維護在本表與 [`../03_architecture/sad.md`](../03_architecture/sad.md) 的品質屬性段；獨立 NFR 文件依需增建。
 
 | ID | 類別 | 適用範圍 |
 | :--- | :--- | :--- |
@@ -60,7 +60,7 @@
 
 ## 6. 驗收標準 (Acceptance Criteria)
 
-AC 是需求與測試之間的橋，用 Given / When / Then 撰寫並落在 [`bdd_guide.md`](./bdd_guide.md) 的 feature 檔；此處維護對照表。
+AC 是需求與測試之間的橋，用 Given / When / Then 撰寫並落在 [`prd.md`](./prd.md) 的 ACPT 段（或依需增建的 feature 檔）；此處維護對照表。
 
 | ACPT ID | 對應 FR | Scenario（SCN-*） | 狀態 |
 | :--- | :--- | :--- | :--- |

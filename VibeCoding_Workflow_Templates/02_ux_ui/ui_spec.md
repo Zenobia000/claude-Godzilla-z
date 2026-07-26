@@ -58,7 +58,7 @@ Header / Filter Bar / Table / Pagination
 
 - **斷點行為:** [Desktop 用 Table；Mobile 改 Card List]
 - **鍵盤操作:** [Tab 順序、Enter/Escape 行為]
-- **ARIA / 對比 / Focus:** [適用的檢查項；標準沿用 `frontend_technical_design.md` §5]
+- **ARIA / 對比 / Focus:** [適用的檢查項與標準，如 WCAG 2.1 AA、對比 ≥ 4.5:1]
 
 ## 9. 設計交付 (Design Handoff)
 
@@ -75,4 +75,4 @@ Header / Filter Bar / Table / Pagination
 | :--- | :--- |
 | 對應需求 | FR-* |
 | 對應情境 | SCN-*（BDD） |
-| 對應元件規格 | [`frontend_technical_design.md`](./frontend_technical_design.md) §3 設計系統 |
+| 對應元件規格 | [Figma Design System 或程式元件庫位置；獨立前端技術設計文件依需增建] |

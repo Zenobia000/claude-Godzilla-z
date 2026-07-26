@@ -25,7 +25,7 @@ rather than restating it as implementation rationale.
 
 1. Read `docs/document-system/INDEX.md`, traceability, and only the in-scope
    approved PRD/BDD/SAD/ADR sections plus any affected contracts
-   (openapi/asyncapi, db_design, sds/lld, ui_spec).
+   (openapi.yaml, db_design, ui_spec).
 2. Confirm the target maps to an approved `FR/NFR`, `ACPT-ID`, observable
    `SCN-ID`, compatible architecture, and no unresolved blocking decision.
 3. Inspect the working tree, project instructions, neighboring implementation,

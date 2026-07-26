@@ -110,5 +110,5 @@ Development → Staging → Production
 ## 7. 相關文件
 
 - 故障情境處置：[`runbook.md`](./runbook.md)（一個症狀一份，以症狀命名）
-- 指標、告警與 SLO：[`monitoring_spec.md`](./monitoring_spec.md)
-- 事故覆盤：[`incident_postmortem.md`](./incident_postmortem.md)
+- 指標、告警與 SLO：先在 §5 監控與告警維護關鍵項；獨立監控規格依需增建
+- 事故覆盤：文件依需增建（企業級）

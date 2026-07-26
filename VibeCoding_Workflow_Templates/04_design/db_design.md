@@ -31,7 +31,7 @@ erDiagram
 | 欄位 | 型態 | 約束 | 說明 |
 | :--- | :--- | :--- | :--- |
 | `id` | uuid | PK | |
-| `status` | enum | NOT NULL | 合法值見狀態機（`sds.md` §狀態機） |
+| `status` | enum | NOT NULL | 合法值與轉移規則見 `api_spec.md` §5 |
 | `created_at` | timestamptz | NOT NULL, default now() | |
 
 ---

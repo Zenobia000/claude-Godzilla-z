@@ -47,7 +47,7 @@
 | **L1** | System Context | 誰在用系統？與哪些外部系統互動？ | 人、本軟體系統（**一個**邊界）、外部系統 | 內部模組、檔名、GitHub/IDE 等開發工具 |
 | **L2** | Container | 系統內有哪些 **runtime**？ | Process、DB、檔案儲存、排程服務、UI | 把 module 當容器；用抽象「資料平面」當 C4 元素 |
 | **L3** | Component | **某一個** L2 容器內部怎麼拆？ | 模組 / package（對應 repo 路徑） | 跨容器 zoom；一張圖混多容器內部 |
-| **L4** | Code | 類別 / 函式（可選） | class、function | 小專案可省略，改連結 `../04_design/lld.md` |
+| **L4** | Code | 類別 / 函式（可選） | class、function | 小專案可省略；需要時依需增建 LLD |
 
 **層級關係**：樹狀 zoom-in（父 → 子），**不是**執行序列。
 
@@ -169,7 +169,7 @@ flowchart TD
 
 #### L4 — Code
 
-小專案可省略，連結到 LLD（`../04_design/lld.md`）。
+小專案可省略；需要 C4 Code 層時依需增建 LLD。
 
 #### 1.1.3 C4 審查 Checklist（PR / milestone gate）
 
@@ -468,7 +468,7 @@ flowchart TB
 
 ## 第 8 部分：模組詳細設計
 
-詳見 `../04_design/sds.md`。
+模組內部設計（時序、狀態機、演算法）依需增建 SDS；Pilot 階段以 `api_spec` 與 `db_design` 承載對外契約即可。
 
 ### NFR 實現
 

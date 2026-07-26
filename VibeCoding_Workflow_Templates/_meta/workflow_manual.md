@@ -35,6 +35,33 @@ flowchart LR
 | `/deliver` | 實作一個已核准垂直切片 | 外部操作與 scope change 另行授權 |
 | `/verify` | 用實際命令、測試與 trace 證據判定 | 接受風險、退回規格或實作 |
 
+### 使用範例
+
+Action 是**階段性入口**，不是每次互動的必經流程——雛型期直接對話迭代，要「收斂、正規化、簽核、判定」時才呼叫。
+
+```text
+# 雛型期：不用 Action，直接聊
+幫我做一個派工排程的雛型，先用 SQLite，能排能看就好
+在 ①需求決策補一列 DEC-003：工地主任可以拖拉調整派工順序
+
+# /intake：有來源要正規化、或雛型結論要收斂成需求候選
+/intake docs/客戶訪談_0712.xlsx
+/intake 上禮拜跟客戶聊的三個功能想法，幫我整理成需求候選
+
+# /specify：owner 在 ①核准後，把業務語言翻成工程契約（FR/ACPT/受影響契約）
+/specify DEC-003
+/specify M1 範圍內所有已核准的 DEC
+
+# /deliver：照已核准規格做一個垂直切片（實作＋測試＋文件同 commit）
+/deliver FR-007
+
+# /verify：用證據判定完成；證據進 qa_tracker ②執行證據
+/verify FR-007
+/verify M1 全範圍        # Gate 前總驗，結果供 ③Gate 簽核
+```
+
+典型節奏：雛型期自由迭代 → 客戶要試用 → `/intake` 收斂成 `DEC-*` → owner 在 ① 標「已核准」→ `/specify M1` → 逐條 `/deliver` → `/verify M1` → ③Gate 簽核 → 進 Pilot。
+
 ## 3. 階段選擇
 
 文件深度跟著**開發階段**走，不是跟著模板清單走。實務上大多數專案從模糊需求開始，靠雛型一步步迭代出來；文件在階段升級時才補齊，不在起步時前置。
@@ -92,7 +119,7 @@ flowchart LR
 - Deployment、Runbook、Monitoring、Release evidence
 - 追蹤簿人工欄位保存、完整追溯與稽核
 
-Word 指南是文件 catalog，VibeCoding 是填寫格式，正式專案文件才是工程契約。
+Word 指南是文件 catalog，VibeCoding 是填寫格式，正式專案文件才是工程契約。企業級文件多數**未內建模板**（模板庫收斂到 Pilot 核心 13 份）；進企業級時依 Word 指南增建，git 歷史有可回收的舊版。
 
 ## 7. 追蹤簿與欄位所有權
 
@@ -138,11 +165,11 @@ Word 指南是文件 catalog，VibeCoding 是填寫格式，正式專案文件�
 
 | 情境／缺口 | 最低必要 | 建議補充 | 一開始先不做 |
 |---|---|---|---|
-| 雛型、可逆、單團隊 | 需求追蹤簿骨架、prd 精簡段 | adr（僅重大決策）、bdd_guide | 完整 SRS、SDS、SIT/UAT |
-| 前後端分工 | + ui_spec、frontend_technical_design、openapi.yaml | information_architecture、Storybook | Design System 全套 |
-| 企業流程／多系統整合 | + brd、srs、sad、api_spec、nfr | adr、db_design、event_spec | — |
-| AI／不確定性產品 | + bdd_guide 邊界場景、security_and_readiness | 評估與回歸集 | — |
-| 客戶驗收／正式上線 | + test_plan、uat_plan、deployment_and_operations | runbook、monitoring_spec | — |
+| 雛型、可逆、單團隊 | 需求追蹤簿骨架、prd 精簡段 | adr（僅重大決策）| 完整 SRS、SIT/UAT |
+| 前後端分工 | + ui_spec、openapi.yaml | ux_research_and_journey | Design System 全套 |
+| 企業流程／多系統整合 | + brd、srs、sad、api_spec | db_design | — |
+| AI／不確定性產品 | + prd 的邊界場景與驗收條件 | 評估與回歸集 | — |
+| 客戶驗收／正式上線 | + test_plan、uat_plan、deployment_and_operations、runbook | — | — |
 
 三階段文件組合：**雛型＝追蹤簿骨架＋prd 精簡＋必要 ADR、Pilot ≈ 13 份、企業級依 artifact-map 全量選用**；深度依風險升級，見 [artifact-map.md](../../docs/document-system/artifact-map.md)。
 
@@ -153,7 +180,6 @@ Word 指南是文件 catalog，VibeCoding 是填寫格式，正式專案文件�
 ```
 ADR-001-use-kafka-for-event-stream.md
 openapi-work-order-v1.yaml
-asyncapi-work-order-v1.yaml
 db-schema-work-order-v1.md
 runbook-api-latency-high.md
 UAT_WorkOrder_Pilot_ClientA_20260701.xlsx
@@ -172,7 +198,7 @@ DEC-001-line-intake-reliability.md   # 需求決策可獨立成檔時
 | 設計只給 Figma | 缺狀態與互動規格 | 補 ui_spec（§5 States、§6 Interaction）與 Design Handoff |
 | 優先序/範圍由 AI 或規則自動判 | 需求決策沒交還 owner | 回 ①需求決策由 owner 簽核 |
 | 一個「狀態」欄想代表全部 | Requirement/Code/Verify/Release 混用 | 拆四個狀態軸 |
-| API 邊做邊改 | 缺契約 | 先定 openapi.yaml／asyncapi.yaml，mock 先行 |
+| API 邊做邊改 | 缺契約 | 先定 openapi.yaml，mock 先行 |
 | 上線靠英雄 | 部署知識沒沉澱 | 補 deployment_and_operations、runbook |
 | 文件填滿但沒人讀 | 為完整而寫，非為共識 | 依風險裁剪 |
 | 決策理由只在對話裡 | 無法回查為什麼 | 寫 ADR 或決策沿革 |
