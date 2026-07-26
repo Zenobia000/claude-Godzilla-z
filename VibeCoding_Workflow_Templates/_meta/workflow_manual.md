@@ -98,9 +98,9 @@ flowchart LR
 
 ## 5. Pilot／客戶驗證
 
-進入給真實使用者驗證、需要對外簽核時，依缺口從 Pilot 文件組補齊（不是 13 份全建）：
+進入給真實使用者驗證、需要對外簽核時，依缺口從 Pilot 文件組補齊（不是 14 份全建）：
 
-> brd、prd、srs、ux_research_and_journey、ui_spec、sad、adr、api_spec＋openapi.yaml、db_design、test_plan、uat_plan、deployment_and_operations、runbook
+> brd、prd、srs、ux_research_and_journey、information_architecture、ui_spec、sad、adr、api_spec＋openapi.yaml、db_design、test_plan、uat_plan、deployment_and_operations、runbook
 
 | 階段 | 必要產出 | Gate |
 |---|---|---|
@@ -119,7 +119,7 @@ flowchart LR
 - Deployment、Runbook、Monitoring、Release evidence
 - 追蹤簿人工欄位保存、完整追溯與稽核
 
-Word 指南是文件 catalog，VibeCoding 是填寫格式，正式專案文件才是工程契約。企業級文件多數**未內建模板**（模板庫收斂到 Pilot 核心 13 份）；進企業級時依 Word 指南增建，git 歷史有可回收的舊版。
+Word 指南是文件 catalog，VibeCoding 是填寫格式，正式專案文件才是工程契約。企業級文件多數**未內建模板**（模板庫收斂到 Pilot 核心 14 份）；進企業級時依 Word 指南增建，git 歷史有可回收的舊版。
 
 ## 7. 追蹤簿與欄位所有權
 
@@ -171,7 +171,7 @@ Word 指南是文件 catalog，VibeCoding 是填寫格式，正式專案文件�
 | AI／不確定性產品 | + prd 的邊界場景與驗收條件 | 評估與回歸集 | — |
 | 客戶驗收／正式上線 | + test_plan、uat_plan、deployment_and_operations、runbook | — | — |
 
-三階段文件組合：**雛型＝追蹤簿骨架＋prd 精簡＋必要 ADR、Pilot ≈ 13 份、企業級依 artifact-map 全量選用**；深度依風險升級，見 [artifact-map.md](../../docs/document-system/artifact-map.md)。
+三階段文件組合：**雛型＝追蹤簿骨架＋prd 精簡＋必要 ADR、Pilot ≈ 14 份、企業級依 artifact-map 全量選用**；深度依風險升級，見 [artifact-map.md](../../docs/document-system/artifact-map.md)。
 
 ## 10. 命名規範
 

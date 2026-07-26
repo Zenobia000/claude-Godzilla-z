@@ -130,3 +130,20 @@
   "status": "string (optional, default: active)"
 }
 ```
+
+### 狀態機（如適用）
+
+`status` 等 enum 欄位的合法值與轉移規則是契約的一部分，維護在此（`db_design` 與 `openapi.yaml` 引用，不重複定義）：
+
+```mermaid
+stateDiagram-v2
+    [*] --> active
+    active --> inactive: deactivate
+    inactive --> active: reactivate
+```
+
+| 目前狀態 | 事件 | 下一狀態 | 副作用 |
+| :--- | :--- | :--- | :--- |
+| active | deactivate | inactive | [通知/稽核紀錄] |
+
+> 複雜的模組內部時序與狀態機多到需要獨立文件時，依需增建 SDS。

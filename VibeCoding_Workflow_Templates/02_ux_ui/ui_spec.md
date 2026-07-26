@@ -10,6 +10,11 @@
 
 [一句話：這頁讓誰完成什麼任務。對應 User Flow 節點：`ux_research_and_journey.md` §5]
 
+| 導航 | 頁面 |
+| :--- | :--- |
+| 入口（從哪些頁面進入） | [頁面清單，對應 `information_architecture.md` §1] |
+| 出口（可前往哪些頁面） | [頁面清單] |
+
 ## 2. 版面配置 (Layout)
 
 ```text

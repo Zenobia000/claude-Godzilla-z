@@ -8,13 +8,13 @@
 
 ## 2. 九層文件分類 → 模板資料夾
 
-模板庫只內建 Pilot 核心 13 份＋3 本追蹤簿；標「依需增建」的層**未內建模板**，進企業級時按 Word 指南建立。
+模板庫只內建 Pilot 核心 14 份＋3 本追蹤簿；標「依需增建」的層**未內建模板**，進企業級時按 Word 指南建立。
 
 | Word 章 | 文件層 | 這一層的文件（範例）| 模板 |
 |---|---|---|---|
 | 4 | 產品與商業 | Vision、MRD、PRD、Roadmap | `01_requirements/prd`；vision/roadmap 依需增建 |
 | 5 | 需求分析 | BRD、SRS、User Story、Use Case、AC | `01_requirements/`（brd、srs、prd、requirements_tracker）|
-| 6 | UX | Research、Journey、User Flow、IA、Wireframe | `02_ux_ui/ux_research_and_journey`；IA 依需增建 |
+| 6 | UX | Research、Journey、User Flow、IA、Wireframe | `02_ux_ui/`（ux_research_and_journey、information_architecture）|
 | 7 | UI／前端設計 | UI Spec、Interaction、Design System、Frontend Tech | `02_ux_ui/ui_spec`；前端技術設計依需增建 |
 | 8 | 系統架構 | SAD、C4、ADR、NFR | `03_architecture/`（sad、adr）；NFR 依需增建 |
 | 9 | 技術設計 | SDS、LLD、API、Event、DB、Sequence、State Machine | `04_design/`（api_spec＋openapi.yaml、db_design）；SDS/LLD/Event 依需增建 |
@@ -85,7 +85,7 @@ SRC → REQ → BR/PRD → FR/NFR → ACPT → BDD/SCN
 | 階段 | 文件量 |
 |---|---|
 | 雛型（Prototype） | 追蹤簿骨架＋PRD 精簡段＋必要 ADR＋測試證據；心流優先，不前置治理文件 |
-| Pilot／客戶驗證 | ≈ 13 份：BRD/PRD/SRS、UX/UI、SAD/ADR、API/DB、Test/UAT、Deployment/Runbook |
+| Pilot／客戶驗證 | ≈ 14 份：BRD/PRD/SRS、UX/IA/UI、SAD/ADR、API/DB、Test/UAT、Deployment/Runbook |
 | 企業級（Enterprise） | ≈ 27 份：完整 SRS/NFR、SAD/SDS、ADR、契約、SIT/UAT、Ops、稽核追溯 |
 
 升級觸發：敏感資料／法遵、多團隊或外部契約、高可用與 on-call、不可逆遷移、正式 UAT 或稽核。文件深度依風險，不無差別填滿。

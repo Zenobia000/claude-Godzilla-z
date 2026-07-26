@@ -17,7 +17,7 @@
 
 ## 2. 非功能需求 (NFR)
 
-量化指標與驗證方法維護在本表與 [`../03_architecture/sad.md`](../03_architecture/sad.md) 的品質屬性段；獨立 NFR 文件依需增建。
+量化指標與驗證方法維護在本表與 [`../03_architecture/sad.md`](../03_architecture/sad.md) §2 非功能性需求段；獨立 NFR 文件依需增建。
 
 | ID | 類別 | 適用範圍 |
 | :--- | :--- | :--- |

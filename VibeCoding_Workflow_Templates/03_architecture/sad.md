@@ -468,7 +468,7 @@ flowchart TB
 
 ## 第 8 部分：模組詳細設計
 
-模組內部設計（時序、狀態機、演算法）依需增建 SDS；Pilot 階段以 `api_spec` 與 `db_design` 承載對外契約即可。
+模組內部設計（時序、狀態機、演算法）依需增建 SDS；Pilot 階段以 `api_spec`（§6 含狀態機）與 `db_design` 承載對外契約即可。
 
 ### NFR 實現
 

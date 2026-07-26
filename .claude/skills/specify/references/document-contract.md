@@ -18,7 +18,7 @@ docs/
 │   ├── traceability.md
 │   └── verification/            # evidence records
 ├── 01_requirements/             # prd, brd, srs, requirements tracker
-├── 02_ux_ui/                    # ux research, ui specs
+├── 02_ux_ui/                    # ux research, information architecture, ui specs
 ├── 03_architecture/             # sad, adr/ADR-NNNN-*
 ├── 04_design/                   # api spec, openapi-*.yaml, db designs
 ├── 05_qa/                       # test plans, uat, qa tracker

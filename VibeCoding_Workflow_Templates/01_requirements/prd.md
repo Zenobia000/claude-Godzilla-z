@@ -29,10 +29,12 @@
 
 ### Epic: [例如：使用者身份驗證]
 
-| ID | 描述 (As a / I want to / So that) | 允收標準 | BDD 連結 |
+| ID | 描述 (As a / I want to / So that) | 允收標準（Given / When / Then） | 情境ID |
 | :--- | :--- | :--- | :--- |
-| US-001 | As a 新使用者, I want to 透過 Email 註冊, so that 我可以使用服務。 | 1. 有效 Email 註冊成功 2. 收到驗證信 3. 驗證後帳號啟用 | `auth.feature` |
+| US-001 | As a 新使用者, I want to 透過 Email 註冊, so that 我可以使用服務。 | Given 未註冊的有效 Email，When 送出註冊，Then 收到驗證信且驗證後帳號啟用 | SCN-001 |
 | US-002 | | | |
+
+允收標準一律用 Given / When / Then 寫成可觀察行為——這是需求與測試之間的橋（`qa_tracker` 的測試設計引用 SCN-*）。情境多到表格放不下時，依需增建 `.feature` 檔。
 
 ---
 

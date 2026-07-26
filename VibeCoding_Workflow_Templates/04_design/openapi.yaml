@@ -55,7 +55,7 @@ components:
     WorkOrderStatus:
       type: string
       enum: [draft, pending, assigned, in_progress, completed, closed, cancelled]
-      description: 合法值與轉移規則見 api_spec.md §5
+      description: 合法值與轉移規則見 api_spec.md §6 狀態機
     WorkOrder:
       type: object
       required: [id, status, createdAt]

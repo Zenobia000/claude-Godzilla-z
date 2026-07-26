@@ -59,8 +59,8 @@ PRD／BDD／SAD／ADR／Traceability
 
 給真實使用者驗、需要對外簽核。`/specify` 硬閘自此生效。依缺口補齊 Pilot 文件組：
 
-- BRD／PRD／SRS、BDD／驗收
-- UX Flow／UI Spec
+- BRD／PRD／SRS、驗收情境（GWT）
+- UX Flow／IA／UI Spec
 - SAD／ADR、API 契約（openapi.yaml）、DB 設計
 - Test Plan／UAT Plan、Deployment、Runbook
 
