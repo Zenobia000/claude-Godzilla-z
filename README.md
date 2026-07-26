@@ -84,7 +84,7 @@ Excel／訪談／舊系統
 ├── agents/         8 個隔離型專業角色
 ├── output-styles/  1 個純呈現樣式
 ├── hooks/          基礎模板零註冊；僅 Hook 設計指南
-└── statusline*     唯讀顯示官方 stdin
+└── statusline*     顯示官方 stdin 與 usage API 用量
 ```
 
 | 元件 | 現行責任 |
@@ -129,7 +129,7 @@ claude
 v6 退役了：
 
 - Hook 驅動的 TaskMaster prompt 攔截、snapshot 與 timelog
-- StatusLine 的憑證探索、私有 HTTP 與工作樹寫入
+- StatusLine 的工作樹寫入與 session snapshot（憑證探索與 usage API 查詢後於全域版移植時恢復）
 - 每個 Subagent 強制產生 context 報告
 - 17 個與 Skills 重複的 Commands
 - 14 個實際上是工作流程的 Output Styles
@@ -140,7 +140,7 @@ Claude Code 原生 Task list 處理暫態工作；PRD、ADR、issue、測試與 
 ## 驗證與安全基線
 
 - `settings.json` 以 deny 阻擋內建 Read/Edit 存取 `.env`、secrets、credentials；這不攔截 Bash 子程序。在 macOS／Linux／WSL2 可另啟 sandbox，Windows 原生環境則需依 OS／工作區隔離與人工授權控管 shell。
-- StatusLine 只讀官方 stdin 與 Git branch。
+- StatusLine 讀官方 stdin（rate-limit 以 stdin `rate_limits` 優先）、唯讀 Git 查詢與 Anthropic usage API 回退；不寫入工作樹或專案狀態。
 - Excel intake 工具只讀 OOXML，測試會驗證來源 hash 不變。
 - 完成狀態必須區分 Requirement、Code reality、Verification、Release。
 

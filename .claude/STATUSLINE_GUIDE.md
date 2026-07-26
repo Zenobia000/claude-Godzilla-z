@@ -1,14 +1,12 @@
 # Claude Code StatusLine 指南
 
-本模板的 StatusLine 是**唯讀顯示器**。它只解析 Claude Code 傳入 stdin 的官方 JSON 欄位，並在一般工作樹中以唯讀 `git branch --show-current` 補充分支名稱。
+本專案的 StatusLine 移植自全域 `~/.claude/statusline.sh`（兩份需同步維護）。它解析 Claude Code 傳入 stdin 的官方 JSON 欄位，並額外做三件事：
 
-它不會：
+- 以唯讀 `git symbolic-ref` 與 `git status --porcelain` 補充分支名稱與 dirty 標記。
+- 5 小時／7 天 rate-limit **優先讀官方 stdin 的 `rate_limits` 欄位**（每次 API 回應即時更新，與 `/usage` 同源）；stdin 缺該 window 時才以 Claude Code OAuth token 呼叫 `https://api.anthropic.com/api/oauth/usage` 回退。API 結果快取於 `/tmp/claude/statusline-usage-cache.json`（60 秒；API 失敗時 stale 快取最多沿用 10 分鐘，逾期直接省略而不顯示舊數據）。Extra usage（💳）只存在於 usage API。
+- 不寫入任何專案狀態檔（全域版的 taskmaster-data session snapshot 區塊在本專案已移除）。
 
-- 尋找或讀取 Claude Code credential。
-- 呼叫 Anthropic 私有或未公開的 HTTP endpoint。
-- 建立 usage cache、session snapshot 或時間日誌。
-- 讀寫任何專案狀態檔或 runtime 資料。
-- 修改 Git 或工作區內容。
+Token 來源依序：`CLAUDE_CODE_OAUTH_TOKEN` 環境變數 → macOS Keychain → `~/.claude/.credentials.json` → `secret-tool`（Linux keyring）。取不到 token 時 rate-limit 行靜默省略，不影響第一行。
 
 ## 啟用方式
 
@@ -41,25 +39,41 @@ Linux 若要使用明確入口，可把最後的檔名改成 `statusline-linux.s
 
 ## 顯示內容
 
-輸出保持單行：
+第一行為 session 概況，之後視 usage API 是否可用附加 1–3 行 rate-limit：
 
 ```text
-Claude Opus | ctx [####------] 42% | branch feature/a | 1h08m | rate 5h 21% 7d 35% | $4.27
+🦁  Claude Opus │ 🌊  42% (84k/200k) │ 📂  my-repo 🌿  feature/a💫 │ ⏱  1h8m │ 💰  $4.27
+⚡  ●○○○○○○○○○   7% 🔄  19:10
+📅  ●●●●○○○○○○  44% 🔄  07/28 19:59
+💳  ●●○○○○○○○○ $3.10/$50.00
 ```
 
-| 顯示 | 官方 stdin 欄位 |
+| 顯示 | 來源 |
 | --- | --- |
-| Model | `model.display_name`，缺少時使用 `model.id` |
-| Context | `context_window.used_percentage` |
-| Worktree branch | `worktree.branch` |
-| Duration | `cost.total_duration_ms` |
-| Five-hour rate limit | `rate_limits.five_hour.used_percentage` |
-| Seven-day rate limit | `rate_limits.seven_day.used_percentage` |
-| Estimated cost | `cost.total_cost_usd` |
+| Model（🦁 opus／🦅 sonnet／🐦 haiku／🤖 其他） | `model.display_name` |
+| Context %（優先 `used_percentage`，否則由 tokens 計算） | `context_window.*` |
+| 📂 目錄 | `cwd` 的 basename |
+| 🌿 分支＋💫 dirty | 唯讀 `git symbolic-ref` / `git status --porcelain` |
+| ⏱ Duration | `cost.total_duration_ms` |
+| 💰 Estimated cost（$0.00 時省略） | `cost.total_cost_usd` |
+| ⚡ 5 小時 rate limit＋🔄 重置時間 | stdin `rate_limits.five_hour`（缺欄位退 usage API `five_hour`） |
+| 📅 7 天 rate limit＋🔄 重置時間 | stdin `rate_limits.seven_day`（缺欄位退 usage API `seven_day`） |
+| 💳 Extra usage（啟用時才顯示） | usage API `extra_usage` |
 
-一般工作樹的 payload 沒有 branch 欄位，因此腳本會使用 `workspace.current_dir`（舊 payload 回退到 `cwd`）執行唯讀 Git branch lookup。它不執行 `git status`，避免 StatusLine 高頻刷新拖慢大型 repo。
+### Token 水位
 
-Rate-limit 欄位若尚未提供便不顯示；缺少欄位不視為錯誤。
+Context 使用率對應的水位 icon（與腳本 `level_icon_for_pct` 一致）：
+
+| Context % | Icon |
+| --- | --- |
+| < 30% | ❄️ |
+| 30–49% | 🌊 |
+| 50–69% | 🌡 |
+| 70–84% | ♨️ |
+| 85–94% | 🔥 |
+| ≥ 95% | 💥 |
+
+百分比顏色（context 與 rate-limit 共用）：< 50% 綠、50–69% 橙、70–89% 黃、≥ 90% 紅。
 
 官方欄位定義：
 
@@ -69,7 +83,8 @@ Rate-limit 欄位若尚未提供便不顯示；缺少欄位不視為錯誤。
 
 - Bash
 - `jq`
-- Git（專案設定用它定位 repo root；直接執行腳本時，沒有 Git 仍可顯示其他欄位）
+- Git（定位 repo root 與分支；沒有 Git 仍可顯示其他欄位）
+- `curl`（抓 usage API；失敗時退回快取或省略 rate-limit 行）
 
 安裝 `jq`：
 
@@ -85,7 +100,7 @@ sudo apt install jq
 sudo dnf install jq
 ```
 
-Windows Git Bash 會依序檢查 PATH、WinGet link、Chocolatey 與 `/c/tools/jq.exe`。腳本不掃描整個使用者目錄。
+Windows Git Bash 會依序檢查 PATH、WinGet link、Chocolatey 與 `/c/tools/jq.exe`。
 
 ## 本機驗證
 
@@ -101,14 +116,17 @@ Mock stdin：
 ```bash
 printf '%s\n' '{
   "model": {"display_name": "Claude Opus"},
-  "workspace": {"current_dir": "."},
-  "worktree": {"branch": "feature/mock"},
-  "context_window": {"used_percentage": 42},
+  "context_window": {
+    "context_window_size": 200000,
+    "used_percentage": 42,
+    "current_usage": {"input_tokens": 84000}
+  },
   "cost": {"total_duration_ms": 4085000, "total_cost_usd": 4.27},
   "rate_limits": {
-    "five_hour": {"used_percentage": 21, "resets_at": 1784880000},
-    "seven_day": {"used_percentage": 35, "resets_at": 1785369600}
-  }
+    "five_hour": {"used_percentage": 23.5, "resets_at": 1784880000},
+    "seven_day": {"used_percentage": 41.2, "resets_at": 1785369600}
+  },
+  "cwd": "."
 }' | bash .claude/statusline.sh
 ```
 
@@ -119,10 +137,12 @@ printf '%s\n' '{"model":{"display_name":"Claude"},"context_window":{},"cost":{}}
   | bash .claude/statusline.sh
 ```
 
+`statusline-debug.sh` 會把原始 stdin JSON 存到 `/tmp/statusline-debug.json` 再正常執行 StatusLine，用於排查實際 payload。
+
 ## 疑難排解
 
-- `statusline requires jq`：確認 `jq --version` 在相同 Git Bash／Linux shell 可執行。
-- `invalid status input`：stdin 不是合法 JSON；用上方 mock 先隔離腳本問題。
-- 沒有 branch：payload 沒有 `worktree.branch`，而 `workspace.current_dir` 也不在 Git repo。
-- 沒有 rate：目前 session 尚未收到 `rate_limits`，腳本會正常省略。
+- `jq not found`：確認 `jq --version` 在相同 shell 可執行。
+- 沒有 branch：`cwd` 不在 Git repo，或處於 detached HEAD。
+- 沒有 rate-limit 行：session 尚未收到 stdin `rate_limits`（Pro/Max 首次 API 回應後才出現），且回退路徑也失敗（取不到 OAuth token，或 usage API 失敗且快取已超過 10 分鐘）；第一行不受影響。
+- Rate-limit 數字疑似過舊：stdin 來源每次 API 回應即時更新；若當下走的是 usage API 回退，最多有 60 秒快取延遲，刪除 `/tmp/claude/statusline-usage-cache.json` 可強制刷新。
 - StatusLine 未出現：用 `/statusline` 或 `/status` 確認實際載入的 settings 來源與專案信任狀態。

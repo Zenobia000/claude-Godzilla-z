@@ -12,7 +12,7 @@
 | `agents/` | context／工具／權限隔離 | 複製 Skills 的知識 |
 | `output-styles/` | 回答呈現方式 | PRD、BDD、TDD 等流程 |
 | `hooks/` | 確定、快速、低頻的 guardrail | 專案管理、隱性狀態機 |
-| `statusline*.sh` | 唯讀顯示官方 stdin 狀態 | 憑證查找、HTTP、檔案寫入 |
+| `statusline*.sh` | 顯示官方 stdin 狀態與 usage API 用量（與全域版同步） | 工作樹寫入、專案狀態寫入 |
 
 ## 主要工作流
 
@@ -64,7 +64,7 @@ Claude Code 已將自訂 commands 與 skills 統一為 slash-command 入口。�
 
 Read/Edit deny 不是作業系統 sandbox，無法攔截 Bash／PowerShell 子程序直接讀檔。macOS、Linux、WSL2 可依專案風險另啟 Claude Code sandbox；Windows 原生環境需搭配 OS／工作區隔離、最小 shell 授權與不把秘密放進 repository。不要把此設定宣稱為完整的秘密防護。
 
-StatusLine 只消費 Claude Code 官方 stdin 與唯讀 Git branch lookup。平台與 mock 測試方式見 [STATUSLINE_GUIDE.md](./STATUSLINE_GUIDE.md)。
+StatusLine 移植自全域 `~/.claude/statusline.sh`：消費 Claude Code 官方 stdin、唯讀 Git 查詢（branch 與 dirty）。Rate-limit 優先讀官方 stdin `rate_limits`（即時、與 `/usage` 同源），缺欄位才以 OAuth token 查 usage API（快取於 `/tmp/claude/`，stale 上限 10 分鐘）；不寫入工作樹或專案狀態。平台與 mock 測試方式見 [STATUSLINE_GUIDE.md](./STATUSLINE_GUIDE.md)。
 
 ## 擴充原則
 
