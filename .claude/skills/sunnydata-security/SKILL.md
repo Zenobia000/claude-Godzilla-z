@@ -4,7 +4,7 @@ description: Comprehensive security review — OWASP Top 10 classification, impl
 origin: merged (security-review + owasp-web-security + security-best-practices-openai)
 ---
 
-<!-- 繁體中文說明：此技能整合三個安全技能為一體，涵蓋 OWASP 分類（第一層）、具體實作清單（第二層）、語言框架特定參考（第三層）。 -->
+> **繁體中文說明**：此技能整合三個安全技能為一體，涵蓋 OWASP 分類（第一層）、具體實作清單（第二層）、語言框架特定參考（第三層）。
 
 # Security
 
