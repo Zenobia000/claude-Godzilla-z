@@ -107,28 +107,8 @@ Development → Staging → Production
 
 ---
 
-## 7. Runbook 模板
+## 7. 相關文件
 
-```markdown
-# 服務 Runbook: [服務名稱]
-
-## 服務概覽
-- 用途與功能
-- 依賴服務
-- 架構圖
-
-## 部署流程
-- 建置與部署步驟
-- 配置需求
-- 健康檢查端點
-
-## 監控
-- 關鍵指標與儀表板
-- 告警條件與回應方式
-- 日誌位置與格式
-
-## 故障排除
-- 常見問題與解決方案
-- 緊急聯絡人
-- 升級流程
-```
+- 故障情境處置：[`runbook.md`](./runbook.md)（一個症狀一份，以症狀命名）
+- 指標、告警與 SLO：[`monitoring_spec.md`](./monitoring_spec.md)
+- 事故覆盤：[`incident_postmortem.md`](./incident_postmortem.md)

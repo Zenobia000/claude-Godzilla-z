@@ -52,11 +52,11 @@ own.
 
 Read only the applicable repository template sections:
 
-- PRD: `VibeCoding_Workflow_Templates/01_requirements/project_brief_and_prd.md`
+- PRD: `VibeCoding_Workflow_Templates/01_requirements/prd.md`
 - BDD: `VibeCoding_Workflow_Templates/01_requirements/bdd_guide.md`
-- SAD: `VibeCoding_Workflow_Templates/03_architecture/architecture_and_design.md`
+- SAD: `VibeCoding_Workflow_Templates/03_architecture/sad.md`
 - ADR: `VibeCoding_Workflow_Templates/03_architecture/adr.md`
-- Mode and gates: `VibeCoding_Workflow_Templates/00_meta/workflow_manual.md`
+- Mode and gates: `VibeCoding_Workflow_Templates/_meta/workflow_manual.md`
 
 Do not copy an entire template. Retain only sections justified by the approved
 scope, risks, NFRs, or existing document convention.

@@ -121,16 +121,16 @@ git tag -a backup/<branch>-<YYYY-MM-DD> -m '安全快照, tip <oid>'
 
 | Code 變更類型 | 必查 docs |
 | :--- | :--- |
-| 新模組 / 重大目錄重組 | 08 專案結構、09 檔案相依、`docs/document-system/architecture.md` 權威矩陣 |
-| ADR-worthy 決策（換引擎、升版、改通道等）| 04 ADR、`docs/document-system/INDEX.md` |
-| Schema / DDL / 資料契約變更 | 05 SAD 資料段、06 API 契約、追溯矩陣 |
-| 依賴升級（pyproject / package.json）| 02 PRD 依賴清單、相關 ADR |
-| 環境變數新增 / 改名 | `.env.example`、14 部署與維運的環境變數表 |
-| 新 API endpoint / CLI 子命令 | 06 API 契約、README、CLI manual |
-| 新測試類別（performance / e2e）| 07 模組規格與測試、測試策略 |
-| 部署 / Docker / 拓撲變更 | 14 部署與維運、Runbook |
+| 新模組 / 重大目錄重組 | project_structure、file_dependencies、`docs/document-system/architecture.md` 權威矩陣 |
+| ADR-worthy 決策（換引擎、升版、改通道等）| adr、`docs/document-system/INDEX.md` |
+| Schema / DDL / 資料契約變更 | sad 資料段、db_design、api_spec／openapi.yaml、追溯矩陣 |
+| 依賴升級（pyproject / package.json）| prd 依賴清單、相關 adr |
+| 環境變數新增 / 改名 | `.env.example`、deployment_and_operations 的環境變數表 |
+| 新 API endpoint / CLI 子命令 | api_spec／openapi.yaml、README、CLI manual |
+| 新測試類別（performance / e2e）| sds 測試段、test_plan |
+| 部署 / Docker / 拓撲變更 | deployment_and_operations、runbook |
 | 需求 / 驗收 / 追溯變化 | intake 需求登錄、`docs/document-system/` 追溯矩陣（永遠要動）|
-| 跨多檔重構 / 結構大改 | 受影響文件的版本 banner、08 專案結構 |
+| 跨多檔重構 / 結構大改 | 受影響文件的版本 banner、project_structure |
 
 例外（允許延後同步）：
 

@@ -1,17 +1,17 @@
 # 產品開發流程使用說明書
 
-> **版本：** v3.0 | **更新：** 2026-07-24 | **狀態：** 活躍
+> **版本：** v4.0 | **更新：** 2026-07-26 | **狀態：** 活躍
 
 ## 1. 使用原則
 
 - **用問題管理文件：** 文件是降低誤解、支援決策、可驗收的同步工具，不是交付物。不能減少下一次返工的文件就別寫。
-- **決策分兩類：** **需求決策**（優先序、範圍、里程碑、Gate、業務驗收）由產品 owner 拍板，落在 Excel B 區 / [`18 需求決策紀錄`](../01_requirements/requirement_decision_record.md)；**工程決策**（架構、契約、測試設計）由工程與 AI 協作。兩者之間是硬邊界，owner 未核准需求決策前不進 `/specify`。
+- **決策分兩類：** **需求決策**（優先序、範圍、里程碑、Gate、業務驗收）由產品 owner 拍板，落在 [需求決策紀錄](../01_requirements/requirement_decision_record.md) 與需求追蹤簿；**工程決策**（架構、契約、測試設計）由工程與 AI 協作。兩者之間是硬邊界，owner 未核准需求決策前不進 `/specify`。
 - **來源先行：** 先確認 Excel、訪談、既有文件與程式碼的 owner。
 - **欄位級 SSOT：** 同一資訊只有一個人工維護來源；其他載體是投影或索引。
 - **風險裁剪：** 建立協作與驗收真正需要的文件，不為了完整而填模板。
 - **小步交付：** 以穩定 ID 串接需求、驗收、設計、程式碼、測試與證據。
 - **狀態分離：** Requirement、Code reality、Verification、Release 不共用一個狀態。
-- **降認知負載：** 看板（角色追蹤 Excel）給眼睛掃、docs 給訂版；AI 更新結構化欄位與 docs，回報只給短 delta，不倒大段說明，減少文件切換與注意力耗散。見 [workbook-guide](../../docs/document-system/workbook-guide.md)。
+- **降認知負載：** 看板（三個角色追蹤簿）給眼睛掃、docs 給訂版；AI 更新結構化欄位與 docs，回報只給短 delta，不倒大段說明，減少文件切換與注意力耗散。見 [workbook-guide](../../docs/document-system/workbook-guide.md)。
 - **思考模式（速通 vs 深思）：** **預設速通**——AI 給推薦選項、你快選；你喊「深思」才慢下來（架構判斷與商業決策想成長時），AI 改成只 provoke、你親自判斷並記錄理由。雛形不前置法規/權限的過度分析，先雛形→打掉→重構迭代。見 [`.claude/rules/thinking-boundary.md`](../../.claude/rules/thinking-boundary.md)。
 
 角色縮寫：Business / PM / Product / BA / ARCH / DEV / QA / SEC / SRE / OPS
@@ -77,15 +77,25 @@ flowchart LR
 
 在 Product Track 之上，依 [`artifact-map.md`](../../docs/document-system/artifact-map.md) 選用：
 
-- 文件管制、SRS/NFR、SAD/SDS、ADR、API/Event/DB 契約
+- 文件管制、SRS／NFR、SAD／SDS、ADR、API／Event／DB 契約
 - WBS、RACI、Change Request
-- Test Plan/Cases、Traceability、SIT/UAT
+- Test Plan／Test Cases、Traceability、SIT／UAT
 - Deployment、Runbook、Monitoring、Release evidence
 - Excel B/E preservation、完整追溯與稽核
 
 Word 指南是文件 catalog，VibeCoding 是填寫格式，正式專案文件才是工程契約。
 
-## 7. Excel 與工程文件
+## 7. 追蹤簿與欄位所有權
+
+追蹤層是三個角色追蹤簿（各放在 owner 的資料夾），以 ID 骨幹 `REQ/DEC-* → FR/NFR-* → TC/QTM-*` 串連；訂版層是 docs 與模板。用法見 [workbook-guide](../../docs/document-system/workbook-guide.md)。
+
+| 追蹤簿 | Owner | 位置 |
+|---|---|---|
+| 需求追蹤 | PM／BA | `../01_requirements/requirements_tracker.xlsx` |
+| 工程追蹤 | 架構師 | `../03_architecture/engineering_tracker.xlsx` |
+| 測試追蹤 | QA | `../05_qa/qa_tracker.xlsx` |
+
+欄位所有權採 B/E/G/D 分區 pattern（適用於追蹤簿與任何專案自建的活頁簿）：
 
 | 區域 | Owner | 行為 |
 |---|---|---|
@@ -94,7 +104,7 @@ Word 指南是文件 catalog，VibeCoding 是填寫格式，正式專案文件�
 | G — Generated contract | 工程文件／程式碼 | 由 canonical source 重建 |
 | D — Derived | 公式／生成器 | 唯讀、可重算 |
 
-這個啟動寶不隨附 Excel 產生器；B/E/G/D 是你在**專案自己的活頁簿**裡組織欄位所有權的 pattern。需求決策（B 區）以 [`18 需求決策紀錄`](../01_requirements/requirement_decision_record.md) 為權威。若專案自建產生器投影 G/D，生成欄不得覆寫 B/E，且在 preservation-safe round-trip 完成前不當雙向 SSOT。
+需求決策（B 區）以 [需求決策紀錄](../01_requirements/requirement_decision_record.md) 為權威。本啟動包不隨附 Excel 產生器；若專案自建產生器投影 G/D，生成欄不得覆寫 B/E，且在 preservation-safe round-trip 完成前不當雙向 SSOT。
 
 ## 8. Gate 判定
 
@@ -110,15 +120,15 @@ Word 指南是文件 catalog，VibeCoding 是填寫格式，正式專案文件�
 
 ## 9. 文件選用矩陣
 
-不是每個專案都建立每一份文件。以「團隊現在缺什麼共識」對應要補的文件：
+不是每個專案都建立每一份文件。以「團隊現在缺什麼共識」對應要補的文件（模板見 [INDEX.md](../INDEX.md)）：
 
 | 情境／缺口 | 最低必要 | 建議補充 | 一開始先不做 |
 |---|---|---|---|
-| MVP、可逆、單團隊 | 18 需求決策、02 PRD、03 BDD | 04 ADR（僅重大決策）| SDS、完整 SIT/UAT |
-| 前後端分工 | + 12 前端架構、17 前端 IA | 06 API 契約 | Design System 全套 |
-| 企業流程／多系統整合 | + 05 SAD、06 API、SRS/NFR | 04 ADR、DB 設計 | — |
-| AI／不確定性產品 | + 03 BDD 邊界場景、13 安全 | 評估與回歸集 | — |
-| 客戶驗收／正式上線 | + 07 測試、UAT、14 部署 | Runbook、Monitoring | — |
+| MVP、可逆、單團隊 | requirement_decision_record、prd、bdd_guide | adr（僅重大決策）| 完整 SRS、SDS、SIT/UAT |
+| 前後端分工 | + ui_spec、frontend_technical_design、openapi.yaml | information_architecture、Storybook | Design System 全套 |
+| 企業流程／多系統整合 | + brd、srs、sad、api_spec、nfr | adr、db_design、event_spec | — |
+| AI／不確定性產品 | + bdd_guide 邊界場景、security_and_readiness | 評估與回歸集 | — |
+| 客戶驗收／正式上線 | + test_plan、uat_plan、deployment_and_operations | runbook、monitoring_spec | — |
 
 三階段文件組合（對應 Fast/Product/Governed）：**MVP ≈ 9 份、Pilot ≈ 13 份、Enterprise ≈ 27 份**；深度依風險升級，見 [artifact-map.md](../../docs/document-system/artifact-map.md)。
 
@@ -129,6 +139,9 @@ Word 指南是文件 catalog，VibeCoding 是填寫格式，正式專案文件�
 ```
 ADR-001-use-kafka-for-event-stream.md
 openapi-work-order-v1.yaml
+asyncapi-work-order-v1.yaml
+db-schema-work-order-v1.md
+runbook-api-latency-high.md
 UAT_WorkOrder_Pilot_ClientA_20260701.xlsx
 DEC-001-line-intake-reliability.md   # 需求決策可獨立成檔時
 ```
@@ -142,15 +155,17 @@ DEC-001-line-intake-reliability.md   # 需求決策可獨立成檔時
 
 | 表面現象 | 真正問題 | 修正 |
 |---|---|---|
-| 設計只給 Figma | 缺狀態與互動規格 | 補 UI/Interaction Spec（12/17）|
-| 優先序/範圍由 AI 或規則自動判 | 需求決策沒交還 owner | 回 18 需求決策紀錄由 owner 簽核 |
+| 設計只給 Figma | 缺狀態與互動規格 | 補 ui_spec（§5 States、§6 Interaction）與 Design Handoff |
+| 優先序/範圍由 AI 或規則自動判 | 需求決策沒交還 owner | 回需求決策紀錄由 owner 簽核 |
 | 一個「狀態」欄想代表全部 | Requirement/Code/Verify/Release 混用 | 拆四個狀態軸 |
+| API 邊做邊改 | 缺契約 | 先定 openapi.yaml／asyncapi.yaml，mock 先行 |
+| 上線靠英雄 | 部署知識沒沉澱 | 補 deployment_and_operations、runbook |
 | 文件填滿但沒人讀 | 為完整而寫，非為共識 | 依風險裁剪 |
 | 決策理由只在對話裡 | 無法回查為什麼 | 寫 ADR 或決策沿革 |
 
 完成度檢查（每個 Gate）：
 
-- [ ] 範圍內的需求決策已由 owner 核准（18 需求決策紀錄）。
+- [ ] 範圍內的需求決策已由 owner 核准（需求決策紀錄）。
 - [ ] 適用的驗證命令已實際執行，有證據。
 - [ ] 四個狀態軸分別標記，未混用。
 - [ ] 追溯鏈無孤兒 ID，B/E 欄位未被生成覆寫。

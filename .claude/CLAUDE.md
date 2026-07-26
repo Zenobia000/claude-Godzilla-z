@@ -11,8 +11,8 @@
 - `agents/`：需要獨立 context、權限邊界、平行處理或專業驗證時才使用。
 - `output-styles/`：只改變回答呈現方式，不承載開發流程。
 - `hooks/`：僅容納確定、快速、可重複執行的自動化；不得把專案管理狀態偷偷寫入。
-- `VibeCoding_Workflow_Templates/`：工程文件的可填寫模板；模板 18 是需求決策紀錄（Excel B 區）。
-- `software_development_documentation_guide_zh_tw.docx`：企業文件分類與選用參考（治理智慧已萃取進模板 01）。
+- `VibeCoding_Workflow_Templates/`：工程文件的可填寫模板；`01_requirements/requirement_decision_record.md` 是需求決策紀錄（Excel B 區）。
+- `software_development_documentation_guide_zh_tw.docx`：企業文件分類與選用參考（模板已依其九層分類與文件詞彙對齊）。
 
 ## Skill 使用
 

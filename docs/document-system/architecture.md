@@ -27,7 +27,7 @@
 - 在產生器能保留業務輸入與執行證據之前，不應直接維護其生成欄位。
 - 應新增獨立的業務輸入／執行證據區，或讓產生器依穩定 ID round-trip 並保留人工欄位。
 
-**因果方向（需求優先）**：純由 `04_SRS` 等工程正典**向下生成**活頁簿，會使優先序、Owner、範圍、Gate 這些**需求決策**被產生器規則（如以關鍵字判優先序、自動指派 owner）推斷——等於 AI 替 owner 拍板。目標要把因果翻轉：**需求決策是上游、由產品 owner 於 B 區拍板（見 [`18 需求決策紀錄`](../../VibeCoding_Workflow_Templates/01_requirements/requirement_decision_record.md)），工程契約與生成欄位是下游衍生。** 把這些決策從產生器規則**外部化成 owner 可編輯的資料**，並與 G 區生成欄分頁隔離，是關鍵原則。
+**因果方向（需求優先）**：純由 `04_SRS` 等工程正典**向下生成**活頁簿，會使優先序、Owner、範圍、Gate 這些**需求決策**被產生器規則（如以關鍵字判優先序、自動指派 owner）推斷——等於 AI 替 owner 拍板。目標要把因果翻轉：**需求決策是上游、由產品 owner 於 B 區拍板（見 [需求決策紀錄](../../VibeCoding_Workflow_Templates/01_requirements/requirement_decision_record.md)），工程契約與生成欄位是下游衍生。** 把這些決策從產生器規則**外部化成 owner 可編輯的資料**，並與 G 區生成欄分頁隔離，是關鍵原則。
 
 ### 2.2 追溯骨架
 
@@ -173,7 +173,7 @@ Excel locator 可寫成 `工作表!儲存格`，Markdown locator 可寫成 `path
 
 ## 8. 文件生命週期
 
-1. **Intake**：在 Excel B 區／`18 需求決策紀錄` 記錄問題、價值、Owner、優先序與範圍決定；owner 決策欄留給 owner 填，不由 AI 衍生。
+1. **Intake**：在 Excel B 區／需求決策紀錄 記錄問題、價值、Owner、優先序與範圍決定；owner 決策欄留給 owner 填，不由 AI 衍生。
 2. **Specify（硬閘）**：只有在需求決策 `已核准`（有決策者與日期）後，才把核准範圍轉成 PRD、FR/NFR、ACPT 與 BDD Markdown 契約；owner 未簽核前不得工程化。
 3. **Design**：只針對有風險的邊界建立 SAD/SDS、ADR、API、資料與事件契約。
 4. **Plan**：以 ID 建立 WBS、測試策略與交付切片。
@@ -246,7 +246,7 @@ MVP 遇到下列任一條件就應評估升級 Full：
 
 ## 12. 來源
 
-- [需求決策紀錄（模板 18）](../../VibeCoding_Workflow_Templates/01_requirements/requirement_decision_record.md)
+- [需求決策紀錄](../../VibeCoding_Workflow_Templates/01_requirements/requirement_decision_record.md)
 - [大型軟體公司開發文件指南](../../software_development_documentation_guide_zh_tw.docx)
 - [VibeCoding 工作流範本索引](../../VibeCoding_Workflow_Templates/INDEX.md)
 

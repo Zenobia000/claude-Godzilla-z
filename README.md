@@ -53,7 +53,7 @@ Excel／訪談／舊系統
 |---|---|---|
 | 文件 catalog | [Software Development Documentation Guide](software_development_documentation_guide_zh_tw.docx) | 這個風險與組織規模需要哪些文件？ |
 | 作業模板 | [VibeCoding Workflow Templates](VibeCoding_Workflow_Templates/INDEX.md) | 選中的工程文件要怎麼寫？ |
-| 需求決策 | [需求決策紀錄（模板 18）](VibeCoding_Workflow_Templates/01_requirements/requirement_decision_record.md) | owner 拍板優先序、範圍、Gate；Excel B 區的權威 |
+| 需求決策 | [需求決策紀錄](VibeCoding_Workflow_Templates/01_requirements/requirement_decision_record.md) | owner 拍板優先序、範圍、Gate；Excel B 區的權威 |
 | 正式契約 | 目標專案文件、程式碼、測試 | 實際核准與可執行的內容是什麼？ |
 
 詳細整合設計：
@@ -73,7 +73,7 @@ Excel／訪談／舊系統
 | G — Generated contract | 工程文件／程式碼 | 可重建，禁止雙邊人工維護 |
 | D — Derived | 公式／生成器 | 唯讀、可重算 |
 
-需求決策（B 區）由 owner 在 [需求決策紀錄（模板 18）](VibeCoding_Workflow_Templates/01_requirements/requirement_decision_record.md) 拍板；工程契約與生成投影（G/D）由 Markdown 與程式碼衍生。在 B/E preservation-safe round-trip 完成前，生成欄位不當成可雙向編輯主檔。
+需求決策（B 區）由 owner 在 [需求決策紀錄](VibeCoding_Workflow_Templates/01_requirements/requirement_decision_record.md) 拍板；工程契約與生成投影（G/D）由 Markdown 與程式碼衍生。在 B/E preservation-safe round-trip 完成前，生成欄位不當成可雙向編輯主檔。
 
 ## Claude Code 元件邊界
 

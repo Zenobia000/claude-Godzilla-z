@@ -49,7 +49,7 @@
 
 ## 3. Gate 決策紀錄
 
-里程碑與階段放行由 owner 在此簽核。對應 `../00_meta/workflow_manual.md` 的 Gate 判定與 `architecture.md` 的階段生命週期。
+里程碑與階段放行由 owner 在此簽核。對應 `../_meta/workflow_manual.md` 的 Gate 判定與 `architecture.md` 的階段生命週期。
 
 | Gate ID | Gate 名稱 | 對應里程碑 | 前置條件（範圍/驗收） | 決策 | 決策者 | 日期 | 備註 |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |

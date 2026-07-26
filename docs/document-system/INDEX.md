@@ -19,7 +19,7 @@
 
 | Asset | Classification | Use |
 |---|---|---|
-| `software_development_documentation_guide_zh_tw.docx` | Catalog/reference | 決定什麼風險需要哪些文件（治理智慧已萃取進模板 01）|
+| `software_development_documentation_guide_zh_tw.docx` | Catalog/reference | 決定什麼風險需要哪些文件（模板已依其九層分類與文件詞彙全面對齊）|
 | `VibeCoding_Workflow_Templates/` | Authoring templates | 產生／更新工程文件 |
 | `VibeCoding_Workflow_Templates/01_requirements/requirement_decision_record.md` | 需求決策紀錄（Excel B 區）| owner 拍板優先序、範圍、Gate；`/specify` 硬閘的檢查對象 |
 | `01_requirements/requirements_tracker.xlsx`、`03_architecture/engineering_tracker.xlsx`、`05_qa/qa_tracker.xlsx` | 三個角色追蹤 Excel（PM/BA、架構師、QA）| 以 REQ→FR/NFR→TC 的 ID 骨幹串連；見 workbook-guide |

@@ -1,10 +1,10 @@
-# 前端架構規範 - [專案名稱]
+# 前端技術設計 (Frontend Technical Design) - [專案名稱]
 
 > **版本:** v2.0 (MECE 重切) | **更新:** 2026-05-26 | **狀態:** 草稿/已批准
-> **相關文檔:** [前端資訊架構](./frontend_information_architecture.md)
+> **相關文檔:** [前端資訊架構](./information_architecture.md)
 >
 > **MECE 邊界**：本文件**只談技術視角**（stack / 分層 / 量化指標 / 工程化）。
-> 使用者視角（頁面職責、旅程、導航、路由內容）全部在 **frontend_information_architecture**。
+> 使用者視角（頁面職責、旅程、導航、路由內容）全部在 **information_architecture**。
 >
 > | 你想找的 | 看這份 |
 > |---|---|

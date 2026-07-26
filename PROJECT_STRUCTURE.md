@@ -22,17 +22,20 @@ claude-Godzilla-z/
 │   │   └── 15-Vision-output.md   # 唯一呈現樣式
 │   └── hooks/                    # Hook 設計指南（零註冊）
 │
-├── VibeCoding_Workflow_Templates/    # 依 Word 九層分類的模板
+├── VibeCoding_Workflow_Templates/    # 依 Word 指南九層分類與文件詞彙的模板
 │   ├── INDEX.md                  # 文件選用與模板索引
-│   ├── 00_meta/                  # workflow_manual
-│   ├── 01_requirements/          # 需求決策紀錄、PRD、BDD
-│   ├── 02_ux_ui/ 03_architecture/ 04_design/
-│   ├── 05_qa/ 06_ops/ 07_governance/
+│   ├── _meta/                    # workflow_manual
+│   ├── 00_strategy/              # product_vision、roadmap
+│   ├── 01_requirements/          # 需求決策紀錄、prd、brd、srs、bdd_guide
+│   ├── 02_ux_ui/                 # ux_research、ia、ui_spec、frontend_technical_design
+│   ├── 03_architecture/          # sad、adr、nfr、project_structure
+│   ├── 04_design/                # sds、api_spec+openapi、event_spec+asyncapi、db_design
+│   ├── 05_qa/ 06_ops/ 07_governance/  # test/uat、deploy/runbook/monitoring、wbs/cr/release
 │   └── (角色追蹤 Excel 分放各資料夾：需求/工程/QA tracker)
 │
 ├── docs/document-system/
 │   ├── architecture.md           # Excel／Markdown／Word 權威與同步架構
-│   ├── workbook-guide.md         # 四本活頁簿序程與 Excel 範本說明
+│   ├── workbook-guide.md         # 三個角色追蹤簿的用法與 ID 骨幹
 │   └── artifact-map.md           # 企業文件分類對應模板
 │
 ├── software_development_documentation_guide_zh_tw.docx

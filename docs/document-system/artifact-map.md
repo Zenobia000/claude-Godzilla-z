@@ -8,18 +8,20 @@
 
 ## 2. 九層文件分類 → 模板資料夾
 
-| Word 章 | 文件層 | 這一層的文件（範例）| 模板資料夾 |
+| Word 章 | 文件層 | 這一層的文件（範例）| 模板 |
 |---|---|---|---|
-| 4 | 產品與商業 | Vision、MRD、PRD、Roadmap | `01_requirements/`（product brief & PRD）|
-| 5 | 需求分析 | BRD、SRS、User Story、Use Case、AC | `01_requirements/`（PRD、BDD、需求決策紀錄）|
-| 6 | UX | Research、Journey、User Flow、IA、Wireframe | `02_ux_ui/`（frontend IA）|
-| 7 | UI／前端設計 | UI Spec、Interaction、Design System、Frontend Tech | `02_ux_ui/`（frontend architecture）|
-| 8 | 系統架構 | SAD、C4、ADR、NFR | `03_architecture/`（architecture、adr、project structure）|
-| 9 | 技術設計 | SDS、API、Event、DB、Sequence、State Machine | `04_design/`（api、module spec、file deps、class）|
-| 10 | QA／測試 | Test Plan、Test Case、UAT、Traceability、QA Report | `05_qa/`（review & refactoring）＋ `04_design/`（module tests）|
-| 11 | DevOps／維運 | Deployment、Runbook、Monitoring、Incident | `06_ops/`（deployment & operations）|
-| 12 | 專案治理 | Project Plan、RACI、Risk、Change Request、Release Note | `07_governance/`（WBS、documentation & maintenance）|
-| — | 安全（跨層）| Security Design、威脅模型、上線關卡 | `05_qa/`（security & readiness）|
+| 4 | 產品與商業 | Vision、MRD、PRD、Roadmap | `00_strategy/`（product_vision、roadmap）＋ `01_requirements/prd` |
+| 5 | 需求分析 | BRD、SRS、User Story、Use Case、AC | `01_requirements/`（brd、srs、prd、bdd_guide、需求決策紀錄）|
+| 6 | UX | Research、Journey、User Flow、IA、Wireframe | `02_ux_ui/`（ux_research_and_journey、information_architecture）|
+| 7 | UI／前端設計 | UI Spec、Interaction、Design System、Frontend Tech | `02_ux_ui/`（ui_spec、frontend_technical_design）|
+| 8 | 系統架構 | SAD、C4、ADR、NFR | `03_architecture/`（sad、adr、nfr、project_structure）|
+| 9 | 技術設計 | SDS、API、Event、DB、Sequence、State Machine | `04_design/`（sds、api_spec＋openapi.yaml、event_spec＋asyncapi.yaml、db_design、class_relationships、file_dependencies）|
+| 10 | QA／測試 | Test Plan、Test Case、UAT、Traceability、QA Report | `05_qa/`（test_plan、uat_plan、code_review_and_refactoring）＋追蹤簿 |
+| 11 | DevOps／維運 | Deployment、Runbook、Monitoring、Incident | `06_ops/`（deployment_and_operations、runbook、monitoring_spec、incident_postmortem）|
+| 12 | 專案治理 | Project Plan、RACI、Risk、Change Request、Release Note | `07_governance/`（wbs_development_plan＋RACI、change_request、release_note、documentation_and_maintenance）|
+| — | 安全（跨層）| Security Design、威脅模型、上線關卡 | `05_qa/`（security_and_readiness）|
+
+Sequence 與 State Machine 不另立模板，收在 `sds.md` §2–3（符合 Word 對 SDS 的定義）；Wireframe／Prototype／Design System 以 Figma 為載體，交付邊界寫在 `ui_spec` §9。
 
 安全類跨系統架構、技術設計與 QA；本套件把它放在 `05_qa/security_and_readiness`，並在架構與部署階段引用。
 
@@ -39,7 +41,7 @@ docs/
   07_release/       release_notes, change_requests
 ```
 
-命名規範見 [`00_meta/workflow_manual.md`](../../VibeCoding_Workflow_Templates/00_meta/workflow_manual.md) §10。
+命名規範見 [`_meta/workflow_manual.md`](../../VibeCoding_Workflow_Templates/_meta/workflow_manual.md) §10。
 
 ## 4. 三個角色追蹤 Excel（追蹤層）
 
