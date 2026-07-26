@@ -8,8 +8,11 @@ claude-Godzilla-z/
 │   ├── CLAUDE.md                 # 生態系入口與責任邊界
 │   ├── settings.json             # 最小設定；內建 Read/Edit 敏感路徑 deny
 │   ├── WORKFLOW.md               # 四階段文件驅動流程
-│   ├── rules/
-│   │   └── golden-rules.md       # 唯一常駐規則
+│   ├── rules/                    # 4 份常駐規則
+│   │   ├── golden-rules.md       # 跨技術棧底線
+│   │   ├── git-workflow.md       # Git／push／PR 操作規範
+│   │   ├── language-register.md  # L1/L2/L3 三層語域
+│   │   └── thinking-boundary.md  # 速通/深思模式與思考邊界
 │   ├── skills/
 │   │   ├── intake/               # Excel／訪談來源進件
 │   │   ├── specify/              # PRD／BDD／SAD／ADR／追溯
@@ -27,18 +30,21 @@ claude-Godzilla-z/
 │   ├── _meta/                    # workflow_manual、template_standard
 │   ├── 01_requirements/          # requirements_tracker、prd、brd、srs
 │   ├── 02_ux_ui/                 # ux_research_and_journey、information_architecture、ui_spec
-│   ├── 03_architecture/          # sad、adr、engineering_tracker
+│   ├── 03_architecture/          # sad、adr、diagrams/（drawio 大圖＋工具）、engineering_tracker
 │   ├── 04_design/                # api_spec+openapi、db_design、lld
 │   ├── 05_qa/                    # test_plan、uat_plan、qa_tracker
 │   └── 06_ops/                   # deployment_and_operations、runbook
 │
 ├── docs/document-system/
+│   ├── INDEX.md                  # 文件系統入口與權威矩陣
 │   ├── architecture.md           # Excel／Markdown／Word 權威與同步架構
 │   ├── workbook-guide.md         # 三個角色追蹤簿的用法與 ID 骨幹
 │   └── artifact-map.md           # 企業文件分類對應模板
 │
+├── .out-of-scope/                # 已拒絕機制的知識庫（概念＋理由＋先例）
 ├── software_development_documentation_guide_zh_tw.docx
 │                                  # 企業文件全景與選用參考
+├── CHANGELOG.md                   # 版本沿革（版本號唯一真相源：README badge）
 ├── CLAUDE_TEMPLATE.md             # 新專案啟動範本
 ├── README.md
 ├── MCP_SETUP_GUIDE.md
@@ -50,7 +56,7 @@ claude-Godzilla-z/
 | 元件 | 載入時機 | 設計限制 |
 |---|---|---|
 | `CLAUDE.md` | 專案啟動 | 只放入口與責任 |
-| `rules/*.md` | 每次對話 | 只放 Golden Rules |
+| `rules/*.md` | 每次對話 | 只放恆定規則（golden、git、語域、思考邊界） |
 | `skills/*/SKILL.md` | 人工或語意觸發 | 方法與知識可漸進載入 |
 | `agents/*.md` | 明確委派 | 隔離 context／工具／權限 |
 | `output-styles/*.md` | 人工選擇 | 只改呈現 |
