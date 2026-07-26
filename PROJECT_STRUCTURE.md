@@ -92,4 +92,4 @@ Excel 統控介面（對焦／核准／追蹤）
 - PRD／BDD／TDD 等全域 Output Styles
 - 17 個重複 Commands
 
-舊 Hook 腳本和 runtime 說明暫時保留，便於理解遷移；它們沒有在 `settings.json` 註冊。
+TaskMaster hook 腳本已刪除；`hooks/` 只剩未註冊的 agent 監控腳本與 Hook 設計說明。

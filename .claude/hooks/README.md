@@ -2,7 +2,7 @@
 
 基礎模板預設**不啟用任何 Hook**。目前 `.claude/settings.json` 沒有 `hooks` 設定；Claude Code 的原生工具、Skills、Tasks、sessions 與 permissions 足以處理一般開發流程。
 
-本目錄中的舊腳本暫時保留供移轉查核，但不代表它們會執行。舊 TaskMaster、session 計時、Agent monitor、prompt 建議與 context 注入 hooks 已停用；在統一清理前不要重新接回 settings，也不要單獨刪除腳本。
+舊 TaskMaster、session 計時、prompt 建議與 context 注入腳本已刪除（歷史版本在 git history）。目前僅剩 `agent-monitor.sh` 與 `watch-agents.sh` 兩支未註冊的監控腳本；不要重新接回 settings。
 
 ## 何時才應加入 Hook
 

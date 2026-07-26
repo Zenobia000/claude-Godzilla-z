@@ -83,7 +83,7 @@ Excel／訪談／舊系統
 ├── skills/         Action Skills + SunnyData + Community 能力庫
 ├── agents/         8 個隔離型專業角色
 ├── output-styles/  1 個純呈現樣式
-├── hooks/          基礎模板零註冊；舊腳本保留參考
+├── hooks/          基礎模板零註冊；僅 Hook 設計說明與監控腳本
 └── statusline*     唯讀顯示官方 stdin
 ```
 
