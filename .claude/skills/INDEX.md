@@ -9,7 +9,7 @@ Skills 是這套生態系的能力資料庫。它們分成「人工啟動的流�
 | Skill | 輸入 | 主要產出 | 邊界 |
 |---|---|---|---|
 | `/intake` | Excel／需求訪談來源 | 來源登錄、需求候選、待確認項 | 唯讀原始工作簿；保留 sheet/row/cell |
-| `/specify` | 已核准需求 | PRD、BDD、SAD、ADR、追溯 | 不實作 production code |
+| `/specify` | 已核准需求 | 依風險裁剪的工程契約（PRD、BDD、SAD、ADR，加選 SRS/NFR/API/Event/DB/SDS/UI）與追溯 | 不實作 production code |
 | `/deliver` | 已核准 REQ／Scenario | 一個可驗收垂直切片 | 本機實作；外部行動另行授權 |
 | `/verify` | 變更範圍／REQ ID | 各 gate 證據與 verdict | 預設唯讀，不順手修復 |
 

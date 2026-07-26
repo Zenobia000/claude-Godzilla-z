@@ -2,7 +2,7 @@
 name: specify
 description: Generate or minimally update PRD, BDD, SAD, ADR, and traceability artifacts from approved requirements while preserving document status, ownership, and source links.
 disable-model-invocation: true
-argument-hint: "<approved-requirements> [--artifacts prd,bdd,sad,adr,traceability] [--update]"
+argument-hint: "<approved-requirements> [--artifacts prd,bdd,sad,adr,srs,nfr,api,event,db,sds,ui,traceability] [--update]"
 ---
 
 # Specify Approved Requirements
@@ -50,13 +50,22 @@ own.
 
 ## Template routing
 
-Read only the applicable repository template sections:
+Route through `VibeCoding_Workflow_Templates/INDEX.md` — the folder taxonomy
+mirrors the Word documentation guide, so pick templates by the layer the gap
+lives in. Core set for most invocations:
 
 - PRD: `VibeCoding_Workflow_Templates/01_requirements/prd.md`
 - BDD: `VibeCoding_Workflow_Templates/01_requirements/bdd_guide.md`
 - SAD: `VibeCoding_Workflow_Templates/03_architecture/sad.md`
 - ADR: `VibeCoding_Workflow_Templates/03_architecture/adr.md`
 - Mode and gates: `VibeCoding_Workflow_Templates/_meta/workflow_manual.md`
+
+Add by risk and affected contracts: `srs`/`brd` (formal or process-heavy
+requirements), `nfr` (quantified quality attributes), `api_spec`+`openapi.yaml`
+and `event_spec`+`asyncapi.yaml` (interface contracts), `db_design` (schema),
+`sds`/`lld` (service internals), `ui_spec`/`information_architecture`/
+`frontend_technical_design` (frontend split), `test_plan`/`uat_plan` (formal
+acceptance).
 
 Do not copy an entire template. Retain only sections justified by the approved
 scope, risks, NFRs, or existing document convention.

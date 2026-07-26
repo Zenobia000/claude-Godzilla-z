@@ -5,26 +5,31 @@ define an equivalent convention.
 
 ## Conventional paths
 
+Engineering documents follow the Word guide's ch15 folder layout (the same
+taxonomy as `VibeCoding_Workflow_Templates/`); the document-system folder holds
+only the meta layer (index, register, traceability, evidence):
+
 ```text
-docs/document-system/
-├── INDEX.md
-├── requirements/
-│   └── requirements-register.md
-├── product/
-│   └── prd.md
-├── behavior/
-│   └── *.feature
-├── architecture/
-│   └── sad.md
-├── decisions/
-│   └── ADR-NNNN-*.md
-├── traceability.md
-└── delivery/
-    └── verification/
+docs/
+├── document-system/
+│   ├── INDEX.md
+│   ├── requirements/
+│   │   └── requirements-register.md
+│   ├── traceability.md
+│   └── verification/            # evidence records
+├── 00_strategy/                 # product_vision, roadmap
+├── 01_requirements/             # prd, brd, srs, requirement decision record, *.feature
+├── 02_ux_ui/                    # ux research, ia, ui specs
+├── 03_architecture/             # sad, nfr, adr/ADR-NNNN-*
+├── 04_design/                   # sds, lld, openapi-*.yaml, asyncapi-*.yaml, db designs
+├── 05_qa/                       # test plans, uat, qa reports
+├── 06_ops/                      # deployment, runbooks, monitoring, incidents
+└── 07_release/                  # release notes, change requests
 ```
 
-Create only required files and directories. Existing repository conventions take
-precedence when `INDEX.md` identifies them.
+Create only required files and directories — the folders are a taxonomy, not a
+quota. Existing repository conventions take precedence when `INDEX.md`
+identifies them.
 
 ## Status model
 
