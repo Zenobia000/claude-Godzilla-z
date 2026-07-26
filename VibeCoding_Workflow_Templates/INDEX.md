@@ -1,6 +1,6 @@
 # VibeCoding 工程文件模板索引
 
-> **版本：** v8.3 | **更新：** 2026-07-26
+> **版本：** v8.4 | **更新：** 2026-07-26
 
 這些模板是工程師可直接裁剪的「作業格式」，不是每份都要建立的固定交付清單，也不是另一套 SSOT。**目錄結構本身就是分類**——依 [`software_development_documentation_guide_zh_tw.docx`](../software_development_documentation_guide_zh_tw.docx) 第 15 章的建議資料夾結構（`01_requirements`–`06_ops`）安置，檔名採用該指南的文件詞彙（SAD、SRS、UAT……），用哪份文件看你落在哪一層。
 
@@ -84,7 +84,7 @@ flowchart LR
 
 | 版本 | 日期 | 變更 |
 |---|---|---|
-| v8.3 | 2026-07-26 | 新增 `03_architecture/diagrams/`：drawio 溝通級大圖模板（solution_overview、c4_context、c4_container、deployment_topology、ai_guardrails 可選）＋視覺規範與 mermaid/drawio 單一 owner 分工；工程細圖（L3/sequence/dataflow/ER/狀態機）維持 mermaid 正典 |
+| v8.4 | 2026-07-26 | 新增 `03_architecture/diagrams/`：drawio 溝通級大圖模板（solution_overview、c4_context、c4_container、deployment_topology、ai_guardrails 可選）＋視覺規範、style 字串庫、`_tools/` 程式化生成與版面驗收管線（drawio_kit＋analyze_layout）、`_examples/` ACME 虛構專案 few-shot 錨點（score=0）；mermaid/drawio 單一 owner 分工，工程細圖（L3/sequence/dataflow/ER/狀態機）維持 mermaid 正典 |
 | v8.3 | 2026-07-26 | 實例化規則入法：每份模板 Metadata 標「單例／每 X 一份」，多實例分支 key 限穩定錨點（頁面/決策/Aggregate/症狀/服務），禁止 per-feature 資料夾樹（功能視角＝ID 骨幹） |
 | v8.2 | 2026-07-26 | 地毯式正規化：新增 _meta/template_standard（六要素＋密度紀律），15 份全部補齊 TOC／語域／追溯段、統一編號；sad 501→199 行；lld 復活承載 Code 地圖與狀態機（自 api_spec 遷入） |
 | v8.1 | 2026-07-26 | 復活瘦身版 information_architecture（只留全站結構：頁面總覽、導航、路由表含認證/角色、跨頁資料載體）；補回整併遺失錨點：api_spec §6 狀態機、prd 允收改 Given/When/Then、ui_spec 導航入出口、ux_research 轉換率目標欄 |
