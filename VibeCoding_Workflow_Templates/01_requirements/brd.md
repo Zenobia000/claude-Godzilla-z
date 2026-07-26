@@ -3,8 +3,17 @@
 > **版本:** v1.0 | **更新:** YYYY-MM-DD | **狀態:** 草稿/審核中/已批准
 > **Owner:** BA / PM / 業務代表
 > **適用時機:** 企業內部系統、流程改造、跨部門專案；純產品功能可直接寫 PRD。
+> **語域:** L1（業務）
 
 ---
+
+## 目錄
+
+- [1. 商業背景 (Business Context)](#1-商業背景-business-context)
+- [2. 現行流程 (As-Is)](#2-現行流程-as-is)
+- [3. 未來流程 (To-Be)](#3-未來流程-to-be)
+- [4. 業務規則 (Business Rules)](#4-業務規則-business-rules)
+- [5. 追溯](#5-追溯)
 
 ## 1. 商業背景 (Business Context)
 

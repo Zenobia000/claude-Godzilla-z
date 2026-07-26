@@ -61,7 +61,7 @@ PRD／BDD／SAD／ADR／Traceability
 
 - BRD／PRD／SRS、驗收情境（GWT）
 - UX Flow／IA／UI Spec
-- SAD／ADR、API 契約（openapi.yaml）、DB 設計
+- SAD／ADR、API 契約（openapi.yaml）、DB 設計、LLD（code 地圖與狀態機）
 - Test Plan／UAT Plan、Deployment、Runbook
 
 ### 企業級（Enterprise）

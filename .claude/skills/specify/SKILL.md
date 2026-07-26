@@ -65,10 +65,11 @@ lives in. Core set for most invocations:
 
 Add by risk and affected contracts: `srs`/`brd` (formal or process-heavy
 requirements), `api_spec`+`openapi.yaml` (interface contracts), `db_design`
-(schema), `ux_research_and_journey`/`information_architecture`/`ui_spec`
+(schema), `lld` (code map and state machines, AS-BUILT),
+`ux_research_and_journey`/`information_architecture`/`ui_spec`
 (UX/IA/UI), `test_plan`/`uat_plan` (formal acceptance),
 `deployment_and_operations`/`runbook` (ops). The bundle
-stops at these Pilot-core 14; enterprise documents (NFR, SDS/LLD, event
+stops at these Pilot-core 15; enterprise documents (NFR, SDS, event
 spec/AsyncAPI, monitoring, postmortem, WBS/CR/release notes) have no bundled
 template — create them per the Word guide only when the project actually
 needs them.

@@ -22,13 +22,13 @@ claude-Godzilla-z/
 │   │   └── 15-Vision-output.md   # 唯一呈現樣式
 │   └── hooks/                    # Hook 設計指南（零註冊）
 │
-├── VibeCoding_Workflow_Templates/    # Pilot 核心 14 份模板＋3 本角色追蹤簿（企業級文件依需增建）
+├── VibeCoding_Workflow_Templates/    # Pilot 核心 15 份模板＋3 本角色追蹤簿（企業級文件依需增建）
 │   ├── INDEX.md                  # 文件選用與模板索引
-│   ├── _meta/                    # workflow_manual
+│   ├── _meta/                    # workflow_manual、template_standard
 │   ├── 01_requirements/          # requirements_tracker、prd、brd、srs
 │   ├── 02_ux_ui/                 # ux_research_and_journey、information_architecture、ui_spec
 │   ├── 03_architecture/          # sad、adr、engineering_tracker
-│   ├── 04_design/                # api_spec+openapi、db_design
+│   ├── 04_design/                # api_spec+openapi、db_design、lld
 │   ├── 05_qa/                    # test_plan、uat_plan、qa_tracker
 │   └── 06_ops/                   # deployment_and_operations、runbook
 │

@@ -1,6 +1,25 @@
 # 產品開發流程使用說明書
 
 > **版本：** v5.0 | **更新：** 2026-07-26 | **狀態：** 活躍
+> **Owner:** 模板庫維護者
+> **語域:** L2（橋接）
+> **定位:** 怎麼跑流程、選階段、過 Gate 的手冊；模板格式規範見 [template_standard](./template_standard.md)。
+
+## 目錄
+
+- [1. 使用原則](#1-使用原則)
+- [2. 工作入口](#2-工作入口)
+- [3. 階段選擇](#3-階段選擇)
+- [4. 雛型期（心流優先）](#4-雛型期心流優先)
+- [5. Pilot／客戶驗證](#5-pilot客戶驗證)
+- [6. 企業級（Enterprise）](#6-企業級enterprise)
+- [7. 追蹤簿與欄位所有權](#7-追蹤簿與欄位所有權)
+- [8. Gate 判定](#8-gate-判定)
+- [9. 文件選用矩陣](#9-文件選用矩陣)
+- [10. 命名規範](#10-命名規範)
+- [11. 反模式與完成度檢查](#11-反模式與完成度檢查)
+- [12. 模板選用](#12-模板選用)
+- [13. 追溯](#13-追溯)
 
 ## 1. 使用原則
 
@@ -98,9 +117,9 @@ flowchart LR
 
 ## 5. Pilot／客戶驗證
 
-進入給真實使用者驗證、需要對外簽核時，依缺口從 Pilot 文件組補齊（不是 14 份全建）：
+進入給真實使用者驗證、需要對外簽核時，依缺口從 Pilot 文件組補齊（不是 15 份全建）：
 
-> brd、prd、srs、ux_research_and_journey、information_architecture、ui_spec、sad、adr、api_spec＋openapi.yaml、db_design、test_plan、uat_plan、deployment_and_operations、runbook
+> brd、prd、srs、ux_research_and_journey、information_architecture、ui_spec、sad、adr、api_spec＋openapi.yaml、db_design、lld、test_plan、uat_plan、deployment_and_operations、runbook
 
 | 階段 | 必要產出 | Gate |
 |---|---|---|
@@ -119,7 +138,7 @@ flowchart LR
 - Deployment、Runbook、Monitoring、Release evidence
 - 追蹤簿人工欄位保存、完整追溯與稽核
 
-Word 指南是文件 catalog，VibeCoding 是填寫格式，正式專案文件才是工程契約。企業級文件多數**未內建模板**（模板庫收斂到 Pilot 核心 14 份）；進企業級時依 Word 指南增建，git 歷史有可回收的舊版。
+Word 指南是文件 catalog，VibeCoding 是填寫格式，正式專案文件才是工程契約。企業級文件多數**未內建模板**（模板庫收斂到 Pilot 核心 15 份）；進企業級時依 Word 指南增建，git 歷史有可回收的舊版。
 
 ## 7. 追蹤簿與欄位所有權
 
@@ -171,7 +190,7 @@ Word 指南是文件 catalog，VibeCoding 是填寫格式，正式專案文件�
 | AI／不確定性產品 | + prd 的邊界場景與驗收條件 | 評估與回歸集 | — |
 | 客戶驗收／正式上線 | + test_plan、uat_plan、deployment_and_operations、runbook | — | — |
 
-三階段文件組合：**雛型＝追蹤簿骨架＋prd 精簡＋必要 ADR、Pilot ≈ 14 份、企業級依 artifact-map 全量選用**；深度依風險升級，見 [artifact-map.md](../../docs/document-system/artifact-map.md)。
+三階段文件組合：**雛型＝追蹤簿骨架＋prd 精簡＋必要 ADR、Pilot ≈ 15 份、企業級依 artifact-map 全量選用**；深度依風險升級，見 [artifact-map.md](../../docs/document-system/artifact-map.md)。
 
 ## 10. 命名規範
 
@@ -213,3 +232,8 @@ DEC-001-line-intake-reliability.md   # 需求決策可獨立成檔時
 ## 12. 模板選用
 
 完整清單與階段對照見 [INDEX.md](../INDEX.md)。使用時只複製必要章節；模板中的範例值不是專案政策。
+
+## 13. 追溯
+
+- 上游：[golden-rules](../../.claude/rules/golden-rules.md)、[thinking-boundary](../../.claude/rules/thinking-boundary.md)、[architecture.md](../../docs/document-system/architecture.md)
+- 下游：全部模板（格式由 [template_standard](./template_standard.md) 約束）、四個 Action Skills

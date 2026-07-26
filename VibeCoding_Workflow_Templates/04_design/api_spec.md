@@ -2,8 +2,20 @@
 
 > **版本:** v1.0 | **更新:** YYYY-MM-DD | **狀態:** 草稿/已發布 | **OpenAPI 定義:** [連結]
 > **契約 SSOT:** 端點與 schema 以 [`openapi.yaml`](./openapi.yaml)（複製後改名 `openapi-<service>-v<N>.yaml`）為準；本文件維護設計約定、錯誤語意與安全政策，§5–6 只放 yaml 讀不出來的說明。非同步事件契約依需增建（AsyncAPI）。
+> **Owner:** 後端／API 設計者
+> **語域:** L2（橋接）
 
 ---
+
+## 目錄
+
+- [1. 設計約定](#1-設計約定)
+- [2. 通用行為](#2-通用行為)
+- [3. 錯誤處理](#3-錯誤處理)
+- [4. 安全性](#4-安全性)
+- [5. API 端點定義](#5-api-端點定義)
+- [6. 資料模型](#6-資料模型)
+- [7. 追溯](#7-追溯)
 
 ## 1. 設計約定
 
@@ -131,19 +143,10 @@
 }
 ```
 
-### 狀態機（如適用）
+## 7. 追溯
 
-`status` 等 enum 欄位的合法值與轉移規則是契約的一部分，維護在此（`db_design` 與 `openapi.yaml` 引用，不重複定義）：
-
-```mermaid
-stateDiagram-v2
-    [*] --> active
-    active --> inactive: deactivate
-    inactive --> active: reactivate
-```
-
-| 目前狀態 | 事件 | 下一狀態 | 副作用 |
-| :--- | :--- | :--- | :--- |
-| active | deactivate | inactive | [通知/稽核紀錄] |
-
-> 複雜的模組內部時序與狀態機多到需要獨立文件時，依需增建 SDS。
+| 項目 | ID |
+| :--- | :--- |
+| 上游 | FR-*、sad 元件（MOD-*） |
+| 契約 SSOT | `openapi-<service>-v<N>.yaml` |
+| 下游 | ui_spec 的資料需求、test_plan 的整合案例、lld §5 狀態機引用 |

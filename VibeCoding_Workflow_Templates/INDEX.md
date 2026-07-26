@@ -1,6 +1,6 @@
 # VibeCoding 工程文件模板索引
 
-> **版本：** v8.0 | **更新：** 2026-07-26
+> **版本：** v8.3 | **更新：** 2026-07-26
 
 這些模板是工程師可直接裁剪的「作業格式」，不是每份都要建立的固定交付清單，也不是另一套 SSOT。**目錄結構本身就是分類**——依 [`software_development_documentation_guide_zh_tw.docx`](../software_development_documentation_guide_zh_tw.docx) 第 15 章的建議資料夾結構（`01_requirements`–`06_ops`）安置，檔名採用該指南的文件詞彙（SAD、SRS、UAT……），用哪份文件看你落在哪一層。
 
@@ -12,15 +12,15 @@
 
 ## 目錄結構（依 Word 指南九層分類）
 
-模板庫只內建 **0→1 走到客戶驗收（Pilot）絕對必要的 14 份**＋3 本角色追蹤簿；其餘企業級文件（vision/roadmap、NFR、SDS/LLD、event spec、監控/覆盤、WBS/CR/release note 等）**不內建**，未來依需求按 Word 指南增建，git 歷史中有可回收的舊版。
+模板庫只內建 **0→1 走到客戶驗收（Pilot）絕對必要的 15 份**＋3 本角色追蹤簿；其餘企業級文件（vision/roadmap、NFR、SDS/LLD、event spec、監控/覆盤、WBS/CR/release note 等）**不內建**，未來依需求按 Word 指南增建，git 歷史中有可回收的舊版。
 
 | 資料夾 | 對應層（Word 章） | 模板 | 典型 Action |
 |---|---|---|---|
-| [`_meta/`](./_meta/) | 流程指南 | [workflow_manual](./_meta/workflow_manual.md) | 全流程 |
+| [`_meta/`](./_meta/) | 流程指南 | [workflow_manual](./_meta/workflow_manual.md)、[template_standard](./_meta/template_standard.md) | 全流程 |
 | [`01_requirements/`](./01_requirements/) | 需求分析（ch5） | [prd](./01_requirements/prd.md)、[brd](./01_requirements/brd.md)、[srs](./01_requirements/srs.md)、`requirements_tracker.xlsx` | `/intake`、`/specify` |
 | [`02_ux_ui/`](./02_ux_ui/) | UX／UI（ch6–7） | [ux_research_and_journey](./02_ux_ui/ux_research_and_journey.md)、[information_architecture](./02_ux_ui/information_architecture.md)、[ui_spec](./02_ux_ui/ui_spec.md) | `/specify`、`/deliver` |
-| [`03_architecture/`](./03_architecture/) | 系統架構（ch8） | [sad](./03_architecture/sad.md)、[adr](./03_architecture/adr.md)、`engineering_tracker.xlsx` | `/specify` |
-| [`04_design/`](./04_design/) | 技術設計（ch9） | [api_spec](./04_design/api_spec.md)＋[openapi.yaml](./04_design/openapi.yaml)、[db_design](./04_design/db_design.md) | `/specify`、`/deliver` |
+| [`03_architecture/`](./03_architecture/) | 系統架構（ch8） | [sad](./03_architecture/sad.md)、[adr](./03_architecture/adr.md)、[diagrams/](./03_architecture/diagrams/)（drawio 溝通級大圖）、`engineering_tracker.xlsx` | `/specify` |
+| [`04_design/`](./04_design/) | 技術設計（ch9） | [api_spec](./04_design/api_spec.md)＋[openapi.yaml](./04_design/openapi.yaml)、[db_design](./04_design/db_design.md)、[lld](./04_design/lld.md) | `/specify`、`/deliver` |
 | [`05_qa/`](./05_qa/) | QA／測試驗收（ch10） | [test_plan](./05_qa/test_plan.md)、[uat_plan](./05_qa/uat_plan.md)、`qa_tracker.xlsx` | `/verify`、`/deliver` |
 | [`06_ops/`](./06_ops/) | DevOps／維運（ch11） | [deployment_and_operations](./06_ops/deployment_and_operations.md)、[runbook](./06_ops/runbook.md) | `/specify`、`/verify` |
 
@@ -52,7 +52,7 @@ flowchart LR
 | 階段 | 必要模板 | 依風險加選 |
 |---|---|---|
 | 雛型（Prototype） | `requirements_tracker.xlsx` 骨架列、prd 的問題與驗收段 | adr（僅重大決策）、api_spec |
-| Pilot／客戶驗證 | 全部 14 份（brd、prd、srs、ux_research_and_journey、information_architecture、ui_spec、sad、adr、api_spec＋openapi.yaml、db_design、test_plan、uat_plan、deployment_and_operations、runbook），依缺口裁剪 | — |
+| Pilot／客戶驗證 | 全部 15 份（brd、prd、srs、ux_research_and_journey、information_architecture、ui_spec、sad、adr、api_spec＋openapi.yaml、db_design、lld、test_plan、uat_plan、deployment_and_operations、runbook），依缺口裁剪 | — |
 | 企業級（Enterprise） | 依 Word catalog 與 artifact-map 增建（NFR、SDS/LLD、event spec、監控/覆盤、WBS/CR/release note 等，模板未內建） | — |
 
 ## 使用規則
@@ -68,6 +68,8 @@ flowchart LR
 
 | 版本 | 日期 | 變更 |
 |---|---|---|
+| v8.3 | 2026-07-26 | 新增 `03_architecture/diagrams/`：drawio 溝通級大圖模板（solution_overview、c4_context、c4_container、deployment_topology、ai_guardrails 可選）＋視覺規範與 mermaid/drawio 單一 owner 分工；工程細圖（L3/sequence/dataflow/ER/狀態機）維持 mermaid 正典 |
+| v8.2 | 2026-07-26 | 地毯式正規化：新增 _meta/template_standard（六要素＋密度紀律），15 份全部補齊 TOC／語域／追溯段、統一編號；sad 501→199 行；lld 復活承載 Code 地圖與狀態機（自 api_spec 遷入） |
 | v8.1 | 2026-07-26 | 復活瘦身版 information_architecture（只留全站結構：頁面總覽、導航、路由表含認證/角色、跨頁資料載體）；補回整併遺失錨點：api_spec §6 狀態機、prd 允收改 Given/When/Then、ui_spec 導航入出口、ux_research 轉換率目標欄 |
 | v8.0 | 2026-07-26 | 收斂到 Pilot 核心 13 份＋3 追蹤簿：移除 product_vision/roadmap、bdd_guide、information_architecture/frontend_technical_design、nfr、sds/lld/event_spec＋asyncapi、security_and_readiness、monitoring/incident、07_governance 全部；企業級文件未來依 Word 指南增建 |
 | v7.0 | 2026-07-26 | 退役 requirement_decision_record（權威併入 requirements_tracker ①需求決策＋③Gate＋②決策沿革，硬閘 checklist 移入 workflow_manual §8）；Profile 改為開發階段（雛型／Pilot／企業級），雛型期心流優先 |

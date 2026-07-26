@@ -3,8 +3,18 @@
 > **版本:** v1.0 | **更新:** YYYY-MM-DD | **狀態:** 草稿/審核中/已批准
 > **Owner:** 後端 / 資料工程
 > **原則:** Schema 是契約。migration 檔是實作真相，本文件記錄設計意圖與字典；兩者用版本號對齊。
+> **語域:** L3（工程）
 
 ---
+
+## 目錄
+
+- [1. ERD](#1-erd)
+- [2. 表格定義](#2-表格定義)
+- [3. 資料字典 (Data Dictionary)](#3-資料字典-data-dictionary)
+- [4. 索引與效能](#4-索引與效能)
+- [5. 資料保留與遷移](#5-資料保留與遷移)
+- [6. 追溯](#6-追溯)
 
 ## 1. ERD
 
@@ -31,7 +41,7 @@ erDiagram
 | 欄位 | 型態 | 約束 | 說明 |
 | :--- | :--- | :--- | :--- |
 | `id` | uuid | PK | |
-| `status` | enum | NOT NULL | 合法值與轉移規則見 `api_spec.md` §6 狀態機 |
+| `status` | enum | NOT NULL | 合法值與轉移規則見 `lld.md` §5 狀態機 |
 | `created_at` | timestamptz | NOT NULL, default now() | |
 
 ---

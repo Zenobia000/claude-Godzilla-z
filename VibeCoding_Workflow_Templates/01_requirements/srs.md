@@ -3,8 +3,19 @@
 > **版本:** v1.0 | **更新:** YYYY-MM-DD | **狀態:** 草稿/審核中/已批准
 > **Owner:** SA / PM / BA，工程師與 QA 共同審閱
 > **適用時機:** 需求複雜、角色權限多、整合多、需要正式驗收時；MVP 可由 PRD + BDD 承接。
+> **語域:** L2（橋接）
 
 ---
+
+## 目錄
+
+- [1. 功能需求 (Functional Requirements)](#1-功能需求-functional-requirements)
+- [2. 非功能需求 (NFR)](#2-非功能需求-nfr)
+- [3. 資料需求 (Data Requirements)](#3-資料需求-data-requirements)
+- [4. 外部介面 (External Interfaces)](#4-外部介面-external-interfaces)
+- [5. 使用案例 (Use Case Specification)](#5-使用案例-use-case-specification)
+- [6. 驗收標準 (Acceptance Criteria)](#6-驗收標準-acceptance-criteria)
+- [7. 追溯](#7-追溯)
 
 ## 1. 功能需求 (Functional Requirements)
 
@@ -65,3 +76,11 @@ AC 是需求與測試之間的橋，用 Given / When / Then 撰寫並落在 [`pr
 | ACPT ID | 對應 FR | Scenario（SCN-*） | 狀態 |
 | :--- | :--- | :--- | :--- |
 | ACPT-001 | FR-001 | SCN-001 | 待驗證 |
+
+## 7. 追溯
+
+| 項目 | ID |
+| :--- | :--- |
+| 上游 | prd 的 US-*／FR-*、DEC-* |
+| 本文件產出 | 正式 FR/NFR 編號、UC-*、AC 對照 |
+| 下游 | sad §4 需求摘要、test_plan／uat_plan、`engineering_tracker.xlsx` ①規格追溯 |
