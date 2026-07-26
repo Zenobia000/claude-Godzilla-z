@@ -19,7 +19,7 @@ flowchart TD
 | :--- | :--- | :--- |
 | [Service] | [單一職責描述] | [Repository、外部服務] |
 
-類別層級（C4/LLD）必要時見 [`class_relationships.md`](./class_relationships.md)。
+類別層級（C4/LLD）必要時見 [`lld.md`](./lld.md) §3。
 
 ---
 

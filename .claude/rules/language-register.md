@@ -31,7 +31,7 @@ L1→L2 的分水嶺同時是**需求決策的硬邊界**：優先序、範圍�
 |---|---|
 | **L1 業務** | product_vision／roadmap、prd 的問題／使用者／目標段、brd、ux_research_and_journey、intake 需求登錄的業務欄位、訪談紀錄、release_note |
 | **L2 橋接** | bdd_guide、adr、sad、srs、api_spec／openapi.yaml、追溯矩陣、術語表（Ubiquitous Language）、prd 的 `FR/NFR/ACPT` 映射段 |
-| **L3 工程** | sds、db_design、event_spec、class_relationships、程式碼與測試、ui_spec／frontend_technical_design、test_plan、security_and_readiness、deployment／runbook／monitoring |
+| **L3 工程** | sds、lld、db_design、event_spec、程式碼與測試、ui_spec／frontend_technical_design、test_plan、security_and_readiness、deployment／runbook／monitoring |
 
 同一份文件若必須混用（例如 PRD 同時給 PM 與工程看）：**業務語言主述，工程細節退到附註、表格或連結**，不要讓工程名詞打斷業務讀者的閱讀線。
 

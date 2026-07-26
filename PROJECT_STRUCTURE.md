@@ -28,8 +28,8 @@ claude-Godzilla-z/
 │   ├── 00_strategy/              # product_vision、roadmap
 │   ├── 01_requirements/          # 需求決策紀錄、prd、brd、srs、bdd_guide
 │   ├── 02_ux_ui/                 # ux_research、ia、ui_spec、frontend_technical_design
-│   ├── 03_architecture/          # sad、adr、nfr、project_structure
-│   ├── 04_design/                # sds、api_spec+openapi、event_spec+asyncapi、db_design
+│   ├── 03_architecture/          # sad、adr、nfr
+│   ├── 04_design/                # sds、lld、api_spec+openapi、event_spec+asyncapi、db_design
 │   ├── 05_qa/ 06_ops/ 07_governance/  # test/uat、deploy/runbook/monitoring、wbs/cr/release
 │   └── (角色追蹤 Excel 分放各資料夾：需求/工程/QA tracker)
 │

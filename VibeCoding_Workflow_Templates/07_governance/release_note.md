@@ -34,4 +34,21 @@
 
 ---
 
-工程視角的變更明細維護在 CHANGELOG（`documentation_and_maintenance.md` §5）；發布程序與檢查清單見 `../06_ops/deployment_and_operations.md` §3。
+## 附錄：CHANGELOG 模板（工程視角）
+
+Release Note 給客戶看，CHANGELOG 給工程看；兩者不混寫。
+
+```markdown
+# 變更記錄
+
+## [Unreleased]
+### 新增
+### 變更
+### 修復
+
+## [1.0.0] - YYYY-MM-DD
+### 新增
+- 初始版本
+```
+
+發布程序與檢查清單見 `../06_ops/deployment_and_operations.md` §3。

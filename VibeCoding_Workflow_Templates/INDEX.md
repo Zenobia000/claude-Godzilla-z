@@ -18,11 +18,11 @@
 | [`00_strategy/`](./00_strategy/) | 產品與商業（ch4） | [product_vision](./00_strategy/product_vision.md)、[roadmap](./00_strategy/roadmap.md) | `/intake` |
 | [`01_requirements/`](./01_requirements/) | 需求分析（ch5） | [requirement_decision_record](./01_requirements/requirement_decision_record.md)、[prd](./01_requirements/prd.md)、[brd](./01_requirements/brd.md)、[srs](./01_requirements/srs.md)、[bdd_guide](./01_requirements/bdd_guide.md)、`requirements_tracker.xlsx` | `/intake`、`/specify` |
 | [`02_ux_ui/`](./02_ux_ui/) | UX／UI／前端（ch6–7） | [ux_research_and_journey](./02_ux_ui/ux_research_and_journey.md)、[information_architecture](./02_ux_ui/information_architecture.md)、[ui_spec](./02_ux_ui/ui_spec.md)、[frontend_technical_design](./02_ux_ui/frontend_technical_design.md) | `/specify`、`/deliver` |
-| [`03_architecture/`](./03_architecture/) | 系統架構（ch8） | [sad](./03_architecture/sad.md)、[adr](./03_architecture/adr.md)、[nfr](./03_architecture/nfr.md)、[project_structure](./03_architecture/project_structure.md)、`engineering_tracker.xlsx` | `/specify` |
-| [`04_design/`](./04_design/) | 技術設計（ch9） | [sds](./04_design/sds.md)、[api_spec](./04_design/api_spec.md)＋[openapi.yaml](./04_design/openapi.yaml)、[event_spec](./04_design/event_spec.md)＋[asyncapi.yaml](./04_design/asyncapi.yaml)、[db_design](./04_design/db_design.md)、[class_relationships](./04_design/class_relationships.md)、[file_dependencies](./04_design/file_dependencies.md) | `/specify`、`/deliver` |
-| [`05_qa/`](./05_qa/) | QA／測試驗收（ch10） | [test_plan](./05_qa/test_plan.md)、[uat_plan](./05_qa/uat_plan.md)、[code_review_and_refactoring](./05_qa/code_review_and_refactoring.md)、[security_and_readiness](./05_qa/security_and_readiness.md)、`qa_tracker.xlsx` | `/verify`、`/deliver` |
+| [`03_architecture/`](./03_architecture/) | 系統架構（ch8） | [sad](./03_architecture/sad.md)、[adr](./03_architecture/adr.md)、[nfr](./03_architecture/nfr.md)、`engineering_tracker.xlsx` | `/specify` |
+| [`04_design/`](./04_design/) | 技術設計（ch9） | [sds](./04_design/sds.md)、[lld](./04_design/lld.md)、[api_spec](./04_design/api_spec.md)＋[openapi.yaml](./04_design/openapi.yaml)、[event_spec](./04_design/event_spec.md)＋[asyncapi.yaml](./04_design/asyncapi.yaml)、[db_design](./04_design/db_design.md) | `/specify`、`/deliver` |
+| [`05_qa/`](./05_qa/) | QA／測試驗收（ch10） | [test_plan](./05_qa/test_plan.md)、[uat_plan](./05_qa/uat_plan.md)、[security_and_readiness](./05_qa/security_and_readiness.md)、`qa_tracker.xlsx` | `/verify`、`/deliver` |
 | [`06_ops/`](./06_ops/) | DevOps／維運（ch11） | [deployment_and_operations](./06_ops/deployment_and_operations.md)、[runbook](./06_ops/runbook.md)、[monitoring_spec](./06_ops/monitoring_spec.md)、[incident_postmortem](./06_ops/incident_postmortem.md) | `/specify`、`/verify` |
-| [`07_governance/`](./07_governance/) | 專案治理（ch12） | [wbs_development_plan](./07_governance/wbs_development_plan.md)、[change_request](./07_governance/change_request.md)、[release_note](./07_governance/release_note.md)、[documentation_and_maintenance](./07_governance/documentation_and_maintenance.md) | `/specify`、`/verify` |
+| [`07_governance/`](./07_governance/) | 專案治理（ch12） | [wbs_development_plan](./07_governance/wbs_development_plan.md)、[change_request](./07_governance/change_request.md)、[release_note](./07_governance/release_note.md) | `/specify`、`/verify` |
 
 > `01_requirements/requirement_decision_record` 是需求側起手件：owner 拍板的優先序、範圍、Gate（Excel B 區的 MD 形態），是 `/specify` 硬閘的檢查對象。工程契約由其餘模板產生。
 >
@@ -66,6 +66,7 @@ flowchart LR
 
 | 版本 | 日期 | 變更 |
 |---|---|---|
+| v6.1 | 2026-07-26 | 整併舊模板：project_structure＋file_dependencies＋class_relationships 併入 lld；CHANGELOG 模板併入 release_note；code_review 與 documentation_and_maintenance 退役（職責在 git-workflow 規則與 Skills） |
 | v6.0 | 2026-07-26 | 全面對齊 Word 指南：補 00_strategy、BRD/SRS、UX/UI Spec、NFR、DB/Event、Test/UAT、Runbook/Monitoring/Postmortem、Release/CR；檔名改用指南詞彙（sad、sds、api_spec…）；00_meta 改為 _meta |
 | v5.0 | 2026-07-24 | 依 Word 九層分類把模板從扁平編號改為 `00`–`07` 資料夾＋語義命名；結構取代對照表 |
 | v4.1 | 2026-07-24 | 新增需求決策紀錄；01 吸收 Word 治理智慧；需求/工程決策硬邊界 |
