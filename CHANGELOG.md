@@ -12,6 +12,7 @@
 - 新增 `specify/references/bdd-format.md`：BDD 場景輕量格式（v8.0 移除 bdd_guide 模板後 `/specify` 步驟 4 的授權格式）。
 - 修正 stale 引用：specify `argument-hint` 與 skills/INDEX 撤下已刪除的模板名、rules 數量描述、CLAUDE_TEMPLATE 舊模板編號、PROJECT_STRUCTURE 目錄樹。
 - 新增 rules：`thinking-boundary.md`（速通/深思模式）；追蹤簿重構為三本角色追蹤簿。
+- 補 dev→prod 晉升規範：`sunnydata-infrastructure` 新增 Environment Promotion（build-once-promote-artifact、per-env gate、expand-contract migration）；`deployment_and_operations` 模板新增 §2.1 環境晉升表，production 晉升證據接 `/verify`＋②執行證據＋③Gate 與 Release 狀態軸。
 
 ## Repo 版本
 

@@ -33,6 +33,9 @@ Activate when:
   readiness check that probes real dependencies (database, cache, external APIs).
 - **Every deploy has a tested rollback path.** Backward-compatible migrations,
   tagged previous artifacts, feature flags that disable without a deploy.
+- **Build once, promote the artifact.** The same image digest moves
+  dev → staging → production through evidence gates; only environment variables
+  and secrets differ per environment. Never rebuild for production.
 
 ## Workflow
 
@@ -47,7 +50,8 @@ Activate when:
 3. **Pipeline and release.** Read `references/cicd-deployment.md` when building
    CI/CD or planning a release — GitHub Actions pipeline, deployment strategy
    details, health endpoints and Kubernetes probes, environment validation,
-   rollback procedures, and the production readiness checklist.
+   environment promotion gates (dev → staging → production, migration
+   ordering), rollback procedures, and the production readiness checklist.
 
 ## Deployment Strategy Decision
 

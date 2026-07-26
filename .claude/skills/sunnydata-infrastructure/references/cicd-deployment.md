@@ -243,6 +243,37 @@ const envSchema = z.object({
 export const env = envSchema.parse(process.env);
 ```
 
+## Environment Promotion (dev → staging → production)
+
+Promotion is an artifact moving through gates, not a rebuild per environment.
+
+- **Build once, promote the artifact.** The image built on merge is the only
+  artifact that ever reaches production: tag it immutably (git SHA + semver),
+  deploy that exact digest to staging, and promote the same digest to
+  production. Rebuilding for production means testing one artifact and shipping
+  another — never do it. Only environment variables and injected secrets differ
+  between environments.
+- **Each environment is a gate with an owner.** An environment promotion is a
+  release decision, not a pipeline side effect:
+
+  | Promotion | Required evidence | Approver |
+  |---|---|---|
+  | dev → staging | CI green (lint, typecheck, unit, integration) | automatic |
+  | staging → production | staging smoke + E2E green, security scan clean, rollback path verified | named release owner — record who and when |
+
+  Evidence must be fresh output from the pipeline run of the promoted digest;
+  a green run of a different commit proves nothing.
+- **Migrations gate the promotion, not the deploy.** Schema changes ship
+  expand-contract: the expand migration (additive, backward-compatible) runs
+  and is verified in staging **before** the app version that depends on it is
+  promoted; the contract migration (dropping old columns/paths) is a separate
+  later promotion, only after the old app version is no longer deployable as a
+  rollback target. A promotion whose rollback would break against the current
+  schema is not ready.
+- **Track release state separately.** Which digest is in which environment is
+  release status — its own axis, never merged into requirement, code, or
+  verification status.
+
 ## Rollback Strategy
 
 ```bash

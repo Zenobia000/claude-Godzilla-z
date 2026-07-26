@@ -45,6 +45,17 @@ Development → Staging → Production
 | **測試** | 部署至 staging → 整合測試 → E2E 測試 → 效能測試 → 安全掃描 |
 | **部署** | 準備新環境 → 部署應用 → 煙霧測試 → 切換流量 → 清理舊環境 |
 
+### 2.1 環境晉升（dev → staging → production）
+
+同一個 artifact（image digest）過閘晉升、不重 build；各環境只差環境變數與 secret。晉升是發布決策：進 production 的證據來自 `/verify` 對該 digest 的實際執行結果，登錄於 `qa_tracker.xlsx` ②執行證據；哪個 digest 在哪個環境是 Release 狀態軸，獨立記錄。
+
+| 晉升 | 進入條件（證據） | 核准人 | 例 |
+| :--- | :--- | :--- | :--- |
+| dev → staging | CI 綠（lint/type/unit/integration） | 自動 | pipeline run #123 |
+| staging → production | staging 煙霧＋E2E 綠、安全掃描乾淨、回滾路徑已驗證；跨里程碑時 ③Gate 為 `核准` | 具名 release owner＋日期 | EV-REL-005 |
+
+DB migration 採 expand-contract：additive 遷移先於依賴它的版本晉升，contract 遷移等舊版不再是回滾目標後另行晉升。
+
 ---
 
 ## 3. 部署檢查清單
