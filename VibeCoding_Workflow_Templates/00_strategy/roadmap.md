@@ -14,7 +14,7 @@
 | **Next（下一版）** | [主題] | | |
 | **Later（探索）** | [主題] | | |
 
-> 優先序與範圍取捨由 owner 在 `../01_requirements/requirement_decision_record.md` 拍板；本文件是拍板結果的時間軸投影，不是第二個決策點。
+> 優先序與範圍取捨由 owner 在 `../01_requirements/requirements_tracker.xlsx` ①需求決策拍板；本文件是拍板結果的時間軸投影，不是第二個決策點。
 
 ---
 

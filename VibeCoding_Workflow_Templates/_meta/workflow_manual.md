@@ -1,11 +1,11 @@
 # 產品開發流程使用說明書
 
-> **版本：** v4.0 | **更新：** 2026-07-26 | **狀態：** 活躍
+> **版本：** v5.0 | **更新：** 2026-07-26 | **狀態：** 活躍
 
 ## 1. 使用原則
 
 - **用問題管理文件：** 文件是降低誤解、支援決策、可驗收的同步工具，不是交付物。不能減少下一次返工的文件就別寫。
-- **決策分兩類：** **需求決策**（優先序、範圍、里程碑、Gate、業務驗收）由產品 owner 拍板，落在 [需求決策紀錄](../01_requirements/requirement_decision_record.md) 與需求追蹤簿；**工程決策**（架構、契約、測試設計）由工程與 AI 協作。兩者之間是硬邊界，owner 未核准需求決策前不進 `/specify`。
+- **決策分兩類：** **需求決策**（優先序、範圍、里程碑、Gate、業務驗收）由產品 owner 拍板，落在需求追蹤簿 `requirements_tracker.xlsx`（①需求決策、③Gate）；**工程決策**（架構、契約、測試設計）由工程與 AI 協作。兩者之間是硬邊界；Pilot 階段起，owner 未核准需求決策前不進 `/specify`（見 §8 硬閘）。
 - **來源先行：** 先確認 Excel、訪談、既有文件與程式碼的 owner。
 - **欄位級 SSOT：** 同一資訊只有一個人工維護來源；其他載體是投影或索引。
 - **風險裁剪：** 建立協作與驗收真正需要的文件，不為了完整而填模板。
@@ -35,19 +35,24 @@ flowchart LR
 | `/deliver` | 實作一個已核准垂直切片 | 外部操作與 scope change 另行授權 |
 | `/verify` | 用實際命令、測試與 trace 證據判定 | 接受風險、退回規格或實作 |
 
-## 3. Profile 選擇
+## 3. 階段選擇
 
-| 條件 | Fast | Product | Governed |
-|---|:---:|:---:|:---:|
-| 單一 bug、小功能、可逆實驗 | ✓ | | |
-| 一般產品功能、跨模組 | | ✓ | |
-| 多團隊、外部契約、正式 UAT | | | ✓ |
-| 個資、法規、安全或不可逆遷移 | | | ✓ |
-| 正式 on-call、高可用、稽核 | | | ✓ |
+文件深度跟著**開發階段**走，不是跟著模板清單走。實務上大多數專案從模糊需求開始，靠雛型一步步迭代出來；文件在階段升級時才補齊，不在起步時前置。
 
-Profile 可以升級；高風險子範圍不可因整體專案是 MVP 就省略必要設計或證據。
+| 階段 | 情境 | 文件姿態 |
+|---|---|---|
+| **雛型（Prototype）** | 模糊需求、快速迭代、可逆實驗 | 只維護核心骨架；自由對話迭代，Action Skills 是可選入口、不是關卡 |
+| **Pilot／客戶驗證** | 給真實使用者驗、要對外簽核 | 補齊 Pilot 文件組（§5）；`/specify` 硬閘生效 |
+| **企業級（Enterprise）** | 多團隊、法規、正式 on-call、稽核 | 完整治理（§6）|
 
-## 4. Fast Track
+階段只升不降；高風險子範圍（個資、法規、不可逆遷移）一出現，就按企業級對待**該子範圍**，不因整體是雛型而豁免。
+
+## 4. 雛型期（心流優先）
+
+雛型期的目標是驗證想法，不是留文件。**允許直接和 AI 對話迭代，不必每一步走 `/intake → /specify`**；先雛型 → 打掉 → 重構是正常路徑（見 [thinking-boundary](../../.claude/rules/thinking-boundary.md)）。唯二不變量：
+
+- **ID 骨架**：每個要保留的方向在需求追蹤簿 ①需求決策留一列 `DEC-*`（一句 VOC＋狀態），之後升級 Pilot 時追溯不用重建。
+- **回不了頭的取捨寫 ADR**：只記重大決策，一段話即可。
 
 ```mermaid
 flowchart LR
@@ -64,7 +69,11 @@ flowchart LR
 - 只有在重要取捨時才建立 ADR
 - 最小 code/test 變更與實際驗證
 
-## 5. Product Track
+## 5. Pilot／客戶驗證
+
+進入給真實使用者驗證、需要對外簽核時，依缺口從 Pilot 文件組補齊（不是 13 份全建）：
+
+> brd、prd、srs、ux_research_and_journey、ui_spec、sad、adr、api_spec＋openapi.yaml、db_design、test_plan、uat_plan、deployment_and_operations、runbook
 
 | 階段 | 必要產出 | Gate |
 |---|---|---|
@@ -73,9 +82,9 @@ flowchart LR
 | Deliver | 一個垂直切片、測試與必要文件更新 | 沒有偷改核准範圍 |
 | Verify | build/type/lint/test/security/trace 的適用證據 | 阻擋問題關閉或明確接受 |
 
-## 6. Governed Track
+## 6. 企業級（Enterprise）
 
-在 Product Track 之上，依 [`artifact-map.md`](../../docs/document-system/artifact-map.md) 選用：
+在 Pilot 之上，依 [`artifact-map.md`](../../docs/document-system/artifact-map.md) 選用：
 
 - 文件管制、SRS／NFR、SAD／SDS、ADR、API／Event／DB 契約
 - WBS、RACI、Change Request
@@ -97,7 +106,7 @@ Word 指南是文件 catalog，VibeCoding 是填寫格式，正式專案文件�
 
 所有權以檔為單位：一檔一個 owner，只有 owner 的角色人工維護；AI 只依穩定 ID 更新結構化欄位並回報短 delta。追蹤簿只放骨架（ID＋狀態＋一句話＋連結），細節在 docs 訂版層。
 
-需求決策以 [需求決策紀錄](../01_requirements/requirement_decision_record.md) 為權威，`requirements_tracker.xlsx` ①需求決策是它的追蹤視圖。本啟動包不隨附 Excel 產生器；若專案自建生成活頁簿，生成流程不得覆寫人工維護欄位，且在 preservation-safe round-trip 完成前只當發布快照、不當雙向 SSOT。
+需求決策的權威是 `requirements_tracker.xlsx` **①需求決策**（owner 拍板優先序、範圍、里程碑、業務驗收與核准）；**③Gate** 記里程碑簽核，**②決策沿革** 記變更與原因。深思模式的長決策理由寫 ADR 或 PRD 附註，不塞追蹤簿。本啟動包不隨附 Excel 產生器；若專案自建生成活頁簿，生成流程不得覆寫人工維護欄位，且在 preservation-safe round-trip 完成前只當發布快照、不當雙向 SSOT。
 
 ## 8. Gate 判定
 
@@ -111,19 +120,31 @@ Word 指南是文件 catalog，VibeCoding 是填寫格式，正式專案文件�
 
 只有證據支持的 gate 才能標記 PASS。
 
+### `/specify` 放行檢查（硬閘，Pilot 階段起生效）
+
+雛型期此閘退化為「①需求決策有對應 `DEC-*` 骨架列」即可，不打斷迭代。進入 Pilot 後，`/specify` 啟動前逐項確認：
+
+- [ ] 目標需求在 ①需求決策有對應列，且 `核准 = 已核准`。
+- [ ] 該列有 Owner 與更新日期（owner 簽核）。
+- [ ] 優先序、範圍、里程碑非空，且不是未經接受的系統自動值。
+- [ ] 若跨里程碑 Gate，③Gate 對應列的決策為 `核准`。
+- [ ] 商業例外／紅線已標記，工程契約需承接。
+
+任一項不成立：**停止，退回 owner 決策**，不得由 AI 代填後續。需求決策不可由規則或 AI 自動衍生；系統建議值必須由 owner 覆寫或明確接受才算數。
+
 ## 9. 文件選用矩陣
 
 不是每個專案都建立每一份文件。以「團隊現在缺什麼共識」對應要補的文件（模板見 [INDEX.md](../INDEX.md)）：
 
 | 情境／缺口 | 最低必要 | 建議補充 | 一開始先不做 |
 |---|---|---|---|
-| MVP、可逆、單團隊 | requirement_decision_record、prd、bdd_guide | adr（僅重大決策）| 完整 SRS、SDS、SIT/UAT |
+| 雛型、可逆、單團隊 | 需求追蹤簿骨架、prd 精簡段 | adr（僅重大決策）、bdd_guide | 完整 SRS、SDS、SIT/UAT |
 | 前後端分工 | + ui_spec、frontend_technical_design、openapi.yaml | information_architecture、Storybook | Design System 全套 |
 | 企業流程／多系統整合 | + brd、srs、sad、api_spec、nfr | adr、db_design、event_spec | — |
 | AI／不確定性產品 | + bdd_guide 邊界場景、security_and_readiness | 評估與回歸集 | — |
 | 客戶驗收／正式上線 | + test_plan、uat_plan、deployment_and_operations | runbook、monitoring_spec | — |
 
-三階段文件組合（對應 Fast/Product/Governed）：**MVP ≈ 9 份、Pilot ≈ 13 份、Enterprise ≈ 27 份**；深度依風險升級，見 [artifact-map.md](../../docs/document-system/artifact-map.md)。
+三階段文件組合：**雛型＝追蹤簿骨架＋prd 精簡＋必要 ADR、Pilot ≈ 13 份、企業級依 artifact-map 全量選用**；深度依風險升級，見 [artifact-map.md](../../docs/document-system/artifact-map.md)。
 
 ## 10. 命名規範
 
@@ -149,7 +170,7 @@ DEC-001-line-intake-reliability.md   # 需求決策可獨立成檔時
 | 表面現象 | 真正問題 | 修正 |
 |---|---|---|
 | 設計只給 Figma | 缺狀態與互動規格 | 補 ui_spec（§5 States、§6 Interaction）與 Design Handoff |
-| 優先序/範圍由 AI 或規則自動判 | 需求決策沒交還 owner | 回需求決策紀錄由 owner 簽核 |
+| 優先序/範圍由 AI 或規則自動判 | 需求決策沒交還 owner | 回 ①需求決策由 owner 簽核 |
 | 一個「狀態」欄想代表全部 | Requirement/Code/Verify/Release 混用 | 拆四個狀態軸 |
 | API 邊做邊改 | 缺契約 | 先定 openapi.yaml／asyncapi.yaml，mock 先行 |
 | 上線靠英雄 | 部署知識沒沉澱 | 補 deployment_and_operations、runbook |
@@ -158,11 +179,11 @@ DEC-001-line-intake-reliability.md   # 需求決策可獨立成檔時
 
 完成度檢查（每個 Gate）：
 
-- [ ] 範圍內的需求決策已由 owner 核准（需求決策紀錄）。
+- [ ] 範圍內的需求決策已由 owner 核准（①需求決策 `核准 = 已核准`；雛型期骨架列即可）。
 - [ ] 適用的驗證命令已實際執行，有證據。
 - [ ] 四個狀態軸分別標記，未混用。
 - [ ] 追溯鏈無孤兒 ID，追蹤簿人工欄位未被生成覆寫。
 
 ## 12. 模板選用
 
-完整清單與 profile 對照見 [INDEX.md](../INDEX.md)。使用時只複製必要章節；模板中的範例值不是專案政策。
+完整清單與階段對照見 [INDEX.md](../INDEX.md)。使用時只複製必要章節；模板中的範例值不是專案政策。

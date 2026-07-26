@@ -34,16 +34,19 @@ own.
 2. If the document system does not exist, follow
    [references/document-contract.md](references/document-contract.md) and create
    only the paths required by this invocation.
-3. **Hard gate — owner requirement decisions.** Before engineering any in-scope
-   item, confirm it has an owner-approved decision in the Requirement Decision
-   Record (`VibeCoding_Workflow_Templates/01_requirements/requirement_decision_record.md`, the
-   Excel B-region in Markdown form): a matching row with `決策狀態 = 已核准`, a named
-   decider, a date, and non-empty priority/scope/milestone that are not unaccepted
-   auto-derived values. If a crossing milestone gate applies, its decision must be
-   `核准`. Priority, scope, milestone, and gate are requirement decisions the
+3. **Hard gate — owner requirement decisions (binds from the Pilot stage).**
+   Before engineering any in-scope item, confirm it has an owner-approved
+   decision row in the requirements tracker (`requirements_tracker.xlsx`, sheet
+   ①需求決策): a matching row with `核准 = 已核准`, a named Owner, an update
+   date, and non-empty priority/scope/milestone that are not unaccepted
+   auto-derived values. If a crossing milestone gate applies, its ③Gate row must
+   be `核准`. Priority, scope, milestone, and gate are requirement decisions the
    product owner makes; never auto-derive or infer them to get past this gate.
    Stop and route back to the owner if any item is unapproved. A draft register may
    be summarized, but it must not be converted into an approved specification.
+   In the prototype stage the gate relaxes to "a skeleton `DEC-*` row exists"
+   (see `VibeCoding_Workflow_Templates/_meta/workflow_manual.md` §8) — do not
+   block fast iteration with approval ceremony before the project reaches Pilot.
 4. Follow the field-level authority matrix. Preserve authored Excel business
    fields and visual annotations; treat generated workbook cells as projections
    of their declared canonical source. Never edit source workbooks.

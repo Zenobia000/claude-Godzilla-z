@@ -11,7 +11,7 @@
 | Word 章 | 文件層 | 這一層的文件（範例）| 模板 |
 |---|---|---|---|
 | 4 | 產品與商業 | Vision、MRD、PRD、Roadmap | `00_strategy/`（product_vision、roadmap）＋ `01_requirements/prd` |
-| 5 | 需求分析 | BRD、SRS、User Story、Use Case、AC | `01_requirements/`（brd、srs、prd、bdd_guide、需求決策紀錄）|
+| 5 | 需求分析 | BRD、SRS、User Story、Use Case、AC | `01_requirements/`（brd、srs、prd、bdd_guide、requirements_tracker）|
 | 6 | UX | Research、Journey、User Flow、IA、Wireframe | `02_ux_ui/`（ux_research_and_journey、information_architecture）|
 | 7 | UI／前端設計 | UI Spec、Interaction、Design System、Frontend Tech | `02_ux_ui/`（ui_spec、frontend_technical_design）|
 | 8 | 系統架構 | SAD、C4、ADR、NFR | `03_architecture/`（sad、adr、nfr）|
@@ -32,7 +32,7 @@ Sequence 與 State Machine 不另立模板，收在 `sds.md` §2–3（符合 Wo
 ```text
 docs/
   00_strategy/      product_vision, roadmap
-  01_requirements/  prd, brd, srs, user_stories, 需求決策紀錄
+  01_requirements/  prd, brd, srs, user_stories, requirements_tracker
   02_ux_ui/         research, journey_map, user_flow, wireframe, ui_spec, design_system
   03_architecture/  sad, c4, adr, nfr
   04_design/        sds, api, db, event, sequence, state_machine
@@ -53,7 +53,7 @@ docs/
 | `03_architecture/engineering_tracker.xlsx` | 架構師 | `FR/NFR-*` | 來源需求＝`DEC-*` |
 | `05_qa/qa_tracker.xlsx` | QA | `TC/QTM-*` | 來源＝`FR/NFR-*` |
 
-Excel 只放骨架＋狀態＋連結，細節在 docs（訂版）。序程、欄位與認知負載原則見 [`workbook-guide.md`](workbook-guide.md)。需求決策欄位的權威定義見 [`01_requirements/requirement_decision_record`](../../VibeCoding_Workflow_Templates/01_requirements/requirement_decision_record.md)。
+Excel 只放骨架＋狀態＋連結，細節在 docs（訂版）。序程、欄位與認知負載原則見 [`workbook-guide.md`](workbook-guide.md)。需求決策欄位的權威是 `requirements_tracker.xlsx` ①需求決策（欄位語意見 [`workbook-guide.md`](workbook-guide.md)）。
 
 ## 5. Trace ID 模型
 
@@ -68,7 +68,7 @@ SRC → REQ → BR/PRD → FR/NFR → ACPT → BDD/SCN
 |---|---|---|
 | 來源座標 | `SRC-CRM-2026-R18-C4` | 原始來源 + intake register |
 | 進件需求 | `REQ-0001` | intake requirements register |
-| 需求決策 | `DEC-001` | 需求決策紀錄（追蹤視圖：requirements_tracker ①需求決策）|
+| 需求決策 | `DEC-001` | `requirements_tracker.xlsx` ①需求決策 |
 | 商業需求 | `BR-LOCK-001` | BRD/PRD MD |
 | 功能／非功能 | `FR-AGT-001`、`NFR-SEC-001` | SRS/NFR MD |
 | 驗收條件 | `ACPT-LOCK-001` | PRD/SRS MD |
@@ -80,12 +80,12 @@ SRC → REQ → BR/PRD → FR/NFR → ACPT → BDD/SCN
 
 每筆跨文件 trace 至少保存 `id / type / source_artifact / source_locator / upstream_ids[] / downstream_ids[] / status / owner / version / evidence[] / supersedes[]`。驗證器至少檢查：ID 唯一且合法、upstream/downstream 雙向一致、無孤兒 FR/NFR/ACPT/TC/證據、四種狀態（requirement/code reality/verification/release）未混用、追蹤簿人工欄位未被生成流程覆寫。
 
-## 6. MVP／Pilot／Enterprise 文件量
+## 6. 雛型／Pilot／企業級文件量
 
-| 階段 | 對應 profile | 文件量 |
-|---|---|---|
-| MVP | Fast | ≈ 9 份：需求決策、PRD、BDD、精簡架構、核心測試與證據 |
-| Pilot | Product | ≈ 13 份：加 UAT、受影響 SAD/API、部署 |
-| Enterprise | Governed | ≈ 27 份：完整 SRS/NFR、SAD/SDS、ADR、契約、SIT/UAT、Ops、稽核追溯 |
+| 階段 | 文件量 |
+|---|---|
+| 雛型（Prototype） | 追蹤簿骨架＋PRD 精簡段＋必要 ADR＋測試證據；心流優先，不前置治理文件 |
+| Pilot／客戶驗證 | ≈ 13 份：BRD/PRD/SRS、UX/UI、SAD/ADR、API/DB、Test/UAT、Deployment/Runbook |
+| 企業級（Enterprise） | ≈ 27 份：完整 SRS/NFR、SAD/SDS、ADR、契約、SIT/UAT、Ops、稽核追溯 |
 
 升級觸發：敏感資料／法遵、多團隊或外部契約、高可用與 on-call、不可逆遷移、正式 UAT 或稽核。文件深度依風險，不無差別填滿。

@@ -53,7 +53,7 @@ Excel／訪談／舊系統
 |---|---|---|
 | 文件 catalog | [Software Development Documentation Guide](software_development_documentation_guide_zh_tw.docx) | 這個風險與組織規模需要哪些文件？ |
 | 作業模板 | [VibeCoding Workflow Templates](VibeCoding_Workflow_Templates/INDEX.md) | 選中的工程文件要怎麼寫？ |
-| 需求決策 | [需求決策紀錄](VibeCoding_Workflow_Templates/01_requirements/requirement_decision_record.md) | owner 拍板優先序、範圍、Gate；追蹤視圖為 `requirements_tracker.xlsx` ①需求決策 |
+| 需求決策 | `VibeCoding_Workflow_Templates/01_requirements/requirements_tracker.xlsx` | owner 於 ①需求決策拍板優先序、範圍、核准；③Gate 簽核；②決策沿革記變更與原因 |
 | 正式契約 | 目標專案文件、程式碼、測試 | 實際核准與可執行的內容是什麼？ |
 
 詳細整合設計：
@@ -72,7 +72,7 @@ Excel／訪談／舊系統
 | `engineering_tracker.xlsx` | 架構師 | 規格追溯、模組 BOM |
 | `qa_tracker.xlsx` | QA | 測試設計、執行證據 |
 
-需求決策由 owner 在 [需求決策紀錄](VibeCoding_Workflow_Templates/01_requirements/requirement_decision_record.md) 拍板；工程契約由 Markdown 與程式碼承載。生成流程不得覆寫人工維護欄位；自建生成活頁簿在 preservation-safe round-trip 完成前只當發布快照。
+需求決策由 owner 在 `requirements_tracker.xlsx` ①需求決策拍板；工程契約由 Markdown 與程式碼承載。生成流程不得覆寫人工維護欄位；自建生成活頁簿在 preservation-safe round-trip 完成前只當發布快照。
 
 ## Claude Code 元件邊界
 

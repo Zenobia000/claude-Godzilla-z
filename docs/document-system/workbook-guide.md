@@ -15,7 +15,7 @@
 
 | 檔 | Owner | 位置 | 主要欄位 |
 |---|---|---|---|
-| **需求追蹤** | PM／BA | [`01_requirements/requirements_tracker.xlsx`](../../VibeCoding_Workflow_Templates/01_requirements/requirements_tracker.xlsx) | 需求ID、VOC、優先序、範圍、里程碑、業務驗收、狀態、PRD連結 |
+| **需求追蹤** | PM／BA | [`01_requirements/requirements_tracker.xlsx`](../../VibeCoding_Workflow_Templates/01_requirements/requirements_tracker.xlsx) | 需求ID、VOC、優先序、範圍、里程碑、業務驗收、狀態、**核准**、PRD連結；③Gate 記里程碑簽核 |
 | **工程追蹤** | 架構師 | [`03_architecture/engineering_tracker.xlsx`](../../VibeCoding_Workflow_Templates/03_architecture/engineering_tracker.xlsx) | FR/NFR-ID、**來源需求**、SAD元件、ADR、Code reality、狀態；②模組BOM |
 | **測試追蹤** | QA | [`05_qa/qa_tracker.xlsx`](../../VibeCoding_Workflow_Templates/05_qa/qa_tracker.xlsx) | TC/QTM-ID、**來源FR/NFR**、測試設計、狀態；②執行證據 |
 
@@ -36,7 +36,9 @@ REQ/DEC-*  →  FR/NFR-*  →  TC/QTM-*
 
 ## 4. 狀態與滾動
 
-各檔 `狀態` 欄下拉：`開放 / 進行中 / Pending / 結束 / Deferred`。需求先確定、開發功能導向、里程碑滾動調整，不必一開始填滿；需求追蹤的 `② 決策沿革` 記錄滾動調整。
+各檔 `狀態` 欄下拉：`開放 / 進行中 / Pending / 結束 / Deferred`。需求先確定、開發功能導向、里程碑滾動調整，不必一開始填滿；需求追蹤的 `② 決策沿革` 記錄滾動調整（含一句原因；長理由寫 PRD 附註或 ADR）。
+
+**需求追蹤簿 ①需求決策是需求決策的權威**：owner 在此拍板優先序、範圍、里程碑、業務驗收，並以 `核准` 欄（`提案 / 已核准 / 延後 / 取消`）簽核；`③ Gate` 記里程碑放行（`核准 / 保留 / 退回`＋決策者＋日期）。`/specify` 硬閘（Pilot 階段起）檢查的就是這兩張表——`核准 = 已核准` 且有 Owner 與日期才能工程化；雛型期只需骨架列，不擋迭代。
 
 ## 5. 認知負載鐵律（給 AI）
 

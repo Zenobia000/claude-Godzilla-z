@@ -36,5 +36,5 @@ AI 的建議常「想得太周到」，在雛形/速通期反而拖垮驗證速�
 ## 落地連結
 
 - 架構判斷的思考記錄：ADR 模板（context／選項／決定／後果／重評觸發）。
-- 商業決策的思考軌跡：需求決策紀錄的「決策理由」欄。
+- 商業決策的思考軌跡：需求追蹤簿 ②決策沿革的「原因」欄；長理由寫 PRD 附註或 ADR 式短文。
 - 不覆蓋 [golden-rules](golden-rules.md)；與 [language-register](language-register.md) 的 L1/L2 邊界同源。

@@ -46,4 +46,4 @@
 | **簽核人／日期** | [客戶代表、PM] |
 | **證據** | [執行紀錄檔案位置，如 `UAT_專案_Pilot_客戶_YYYYMMDD.xlsx`] |
 
-> 簽核結果回寫需求決策紀錄的 Gate 段；證據依穩定 ID 進 `qa_tracker.xlsx` ②執行證據（不得被生成覆寫）。
+> 簽核結果回寫 `requirements_tracker.xlsx` ③Gate；證據依穩定 ID 進 `qa_tracker.xlsx` ②執行證據（不得被生成覆寫）。

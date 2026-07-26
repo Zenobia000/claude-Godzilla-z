@@ -78,22 +78,25 @@ introduce schemas, identifiers, or implementation terms at intake.
    visually, output path, counts by status, unresolved questions, and any
    unsupported workbook features.
 
-## Seed the requirement decision record
+## Seed the requirement decisions
 
-Alongside the derived register, seed or update the Requirement Decision Record
-(`VibeCoding_Workflow_Templates/01_requirements/requirement_decision_record.md` as the format;
-the Excel B-region is its visual instance). Create one `DEC-*` row per requirement
-candidate carrying the business-language VOC. Leave the owner-decision columns —
-priority, scope in/out, milestone, business acceptance, gate — **empty or marked
-pending owner input**. Never auto-derive or guess these; they are the product
-owner's decisions and pre-filling them defeats the intake→specify boundary.
+Alongside the derived register, seed or update the project's requirements
+tracker (`requirements_tracker.xlsx`, sheet ①需求決策 — the requirement-decision
+authority; see `docs/document-system/workbook-guide.md`). Create one `DEC-*` row
+per requirement candidate carrying the business-language VOC. Leave the
+owner-decision columns — priority, scope in/out, milestone, business acceptance,
+核准 — **empty or marked pending owner input**. Never auto-derive or guess these;
+they are the product owner's decisions and pre-filling them defeats the
+intake→specify boundary.
 
 ## Human Gate
 
-Stop after producing the draft register and seeded decision record. Present
-conflicts, assumptions, and questions for review. Continue to `/specify` only
-after the product owner records approved requirement decisions (priority, scope,
-milestone, gate) with a name and date in the Requirement Decision Record.
+Stop after producing the draft register and seeded decision rows. Present
+conflicts, assumptions, and questions for review. From the Pilot stage onward,
+continue to `/specify` only after the product owner records approved requirement
+decisions (priority, scope, milestone, `核准 = 已核准`) with owner and date in
+①需求決策; in the prototype stage a skeleton `DEC-*` row is enough (see
+`VibeCoding_Workflow_Templates/_meta/workflow_manual.md` §3–§4).
 
 ## Completion
 

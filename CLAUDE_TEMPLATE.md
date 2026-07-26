@@ -38,17 +38,17 @@ approval_status: Draft
 
 ## Phase 2：選擇文件深度
 
-| Profile | 適用情境 | 最小文件 |
+| 階段 | 適用情境 | 最小文件 |
 |---|---|---|
-| Fast Track | bug、小功能、實驗 | 問題／來源、驗收或重現、必要決策、測試證據 |
-| Product Track | 一般產品功能、跨模組 | PRD、BDD、受影響設計／契約、Traceability |
-| Governed Track | 客戶驗收、法規、高風險 | 文件管制、SRS/NFR、SAD/SDS、ADR、SIT/UAT、Runbook |
+| 雛型（Prototype） | 模糊需求、快速迭代、實驗 | 追蹤簿骨架列、驗收或重現、必要決策、測試證據 |
+| Pilot／客戶驗證 | 給真實使用者驗、要簽核 | BRD/PRD/SRS、UX/UI、SAD/ADR、API/DB、Test/UAT、Deployment/Runbook（依缺口裁剪） |
+| 企業級（Enterprise） | 法規、多團隊、高風險 | 文件管制、NFR、SDS、SIT/UAT、Monitoring、Change Request |
 
 企業文件如何選用：`software_development_documentation_guide_zh_tw.docx`（治理智慧已萃取進模板 01）
 
 工程文件如何填寫：`VibeCoding_Workflow_Templates/`
 
-需求決策：`VibeCoding_Workflow_Templates/01_requirements/requirement_decision_record.md`（追蹤視圖：`requirements_tracker.xlsx` ①需求決策）
+需求決策：`VibeCoding_Workflow_Templates/01_requirements/requirements_tracker.xlsx` ①需求決策（owner 拍板；③Gate 簽核）
 
 ## Phase 3：工程化規格
 

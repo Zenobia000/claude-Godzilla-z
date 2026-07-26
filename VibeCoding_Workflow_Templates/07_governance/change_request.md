@@ -36,4 +36,4 @@
 | **決策人／日期** | [需求決策 owner] |
 | **條件** | [核准附帶的取捨] |
 
-> 核准後：回寫 `../01_requirements/requirement_decision_record.md`（決策沿革）、更新 roadmap 與受影響契約；追溯 ID 不重用，取消的需求保留 tombstone。
+> 核准後：回寫 `../01_requirements/requirements_tracker.xlsx` ②決策沿革、更新 roadmap 與受影響契約；追溯 ID 不重用，取消的需求保留 tombstone。

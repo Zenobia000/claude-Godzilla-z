@@ -26,50 +26,51 @@ PRD／BDD／SAD／ADR／Traceability
 
 這是**文件驅動開發的啟動寶（startup kit）**：只放可重用的模板、`rules/` 與 `skills/`，**不放任何專案的 Excel 或需求資料**。每次開新專案把它當基底，實際產出長在你的專案裡。
 
-流程最上游的「Excel／訪談／既有系統」是你**每個專案自己帶進來的輸入**（需求訪談表、業務 Excel、舊系統文件），住在你的實際專案，不在這個 repo。你在專案裡維護的需求決策，權威是 [需求決策紀錄](../VibeCoding_Workflow_Templates/01_requirements/requirement_decision_record.md)，追蹤視圖是 `requirements_tracker.xlsx` ①需求決策。先前隨附的 SmartLock 四本 Excel 只是一份「填好的範例」，已抽離；現行追蹤層是三個角色追蹤簿——**移除的是範例，不是 Excel 這個概念**。
+流程最上游的「Excel／訪談／既有系統」是你**每個專案自己帶進來的輸入**（需求訪談表、業務 Excel、舊系統文件），住在你的實際專案，不在這個 repo。你在專案裡維護的需求決策，權威是 `requirements_tracker.xlsx` ①需求決策（③Gate 簽核、②決策沿革記變更）。先前隨附的 SmartLock 四本 Excel 只是一份「填好的範例」，已抽離；現行追蹤層是三個角色追蹤簿——**移除的是範例，不是 Excel 這個概念**。
 
 ## 四個入口
 
 | 入口 | 何時使用 | 主要輸入 | 完成條件 |
 |---|---|---|---|
-| `/intake` | 新專案、需求訪談表、Excel、既有資料進件 | 原始來源與權威 owner | 來源座標、穩定 ID、需求決策紀錄已種好待 owner 拍板 |
+| `/intake` | 新專案、需求訪談表、Excel、既有資料進件 | 原始來源與權威 owner | 來源座標、穩定 ID、①需求決策已種好 `DEC-*` 待 owner 拍板 |
 | `/specify` | 將白話需求工程化 | **已由 owner 核准的需求決策**、驗收、限制 | 只產生當前階段必要的工程契約，ID 互相連接 |
 | `/deliver` | 規格已足以實作 | 核准範圍與驗收標準 | 一個可測的垂直切片完成，未偷改範圍 |
 | `/verify` | 任務、PR、里程碑或上線前 | 變更、驗收標準、測試環境 | 實際證據支持狀態；未驗證部分清楚標示 |
 
 四個 Skill 設為手動呼叫，是為了保留人類決定工作階段與變更範圍的控制權。它們會視需要載入除錯、測試、安全、API、UI 或架構等能力 Skill。
 
-**需求決策 vs 工程決策的硬邊界**：優先序、範圍、里程碑、Gate、業務驗收屬**需求決策**，由產品 owner 於 [需求決策紀錄](../VibeCoding_Workflow_Templates/01_requirements/requirement_decision_record.md)（追蹤視圖：`requirements_tracker.xlsx`）拍板，AI 不得自動衍生。`/specify` 在 owner 簽核前不得把需求工程化。這條線與 [`rules/language-register.md`](rules/language-register.md) 的 L1（業務）→ L2（中介）→ L3（工程）分水嶺是同一條。
+**需求決策 vs 工程決策的硬邊界**：優先序、範圍、里程碑、Gate、業務驗收屬**需求決策**，由產品 owner 於 `requirements_tracker.xlsx` ①需求決策拍板（③Gate 簽核），AI 不得自動衍生。Pilot 階段起，`/specify` 在 owner 簽核前不得把需求工程化；雛型期只需骨架列，不打斷迭代。這條線與 [`rules/language-register.md`](rules/language-register.md) 的 L1（業務）→ L2（中介）→ L3（工程）分水嶺是同一條。
 
 ## 文件深度
 
-不要一開始生成整套企業文件。依交付風險選擇：
+不要一開始生成整套企業文件。文件深度跟著**開發階段**走——實務上多數專案從模糊需求靠雛型迭代出來，文件在階段升級時才補齊：
 
-### Fast Track
+### 雛型（Prototype）
 
-適合單一 bug、小型功能或短期實驗。
+模糊需求、快速迭代、可逆實驗。心流優先：允許直接對話迭代，Action Skills 是可選入口、不是關卡。
 
 - 來源／問題與影響
 - 可驗收行為或重現步驟
-- 最小設計說明（需要決策才建 ADR）
+- 需求追蹤簿 ①需求決策留 `DEC-*` 骨架列
+- 最小設計說明（回不了頭的決策才建 ADR）
 - 實作、回歸測試與證據
 
-### Product Track
+### Pilot／客戶驗證
 
-適合一般產品功能或跨模組變更。
+給真實使用者驗、需要對外簽核。`/specify` 硬閘自此生效。依缺口補齊 Pilot 文件組：
 
-- PRD、BDD／驗收
-- 受影響的 SAD／API／資料契約
-- 垂直切片與 Traceability
-- 整合測試與發布準備
+- BRD／PRD／SRS、BDD／驗收
+- UX Flow／UI Spec
+- SAD／ADR、API 契約（openapi.yaml）、DB 設計
+- Test Plan／UAT Plan、Deployment、Runbook
 
-### Governed Track
+### 企業級（Enterprise）
 
-適合客戶驗收、法規、高風險或企業治理。
+法規、多團隊、高可用、稽核。
 
-- Excel 文件管制與核准
-- SRS／NFR、SAD／SDS、ADR、介面與資料契約
-- SIT／UAT、RACI、Runbook、變更與證據紀錄
+- 文件管制與核准
+- NFR、SDS、介面與事件契約
+- SIT／UAT、RACI、Monitoring、變更與證據紀錄
 - 權威矩陣與完整追溯
 
 企業文件全景請參考根目錄 Word 指南；可直接填寫的格式請使用 `VibeCoding_Workflow_Templates/`。
@@ -110,8 +111,8 @@ Excel 是業務／PM 的視覺治理介面，Markdown 是工程契約與版本�
 
 ### 一個走查（新增一個付款 API）
 
-1. `/intake` 讀你專案的 Excel／訪談（L1 業務語域；Rules 要求來源可追溯），把需求種進需求決策紀錄，等 owner 拍板優先序與範圍。
-2. owner 在需求決策紀錄簽核 → `/specify` 過硬閘，在 L2 把需求翻成 FR/NFR、ACPT 與 API 契約；架構有疑慮時委派 `architect` 拿第二意見，載入 `sunnydata-api-design`。
+1. `/intake` 讀你專案的 Excel／訪談（L1 業務語域；Rules 要求來源可追溯），把需求種進 ①需求決策，等 owner 拍板優先序與範圍。
+2. owner 在 ①需求決策簽核 → `/specify` 過硬閘，在 L2 把需求翻成 FR/NFR、ACPT 與 API 契約；架構有疑慮時委派 `architect` 拿第二意見，載入 `sunnydata-api-design`。
 3. `/deliver` 實作垂直切片（L3 工程語域），載入 `sunnydata-testing`；build 壞了委派 `build-error-resolver`。
 4. `/verify` 跑實際測試與 trace，委派 `code-quality-specialist`、`security-infrastructure-auditor` 做隔離審查，用證據判定。
 

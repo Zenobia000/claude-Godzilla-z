@@ -26,7 +26,7 @@ claude-Godzilla-z/
 │   ├── INDEX.md                  # 文件選用與模板索引
 │   ├── _meta/                    # workflow_manual
 │   ├── 00_strategy/              # product_vision、roadmap
-│   ├── 01_requirements/          # 需求決策紀錄、prd、brd、srs、bdd_guide
+│   ├── 01_requirements/          # requirements_tracker、prd、brd、srs、bdd_guide
 │   ├── 02_ux_ui/                 # ux_research、ia、ui_spec、frontend_technical_design
 │   ├── 03_architecture/          # sad、adr、nfr
 │   ├── 04_design/                # sds、lld、api_spec+openapi、event_spec+asyncapi、db_design
@@ -72,7 +72,7 @@ Excel 統控介面（對焦／核准／追蹤）
 ```
 
 - Word 指南是分類與裁剪依據，不逐章複製到每個專案。
-- VibeCoding templates 是工程工作格式，可依 Fast／Product／Governed profile 選取。
+- VibeCoding templates 是工程工作格式，依開發階段（雛型／Pilot／企業級）選取。
 - Excel 保存業務語言、顏色、排序、核准與管理視圖。
 - Markdown／code-native contracts 保存可 diff、可 review、可讓 AI 與 CI 消化的工程內容。
 - 每個欄位只能指定一個 owner；其他格式是 projection 或索引。

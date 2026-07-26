@@ -51,6 +51,6 @@ flowchart LR
 
 ## 5. 追溯
 
-- 需求決策：`./requirement_decision_record.md`（owner 拍板範圍與優先序）
+- 需求決策：`./requirements_tracker.xlsx` ①需求決策（owner 拍板範圍與優先序）
 - 系統需求：`./srs.md`（BR 轉為 FR/NFR 的下游）
 - 業務規則 ID（`BR-*`）在 SRS、BDD 與測試中引用，不重述內容。

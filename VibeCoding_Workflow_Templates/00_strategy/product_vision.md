@@ -44,5 +44,5 @@
 | 項目 | 連結 |
 | :--- | :--- |
 | 版本規劃 | [roadmap.md](./roadmap.md) |
-| 需求決策 | `../01_requirements/requirement_decision_record.md` |
+| 需求決策 | `../01_requirements/requirements_tracker.xlsx` ①需求決策 |
 | PRD | `../01_requirements/prd.md` |
