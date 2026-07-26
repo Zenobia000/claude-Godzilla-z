@@ -20,7 +20,7 @@ claude-Godzilla-z/
 │   ├── agents/                   # 8 個隔離型專業執行角色
 │   ├── output-styles/
 │   │   └── 15-Vision-output.md   # 唯一呈現樣式
-│   └── hooks/                    # 停用的舊腳本與 Hook 設計說明
+│   └── hooks/                    # Hook 設計指南（零註冊）
 │
 ├── VibeCoding_Workflow_Templates/    # 依 Word 九層分類的模板
 │   ├── INDEX.md                  # 文件選用與模板索引
@@ -92,4 +92,4 @@ Excel 統控介面（對焦／核准／追蹤）
 - PRD／BDD／TDD 等全域 Output Styles
 - 17 個重複 Commands
 
-TaskMaster hook 腳本已刪除；`hooks/` 只剩未註冊的 agent 監控腳本與 Hook 設計說明。
+上述退役項目與 `docs/legacy/` 歸檔均已自 repo 刪除，歷史版本在 git history；`hooks/` 只剩設計指南。

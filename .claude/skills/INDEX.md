@@ -70,5 +70,3 @@ Action Skill 只載入當前步驟必要的能力；不要為了「完整」一�
 - [Anthropic skills](https://github.com/anthropics/skills)
 - [Trail of Bits skills](https://github.com/trailofbits/skills)
 - [shadcn/ui skills](https://github.com/shadcn-ui/ui/tree/main/skills/shadcn)
-
-舊版 runtime prompts 保存在 `docs/legacy/claude-runtime/`，不會自動載入。

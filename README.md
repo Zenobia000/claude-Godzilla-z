@@ -83,7 +83,7 @@ Excel／訪談／舊系統
 ├── skills/         Action Skills + SunnyData + Community 能力庫
 ├── agents/         8 個隔離型專業角色
 ├── output-styles/  1 個純呈現樣式
-├── hooks/          基礎模板零註冊；僅 Hook 設計說明與監控腳本
+├── hooks/          基礎模板零註冊；僅 Hook 設計指南
 └── statusline*     唯讀顯示官方 stdin
 ```
 
@@ -94,8 +94,6 @@ Excel／訪談／舊系統
 | Agents | 獨立 context、工具／權限隔離、平行或第二意見 |
 | Output Style | 只改回答呈現，不承載 PRD／BDD／TDD 流程 |
 | Hooks | 只接受確定、快速、低頻、無隱性狀態的 guardrail |
-
-舊版 prompts 並未丟失，已移到 [legacy archive](docs/legacy/claude-runtime/README.md)，不再進入 runtime。
 
 ## Skills 能力庫
 

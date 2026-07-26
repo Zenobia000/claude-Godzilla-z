@@ -49,7 +49,7 @@ Claude Code 已將自訂 commands 與 skills 統一為 slash-command 入口。�
 
 ## Hooks 與 TaskMaster
 
-基礎模板預設不註冊 Hook。舊 TaskMaster hook 腳本已刪除；`hooks/` 只剩未註冊的 agent 監控腳本與設計指南。
+基礎模板預設不註冊 Hook。舊 TaskMaster 與 Agent monitor 腳本均已刪除；`hooks/` 只剩設計指南。
 
 舊 TaskMaster runtime 已退役：
 
