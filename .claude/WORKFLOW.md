@@ -39,7 +39,7 @@ PRD／BDD／SAD／ADR／Traceability
 
 四個 Skill 設為手動呼叫，是為了保留人類決定工作階段與變更範圍的控制權。它們會視需要載入除錯、測試、安全、API、UI 或架構等能力 Skill。
 
-**需求決策 vs 工程決策的硬邊界**：優先序、範圍、里程碑、Gate、業務驗收屬**需求決策**，由產品 owner 於 `requirements_tracker.xlsx` ①需求決策拍板（③Gate 簽核），AI 不得自動衍生。Pilot 階段起，`/specify` 在 owner 簽核前不得把需求工程化；雛型期只需骨架列，不打斷迭代。這條線與 [`rules/language-register.md`](rules/language-register.md) 的 L1（業務）→ L2（中介）→ L3（工程）分水嶺是同一條。
+**需求決策 vs 工程決策的硬邊界**：優先序、範圍、里程碑、Gate、業務驗收屬**需求決策**，由產品 owner 於 `requirements_tracker.xlsx` ①需求決策拍板（③Gate 簽核），AI 不得自動衍生。Pilot 階段起，`/specify` 在 owner 簽核前不得把需求工程化（放行檢查清單唯一權威：`VibeCoding_Workflow_Templates/_meta/workflow_manual.md` §8）；雛型期只需骨架列，不打斷迭代。這條線與 [`rules/language-register.md`](rules/language-register.md) 的 L1（業務）→ L2（中介）→ L3（工程）分水嶺是同一條。
 
 ## 文件深度
 
@@ -81,7 +81,7 @@ Excel 是業務／PM 的視覺治理介面，Markdown 是工程契約與版本�
 
 1. 一檔一個 owner：三個角色追蹤簿的分工見 `docs/document-system/workbook-guide.md`。
 2. 保留來源檔、sheet、row、cell/range 與來源列 ID。
-3. 用穩定的 `SRC-* → REQ-* → FR/NFR → ACPT-* → SCN-* → TC-*` 串接；`AC-*` 保留給既有架構選項，不作驗收 ID。
+3. 用穩定 ID 串接（主鏈唯一權威見 [`docs/document-system/architecture.md`](../docs/document-system/architecture.md) §7.1）；`AC-*` 保留給既有架構選項，不作驗收 ID。
 4. 自動生成只覆寫標示為 generated 的區域，不覆寫人工核准或標註。
 5. 同步後執行 ID、連結、驗收與證據完整性檢查。
 

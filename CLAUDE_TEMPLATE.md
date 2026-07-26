@@ -44,7 +44,7 @@ approval_status: Draft
 | Pilot／客戶驗證 | 給真實使用者驗、要簽核 | BRD/PRD/SRS、UX/UI、SAD/ADR、API/DB、Test/UAT、Deployment/Runbook（依缺口裁剪） |
 | 企業級（Enterprise） | 法規、多團隊、高風險 | 文件管制、NFR、SDS、SIT/UAT、Monitoring、Change Request |
 
-企業文件如何選用：`software_development_documentation_guide_zh_tw.docx`（治理智慧已萃取進模板 01）
+企業文件如何選用：`software_development_documentation_guide_zh_tw.docx`（治理智慧已萃取進 `VibeCoding_Workflow_Templates/_meta/workflow_manual.md`）
 
 工程文件如何填寫：`VibeCoding_Workflow_Templates/`
 

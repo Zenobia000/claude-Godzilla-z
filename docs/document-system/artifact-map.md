@@ -57,12 +57,7 @@ Excel 只放骨架＋狀態＋連結，細節在 docs（訂版）。序程、欄
 
 ## 5. Trace ID 模型
 
-跨層以穩定 ID 串接，不靠檔名、列號或標題：
-
-```text
-SRC → REQ → BR/PRD → FR/NFR → ACPT → BDD/SCN
-    → SAD/SDS/ADR/API/EVT/DB/MOD → TS/QTM → TC/CASE → EV → UAT/REL
-```
+跨層以穩定 ID 串接，不靠檔名、列號或標題。主鏈唯一權威是 [architecture.md](architecture.md) §7.1；本節只列各 ID 類型的格式與權威來源：
 
 | 類型 | 格式範例 | 權威來源 |
 |---|---|---|

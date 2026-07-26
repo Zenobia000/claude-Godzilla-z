@@ -1,6 +1,6 @@
 # 產品開發流程使用說明書
 
-> **版本：** v5.0 | **更新：** 2026-07-26 | **狀態：** 活躍
+> **更新：** 2026-07-27 | **狀態：** 活躍 | 版本隨 repo（沿革見 [CHANGELOG](../../CHANGELOG.md)）
 > **Owner:** 模板庫維護者
 > **語域:** L2（橋接）
 > **定位:** 怎麼跑流程、選階段、過 Gate 的手冊；模板格式規範見 [template_standard](./template_standard.md)。
@@ -37,15 +37,7 @@
 
 ## 2. 工作入口
 
-```mermaid
-flowchart LR
-    A[Excel／訪談／舊系統] --> B[/intake]
-    B --> C[/specify]
-    C --> D[/deliver]
-    D --> E[/verify]
-    E -->|規格缺口| C
-    E -->|實作缺陷| D
-```
+主線是 `/intake → /specify → /deliver → /verify`（`/verify` 發現規格缺口退回 `/specify`、實作缺陷退回 `/deliver`）；流程圖唯一權威見 [.claude/WORKFLOW.md](../../.claude/WORKFLOW.md)。
 
 | Action | 目的 | 人類控制點 |
 |---|---|---|

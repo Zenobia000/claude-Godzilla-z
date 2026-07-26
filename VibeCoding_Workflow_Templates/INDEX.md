@@ -1,6 +1,6 @@
 # VibeCoding 工程文件模板索引
 
-> **版本：** v8.4 | **更新：** 2026-07-26
+> **更新：** 2026-07-27 | 版本隨 repo 走（唯一真相源：README badge；沿革見 [CHANGELOG.md](../CHANGELOG.md)）
 
 這些模板是工程師可直接裁剪的「作業格式」，不是每份都要建立的固定交付清單，也不是另一套 SSOT。**目錄結構本身就是分類**——依 [`software_development_documentation_guide_zh_tw.docx`](../software_development_documentation_guide_zh_tw.docx) 第 15 章的建議資料夾結構（`01_requirements`–`06_ops`）安置，檔名採用該指南的文件詞彙（SAD、SRS、UAT……），用哪份文件看你落在哪一層。
 
@@ -82,16 +82,4 @@ flowchart LR
 
 ## 版本記錄
 
-| 版本 | 日期 | 變更 |
-|---|---|---|
-| v8.4 | 2026-07-26 | 新增 `03_architecture/diagrams/`：drawio 溝通級大圖模板（solution_overview、c4_context、c4_container、deployment_topology、ai_guardrails 可選）＋視覺規範、style 字串庫、`_tools/` 程式化生成與版面驗收管線（drawio_kit＋analyze_layout）、`_examples/` ACME 虛構專案 few-shot 錨點（score=0）；mermaid/drawio 單一 owner 分工，工程細圖（L3/sequence/dataflow/ER/狀態機）維持 mermaid 正典 |
-| v8.3 | 2026-07-26 | 實例化規則入法：每份模板 Metadata 標「單例／每 X 一份」，多實例分支 key 限穩定錨點（頁面/決策/Aggregate/症狀/服務），禁止 per-feature 資料夾樹（功能視角＝ID 骨幹） |
-| v8.2 | 2026-07-26 | 地毯式正規化：新增 _meta/template_standard（六要素＋密度紀律），15 份全部補齊 TOC／語域／追溯段、統一編號；sad 501→199 行；lld 復活承載 Code 地圖與狀態機（自 api_spec 遷入） |
-| v8.1 | 2026-07-26 | 復活瘦身版 information_architecture（只留全站結構：頁面總覽、導航、路由表含認證/角色、跨頁資料載體）；補回整併遺失錨點：api_spec §6 狀態機、prd 允收改 Given/When/Then、ui_spec 導航入出口、ux_research 轉換率目標欄 |
-| v8.0 | 2026-07-26 | 收斂到 Pilot 核心 13 份＋3 追蹤簿：移除 product_vision/roadmap、bdd_guide、information_architecture/frontend_technical_design、nfr、sds/lld/event_spec＋asyncapi、security_and_readiness、monitoring/incident、07_governance 全部；企業級文件未來依 Word 指南增建 |
-| v7.0 | 2026-07-26 | 退役 requirement_decision_record（權威併入 requirements_tracker ①需求決策＋③Gate＋②決策沿革，硬閘 checklist 移入 workflow_manual §8）；Profile 改為開發階段（雛型／Pilot／企業級），雛型期心流優先 |
-| v6.1 | 2026-07-26 | 整併舊模板：project_structure＋file_dependencies＋class_relationships 併入 lld；CHANGELOG 模板併入 release_note；code_review 與 documentation_and_maintenance 退役（職責在 git-workflow 規則與 Skills） |
-| v6.0 | 2026-07-26 | 全面對齊 Word 指南：補 00_strategy、BRD/SRS、UX/UI Spec、NFR、DB/Event、Test/UAT、Runbook/Monitoring/Postmortem、Release/CR；檔名改用指南詞彙（sad、sds、api_spec…）；00_meta 改為 _meta |
-| v5.0 | 2026-07-24 | 依 Word 九層分類把模板從扁平編號改為 `00`–`07` 資料夾＋語義命名；結構取代對照表 |
-| v4.1 | 2026-07-24 | 新增需求決策紀錄；01 吸收 Word 治理智慧；需求/工程決策硬邊界 |
-| v4.0 | 2026-07-24 | 整合 Word catalog、Excel 欄位級 SSOT、四個 Action Skills 與風險式裁剪 |
+模板庫不再獨立編號；歷史版本（templates v4.0–v8.4）與後續沿革見根目錄 [CHANGELOG.md](../CHANGELOG.md)。

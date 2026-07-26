@@ -93,10 +93,10 @@ intake→specify boundary.
 
 Stop after producing the draft register and seeded decision rows. Present
 conflicts, assumptions, and questions for review. From the Pilot stage onward,
-continue to `/specify` only after the product owner records approved requirement
-decisions (priority, scope, milestone, `核准 = 已核准`) with owner and date in
-①需求決策; in the prototype stage a skeleton `DEC-*` row is enough (see
-`VibeCoding_Workflow_Templates/_meta/workflow_manual.md` §3–§4).
+continue to `/specify` only after the owner-approval checklist in
+`VibeCoding_Workflow_Templates/_meta/workflow_manual.md` §8 — the single
+authority for this gate — passes; in the prototype stage a skeleton `DEC-*` row
+is enough.
 
 ## Completion
 

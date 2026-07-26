@@ -22,28 +22,9 @@
 
 ## 核心工作流
 
-```text
-Excel／訪談／舊系統
-        ↓
-     /intake
-        ↓
-     /specify
-        ↓
-     /deliver
-        ↓
-     /verify
-        ↓
-  實際證據與真實狀態
-```
+`業務來源 → /intake → /specify → /deliver → /verify → 實際證據與真實狀態`
 
-| Action Skill | 用途 |
-|---|---|
-| `/intake` | 唯讀解析 Excel／需求來源，保存 `file → sheet → row/cell → SRC-ID → REQ-ID` |
-| `/specify` | 將核准 REQ 映射成 `FR/NFR → ACPT/SCN`，裁剪 PRD、BDD、SAD、ADR 與 Traceability |
-| `/deliver` | 交付一個可驗收垂直切片，按需載入專業 Skills |
-| `/verify` | 以 build、type、lint、test、security、trace 證據判定狀態 |
-
-完整流程見 [.claude/WORKFLOW.md](.claude/WORKFLOW.md)。
+流程圖、四個入口的輸入／完成條件與階段對照，唯一權威是 [.claude/WORKFLOW.md](.claude/WORKFLOW.md)。
 
 ## Word、VibeCoding 與 Excel 怎麼整合
 
@@ -64,13 +45,7 @@ Excel／訪談／舊系統
 
 ### Excel 的關鍵結論
 
-不是「Excel 或 Markdown 誰是唯一真相」，而是一檔一個 owner：三個角色追蹤簿由各自的 owner 人工維護，以 `REQ/DEC-* → FR/NFR-* → TC/QTM-*` 的 ID 骨幹串連，細節放 docs 訂版層（見 [workbook-guide](docs/document-system/workbook-guide.md)）：
-
-| 追蹤簿 | Owner | 內容 |
-|---|---|---|
-| `requirements_tracker.xlsx` | PM／BA | 需求決策、決策沿革 |
-| `engineering_tracker.xlsx` | 架構師 | 規格追溯、模組 BOM |
-| `qa_tracker.xlsx` | QA | 測試設計、執行證據 |
+不是「Excel 或 Markdown 誰是唯一真相」，而是一檔一個 owner：三個角色追蹤簿（需求／工程／QA）由各自的 owner 人工維護，以 ID 骨幹串連，細節放 docs 訂版層。追蹤簿分工與欄位的唯一權威是 [workbook-guide](docs/document-system/workbook-guide.md)。
 
 需求決策由 owner 在 `requirements_tracker.xlsx` ①需求決策拍板；工程契約由 Markdown 與程式碼承載。生成流程不得覆寫人工維護欄位；自建生成活頁簿在 preservation-safe round-trip 完成前只當發布快照。
 
@@ -78,7 +53,7 @@ Excel／訪談／舊系統
 
 ```text
 .claude/
-├── rules/          1 份 Golden Rules
+├── rules/          4 份常駐規則（golden、git-workflow、language-register、thinking-boundary）
 ├── skills/         Action Skills + SunnyData + Community 能力庫
 ├── agents/         8 個隔離型專業角色
 ├── output-styles/  1 個純呈現樣式
@@ -88,7 +63,7 @@ Excel／訪談／舊系統
 
 | 元件 | 現行責任 |
 |---|---|
-| Rules | 來源、追溯、安全、證據、最小變更等 Golden Rules |
+| Rules | Golden Rules、Git 工作流、語域分層、思考邊界四份恆定規則 |
 | Skills | 方法、清單、模板路由與可重用能力 |
 | Agents | 獨立 context、工具／權限隔離、平行或第二意見 |
 | Output Style | 只改回答呈現，不承載 PRD／BDD／TDD 流程 |
@@ -145,12 +120,7 @@ Claude Code 原生 Task list 處理暫態工作；PRD、ADR、issue、測試與 
 
 ## 版本
 
-| 版本 | 日期 | 重點 |
-|---|---|---|
-| v6.0 | 2026-07-24 | 文件驅動四階段、Excel 欄位級 SSOT、runtime 解耦、Word/Vibe/Excel 整合 |
-| v5.1 | 2026-05-10 | 架構 review skill 與 SunnyData 能力庫 |
-| v5.0 | 2026-04-06 | Skills MECE 與 Git 品質流程 |
-| v4.x | 2026-03 | Agents、Commands、Hooks、StatusLine 生態系 |
+版本號的唯一真相源是本 README 的 version badge；完整沿革（含模板庫歷史版本）見 [CHANGELOG.md](CHANGELOG.md)。
 
 ## License
 

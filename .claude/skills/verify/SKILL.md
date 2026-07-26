@@ -48,8 +48,9 @@ and evidence only, without embellishment.
 8. **Security gate.** Inspect changed trust boundaries, secrets, input handling,
    dependencies, and data exposure. Run only configured non-destructive security
    checks; invoke `sunnydata-security` when deeper review is warranted.
-9. **Traceability gate.** Verify
-   `SRC-ID → REQ-ID → FR/NFR → ACPT/SCN → SAD/ADR → implementation → test/evidence`.
+9. **Traceability gate.** Verify the chain from source to evidence
+   (`SRC → REQ → FR/NFR → ACPT/SCN → SAD/ADR → implementation → test/evidence`;
+   the canonical full chain is `docs/document-system/architecture.md` §7.1).
    Flag undocumented behavior and dead trace links.
 10. **Regression review.** Inspect the diff for architecture drift, compatibility
     changes, data migration risk, and unrelated modifications.

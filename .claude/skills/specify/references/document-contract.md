@@ -54,6 +54,9 @@ identifies them.
 
 ## Traceability row
 
+The canonical full ID chain is `docs/document-system/architecture.md` §7.1.
+Each traceability row records the project-visible span of that chain:
+
 ```text
 SRC-ID(s) → REQ-ID → FR/NFR → ACPT-ID → Feature/SCN-ID
           → SAD element → ADR → delivery slice/task

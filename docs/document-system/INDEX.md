@@ -28,17 +28,17 @@
 
 ## Project artifact registry
 
-這個模板本身沒有假裝存在一套核准的專案需求。新專案執行 `/intake` 後，依實際需要建立：
+這個模板本身沒有假裝存在一套核准的專案需求。新專案執行 `/intake` 後，依實際需要建立。佈局唯一權威是 `/specify` 的 [document-contract](../../.claude/skills/specify/references/document-contract.md)：`document-system/` 只放 meta 層（index、register、traceability、evidence），工程文件放 Word §15 的同層資料夾（`docs/01_requirements/`–`06_ops/`，與 [artifact-map §3](artifact-map.md) 一致）：
 
 ```text
-docs/document-system/
-├── requirements/
-│   └── requirements-register.md
-├── specifications/
-├── architecture/
-│   └── adr/
-├── verification/
-└── traceability/
+docs/
+├── document-system/
+│   ├── INDEX.md
+│   ├── requirements/
+│   │   └── requirements-register.md
+│   ├── traceability.md
+│   └── verification/            # evidence records
+├── 01_requirements/ … 06_ops/   # 工程文件，依 Word §15 分層
 ```
 
 每份 artifact 至少登錄：

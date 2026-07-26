@@ -2,7 +2,7 @@
 name: specify
 description: Generate or minimally update PRD, BDD, SAD, ADR, and traceability artifacts from approved requirements while preserving document status, ownership, and source links.
 disable-model-invocation: true
-argument-hint: "<approved-requirements> [--artifacts prd,bdd,sad,adr,srs,nfr,api,event,db,sds,ui,traceability] [--update]"
+argument-hint: "<approved-requirements> [--artifacts prd,bdd,sad,adr,srs,brd,api,db,lld,ui,traceability] [--update]"
 ---
 
 # Specify Approved Requirements
@@ -35,18 +35,16 @@ own.
    [references/document-contract.md](references/document-contract.md) and create
    only the paths required by this invocation.
 3. **Hard gate — owner requirement decisions (binds from the Pilot stage).**
-   Before engineering any in-scope item, confirm it has an owner-approved
-   decision row in the requirements tracker (`requirements_tracker.xlsx`, sheet
-   ①需求決策): a matching row with `核准 = 已核准`, a named Owner, an update
-   date, and non-empty priority/scope/milestone that are not unaccepted
-   auto-derived values. If a crossing milestone gate applies, its ③Gate row must
-   be `核准`. Priority, scope, milestone, and gate are requirement decisions the
-   product owner makes; never auto-derive or infer them to get past this gate.
-   Stop and route back to the owner if any item is unapproved. A draft register may
-   be summarized, but it must not be converted into an approved specification.
-   In the prototype stage the gate relaxes to "a skeleton `DEC-*` row exists"
-   (see `VibeCoding_Workflow_Templates/_meta/workflow_manual.md` §8) — do not
-   block fast iteration with approval ceremony before the project reaches Pilot.
+   Before engineering any in-scope item, walk the release checklist in
+   `VibeCoding_Workflow_Templates/_meta/workflow_manual.md` §8 — the single
+   authority for this gate — against the requirements tracker
+   (`requirements_tracker.xlsx` ①需求決策／③Gate). Requirement decisions are
+   the product owner's; never auto-derive or infer them to get past the gate.
+   If any checklist item fails, stop and route back to the owner. A draft
+   register may be summarized, but it must not be converted into an approved
+   specification. In the prototype stage the gate relaxes to "a skeleton
+   `DEC-*` row exists" — do not block fast iteration with approval ceremony
+   before the project reaches Pilot.
 4. Follow the field-level authority matrix. Preserve authored Excel business
    fields and visual annotations; treat generated workbook cells as projections
    of their declared canonical source. Never edit source workbooks.
@@ -90,9 +88,11 @@ scope, risks, NFRs, or existing document convention.
    traceable. Define problem, users, goals, non-goals,
    scope, measurable success, and observable `ACPT-*` results. Keep
    implementation choices out.
-4. **Derive BDD.** Map each scenario to `FR/NFR` and `ACPT-ID`. Cover
-   the primary path plus applicable boundary, failure, permission, and idempotency
-   behavior. Avoid internal classes, tables, or UI controls.
+4. **Derive BDD.** Write scenarios in the format defined by
+   [references/bdd-format.md](references/bdd-format.md). Map each scenario to
+   `FR/NFR` and `ACPT-ID`. Cover the primary path plus applicable boundary,
+   failure, permission, and idempotency behavior. Avoid internal classes,
+   tables, or UI controls.
 5. **Design SAD.** Trace components, interfaces, data ownership, deployment,
    failure handling, privacy, security, reliability, and migration decisions to
    requirements or NFRs. Separate current, transition, and target states.
