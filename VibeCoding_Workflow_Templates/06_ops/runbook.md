@@ -3,6 +3,7 @@
 > **版本:** v1.0 | **更新:** YYYY-MM-DD | **Owner:** SRE / on-call
 > **原則:** 一個故障情境一份 Runbook，以症狀命名（如 `runbook-api-latency-high.md`）；寫給凌晨三點被叫醒的人看。
 > **語域:** L3（工程）
+> **實例:** 每故障症狀一份（`runbook-<symptom>.md`）
 
 ---
 

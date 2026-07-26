@@ -30,6 +30,22 @@
 >
 > Wireframe／Prototype／Design System 等以 Figma 為載體的產物不設 md 模板；其交付邊界寫在 [ui_spec](./02_ux_ui/ui_spec.md) §9 Design Handoff。
 
+## 實例化規則（模板 ≠ 實例）
+
+模板是線性清單，實例會長成樹；分支 key 是**穩定錨點**（頁面／決策／Aggregate／症狀／服務），**不以功能開資料夾**——功能視角的樹就是 ID 骨幹（`FR-* → 頁面/Aggregate/SCN`），索引在追蹤簿。詳見 [template_standard §2](./_meta/template_standard.md)。
+
+| 多實例模板 | 每 X 一份 | 命名 |
+|---|---|---|
+| adr | 決策 | `ADR-NNN-<slug>.md` |
+| ui_spec | 頁面 | `ui_spec-<page>.md` |
+| openapi | 服務 | `openapi-<service>-v<N>.yaml` |
+| lld §5 狀態機 | Aggregate | 一節一個；量大拆 `lld-<aggregate>.md` |
+| sad §5 sequence | use case | 一圖一個 |
+| uat_plan | 驗收輪次 | `UAT_<專案>_<階段>_<客戶>_<日期>` |
+| runbook | 故障症狀 | `runbook-<symptom>.md` |
+
+其餘（brd、prd、srs、ux_research、ia、sad、api_spec 約定、db_design、test_plan、deployment）為**單例**；每份模板的 Metadata 都標了自己的實例規則。
+
 ## 不按序填滿
 
 ```mermaid
@@ -69,6 +85,7 @@ flowchart LR
 | 版本 | 日期 | 變更 |
 |---|---|---|
 | v8.3 | 2026-07-26 | 新增 `03_architecture/diagrams/`：drawio 溝通級大圖模板（solution_overview、c4_context、c4_container、deployment_topology、ai_guardrails 可選）＋視覺規範與 mermaid/drawio 單一 owner 分工；工程細圖（L3/sequence/dataflow/ER/狀態機）維持 mermaid 正典 |
+| v8.3 | 2026-07-26 | 實例化規則入法：每份模板 Metadata 標「單例／每 X 一份」，多實例分支 key 限穩定錨點（頁面/決策/Aggregate/症狀/服務），禁止 per-feature 資料夾樹（功能視角＝ID 骨幹） |
 | v8.2 | 2026-07-26 | 地毯式正規化：新增 _meta/template_standard（六要素＋密度紀律），15 份全部補齊 TOC／語域／追溯段、統一編號；sad 501→199 行；lld 復活承載 Code 地圖與狀態機（自 api_spec 遷入） |
 | v8.1 | 2026-07-26 | 復活瘦身版 information_architecture（只留全站結構：頁面總覽、導航、路由表含認證/角色、跨頁資料載體）；補回整併遺失錨點：api_spec §6 狀態機、prd 允收改 Given/When/Then、ui_spec 導航入出口、ux_research 轉換率目標欄 |
 | v8.0 | 2026-07-26 | 收斂到 Pilot 核心 13 份＋3 追蹤簿：移除 product_vision/roadmap、bdd_guide、information_architecture/frontend_technical_design、nfr、sds/lld/event_spec＋asyncapi、security_and_readiness、monitoring/incident、07_governance 全部；企業級文件未來依 Word 指南增建 |

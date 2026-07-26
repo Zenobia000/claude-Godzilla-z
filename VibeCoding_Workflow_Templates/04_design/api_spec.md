@@ -4,6 +4,7 @@
 > **契約 SSOT:** 端點與 schema 以 [`openapi.yaml`](./openapi.yaml)（複製後改名 `openapi-<service>-v<N>.yaml`）為準；本文件維護設計約定、錯誤語意與安全政策，§5–6 只放 yaml 讀不出來的說明。非同步事件契約依需增建（AsyncAPI）。
 > **Owner:** 後端／API 設計者
 > **語域:** L2（橋接）
+> **實例:** 約定單例；openapi 每服務一份（`openapi-<service>-v<N>.yaml`）
 
 ---
 

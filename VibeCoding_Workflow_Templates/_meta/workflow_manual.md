@@ -207,6 +207,7 @@ DEC-001-line-intake-reliability.md   # 需求決策可獨立成檔時
 
 - 正式 ID 前綴不可重用；取消保留 tombstone。
 - 日期用 `YYYYMMDD` 或 `YYYY-MM-DD`；版本用 `vN`。
+- 哪些模板可多實例、分支 key 是什麼，見 [INDEX 實例化規則](../INDEX.md) 與 [template_standard §2](./template_standard.md)。
 
 ## 11. 反模式與完成度檢查
 

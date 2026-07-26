@@ -7,6 +7,7 @@
 > **定位**：系統級架構的單一真實來源——C4 L1–L3、DDD 邊界、資料與部署視圖。回答「系統由哪些 runtime 組成、邊界在哪、為什麼」。
 > Code 層（模組依賴、類別、狀態機）歸 [`../04_design/lld.md`](../04_design/lld.md)；API／資料契約歸 `../04_design/`；架構決策理由歸 [`adr.md`](./adr.md)。
 > 圖的載體分工：本文件內 mermaid 是工程正典；對外溝通級大圖（Solution Overview／Context／Container／Deployment 的 drawio 版）見 [`diagrams/`](./diagrams/README.md)，同一視圖二擇一、不得雙軌維護。
+> **實例:** 單例（系統架構契約只有一份）
 
 ## 目錄
 
