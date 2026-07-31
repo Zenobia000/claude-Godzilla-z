@@ -29,6 +29,26 @@ Skills 是這套生態系的能力資料庫。它們分成「人工啟動的流�
 | 模糊問題要先探索方案 | `sunnydata-design` | 不是 `/specify`——specify 吃的是已核准需求，不做開放探索 |
 | 多來源查證、需要引用 | `sunnydata-deep-research` | 不是 `sunnydata-parallel-agents`——後者是平行「做」，前者是平行「查」 |
 | 要新增或修 skill 本身 | `sunnydata-skill-authoring` | — |
+| 回答太長太散、要馬上拍板或動手 | `adhd-dev-mode` | 不是 Output Style——style 一選用就污染每個後續回答（見 `.out-of-scope/workflow-output-styles.md`）；本 skill 按需啟用 |
+| 使用者說「白話」「所以呢」，或問的是決策問題而非定位問題 | `sunnydata-plain-explain` | 不是 `adhd-dev-mode`——後者壓縮密度但保留工程語彙；前者換語域，把答案翻到決策層 |
+
+## 輸出治理
+
+| Skill | 使用時機 | 邊界 |
+|---|---|---|
+| `adhd-dev-mode` | 需要「可以馬上動手或馬上拍板」的高密度輸出 | 永遠管**密度**；只在速通模式管**誰做決定**。深思模式下不給建議，只攤開決策空間 |
+| `sunnydata-plain-explain` | 確定要白話之後，怎麼寫 | 只管**方法**；何時該白話、何時禁用由 [../rules/plain-language-answers.md](../rules/plain-language-answers.md) 管 |
+
+四個權威分工，互不重疊：
+
+| 權威 | 管什麼 |
+|---|---|
+| [../rules/thinking-boundary.md](../rules/thinking-boundary.md) | 誰思考（速通／深思） |
+| [../rules/plain-language-answers.md](../rules/plain-language-answers.md) | 何時換語域（含與 `adhd-dev-mode` 的仲裁：定位問題不白話） |
+| `adhd-dev-mode` | 輸出密度與收斂 |
+| `sunnydata-plain-explain` | 白話的寫法 |
+
+**已知張力**：`adhd-dev-mode` 要求給 `file:line` 與確切指令，`plain-explain` 要求「用動作講機制、不用元件名」。仲裁在 `plain-language-answers.md` 的「何時不可以白話」第一條——使用者要定位時不白話。
 
 ## SunnyData 能力庫
 
@@ -47,6 +67,7 @@ Skills 是這套生態系的能力資料庫。它們分成「人工啟動的流�
 | 深度研究 | `sunnydata-deep-research` | 需要多個權威來源的調查 |
 | 平行協作 | `sunnydata-parallel-agents` | 2 個以上真正獨立且可安全合併的子任務 |
 | Skill 作者工具 | `sunnydata-skill-authoring` | 新增、裁剪與驗證 Skill |
+| 白話解釋 | `sunnydata-plain-explain` | 把已查證的結論翻譯到讀者的決策層 |
 
 Action Skill 只載入當前步驟必要的能力；不要為了「完整」一次預載全部。大型 skill（skill-authoring、infrastructure、testing、api-design、code-review）已拆為精簡 SKILL.md＋`references/` 漸進揭露，依 SKILL.md 內的指示按需讀取。
 
@@ -74,7 +95,7 @@ Action Skill 只載入當前步驟必要的能力；不要為了「完整」一�
 - 是知識、清單或可重用做法嗎？放 Skill
 - 是人工觸發的端到端流程嗎？做 Action Skill
 - 需要獨立 context、工具或權限嗎？使用 Agent，並預載現有 Skill
-- 只是回答格式嗎？放 Output Style
+- **只是**回答格式、且要無條件一直生效嗎？放 Output Style。若同時承載判準（證據分級、決策歸屬、安全下限），就放 Skill 按需啟用——`adhd-dev-mode` 屬後者
 - 是確定、快速、低頻且無隱性狀態的自動化嗎？才考慮 Hook
 - 曾被拒絕過嗎？先讀 `.out-of-scope/` 對應檔再提案
 

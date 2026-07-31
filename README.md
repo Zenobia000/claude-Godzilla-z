@@ -73,6 +73,7 @@
 
 除了四個 Action Skills，仍保留完整的按需能力：
 
+- 輸出治理：`adhd-dev-mode`（壓成可拍板／可動手的輸出）、`sunnydata-plain-explain`（翻譯到讀者的決策層），分別與 `rules/thinking-boundary.md`、`rules/plain-language-answers.md` 分工
 - SunnyData：設計、API、UI、測試、除錯、安全、Code Review、架構、基礎設施、分支、研究、平行協作、Skill authoring
 - Community：前端設計、React／React Native、效能、a11y、UI design system、Web guidelines
 
