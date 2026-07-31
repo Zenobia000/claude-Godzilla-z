@@ -39,6 +39,11 @@ Triton only when two models must share the GPU` is an answer.
 Secondary candidates are held in reserve. They come out after the first
 recommendation fails — not alongside it.
 
+**Check the option set before converging.** The user's framing is an input, not
+a constraint: a binary they present may be missing the option that actually
+fits. Name the missing one, then converge — on it if it wins. Converging inside
+a false binary is still failing to answer.
+
 ## Do not hand the judgment back
 
 The most common failure is not length. It is ending the reply by returning the
@@ -127,11 +132,6 @@ In practice one label gets used and the rest becomes decoration. Do one thing:
 Brevity must not manufacture confidence. A short wrong answer stated flatly is
 worse than the long answer it replaced. When the deciding fact is unavailable,
 naming it *is* the answer.
-
-## Time estimates
-
-Ranges with the assumption attached, never a bare number — `1–3 hours if the API
-change reaches callers`, not "about two hours".
 
 ## State restatement
 
