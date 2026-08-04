@@ -39,6 +39,23 @@ PRD／BDD／SAD／ADR／Traceability
 
 四個 Skill 設為手動呼叫，是為了保留人類決定工作階段與變更範圍的控制權。它們會視需要載入除錯、測試、安全、API、UI 或架構等能力 Skill。
 
+## Context 衛生（哪些步驟共享 context、哪些必須清空）
+
+流程圖說的是**產出**怎麼接。這一節說的是**思考**怎麼接——兩者不一樣，搞混會讓長程開發在髒 context 上跑。
+
+| 邊界 | 規則 |
+|---|---|
+| `/specify` **內部** | 從需求翻到 FR/NFR → ACPT → BDD 場景 → 切片清單，**全程不中斷、不 compact**。這幾步互為前提，中途壓縮會讓後面的切片建立在被摘要過的推導上 |
+| `/specify` → `/deliver` | **必須斷開。** 每個垂直切片從**全新 context** 開始，只讀它自己的規格與切片定義 |
+| `/deliver` 切片之間 | **必須斷開。** 上一片的實作細節對下一片是雜訊 |
+| `/verify` | 獨立 context。它要判定的是證據，不是重述實作過程 |
+
+**Smart zone**：模型還能銳利推理的窗口約 120k tokens。`/specify` 在完成切片清單前逼近它，**不要硬撐**——把當前結論寫進追蹤簿與規格文件，然後開新 session 續作。壓縮著跑完的規格，錯誤會一路傳到每個切片。
+
+跨 session 的接續**靠落地產出，不靠對話摘要**：追蹤簿的狀態欄、已核准的規格、切片清單就是交接面。真的需要一份純過渡的交接筆記時，寫到作業系統暫存目錄，**不要進 repo**（見 `.claude/CLAUDE.md` 的 Runtime Context）。
+
+> **與上游流程的差異**：owner 簽核閘天然把 `/intake` 和 `/specify` 切成兩個 session（等待可能是幾天）。這正是狀態必須活在**追蹤簿**而不是 context window 裡的原因——你的硬閘讓「一口氣談完」不可能，Excel 就是那個接續面。
+
 **需求決策 vs 工程決策的硬邊界**：優先序、範圍、里程碑、Gate、業務驗收屬**需求決策**，由產品 owner 於 `requirements_tracker.xlsx` ①需求決策拍板（③Gate 簽核），AI 不得自動衍生。Pilot 階段起，`/specify` 在 owner 簽核前不得把需求工程化（放行檢查清單唯一權威：`VibeCoding_Workflow_Templates/_meta/workflow_manual.md` §8）；雛型期只需骨架列，不打斷迭代。這條線與 [`rules/language-register.md`](rules/language-register.md) 的 L1（業務）→ L2（中介）→ L3（工程）分水嶺是同一條。
 
 ## 文件深度
