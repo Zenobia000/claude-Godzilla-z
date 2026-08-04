@@ -93,19 +93,35 @@ scope, risks, NFRs, or existing document convention.
    `FR/NFR` and `ACPT-ID`. Cover the primary path plus applicable boundary,
    failure, permission, and idempotency behavior. Avoid internal classes,
    tables, or UI controls.
-5. **Design SAD.** Trace components, interfaces, data ownership, deployment,
+5. **Choose the test seams.** Before any component design, decide *where* the
+   approved behavior will be observed. Load
+   [../sunnydata-codebase-design/SKILL.md](../sunnydata-codebase-design/SKILL.md)
+   for the vocabulary, then apply its four rules: prefer an existing seam, use
+   the highest seam that can observe the behavior, fewer is better (ideal: one),
+   and propose any new seam at the highest point you can. Record each `SCN-*`
+   against the seam that verifies it. **Confirm the seam set with the human
+   before moving on** — this is a checkpoint, not a note. Seams decided here
+   bind `/deliver` (where tests go) and `/verify` (where evidence comes from);
+   a slice that needs an unlisted seam is a scope change, not an implementation
+   detail.
+6. **Design SAD.** Trace components, interfaces, data ownership, deployment,
    failure handling, privacy, security, reliability, and migration decisions to
-   requirements or NFRs. Separate current, transition, and target states.
-6. **Record ADRs.** Create one ADR per significant durable decision. Use
+   requirements or NFRs. Separate current, transition, and target states. Respect
+   the seams agreed in step 5 — components may not straddle a seam that
+   scenarios test across.
+7. **Record ADRs.** Create one ADR per significant durable decision. Use
    `Proposed` until the named decision owner explicitly accepts it; link
-   superseded decisions.
-7. **Update traceability.** Maintain
+   superseded decisions. **Only offer an ADR when all three hold**: the decision
+   is hard to reverse, a future reader would ask "why this way?", and it was a
+   real trade-off with genuine alternatives. If any is missing, skip it — an ADR
+   for a self-evident choice is noise that dilutes the ones that matter.
+8. **Update traceability.** Maintain
    `SRC-ID → REQ-ID → FR/NFR → ACPT → SCN → SAD element/ADR`. Do not leave new approved
    behavior untraced.
-8. **Update the document index.** Record path, purpose, owner, status, revision,
+9. **Update the document index.** Record path, purpose, owner, status, revision,
    and replacement links without creating a second source of truth.
-9. **Review the diff.** Check links, placeholders, status claims, contradictions,
-   and unrequested scope.
+10. **Review the diff.** Check links, placeholders, status claims, contradictions,
+    and unrequested scope.
 
 ## Human Gate
 
@@ -120,3 +136,5 @@ ADRs are approved.
 - BDD and SAD do not invent product scope.
 - ADR status reflects actual human decisions.
 - Traceability and `docs/document-system/INDEX.md` agree with the artifacts.
+- The seam set is written down and human-confirmed, and every `SCN-*` names the
+  seam that verifies it.

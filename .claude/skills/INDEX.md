@@ -26,6 +26,7 @@ Skills 是這套生態系的能力資料庫。它們分成「人工啟動的流�
 | 遇到 bug／測試失敗 | `sunnydata-debugging` | 不是直接修——鐵律：先根因，後修復 |
 | 變更完成要自查／請求審查 | `sunnydata-code-review` | 不是 `sunnydata-architecture-review`——後者看系統級 smells，不看單次 diff |
 | 系統架構健檢、設計債盤點 | `sunnydata-architecture-review` | 不是 `architect` agent——agent 用於需要隔離 context 的第二意見 |
+| 要決定測試接縫放哪、某個抽象值不值得存在 | `sunnydata-codebase-design` | 不是 `sunnydata-architecture-review`——後者**找**哪裡痛（smells→fixes），前者提供描述解法的**詞彙**與接縫選擇規則 |
 | 模糊問題要先探索方案 | `sunnydata-design` | 不是 `/specify`——specify 吃的是已核准需求，不做開放探索 |
 | 多來源查證、需要引用 | `sunnydata-deep-research` | 不是 `sunnydata-parallel-agents`——後者是平行「做」，前者是平行「查」 |
 | 要新增或修 skill 本身 | `sunnydata-skill-authoring` | — |
@@ -62,6 +63,7 @@ Skills 是這套生態系的能力資料庫。它們分成「人工啟動的流�
 | 安全 | `sunnydata-security` | 信任邊界、auth、輸入、秘密、供應鏈 |
 | Code Review | `sunnydata-code-review` | 變更完成後的高信心審查 |
 | 架構 Review | `sunnydata-architecture-review` | 架構 smells、principles、fixes |
+| 深模組詞彙 | `sunnydata-codebase-design` | seam 放哪、interface 該多小、抽象值不值得（`/specify` 步驟 5 會載入）|
 | 基礎設施 | `sunnydata-infrastructure` | 容器、CI/CD、部署與生產就緒 |
 | 分支生命週期 | `sunnydata-branch-lifecycle` | worktree、commit、PR／merge 收尾 |
 | 深度研究 | `sunnydata-deep-research` | 需要多個權威來源的調查 |
@@ -115,3 +117,11 @@ Action Skill 只載入當前步驟必要的能力；不要為了「完整」一�
 - [Anthropic skills](https://github.com/anthropics/skills)
 - [Trail of Bits skills](https://github.com/trailofbits/skills)
 - [shadcn/ui skills](https://github.com/shadcn-ui/ui/tree/main/skills/shadcn)
+- [mattpocock/skills](https://github.com/mattpocock/skills)
+
+### 已引入的外部來源
+
+| 本專案的 skill／內容 | 來源 | 授權 | 更新方式 |
+|---|---|---|---|
+| `sunnydata-codebase-design` | [mattpocock/skills](https://github.com/mattpocock/skills) `codebase-design` | MIT © 2026 Matt Pocock | 手動比對上游；接縫選擇規則與 `/specify` 整合為本專案新增，上游沒有 |
+| `.claude/WORKFLOW.md` 的 Context 衛生段 | 同上，`ask-matt` 的 context hygiene / smart zone | MIT | 概念引用，已按本專案硬閘結構重寫 |
