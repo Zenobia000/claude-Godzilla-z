@@ -33,19 +33,41 @@ rather than restating it as implementation rationale.
 4. If specifications conflict or implementation would change external behavior,
    stop and route the issue back through `/specify`.
 
-## Plan the slice
+## Slice the work
 
-1. Choose the smallest end-to-end behavior that produces user-visible or
-   externally observable value.
-2. Map `FR/NFR → ACPT/SCN → files/interfaces → tests → verification commands`.
-3. Use Claude Code native task tracking for the current session. Do not create or
+1. **Check the board first.** Read `engineering_tracker.xlsx` ③ 切片看板. If the
+   requested scope already has `SLC-*` rows, take the **frontier** — open,
+   unclaimed, every blocker complete — and skip to step 4. Do not re-slice work
+   that is already sliced.
+2. **If not yet sliced, slice it.** Follow
+   [references/slicing-contract.md](references/slicing-contract.md): vertical
+   (not horizontal), independently verifiable, sized to fit one fresh context
+   window, seam already confirmed by `/specify`. Prefactoring goes first. A wide
+   refactor takes the expand–contract sequence instead of a tracer bullet.
+3. **Confirm the breakdown with the human, then write the board.** Present the
+   numbered list with blocking edges and what each slice delivers; iterate until
+   approved. Only then write rows in dependency order. Writing follows the
+   concurrency rules in
+   [`docs/document-system/ticket-tracker.md`](../../../docs/document-system/ticket-tracker.md)
+   §6 — sole writer, lock file, batched write-back.
+4. **Claim before working.** Write `認領者` and `認領時間` on the chosen slice
+   *before* any implementation. Reversing this order lets two sessions collide on
+   one slice.
+5. Map `FR/NFR → ACPT/SCN → files/interfaces → tests → verification commands`
+   for the claimed slice only.
+6. Use Claude Code native task tracking for the current session. Do not create or
    update TaskMaster state, hidden session snapshots, or another roadmap.
-4. Select existing professional skills only when relevant:
+7. Select existing professional skills only when relevant:
    `sunnydata-api-design`, `sunnydata-shadcn-ui`, `sunnydata-testing`,
-   `sunnydata-security`, `sunnydata-debugging`, or architecture/code review
-   skills. Do not preload the entire library.
-5. Identify schema migrations, compatibility risks, credentials, external
+   `sunnydata-security`, `sunnydata-debugging`, `sunnydata-codebase-design`, or
+   architecture/code review skills. Do not preload the entire library.
+8. Identify schema migrations, compatibility risks, credentials, external
    effects, and rollback needs.
+
+**One slice per session.** Finish the claimed slice, write the board, then start
+a fresh context for the next one — see the Context hygiene section in
+[../../WORKFLOW.md](../../WORKFLOW.md). Carrying one slice's implementation
+detail into the next is how long-horizon work degrades.
 
 ## Implementation authorization
 
@@ -66,6 +88,10 @@ or the required action expands beyond the requested scope.
    specification issues separately.
 5. Update project documentation only when the approved implementation changes a
    documented interface or operational fact.
+6. **Review before handoff.** Run `sunnydata-code-review` — its two-axis pass
+   checks the diff against repo standards *and* against the originating
+   `FR/ACPT/SCN`. A slice that passes standards but implements the wrong thing is
+   not done.
 
 ## Human Gate: external actions
 
@@ -78,3 +104,8 @@ implementation is not implicit authorization for these actions.
 Report completed `FR/NFR`, `ACPT` and `SCN` IDs, changed files, commands actually run,
 results, unverified items, residual risks, and the recommended `/verify`
 invocation. Never report success from expectation or a subagent claim alone.
+
+Write the slice back to ③ 切片看板 as `待驗證` with its evidence link. **Only
+`/verify` may write `完成`**, and only against real evidence — an implementer
+declaring its own slice done breaks
+[golden-rules](../../rules/golden-rules.md) §4.

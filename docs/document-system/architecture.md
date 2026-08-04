@@ -136,11 +136,14 @@ SRC
   → ACPT
   → BDD / SCN
   → SAD / SDS / ADR / API / EVT / DB / MOD
+  → SLC
   → TS / QTM
   → TC / CASE
   → EV
   → UAT / REL
 ```
+
+`SLC-*`（交付切片）是 `/deliver` 的垂直切片單位：掛在一或多個 `SCN-*` 之下，向下接測試與證據。它是**交付單位**而非新的一條鏈——狀態機、欄位與併發寫入規則見 [ticket-tracker.md](ticket-tracker.md)。
 
 ### 7.2 ID 原則
 

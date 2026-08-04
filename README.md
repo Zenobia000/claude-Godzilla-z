@@ -24,7 +24,9 @@
 
 `業務來源 → /intake → /specify → /deliver → /verify → 實際證據與真實狀態`
 
-流程圖、四個入口的輸入／完成條件與階段對照，唯一權威是 [.claude/WORKFLOW.md](.claude/WORKFLOW.md)。
+想法太大、連要問什麼都還不確定時，先走匝道 `/wayfind` 把路畫成地圖，一次解一張決策，路清楚後併回主線。
+
+流程圖、各入口的輸入／完成條件與階段對照，唯一權威是 [.claude/WORKFLOW.md](.claude/WORKFLOW.md)；**實際怎麼跑一輪**（三條路線走查、決策點速查、常見錯誤）見 [.claude/PLAYBOOK.md](.claude/PLAYBOOK.md)。
 
 ## Word、VibeCoding 與 Excel 怎麼整合
 
@@ -72,7 +74,7 @@
 
 ## Skills 能力庫
 
-除了四個 Action Skills，仍保留完整的按需能力：
+除了 Action Skills，仍保留完整的按需能力：
 
 - 輸出治理：`adhd-dev-mode`（壓成可拍板／可動手的輸出）、`sunnydata-plain-explain`（翻譯到讀者的決策層），分別與 `rules/thinking-boundary.md`、`rules/plain-language-answers.md` 分工
 - SunnyData：設計、API、UI、測試、除錯、安全、Code Review、架構、基礎設施、分支、研究、平行協作、Skill authoring

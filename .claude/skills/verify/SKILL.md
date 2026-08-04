@@ -56,6 +56,14 @@ and evidence only, without embellishment.
     changes, data migration risk, and unrelated modifications.
 11. **Verdict.** Classify each gate as `PASS`, `FAIL`, `NOT RUN`, or `N/A`, then
     issue `PASS`, `CONDITIONAL PASS`, or `FAIL` using the evidence contract.
+12. **Close the slice.** When the scope maps to `SLC-*` rows on
+    `engineering_tracker.xlsx` ③ 切片看板, write the verdict back: `完成` only on
+    a full `PASS` with the evidence link, otherwise leave the slice at `待驗證`
+    (or `封鎖` with the blocking finding). **`/verify` is the only writer of
+    `完成`** — an implementer declaring its own slice done is the failure mode
+    this gate exists to catch. Writing follows the concurrency rules in
+    [`docs/document-system/ticket-tracker.md`](../../../docs/document-system/ticket-tracker.md)
+    §6; a `CONDITIONAL PASS` never becomes `完成`.
 
 ## Reporting
 

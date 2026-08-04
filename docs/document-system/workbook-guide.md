@@ -16,7 +16,7 @@
 | 檔 | Owner | 位置 | 主要欄位 |
 |---|---|---|---|
 | **需求追蹤** | PM／BA | [`01_requirements/requirements_tracker.xlsx`](../../VibeCoding_Workflow_Templates/01_requirements/requirements_tracker.xlsx) | 需求ID、VOC、優先序、範圍、里程碑、業務驗收、狀態、**核准**、PRD連結；③Gate 記里程碑簽核 |
-| **工程追蹤** | 架構師 | [`03_architecture/engineering_tracker.xlsx`](../../VibeCoding_Workflow_Templates/03_architecture/engineering_tracker.xlsx) | FR/NFR-ID、**來源需求**、SAD元件、ADR、Code reality、狀態；②模組BOM |
+| **工程追蹤** | 架構師 | [`03_architecture/engineering_tracker.xlsx`](../../VibeCoding_Workflow_Templates/03_architecture/engineering_tracker.xlsx) | FR/NFR-ID、**來源需求**、SAD元件、ADR、Code reality、狀態；②模組BOM；③ 切片看板（`SLC-*` 狀態機，契約見 [ticket-tracker.md](ticket-tracker.md)）|
 | **測試追蹤** | QA | [`05_qa/qa_tracker.xlsx`](../../VibeCoding_Workflow_Templates/05_qa/qa_tracker.xlsx) | TC/QTM-ID、**來源FR/NFR**、測試設計、狀態；②執行證據 |
 
 ## 2. ID 骨幹（串連的關鍵）

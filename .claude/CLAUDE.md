@@ -2,12 +2,12 @@
 
 這個專案是一套「文件驅動、證據閉環」的軟體開發生態系。預設工作流是：
 
-`業務來源 → /intake → /specify → /deliver → /verify`（流程唯一權威：[WORKFLOW.md](WORKFLOW.md)）
+`業務來源 → /intake → /specify → /deliver → /verify`；想法太大、路還看不見時先走匝道 `/wayfind`。結構唯一權威 [WORKFLOW.md](WORKFLOW.md)，用法走查 [PLAYBOOK.md](PLAYBOOK.md)。
 
 ## 元件責任
 
 - `rules/`：**常駐**規則，只放每次工作都成立、而且與模型預設行為不同的約束；條件性細則一律下放到對應 skill 的 `references/`。`golden-rules.md` 是跨技術棧的底線；`git-workflow.md` 是 Git／push／PR 的常駐鐵律；`language-register.md` 定義**文件**的業務／橋接／工程三層語域；`plain-language-answers.md` 定義**對話**的語域——何時該把答案翻到決策層、何時不可以；`thinking-boundary.md` 定義速通/深思模式與「哪些必須使用者親自思考、AI 只 provoke」。常駐面的消融紀錄見 [ABLATION.md](ABLATION.md)。
-- `skills/`：能力資料庫與可重用方法；四個 Action Skills 是主要入口，路由見 `skills/INDEX.md`。
+- `skills/`：能力資料庫與可重用方法；Action Skills 是主要入口（主線四個，加匝道 `/wayfind`），路由見 `skills/INDEX.md`。
 - `agents/`：需要獨立 context、權限邊界、平行處理或專業驗證時才使用。
 - `output-styles/`：只改變回答呈現方式，不承載開發流程。
 - `hooks/`：僅容納確定、快速、可重複執行的自動化；不得把專案管理狀態偷偷寫入。
@@ -38,7 +38,7 @@ Excel 與 Markdown 都可以是權威來源，但同一欄位只能有一個 own
 
 1. **單一真相源**：pipeline 流程圖只畫在 `WORKFLOW.md`；`/specify` 硬閘檢查清單只在 `VibeCoding_Workflow_Templates/_meta/workflow_manual.md` §8；追溯 ID 主鏈只在 `docs/document-system/architecture.md` §7.1；版本號只在根目錄 README badge（沿革在 `CHANGELOG.md`）。其他位置一律「一句話＋連結」，不得 paraphrase 內容——paraphrase 就是未來的 drift。
 2. **Router 不說謊**：新增、改名、刪除 skill 或改變其定位時，必須同步更新 `skills/INDEX.md` 的目錄與路由段；索引漏列新 skill、或仍導向已刪 skill，視為缺陷而非疏漏。
-3. **Frontmatter 與現實一致**：Action Skill 的 `argument-hint` 與說明不得引用已退役的模板或文件名；模板增刪時回查四個 Action Skills。
+3. **Frontmatter 與現實一致**：Action Skill 的 `argument-hint` 與說明不得引用已退役的模板或文件名；模板增刪時回查每一個 Action Skill。
 4. **大型 skill 分層**：SKILL.md 超過約 200 行時拆 `references/`（漸進揭露），不整檔常駐。
 5. **來源可追**：新增 community/第三方 skill 必須在 `skills/INDEX.md` 記來源、授權與更新方式。
 6. **拒絕有紀錄**：退役或否決一個機制時，在 `.out-of-scope/` 留一檔（概念、理由、先例）；重新提案前先讀它。

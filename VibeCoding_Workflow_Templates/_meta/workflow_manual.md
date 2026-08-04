@@ -37,7 +37,7 @@
 
 ## 2. 工作入口
 
-主線是 `/intake → /specify → /deliver → /verify`（`/verify` 發現規格缺口退回 `/specify`、實作缺陷退回 `/deliver`）；流程圖唯一權威見 [.claude/WORKFLOW.md](../../.claude/WORKFLOW.md)。
+主線是 `/intake → /specify → /deliver → /verify`（`/verify` 發現規格缺口退回 `/specify`、實作缺陷退回 `/deliver`），前置匝道 `/wayfind` 處理「路還看不見」的階段；流程圖唯一權威見 [.claude/WORKFLOW.md](../../.claude/WORKFLOW.md)。
 
 | Action | 目的 | 人類控制點 |
 |---|---|---|
@@ -229,4 +229,4 @@ DEC-001-line-intake-reliability.md   # 需求決策可獨立成檔時
 ## 13. 追溯
 
 - 上游：[golden-rules](../../.claude/rules/golden-rules.md)、[thinking-boundary](../../.claude/rules/thinking-boundary.md)、[architecture.md](../../docs/document-system/architecture.md)
-- 下游：全部模板（格式由 [template_standard](./template_standard.md) 約束）、四個 Action Skills
+- 下游：全部模板（格式由 [template_standard](./template_standard.md) 約束）、全部 Action Skills

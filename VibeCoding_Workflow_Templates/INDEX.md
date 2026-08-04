@@ -8,7 +8,7 @@
 - Excel／Markdown 權威與同步：[`docs/document-system/architecture.md`](../docs/document-system/architecture.md)
 - 九層文件分類與 trace ID：[`docs/document-system/artifact-map.md`](../docs/document-system/artifact-map.md)
 - 三個角色追蹤簿的用法：[`docs/document-system/workbook-guide.md`](../docs/document-system/workbook-guide.md)
-- 執行入口：`/intake → /specify → /deliver → /verify`
+- 執行入口：`/intake → /specify → /deliver → /verify`（前置匝道：`/wayfind`）
 
 ## 目錄結構（依 Word 指南九層分類）
 

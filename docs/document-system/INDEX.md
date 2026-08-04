@@ -13,7 +13,7 @@
 | 測試／UAT／發布結果 | 不可變 evidence 與 `qa_tracker.xlsx`（②執行證據）| 是，由 QA/UAT/Release owner | 不得被生成流程覆寫 |
 | 彙總、coverage、dashboard | 報告或追蹤簿彙總欄 | 否 | 可重算 |
 
-所有權模型、狀態軸與自建產生器的 round-trip 規則見 [architecture.md](architecture.md)；追蹤簿用法見 [workbook-guide.md](workbook-guide.md)。
+所有權模型、狀態軸與自建產生器的 round-trip 規則見 [architecture.md](architecture.md)；追蹤簿用法見 [workbook-guide.md](workbook-guide.md)；`/deliver` 切片看板的欄位、前緣查詢、認領協定與**併發寫入規則**見 [ticket-tracker.md](ticket-tracker.md)。
 
 ## Current assets
 
@@ -23,6 +23,7 @@
 | `VibeCoding_Workflow_Templates/` | Authoring templates | 產生／更新工程文件 |
 | `VibeCoding_Workflow_Templates/01_requirements/requirements_tracker.xlsx` | 需求追蹤簿（需求決策權威）| owner 於 ①需求決策拍板優先序、範圍、核准，③Gate 簽核；`/specify` 硬閘（Pilot 起）的檢查對象 |
 | `01_requirements/requirements_tracker.xlsx`、`03_architecture/engineering_tracker.xlsx`、`05_qa/qa_tracker.xlsx` | 三個角色追蹤 Excel（PM/BA、架構師、QA）| 以 REQ→FR/NFR→TC 的 ID 骨幹串連；見 workbook-guide |
+| `03_architecture/engineering_tracker.xlsx` ③ 切片看板 | 切片狀態機（工程層）| `/deliver` 的 `SLC-*` 前緣、依賴與認領；契約見 [ticket-tracker.md](ticket-tracker.md) |
 
 逐文件、逐工作表與 27 類企業文件對照見 [artifact-map.md](artifact-map.md)。
 
@@ -34,6 +35,7 @@
 docs/
 ├── document-system/
 │   ├── INDEX.md
+│   ├── maps/                    # /wayfind 的決策地圖（探索軌跡，effort 結束即凍結）
 │   ├── requirements/
 │   │   └── requirements-register.md
 │   ├── traceability.md

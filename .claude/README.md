@@ -7,6 +7,8 @@
 | 元件 | 責任 | 不該承擔 |
 |---|---|---|
 | `CLAUDE.md` | 專案入口與元件邊界 | 完整方法論 |
+| `WORKFLOW.md` | 流程**結構**：流程圖、入口、context 邊界、三層協作 | 走查與判斷細節 |
+| `PLAYBOOK.md` | 流程**用法**：三條路線走查、決策點、常見錯誤 | 重述結構 |
 | `rules/` | 4 份恆定規則（golden、git、語域、思考邊界），永遠生效 | 技術棧清單、固定流程 |
 | `skills/` | Action Skills 與能力資料庫 | 無條件常駐 context |
 | `agents/` | context／工具／權限隔離 | 複製 Skills 的知識 |
@@ -16,7 +18,7 @@
 
 ## 主要工作流
 
-主線是 `/intake → /specify → /deliver → /verify`；流程唯一權威見 [WORKFLOW.md](./WORKFLOW.md)，Skills 路由見 [skills/INDEX.md](./skills/INDEX.md)，呈現樣式說明見 [OUTPUT_STYLES.md](./OUTPUT_STYLES.md)。
+主線是 `/intake → /specify → /deliver → /verify`，另有可選匝道 `/wayfind`（想法太大、路還看不見時）；流程唯一權威見 [WORKFLOW.md](./WORKFLOW.md)，Skills 路由見 [skills/INDEX.md](./skills/INDEX.md)，呈現樣式說明見 [OUTPUT_STYLES.md](./OUTPUT_STYLES.md)。
 
 ## Active Agents
 
