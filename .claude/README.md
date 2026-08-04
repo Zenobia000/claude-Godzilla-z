@@ -16,7 +16,7 @@
 
 ## 主要工作流
 
-主線是 `/intake → /specify → /deliver → /verify`；流程唯一權威見 [WORKFLOW.md](./WORKFLOW.md)，Skills 路由見 [skills/INDEX.md](./skills/INDEX.md)，呈現樣式說明見 [OUTPUT_STYLES.md](./OUTPUT_STYLES.md)。
+主線是 `/intake → /specify → /deliver → /verify`，另有可選匝道 `/wayfind`（想法太大、路還看不見時）；流程唯一權威見 [WORKFLOW.md](./WORKFLOW.md)，Skills 路由見 [skills/INDEX.md](./skills/INDEX.md)，呈現樣式說明見 [OUTPUT_STYLES.md](./OUTPUT_STYLES.md)。
 
 ## Active Agents
 

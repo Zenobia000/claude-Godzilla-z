@@ -1,8 +1,16 @@
 # 文件驅動開發工作流
 
-本模板不再用 Hook 維護第二套 TaskMaster 狀態。開發主線由四個可手動觸發的 Action Skills 串接：
+本模板不再用 Hook 維護第二套 TaskMaster 狀態。開發主線由四個可手動觸發的 Action Skills 串接，前面掛一條可選匝道：
 
 ```text
+── 匝道（可選）── 想法太大、一個 session 裝不下，而且路還看不見
+       /wayfind
+          ↓
+   一張決策地圖：一次解一張 ticket，只產決策不產交付物
+          ↓
+   路清楚後交棒進主線 ↓
+
+── 主線 ──
 Excel／訪談／既有系統
           ↓
        /intake
@@ -28,16 +36,19 @@ PRD／BDD／SAD／ADR／Traceability
 
 流程最上游的「Excel／訪談／既有系統」是你**每個專案自己帶進來的輸入**（需求訪談表、業務 Excel、舊系統文件），住在你的實際專案，不在這個 repo。你在專案裡維護的需求決策，權威是 `requirements_tracker.xlsx` ①需求決策（③Gate 簽核、②決策沿革記變更）。先前隨附的 SmartLock 四本 Excel 只是一份「填好的範例」，已抽離；現行追蹤層是三個角色追蹤簿——**移除的是範例，不是 Excel 這個概念**。
 
-## 四個入口
+## 入口
+
+主線是四個階段；`/wayfind` 是**可選匝道**，只在「連要問什麼都還不確定」時才走，走完併回主線。
 
 | 入口 | 何時使用 | 主要輸入 | 完成條件 |
 |---|---|---|---|
+| `/wayfind`（匝道） | 想法太大、一個 session 裝不下，而且路還看不見 | 一個模糊的想法 | 地圖上沒有未解 ticket，路清楚到可以交棒 |
 | `/intake` | 新專案、需求訪談表、Excel、既有資料進件 | 原始來源與權威 owner | 來源座標、穩定 ID、①需求決策已種好 `DEC-*` 待 owner 拍板 |
 | `/specify` | 將白話需求工程化 | **已由 owner 核准的需求決策**、驗收、限制 | 只產生當前階段必要的工程契約，ID 互相連接 |
 | `/deliver` | 規格已足以實作 | 核准範圍與驗收標準 | 一個可測的垂直切片完成，未偷改範圍 |
 | `/verify` | 任務、PR、里程碑或上線前 | 變更、驗收標準、測試環境 | 實際證據支持狀態；未驗證部分清楚標示 |
 
-四個 Skill 設為手動呼叫，是為了保留人類決定工作階段與變更範圍的控制權。它們會視需要載入除錯、測試、安全、API、UI 或架構等能力 Skill。
+這些 Skill 設為手動呼叫，是為了保留人類決定工作階段與變更範圍的控制權。它們會視需要載入除錯、測試、安全、API、UI 或架構等能力 Skill。
 
 ## Context 衛生（哪些步驟共享 context、哪些必須清空）
 
@@ -109,7 +120,7 @@ Excel 是業務／PM 的視覺治理介面，Markdown 是工程契約與版本�
 三者不是各自獨立的東西，而是三層疊在一起同時運作：
 
 - **Rules（恆定約束層）**：`rules/` 的 [golden-rules](rules/golden-rules.md)、[git-workflow](rules/git-workflow.md)、[language-register](rules/language-register.md) 約束**每一步**，不因階段或 Skill 改變。任何 Skill 或 Agent 的產出都不得違反；來源與 Rules 衝突時指出並以權威來源為準。
-- **Skills（方法／編排層）**：四個 Action Skill（`/intake→/verify`）是入口，決定當前階段做什麼，並依任務語意載入能力 Skill（`sunnydata-*`／`community-*`，如 debugging、testing、security、api-design）。能力 Skill 是「怎麼做」的知識，用完即走、不常駐 context。
+- **Skills（方法／編排層）**：Action Skill（主線 `/intake→/verify`，加上匝道 `/wayfind`）是入口，決定當前階段做什麼，並依任務語意載入能力 Skill（`sunnydata-*`／`community-*`，如 debugging、testing、security、api-design）。能力 Skill 是「怎麼做」的知識，用完即走、不常駐 context。
 - **Agents（執行邊界層）**：由主 Agent（跟著 Skill 跑時）在需要**隔離 context／限制工具權限／安全平行／獨立第二意見**時，透過 Task 委派。Agent 是邊界，不是另一套流程——不在 Agent prompt 複製 Skill 的方法。
 
 一句話：**Skill 決定做什麼、Rule 約束怎麼做才合規、Agent 是需要隔離時的執行容器。**
@@ -120,6 +131,7 @@ Excel 是業務／PM 的視覺治理介面，Markdown 是工程契約與版本�
 
 | 階段 | 主要 Skill | 典型可委派的 Agent |
 |---|---|---|
+| `/wayfind` | wayfind | `Explore`（廣度掃描）、`architect`（架構取捨的第二意見）|
 | `/intake` | intake | `documentation-specialist`（大型來源正規化）|
 | `/specify` | specify | `architect`（架構第二意見）|
 | `/deliver` | deliver | `test-automation-engineer`、`build-error-resolver` |

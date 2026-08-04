@@ -113,7 +113,7 @@ approval_status: Draft
 - [只有此專案才成立的限制]
 
 ## Workflow
-使用 `/intake → /specify → /deliver → /verify`，並遵循 `.claude/rules/golden-rules.md`。
+使用 `/intake → /specify → /deliver → /verify`（想法太大時先走 `/wayfind`），並遵循 `.claude/rules/golden-rules.md`。
 ```
 
 不要把通用 coding style、固定覆蓋率、整套 Git 流程或所有 Skill 內容複製進專案 `CLAUDE.md`。

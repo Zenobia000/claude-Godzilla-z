@@ -64,7 +64,7 @@ claude-Godzilla-z/
 | `output-styles/*.md` | 人工選擇 | 只改呈現 |
 | `hooks` | settings 有註冊才執行 | 基礎模板目前為零 Hook |
 
-`commands/` 已由四個 Action Skills 取代。Claude Code 會把 Skill 暴露成 slash command，避免維護兩套格式。
+`commands/` 已由 Action Skills 取代。Claude Code 會把 Skill 暴露成 slash command，避免維護兩套格式。
 
 ## 文件層
 

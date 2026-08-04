@@ -35,6 +35,7 @@
 docs/
 ├── document-system/
 │   ├── INDEX.md
+│   ├── maps/                    # /wayfind 的決策地圖（探索軌跡，effort 結束即凍結）
 │   ├── requirements/
 │   │   └── requirements-register.md
 │   ├── traceability.md
