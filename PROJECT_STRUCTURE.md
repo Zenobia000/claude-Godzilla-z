@@ -76,8 +76,7 @@ claude-Godzilla-z/
 │   ├── 14_deployment_and_operations_guide.md  # 部署運維
 │   ├── 15_documentation_and_maintenance_guide.md  # 文檔維護
 │   ├── 16_wbs_development_plan_template.md  # WBS 計劃
-│   ├── 17_frontend_information_architecture_template.md  # 前端 IA
-│   └── output_style.md                # Output Style 參考
+│   └── 17_frontend_information_architecture_template.md  # 前端 IA
 │
 └── .out-of-scope/                     # 已審視並拒絕的機制與理由
     ├── README.md
