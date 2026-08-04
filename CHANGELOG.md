@@ -12,6 +12,14 @@
 - 新增 `specify/references/bdd-format.md`：BDD 場景輕量格式（v8.0 移除 bdd_guide 模板後 `/specify` 步驟 4 的授權格式）。
 - 修正 stale 引用：specify `argument-hint` 與 skills/INDEX 撤下已刪除的模板名、rules 數量描述、CLAUDE_TEMPLATE 舊模板編號、PROJECT_STRUCTURE 目錄樹。
 - 新增 rules：`thinking-boundary.md`（速通/深思模式）；追蹤簿重構為三本角色追蹤簿。
+- **執行層（execution layer）**：補上「規格 → 可切片執行」這一段，概念來源 [mattpocock/skills](https://github.com/mattpocock/skills)（MIT），各項均按本專案的硬閘與追溯結構重寫，來源與授權登錄於 `skills/INDEX.md`。
+  - `WORKFLOW.md` 新增 **Context 衛生**：`/specify` 內部不得中斷、`/specify`→`/deliver` 與切片之間必須斷開、smart zone（~120k）逼近就換 session。
+  - 新增 `sunnydata-codebase-design`（deep module 詞彙與接縫選擇規則）；`/specify` 插入步驟 5「決定測試接縫」，人工確認後才往下，並在步驟 7 加 ADR 三條件閘。
+  - 新增 `docs/document-system/ticket-tracker.md`：切片看板落在 `engineering_tracker.xlsx` ③切片看板，定義欄位、前緣查詢、認領協定與 **xlsx 併發寫入規則**（唯一寫入者、lock file、批次寫回、升級門檻）。追溯主鏈加入 `SLC-*`。
+  - `/deliver` 改為「先看看板 → 沒切才切 → 人工確認 → 依賴順序寫入 → 動工前先認領」，並新增 `references/slicing-contract.md`（縱切、context-window 大小、依賴邊、wide refactor 的 expand-contract）。
+  - `sunnydata-code-review` 補第二軸：Standards（含 Fowler 12 smell baseline）與 Spec 兩個子代理平行跑，禁止跨軸 rerank。
+  - `/intake` 新增 `--questionnaire` 分支（`references/questionnaire-contract.md`）：答案在人身上而不在文件裡時，產出 L1 問卷交給業主；答覆回填保留來源座標，`核准` 仍屬 owner。
+  - `/verify` 新增步驟 12「關閉切片」：`完成` 只能由 `/verify` 依完整 PASS 寫入，`CONDITIONAL PASS` 不得升級。
 - 首次提示詞消融（ablation）：常駐面（`.claude/CLAUDE.md` + `rules/*.md`）369 → 223 行（−40%）。條件性內容下放對應 skill 的 `references/`——commit/PR 細則與 tangled history 恢復進 `sunnydata-branch-lifecycle/references/git-conventions.md`、程式碼↔文件同步觸發表進 `deliver/references/doc-sync-triggers.md`、L1/L2/L3 寫作指引與文件語域對照進 `specify/references/register-guide.md`。新增 `.claude/ABLATION.md` 記錄每條常駐規則的「失敗證據」，與維護契約第 7 條配套。
 - 修掉兩處常駐規則與 skill 的矛盾：`sunnydata-branch-lifecycle` 原本強制 commit body 走 WHY/WHAT/IMPACT（與 `git-workflow.md` 的「body 按需寫」衝突）、且在使用者已表態要 PR 時仍呈現四選項選單（與「commit→push→PR 為單一連貫操作」衝突）。同時將該 skill 拆為 SKILL.md（204 行）＋`references/`，符合維護契約第 4 條。
 - 補 dev→prod 晉升規範：`sunnydata-infrastructure` 新增 Environment Promotion（build-once-promote-artifact、per-env gate、expand-contract migration）；`deployment_and_operations` 模板新增 §2.1 環境晉升表，production 晉升證據接 `/verify`＋②執行證據＋③Gate 與 Release 狀態軸。
