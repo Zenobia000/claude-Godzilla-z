@@ -78,6 +78,8 @@ Action Skill 只載入當前步驟必要的能力；不要為了「完整」一�
 | 內容 | 位置 | 常駐面留下的 |
 | :--- | :--- | :--- |
 | Commit message 細則、PR 前置與 body、tangled history 恢復 | `sunnydata-branch-lifecycle/references/git-conventions.md` | `rules/git-workflow.md` 的鐵律與兩條 commit 約束 |
+| 切片怎麼切（縱切／context 大小／依賴邊／wide refactor 的 expand-contract）| `deliver/references/slicing-contract.md` | `/deliver` SKILL.md 只留「先看看板、沒切才切、確認後寫入」三步 |
+| 兩軸 review 的派工與 Fowler smell baseline | `sunnydata-code-review/references/two-axis-review.md` | SKILL.md 只留「兩軸為何分開、不得跨軸 rerank」 |
 | 程式碼 ↔ 文件同步觸發表 | `deliver/references/doc-sync-triggers.md` | 「code 與 docs 同一個 PR」一句 |
 | L1/L2/L3 該與不該、文件語域對照 | `specify/references/register-guide.md` | 三層定義、L2 唯一通道鐵律、階段角色定位 |
 
@@ -124,4 +126,6 @@ Action Skill 只載入當前步驟必要的能力；不要為了「完整」一�
 | 本專案的 skill／內容 | 來源 | 授權 | 更新方式 |
 |---|---|---|---|
 | `sunnydata-codebase-design` | [mattpocock/skills](https://github.com/mattpocock/skills) `codebase-design` | MIT © 2026 Matt Pocock | 手動比對上游；接縫選擇規則與 `/specify` 整合為本專案新增，上游沒有 |
+| `deliver/references/slicing-contract.md` | 同上，`to-tickets` | MIT | 切片規則與 expand-contract 序列為概念引用；看板寫入與人工確認流程為本專案新增 |
+| `sunnydata-code-review/references/two-axis-review.md` | 同上，`code-review` | MIT | 兩軸與 smell baseline 引用；spec 來源改接本專案的 FR/ACPT/SCN |
 | `.claude/WORKFLOW.md` 的 Context 衛生段 | 同上，`ask-matt` 的 context hygiene / smart zone | MIT | 概念引用，已按本專案硬閘結構重寫 |
