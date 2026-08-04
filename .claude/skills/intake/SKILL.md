@@ -2,7 +2,7 @@
 name: intake
 description: Inspect an Excel requirements workbook without modifying it, determine whether it is an authored source or generated snapshot, and derive a traceable requirements register with source locations, acceptance criteria, assumptions, and open questions.
 disable-model-invocation: true
-argument-hint: "<workbook.xlsx> [--source-key KEY] [--output docs/document-system/requirements/requirements-register.md]"
+argument-hint: "<workbook.xlsx|--questionnaire> [--source-key KEY] [--output docs/document-system/requirements/requirements-register.md]"
 ---
 
 # Requirements Intake
@@ -10,6 +10,10 @@ argument-hint: "<workbook.xlsx> [--source-key KEY] [--output docs/document-syste
 Treat `$ARGUMENTS` as the source workbook, optional immutable source key, output
 path, and scope. This action creates or updates derived project documentation; it
 never writes to the workbook.
+
+Two entry shapes: a workbook to inspect (the default), or `--questionnaire` when
+the answers you need are not in any document yet — see **Open questions →
+questionnaire** below.
 
 Write in the business register (L1) defined in
 [../../rules/language-register.md](../../rules/language-register.md): describe
@@ -36,7 +40,8 @@ introduce schemas, identifiers, or implementation terms at intake.
 
 ## Workflow
 
-1. **Resolve inputs and authority.** Require one `.xlsx` or `.xlsm` path. Read
+1. **Resolve inputs and authority.** Require one `.xlsx` or `.xlsm` path (or
+   `--questionnaire`, which skips to the questionnaire section). Read
    `docs/document-system/INDEX.md` and its authority links when present. Ask for an immutable
    source key if the default filename-derived key could collide. Reject legacy
    `.xls` rather than converting it.
@@ -70,7 +75,9 @@ introduce schemas, identifiers, or implementation terms at intake.
 7. **Reconcile.** Link duplicate or conflicting source records instead of
    deleting them. Ask the responsible owner to resolve material product
    conflicts in the authoritative source or explicitly approve a derived
-   interpretation.
+   interpretation. When a conflict or gap needs an answer only a human outside
+   this session holds, produce a questionnaire (next section) rather than
+   leaving a question that has no route to an answer.
 8. **Write the derived register.** Preserve unrelated content and existing IDs.
    Mark its status `Draft` or `Review`; never `Approved` without explicit human
    approval.
@@ -88,6 +95,27 @@ owner-decision columns — priority, scope in/out, milestone, business acceptanc
 核准 — **empty or marked pending owner input**. Never auto-derive or guess these;
 they are the product owner's decisions and pre-filling them defeats the
 intake→specify boundary.
+
+## Open questions → questionnaire
+
+When an answer lives in a person rather than a document — the workbook has gaps,
+two sources conflict and only the owner can arbitrate, or the project has no
+source document at all — produce a **questionnaire** the user hands to that
+person. Follow
+[references/questionnaire-contract.md](references/questionnaire-contract.md).
+
+The method in one line: **grill the send, not the subject.** Interview the user
+only about who it goes to and what they need back — those they can always answer.
+Interviewing them about the questions themselves forces them to guess, and a
+guess recorded as a source is exactly what
+[golden-rules](../../rules/golden-rules.md) §1 forbids.
+
+The questionnaire is L1 business language: no schemas, identifiers, or framework
+names. Answers return through the same discipline as a workbook — source
+coordinates point at the questionnaire file and question number, "I don't know"
+is recorded as *no authority yet* rather than dropped, and an answer about
+priority or scope still needs the owner's `核准` signature. **Answering is not
+approving.**
 
 ## Human Gate
 

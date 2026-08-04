@@ -20,6 +20,7 @@ Skills 是這套生態系的能力資料庫。它們分成「人工啟動的流�
 | 你面對的情境 | 走這裡 | 不是這裡（為什麼） |
 |---|---|---|
 | 拿到訪談表／Excel／口頭構想，要正規化成需求候選 | `/intake` | 不是 `/specify`——owner 還沒拍板，工程化會越過需求決策硬邊界 |
+| 答案不在任何文件裡、要問業主或領域專家 | `/intake --questionnaire` | 不是自己訪談使用者——他答不出來才需要問卷；逼他猜等於把假設寫成來源 |
 | 需求已由 owner 核准，要翻成工程契約 | `/specify` | 不是直接寫 code——沒有 FR/ACPT 的實作無法驗收 |
 | 規格已核准，要動手實作 | `/deliver` | 不是 `sunnydata-design`——探索已在 specify 完成；deliver 按需載入能力 skill |
 | 要判定「做完了沒」 | `/verify` | 不是相信 agent 自報告——verify 只收新鮮命令輸出與 trace 證據 |
@@ -80,6 +81,7 @@ Action Skill 只載入當前步驟必要的能力；不要為了「完整」一�
 | Commit message 細則、PR 前置與 body、tangled history 恢復 | `sunnydata-branch-lifecycle/references/git-conventions.md` | `rules/git-workflow.md` 的鐵律與兩條 commit 約束 |
 | 切片怎麼切（縱切／context 大小／依賴邊／wide refactor 的 expand-contract）| `deliver/references/slicing-contract.md` | `/deliver` SKILL.md 只留「先看看板、沒切才切、確認後寫入」三步 |
 | 兩軸 review 的派工與 Fowler smell baseline | `sunnydata-code-review/references/two-axis-review.md` | SKILL.md 只留「兩軸為何分開、不得跨軸 rerank」 |
+| 問卷出題法、L1 語域約束、答覆回填規則 | `intake/references/questionnaire-contract.md` | `/intake` SKILL.md 只留「grill the send, not the subject」與觸發條件 |
 | 程式碼 ↔ 文件同步觸發表 | `deliver/references/doc-sync-triggers.md` | 「code 與 docs 同一個 PR」一句 |
 | L1/L2/L3 該與不該、文件語域對照 | `specify/references/register-guide.md` | 三層定義、L2 唯一通道鐵律、階段角色定位 |
 
@@ -128,4 +130,5 @@ Action Skill 只載入當前步驟必要的能力；不要為了「完整」一�
 | `sunnydata-codebase-design` | [mattpocock/skills](https://github.com/mattpocock/skills) `codebase-design` | MIT © 2026 Matt Pocock | 手動比對上游；接縫選擇規則與 `/specify` 整合為本專案新增，上游沒有 |
 | `deliver/references/slicing-contract.md` | 同上，`to-tickets` | MIT | 切片規則與 expand-contract 序列為概念引用；看板寫入與人工確認流程為本專案新增 |
 | `sunnydata-code-review/references/two-axis-review.md` | 同上，`code-review` | MIT | 兩軸與 smell baseline 引用；spec 來源改接本專案的 FR/ACPT/SCN |
+| `intake/references/questionnaire-contract.md` | 同上，`to-questionnaire` | MIT | 「grill the send」方法引用；L1 語域、來源座標保留與 ①需求決策回填為本專案新增 |
 | `.claude/WORKFLOW.md` 的 Context 衛生段 | 同上，`ask-matt` 的 context hygiene / smart zone | MIT | 概念引用，已按本專案硬閘結構重寫 |
