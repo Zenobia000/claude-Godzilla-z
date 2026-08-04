@@ -14,7 +14,7 @@ Skills 是這套生態系的能力資料庫。它們分成「人工啟動的流�
 | `/deliver` | 已核准 REQ／Scenario | 一個可驗收垂直切片 | 本機實作；外部行動另行授權 |
 | `/verify` | 變更範圍／REQ ID | 各 gate 證據與 verdict | 預設唯讀，不順手修復 |
 
-詳細流程見 [../WORKFLOW.md](../WORKFLOW.md)。
+流程結構見 [../WORKFLOW.md](../WORKFLOW.md)；實際走查與決策點見 [../PLAYBOOK.md](../PLAYBOOK.md)。
 
 ## 路由：情境 → 入口
 

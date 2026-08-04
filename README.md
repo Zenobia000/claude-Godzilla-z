@@ -26,7 +26,7 @@
 
 想法太大、連要問什麼都還不確定時，先走匝道 `/wayfind` 把路畫成地圖，一次解一張決策，路清楚後併回主線。
 
-流程圖、各入口的輸入／完成條件與階段對照，唯一權威是 [.claude/WORKFLOW.md](.claude/WORKFLOW.md)。
+流程圖、各入口的輸入／完成條件與階段對照，唯一權威是 [.claude/WORKFLOW.md](.claude/WORKFLOW.md)；**實際怎麼跑一輪**（三條路線走查、決策點速查、常見錯誤）見 [.claude/PLAYBOOK.md](.claude/PLAYBOOK.md)。
 
 ## Word、VibeCoding 與 Excel 怎麼整合
 

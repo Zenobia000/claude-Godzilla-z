@@ -138,12 +138,9 @@ Excel 是業務／PM 的視覺治理介面，Markdown 是工程契約與版本�
 | `/verify` | verify | `code-quality-specialist`、`security-infrastructure-auditor`、`end-to-end-validation-specialist` |
 | 部署規劃 | 能力 Skill | `deployment-expert` |
 
-### 一個走查（新增一個付款 API）
+### 端到端走查
 
-1. `/intake` 讀你專案的 Excel／訪談（L1 業務語域；Rules 要求來源可追溯），把需求種進 ①需求決策，等 owner 拍板優先序與範圍。
-2. owner 在 ①需求決策簽核 → `/specify` 過硬閘，在 L2 把需求翻成 FR/NFR、ACPT 與 API 契約；架構有疑慮時委派 `architect` 拿第二意見，載入 `sunnydata-api-design`。
-3. `/deliver` 實作垂直切片（L3 工程語域），載入 `sunnydata-testing`；build 壞了委派 `build-error-resolver`。
-4. `/verify` 跑實際測試與 trace，委派 `code-quality-specialist`、`security-infrastructure-auditor` 做隔離審查，用證據判定。
+三條路線（雛型速通／Pilot 正規／霧中探索）的完整走查、決策點速查、常見錯誤與多 session 配置，見 [PLAYBOOK.md](PLAYBOOK.md)。本檔只定義結構，不重述用法。
 
 全程 git-workflow 約束 commit／push／文件同步，language-register 約束每份產出的語域。
 

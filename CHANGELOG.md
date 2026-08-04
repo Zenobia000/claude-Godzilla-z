@@ -12,6 +12,7 @@
 - 新增 `specify/references/bdd-format.md`：BDD 場景輕量格式（v8.0 移除 bdd_guide 模板後 `/specify` 步驟 4 的授權格式）。
 - 修正 stale 引用：specify `argument-hint` 與 skills/INDEX 撤下已刪除的模板名、rules 數量描述、CLAUDE_TEMPLATE 舊模板編號、PROJECT_STRUCTURE 目錄樹。
 - 新增 rules：`thinking-boundary.md`（速通/深思模式）；追蹤簿重構為三本角色追蹤簿。
+- **新增 `.claude/PLAYBOOK.md`**：`WORKFLOW.md` 管結構、PLAYBOOK 管用法。三條路線（雛型速通／Pilot 正規一輪／霧中探索）的端到端走查含 session 邊界、決策點速查表、七個反模式、多 session 平行安全清單，以及三項尚未實測校準的參數。`WORKFLOW.md` 原本的四行走查已過時（不含接縫、切片、看板），搬進 PLAYBOOK 展開並在原處留一句＋連結。
 - **`/wayfind` 匝道**：補上「連要問什麼都還不確定」的入口——主線 `/intake` 吃的是已存在的來源，這一段之前沒有落點。地圖住在 `docs/document-system/maps/<effort>/map.md`（散文＋單一 ticket 表，不是一 ticket 一檔），四種 ticket 型別（research AFK／prototype HITL／grilling HITL／task），霧與出界的判準，一個 session 只解一張。**只產決策不產交付物**，路清楚後交棒 `/intake`／`/specify`／`/deliver`。概念移植自 mattpocock/skills `wayfinder`（MIT）。
 - **`engineering_tracker.xlsx` 新增「③ 切片看板」**：ticket-tracker.md 的契約落地成實際工作表（沿用①②的視覺慣例、狀態下拉、凍結窗格）。
 - **執行層（execution layer）**：補上「規格 → 可切片執行」這一段，概念來源 [mattpocock/skills](https://github.com/mattpocock/skills)（MIT），各項均按本專案的硬閘與追溯結構重寫，來源與授權登錄於 `skills/INDEX.md`。

@@ -51,4 +51,5 @@ Anthropic 在 Opus 5 發布時把 Claude Code 的系統提示詞砍掉 80%（約
 
 | 日期 | 動作 | 結果 |
 | :--- | :--- | :--- |
+| 2026-08-04 | 執行層與 `/wayfind` 上線，常駐面只加一句路由（`/wayfind` 匝道＋PLAYBOOK 指標）。新能力全部落在按需載入的 skill 與 `references/`，未新增任何常駐規則 | 常駐面 223 → 224 行（＋1） |
 | 2026-08-04 | 首次消融：把 `rules/` 的條件性內容（commit/PR 細則、doc-sync 觸發表、語域寫作指引）移入對應 skill 的 `references/`；並修掉 `sunnydata-branch-lifecycle` 與 `git-workflow.md` 的兩處矛盾 | 常駐面 369 → 223 行（−40%） |

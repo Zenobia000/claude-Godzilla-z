@@ -2,7 +2,7 @@
 
 這個專案是一套「文件驅動、證據閉環」的軟體開發生態系。預設工作流是：
 
-`業務來源 → /intake → /specify → /deliver → /verify`；想法太大、路還看不見時先走匝道 `/wayfind`（流程唯一權威：[WORKFLOW.md](WORKFLOW.md)）
+`業務來源 → /intake → /specify → /deliver → /verify`；想法太大、路還看不見時先走匝道 `/wayfind`。結構唯一權威 [WORKFLOW.md](WORKFLOW.md)，用法走查 [PLAYBOOK.md](PLAYBOOK.md)。
 
 ## 元件責任
 

@@ -7,7 +7,8 @@ claude-Godzilla-z/
 ├── .claude/
 │   ├── CLAUDE.md                 # 生態系入口與責任邊界
 │   ├── settings.json             # 最小設定；內建 Read/Edit 敏感路徑 deny
-│   ├── WORKFLOW.md               # 四階段文件驅動流程
+│   ├── WORKFLOW.md               # 流程結構：流程圖、入口、context 邊界（唯一權威）
+│   ├── PLAYBOOK.md               # 流程用法：三條路線走查、決策點、常見錯誤
 │   ├── ABLATION.md               # 常駐面消融紀錄與失敗證據登記
 │   ├── rules/                    # 5 份常駐規則（條件性細則下放 skill references/）
 │   │   ├── golden-rules.md       # 跨技術棧底線
