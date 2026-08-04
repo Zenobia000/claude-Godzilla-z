@@ -205,13 +205,15 @@ git diff {BASE_SHA}..{HEAD_SHA}
 
 ## ADR Trigger
 
-任何 **Critical** 或 **High** finding 必須在 `## ADR Candidates` 區段建議寫入：
+任何會形成持久架構取捨的 **Critical** 或 **High** finding，必須列入
+`## ADR Candidates`，建議使用目標專案的正式 ADR 目錄，例如：
 
 ```
-.claude/context/decisions/architecture-review-<YYYY-MM-DD>-<topic-slug>.md
+docs/adr/ADR-<NNNN>-<topic-slug>.md
 ```
 
-格式遵循 `.claude/rules/subagent-context.md` 規範。
+使用 `VibeCoding_Workflow_Templates/03_architecture/adr.md`；
+只有決策 owner 能將狀態改為 Accepted。審查報告本身不另寫入 runtime context。
 
 ---
 
@@ -223,4 +225,4 @@ git diff {BASE_SHA}..{HEAD_SHA}
 - [ ] 每個 fix 都有 2 個 option 與 trade-off
 - [ ] 所有 Critical/High 都列入 ADR Candidates
 - [ ] 報告中沒有 Forbidden Phrases
-- [ ] 至少 5 個 finding（除非範圍極小）— 否則重掃一次
+- [ ] Finding 數量由證據決定；沒有問題時明確列出已檢查維度

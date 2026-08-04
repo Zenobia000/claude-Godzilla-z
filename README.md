@@ -6,14 +6,14 @@
 
 **進倉。啟動。征服混沌的程式碼戰場。**
 
-[![Version](https://img.shields.io/badge/version-v5.0-blue)]()
+[![Version](https://img.shields.io/badge/version-v6.0--poc-blue)]()
 [![Platform](https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20(WSL2)-lightgrey)]()
 [![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
 
 </div>
 
-> 一套開箱即用的 Claude Code 開發配置模板 — 12 個 MECE Skills、5-Gate Git 品質管線、Tesla StatusLine。
-> 複製到新專案，像駕駛員進倉一樣，直接啟動。
+> 一套開箱即用的 Claude Code 開發配置模板 — **23 個按需載入的 Skills、17 份工程文件模板、211 行常駐面**。
+> 為快速 POC 設計：能力全都在，但不帶文件治理的硬邊界。複製到新專案，直接啟動。
 
 ---
 
@@ -49,109 +49,95 @@ ln -s "$(pwd)/.claude/skills/sunnydata-architecture-review" \
 
 ```
 .claude/
-├── rules/           (8)   # 永遠生效的規則
-├── skills/          (13)  # 按需載入的領域知識（sunnydata-*）
-├── agents/          (13)  # 專業 Agent
-├── commands/        (17)  # Slash Commands
-├── output-styles/   (16)  # 產出格式
-├── settings.json          # 主設定
-├── CLAUDE.md              # 專案指令
-├── statusline.sh          # StatusLine（Windows）
-└── statusline-linux.sh    # StatusLine（Linux/WSL2）
+├── CLAUDE.md              # 專案入口與維護契約
+├── WORKFLOW.md            # Rules／Skills／Agents 三層怎麼一起運作
+├── ABLATION.md            # 常駐面消融紀錄（每條規則的失敗證據）
+├── rules/           (5)   # 永遠生效的常駐規則，共 175 行
+├── skills/          (23)  # 按需載入的能力庫（sunnydata-* / community-*）
+├── agents/          (8)   # 需要隔離 context 或權限時才派出
+├── output-styles/   (1)   # 只改呈現，不承載流程
+├── hooks/                 # 零註冊，只留設計指南
+├── settings.json          # 最小權限基線 + 敏感路徑 deny
+└── statusline*.sh         # StatusLine（Windows / Linux）
 ```
+
+**沒有 `commands/`、`context/`、`coordination/`、`taskmaster-data/`** —— 那些是為弱模型寫的鷹架，在前緣模型上壓縮解空間、製造規則間的猶豫。理由與消融方法見 [.claude/ABLATION.md](.claude/ABLATION.md)。
 
 ---
 
-## Rules（8 個，自動載入）
+## Rules（5 個，自動載入）
 
-每次對話自動生效，不需手動觸發。
+常駐面只放**每次工作都成立、而且與模型預設行為不同**的約束；條件性細則下放到對應 skill 的 `references/`，用到才載入。
 
 | 規則 | 核心內容 |
 | :--- | :--- |
-| **development-workflow** | 先開分支再動 code、研究 → 規劃 → TDD → 審查 → 提交 |
-| **git-workflow** | WHY/WHAT/IMPACT commit body、分支保護、PR 前置條件與品質標準、merge 策略 |
-| **coding-style** | 不可變性、檔案 < 800 行、函式 < 50 行、命名慣例 |
-| **security** | commit 前安全 checklist、秘密管理、依賴安全 |
-| **testing** | 80%+ 覆蓋率、TDD 強制（RED-GREEN-IMPROVE） |
-| **performance** | 模型選擇策略、Context Window 管理、平行任務 |
-| **patterns** | Repository Pattern、API 信封格式、骨架專案策略 |
-| **subagent-context** | 子代理產出持久化至 `.claude/context/` |
+| **golden-rules** | 來源優先、可追溯、保護使用者工作、以證據宣告完成、最小必要變更 |
+| **git-workflow** | 先開分支、多 session ref 驗證、destructive 先 backup tag、commit→push→PR 為單一連貫操作 |
+| **thinking-boundary** | 速通／深思模式；**雛型期走 happy path，不前置法規／權限／邊界案的窮舉** |
+| **language-register** | 文件的 L1 業務／L2 橋接／L3 工程三層語域 |
+| **plain-language-answers** | 對話語域：何時該把答案翻到讀者的決策層、何時不可以 |
+
+新增常駐規則前先讀 [ABLATION.md](.claude/ABLATION.md)——填不出「因為什麼失敗才存在」的規則，不該常駐。
 
 ---
 
-## Skills（13 個，MECE 架構）
+## Skills（按需載入）
 
-依開發生命週期組織，統一 `sunnydata-` 前綴。按需載入。
+沒有寫死的流程入口。任務語意命中才載入，或由你 `/skill-name` 明確啟動。
 
-| 階段 | Skill | 用途 |
-| :--- | :---- | :--- |
-| THINK+PLAN+DO | **sunnydata-design** | 探索意圖 → 撰寫計畫 → 依檢查點執行 |
-| BUILD (API) | **sunnydata-api-design** | REST API 設計規範 |
-| BUILD (UI) | **sunnydata-shadcn-ui** | shadcn/ui 元件管理 |
-| BUILD+TEST | **sunnydata-testing** | TDD + Unit/Integration/E2E (Playwright) |
-| VERIFY (安全) | **sunnydata-security** | OWASP 分類 + checklist + 語言特定實踐 |
-| VERIFY (審查) | **sunnydata-code-review** | 驗證 → 發起 review → 消化回饋 |
-| VERIFY (架構) | **sunnydata-architecture-review** | 三階段 smells → principles → fixes 架構級審查 |
-| SHIP (基礎設施) | **sunnydata-infrastructure** | Docker + CI/CD + 部署策略 |
-| SHIP (分支) | **sunnydata-branch-lifecycle** | worktree 建立 → commit 審計 → PR/merge 收尾 |
-| DEBUG | **sunnydata-debugging** | 四階段結構化除錯 |
-| RESEARCH | **sunnydata-deep-research** | 多來源深度研究 |
-| ORCHESTRATE | **sunnydata-parallel-agents** | 獨立任務平行派發 |
-| META | **sunnydata-skill-authoring** | 撰寫/驗證 SKILL.md |
+| 你在做什麼 | 載入 |
+| :--- | :--- |
+| 需求還模糊，要先探索 | `sunnydata-design` |
+| API 契約 | `sunnydata-api-design` |
+| 測試 / TDD | `sunnydata-testing` |
+| 卡在 bug | `sunnydata-debugging` |
+| 安全敏感（auth、輸入、秘密） | `sunnydata-security` |
+| 變更完成要審查 | `sunnydata-code-review`（行級）／`sunnydata-architecture-review`（架構級） |
+| 開分支、收尾開 PR | `sunnydata-branch-lifecycle` |
+| 容器化、CI/CD、部署 | `sunnydata-infrastructure` |
+| 前端 UI | `sunnydata-shadcn-ui`、`community-*` |
+| 多來源查證 | `sunnydata-deep-research` |
+| 2+ 個真正獨立的子任務 | `sunnydata-parallel-agents` |
+| 回答太長太散 | `adhd-dev-mode`、`sunnydata-plain-explain` |
 
-詳見 [.claude/skills/INDEX.md](.claude/skills/INDEX.md)。
+完整路由與 community 能力庫見 [.claude/skills/INDEX.md](.claude/skills/INDEX.md)。
+
+---
+
+## 文件模板
+
+`VibeCoding_Workflow_Templates/` 的 17 份模板是**選用的，不是待辦清單**。
+
+| 階段 | 通常值得寫的 |
+| :--- | :--- |
+| POC 驗證中 | 幾乎不用寫；反直覺的決策寫一則 ADR（`04`） |
+| POC 通過、要有人接手 | PRD（`02`）＋ 架構設計（`05`）＋ 專案結構（`08`） |
+| 要往 production 走 | 安全檢查（`13`）、部署運維（`14`）、模組規格與測試（`07`） |
+
+判準只有一條：**這份文件現在寫下來，會替誰省掉一次來回？** 答不出來就先不寫。
+
+> 需要可稽核的需求追溯、owner 簽核硬閘與 Excel 追蹤簿？換到 Pilot／企業級路線：`refactor/document-driven-ecosystem` 分支。兩條線共用同一套 harness，差別只在文件治理的嚴謹度。
 
 ---
 
 ## Git 工作流
 
-本模板強制嚴謹的 git 協作流程，適用於開源專案和團隊協作。
+| 常駐鐵律 | 內容 |
+| :--- | :--- |
+| 先開分支 | 在 main 上？停。dirty？停。沒指定分支？停。 |
+| 多 session 協調 | 任何 git 寫操作前先驗證 ref 沒被別的 session 推進 |
+| Destructive 先 backup tag | `reset --hard`／`push --force`／`branch -D`／`rebase` 之前 |
+| commit → push → PR | 你說「做完了」就一氣呵成，中間不問「要不要 push」 |
+| Commit body | **按需寫，不是必填**——diff 已經是 WHAT 的真相源 |
 
-### 5 道品質關卡
-
-```
-GATE 1  分支確認     在 main 上？停。dirty？停。沒指定分支？停。
-   ↓
-GATE 2  Commit 品質  WHY/WHAT/IMPACT body、72 字元 subject、一 commit 一事
-   ↓
-GATE 3  歷史審計     merge 前逐條檢查 commit 品質
-   ↓
-GATE 4  PR Pre-flight 測試通過、self-review、無 debug 殘留、< 400 行
-   ↓
-GATE 5  PR 品質      Background/Changes/Impact/Test Plan
-   ↓
-Merge → 刪除遠端分支 → Done
-```
-
-### 分支策略
+Commit message 細則、PR 前置與 body 四段、tangled history 恢復策略在
+`.claude/skills/sunnydata-branch-lifecycle/references/git-conventions.md`，開 PR 時才載入。
 
 ```
 main ──┬── feat/xxx ──── PR ──→ main
        ├── fix/yyy  ──── PR ──→ main
        └── chore/zzz ─── PR ──→ main
 ```
-
----
-
-## 開發流程
-
-```
-分支確認 → 研究 → 規劃 → TDD → 審查 → 提交 → PR
-```
-
-| 指令 | 用途 |
-| :--- | :--- |
-| `/task-init` | 建立 WBS、分析複雜度 |
-| `/task-next` | 取下一個任務 |
-| `/plan` | 規劃實作步驟 |
-| `/tdd` | Red-Green-Refactor |
-| `/review-code` | 程式碼審查 |
-| `/verify` | 全面驗證 |
-| `/e2e` | Playwright E2E |
-| `/build-fix` | 修復建置錯誤 |
-| `/task-status` | 進度總覽 |
-| `/time-log` | 開發時間報表 |
-| `/save-session` | 儲存 session 狀態 |
 
 ---
 
@@ -175,6 +161,7 @@ Tesla High-Contrast 主題。Linux 使用 `statusline-linux.sh`。
 
 | 版本 | 日期 | 變更 |
 | :--- | :--- | :--- |
+| v6.0-poc | 2026-08-04 | **定位為快速 POC harness**。提示詞消融：刪 16 slash commands、18 output-styles、6 hooks、`context/`／`coordination/`／`taskmaster-data/`；常駐面 443 → 211 行（−52%）。新增 `ABLATION.md` 機制（每條常駐規則登記失敗證據）、`adhd-dev-mode` 與 `sunnydata-plain-explain` 輸出治理、skill 漸進揭露（SKILL.md ≤200 行＋`references/`）。17 份經典模板完整保留 |
 | v5.1 | 2026-05-10 | 新增 `sunnydata-architecture-review` skill（三階段 smells/principles/fixes 流程＋100 條行話分類索引）、README 加入全域 symlink 共用說明 |
 | v5.0 | 2026-04-06 | MECE 重構 skills (23→12, sunnydata-)、Git 5-gate 工作流、WHY/WHAT/IMPACT commit 標準、PR pre-flight |
 | v4.3 | 2026-03-24 | 時間追蹤、`/time-log`、StatusLine 持久化 |

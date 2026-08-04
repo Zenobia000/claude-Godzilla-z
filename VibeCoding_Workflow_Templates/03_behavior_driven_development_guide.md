@@ -60,3 +60,11 @@ Feature: [功能名稱]
 2. **使用陳述式** -- `Then I should be redirected to...` (非 `Then the system redirects...`)
 3. **避免 UI 細節** -- `When I confirm my order` (非 `When I click the green button`)
 4. **從使用者角度編寫** -- 非技術人員也能讀懂
+
+---
+
+## 蘇格拉底檢核（寫完每個 Scenario 自問）
+
+- 這句話是**業務語言**還是實作細節？把它唸給不寫程式的人聽，他聽得懂嗎？
+- `Then` 的結果是否**可觀測、可重現**？還是只有讀 code 的人才驗證得了？
+- `Examples` 表格有沒有涵蓋**反例**（會失敗的輸入），還是只列了 happy path？

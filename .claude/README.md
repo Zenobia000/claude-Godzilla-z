@@ -1,223 +1,72 @@
-# .claude 配置目錄
+# `.claude/` 生態系
 
-> **版本:** v4.3 | **更新:** 2026-03-24
+這個目錄提供 Claude Code 的專案級能力庫與執行邊界。設計原則是「Skills 厚、Runtime 薄」：保留完整軟體工程能力，但只讓必要內容進入每次對話。
 
----
+## 責任分層
 
-## 目錄結構
+| 元件 | 責任 | 不該承擔 |
+|---|---|---|
+| `CLAUDE.md` | 專案入口與元件邊界 | 完整方法論 |
+| `rules/` | 5 份恆定規則（golden、git、語域、對話語域、思考邊界），永遠生效 | 技術棧清單、固定流程、條件性細則 |
+| `skills/` | 按需載入的能力資料庫 | 無條件常駐 context |
+| `agents/` | context／工具／權限隔離 | 複製 Skills 的知識 |
+| `output-styles/` | 回答呈現方式 | PRD、BDD、TDD 等流程 |
+| `hooks/` | 確定、快速、低頻的 guardrail | 專案管理、隱性狀態機 |
+| `statusline*.sh` | 顯示官方 stdin 狀態與 usage API 用量（與全域版同步） | 工作樹寫入、專案狀態寫入 |
 
-```
-.claude/
-├── settings.json              # 專案設定（權限、StatusLine、Model）
-├── settings.local.json        # 個人設定（MCP 啟用）-- 不入 Git
-├── WORKFLOW.md                # 開發流程指南
-├── statusline.sh              # StatusLine bash 腳本（Windows）
-├── statusline-linux.sh        # StatusLine bash 腳本（Linux）
-├── statusline-go.exe          # StatusLine Go 備用
-├── SOP.md                     # 設定 SOP
-│
-├── agents/       (13 個)      # 專業 Agent 定義
-├── commands/     (17 個)      # Slash Command
-├── rules/        (7 個)       # 自動載入規則
-├── skills/       (8 個)       # 領域知識 Skill
-├── output-styles/ (15 個)     # 輸出樣式模板
-├── mcp-configs/               # MCP 推薦清單
-├── hooks/                     # Hook 腳本庫
-├── taskmaster-data/           # 持久化資料（WBS、時間日誌）
-├── context/                   # 跨 Agent 上下文共享
-└── coordination/              # Agent 協調配置
-```
+## 主要工作流
 
----
+**沒有寫死的流程順序**——這是快速 POC 用的 harness，能力隨叫隨到，流程由你決定。三層怎麼一起運作見 [WORKFLOW.md](./WORKFLOW.md)，Skills 路由見 [skills/INDEX.md](./skills/INDEX.md)，呈現樣式說明見 [OUTPUT_STYLES.md](./OUTPUT_STYLES.md)，常駐面的消融紀錄見 [ABLATION.md](./ABLATION.md)。
 
-## 各元件說明
+需要文件驅動的流程編排（`/intake → /specify → /deliver → /verify`）、Excel 追蹤簿與簽核硬閘時，換到 Pilot／企業級路線（`refactor/document-driven-ecosystem` 分支）。
 
-### Agents（13 個）
+## Active Agents
 
-自動註冊，可透過 Agent tool 或 `/hub-delegate` 呼叫。
+Subagent 僅在需要隔離時使用，目前保留 8 個互斥度較高的角色：
 
-| Agent | Model | 用途 |
-| :--- | :--- | :--- |
-| general-purpose | sonnet | 通用問題解決 |
-| planner | opus | 功能規劃 |
-| architect | opus | 架構設計 |
-| code-quality-specialist | sonnet | 程式碼審查 |
-| security-infrastructure-auditor | sonnet | 安全稽核 |
-| test-automation-engineer | sonnet | 測試自動化 |
-| tdd-guide | sonnet | TDD 引導 |
-| e2e-validation-specialist | sonnet | E2E 測試 |
-| build-error-resolver | sonnet | 建置修復 |
-| refactor-cleaner | sonnet | 死碼清理 |
-| documentation-specialist | sonnet | 文檔生成 |
-| deployment-expert | sonnet | 部署運維 |
-| workflow-template-manager | sonnet | 模板管理 |
+| Agent | 邊界 |
+|---|---|
+| `architect` | 唯讀架構第二意見 |
+| `code-quality-specialist` | 唯讀變更審查 |
+| `security-infrastructure-auditor` | 唯讀安全與基礎設施稽核 |
+| `test-automation-engineer` | 委派的單元／整合測試實作 |
+| `end-to-end-validation-specialist` | 高雜訊 E2E 旅程與證據 |
+| `build-error-resolver` | 最小差異恢復 build |
+| `documentation-specialist` | 大型文件正規化與交叉連結 |
+| `deployment-expert` | 預設唯讀的部署／回滾規劃 |
 
-### Commands（17 個）
+一般規劃、通用研究、TDD 方法、重構與模板選擇由主 Agent 搭配 Skills 處理，不再各自註冊一個重疊 Agent。
 
-在 Claude Code 中輸入 `/` 即可使用。
+Rules、Skills 與 Agents 三層怎麼一起運作（含階段 × Agent 對照與走查）見 [WORKFLOW.md 協作模型](./WORKFLOW.md#協作模型rules--skills--agents)。
 
-| 指令 | 用途 |
-| :--- | :--- |
-| /plan | 規劃實作步驟 |
-| /tdd | 測試驅動開發 |
-| /build-fix | 修復建置錯誤 |
-| /e2e | E2E 測試 |
-| /verify | 全面驗證 |
-| /refactor-clean | 死碼清理 |
-| /review-code | 程式碼審查 |
-| /check-quality | 品質評估 |
-| /learn | 擷取模式 |
-| /save-session | 儲存 session |
-| /task-init | 專案初始化 |
-| /task-next | 下個任務（自動追蹤時間） |
-| /task-status | 專案狀態（含時間追蹤） |
-| /time-log | 開發時間報表（每日/每任務） |
-| /hub-delegate | Agent 委派 |
-| /suggest-mode | 建議密度 |
-| /template-check | 模板合規 |
+## Commands 與 Skills
 
-### Rules（7 個，自動載入）
+Claude Code 已將自訂 commands 與 skills 統一為 slash-command 入口。本專案以 Skill 為單一格式，避免同名 command 與 Skill 漂移——舊的 16 個 slash command（`/task-init`、`/plan`、`/tdd`、`/verify` 等）已全部退役，它們把工作流寫死成命令序列，在前緣模型上是負擔而非幫助。能力由任務語意載入，或由使用者以 `/skill-name` 明確啟動。
 
-放在 `rules/` 下，**每次對話自動注入 context**，無需手動觸發。
+## Hooks 與 TaskMaster
 
-| 規則 | 內容 |
-| :--- | :--- |
-| coding-style | 不可變性、檔案大小、錯誤處理 |
-| development-workflow | 研究先行 → Plan → TDD → Review |
-| git-workflow | Conventional Commits |
-| security | commit 前安全檢查 |
-| testing | 80%+ 覆蓋率、TDD |
-| performance | 模型選擇、Context 管理 |
-| patterns | Repository Pattern、API 格式 |
+基礎模板預設不註冊 Hook。舊 TaskMaster 與 Agent monitor 腳本均已刪除；`hooks/` 只剩設計指南。
 
-### Skills（8 個精選）
+舊 TaskMaster runtime 已退役：
 
-放在 `skills/` 下，按需載入。更多可從 `everything-claude/skills/` 複製。
+- 不再由 Hook 解析 prompt 或寫 session/timelog
+- StatusLine 不再修改 Git 工作樹
+- 原生 Task list 處理暫態工作
+- 規格、issue、ADR 與測試證據處理長期狀態
 
-| Skill | 搭配 |
-| :--- | :--- |
-| tdd-workflow | /tdd |
-| api-design | API 模板 |
-| security-review | 安全 Agent |
-| e2e-testing | /e2e |
-| coding-standards | 所有開發 |
-| deep-research | 複雜問題 |
-| deployment-patterns | 部署規劃 |
-| docker-patterns | 容器化 |
+## Settings 與 StatusLine
 
-### Output Styles（15 個）
+`settings.json` 使用最小權限基線，並以 deny 保護內建 Read/Edit 不讀寫敏感路徑；個人 MCP 與額外權限應放進不入版控的 `settings.local.json`。
 
-使用 `/output-style <name>` 切換，詳見 `output-styles/README.md`。
+Read/Edit deny 不是作業系統 sandbox，無法攔截 Bash／PowerShell 子程序直接讀檔。macOS、Linux、WSL2 可依專案風險另啟 Claude Code sandbox；Windows 原生環境需搭配 OS／工作區隔離、最小 shell 授權與不把秘密放進 repository。不要把此設定宣稱為完整的秘密防護。
 
-### Hooks（已註冊於 settings.json）
+StatusLine 移植自全域 `~/.claude/statusline.sh`：消費 Claude Code 官方 stdin、唯讀 Git 查詢（branch 與 dirty）。Rate-limit 優先讀官方 stdin `rate_limits`（即時、與 `/usage` 同源），缺欄位才以 OAuth token 查 usage API（快取於 `/tmp/claude/`，stale 上限 10 分鐘）；不寫入工作樹或專案狀態。平台與 mock 測試方式見 [STATUSLINE_GUIDE.md](./STATUSLINE_GUIDE.md)。
 
-```
-hooks/
-├── hook-utils.sh          # 共用工具函數庫（非 hook）
-├── session-start.sh       # 會話啟動：偵測模板、提示初始化
-├── user-prompt-submit.sh  # 用戶輸入：攔截 /task-* 命令
-├── pre-tool-use.sh        # 工具前置：TaskMaster 狀態提示
-├── post-write.sh          # 寫入後置：文檔審查通知
-├── agent-monitor.sh       # Agent 監控：記錄 subagent 活動
-└── watch-agents.sh        # 監控工具：即時追蹤 agent log
-```
+## 擴充原則
 
-#### Hook 註冊對照表
-
-| 事件 | 腳本 | Matcher | 用途 |
-| :--- | :--- | :--- | :--- |
-| SessionStart | session-start.sh | 全部 | 偵測 `CLAUDE_TEMPLATE.md`，提示 `/task-init` |
-| UserPromptSubmit | user-prompt-submit.sh | 全部 | 攔截 `/task-*` 命令，準備 TaskMaster 環境 |
-| PreToolUse | agent-monitor.sh | `Agent` | 記錄 subagent 啟動（類型、prompt、model） |
-| PreToolUse | pre-tool-use.sh | `Write\|Edit\|Read` | 提供 TaskMaster 狀態上下文 |
-| PostToolUse | agent-monitor.sh | `Agent` | 記錄 subagent 完成結果 |
-| PostToolUse | post-write.sh | `Write` | 文檔寫入後觸發駕駛員審查通知 |
-
-#### Agent 活動監控
-
-所有 subagent 的啟動和完成會自動記錄到 `.claude/logs/`：
-
-- `agent-activity.log` — 人類可讀格式（prompt、結果、時間戳）
-- `agent-activity.jsonl` — 結構化 JSON（適合程式分析）
-
-即時監控（開另一個終端機）：
-
-```bash
-bash .claude/hooks/watch-agents.sh           # 即時追蹤
-bash .claude/hooks/watch-agents.sh --json    # JSON 格式
-bash .claude/hooks/watch-agents.sh --last 30 # 最近 30 行
-bash .claude/hooks/watch-agents.sh --summary # 統計摘要
-bash .claude/hooks/watch-agents.sh --clear   # 清除 log
-```
-
-#### 複製到其他專案
-
-```bash
-# 1. 複製 hooks 腳本
-mkdir -p .claude/hooks .claude/logs
-cp <模板路徑>/.claude/hooks/*.sh .claude/hooks/
-cp <模板路徑>/.claude/logs/.gitignore .claude/logs/
-
-# 2. 在目標專案 .claude/settings.json 加入 hooks 區段（見本專案 settings.json）
-```
-
-#### 自訂 Hook
-
-所有 hook 透過 **stdin** 接收 JSON 資料，使用 `jq` 解析：
-
-```bash
-#!/bin/bash
-INPUT=$(cat)
-TOOL_NAME=$(echo "$INPUT" | jq -r '.tool_name // "unknown"')
-# 處理邏輯...
-exit 0  # 0=放行, 2=阻擋
-```
-
----
-
-## 自訂指南
-
-### 新增 Agent
-
-在 `agents/` 新增 `.md` 檔案：
-
-```yaml
----
-name: my-agent
-description: 繁體中文描述
-tools: ["Read", "Write", "Edit", "Bash", "Grep", "Glob"]
-model: sonnet
----
-
-Agent 的指示內容...
-```
-
-### 新增 Command
-
-在 `commands/` 新增 `.md` 檔案：
-
-```yaml
----
-description: 繁體中文描述
----
-
-# 指令標題
-
-指令的執行邏輯...
-```
-
-### 新增 Rule
-
-在 `rules/` 新增 `.md` 檔案（自動載入，無需 frontmatter）。
-
-### 新增語言特定規則
-
-```bash
-cp everything-claude/everything-claude-code/rules/typescript/*.md .claude/rules/
-```
-
-### 新增 Skill
-
-```bash
-cp -r everything-claude/everything-claude-code/skills/python-patterns .claude/skills/
-```
+- 新方法或領域知識：新增／更新 Skill
+- 新的人工觸發端到端流程：Action Skill
+- 需要隔離 context 或權限：Subagent
+- 所有任務都必須遵守：才考慮 Rule
+- 純呈現偏好：Output Style
+- 可證明確定、快速、低頻：才考慮 Hook

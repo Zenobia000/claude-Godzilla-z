@@ -2,12 +2,12 @@
 
 # Claude Code 專案初始化範本
 
-> **版本:** v4.1 | **作者:** Sunny | **模式:** 人類主導
+> **版本:** v6.0-poc | **作者:** Sunny | **模式:** 人類主導
 
 當 Claude Code 偵測到此檔案時：
 1. 顯示範本資訊
 2. 詢問：「偵測到專案初始化範本，要開始設定嗎？」
-3. 同意後執行 `/task-init`
+3. 同意後依下方 Phase 1–3 逐段收集資訊
 4. 完成後刪除此檔案
 
 ---
@@ -73,17 +73,19 @@ Claude Code 在使用者確認後：
 
 ## 開發流程
 
-遵循 `.claude/WORKFLOW.md` 的標準流程：
-/task-next → /plan → /tdd → /verify
+沒有寫死的命令序列。能力按需載入，路由見 `.claude/skills/INDEX.md`；
+三層（Rules／Skills／Agents）怎麼一起運作見 `.claude/WORKFLOW.md`。
+
+POC 階段的預設節奏：確認分支 → 想清楚要驗證什麼 → 做出最小可動的東西 → 跑起來看。
 
 ## 專案規則
 
-已載入 `.claude/rules/` 中的通用規則（自動生效）：
-- coding-style: 不可變性、檔案大小
-- development-workflow: 研究先行、Plan-TDD-Review
-- security: commit 前安全檢查
-- testing: 80%+ 覆蓋率
-- git-workflow: Conventional Commits
+已載入 `.claude/rules/` 中的常駐規則（自動生效）：
+- golden-rules: 來源優先、可追溯、以證據宣告完成、最小必要變更
+- git-workflow: 先開分支、多 session ref 驗證、commit→push→PR 連貫
+- thinking-boundary: 速通／深思模式；雛型期走 happy path
+- language-register: 文件的 L1/L2/L3 語域
+- plain-language-answers: 對話語域，何時翻到決策層
 
 ## 禁止事項
 
@@ -186,15 +188,16 @@ GitHub 儲存庫設定：
 
 配置：
 - CLAUDE.md 規則生效
-- 7 條自動載入規則 (.claude/rules/)
-- 13 個專業 Agent 就緒
-- 17 個 Slash Command 可用
+- 5 條常駐規則 (.claude/rules/，175 行)
+- 23 個按需載入的 Skill
+- 8 個隔離型 Agent 就緒
+- 17 份工程文件模板（選用）
 - GitHub: [啟用/未啟用]
 
 下一步：
-1. /task-next  取得第一個任務
-2. /plan       規劃實作步驟
-3. /tdd        開始開發
+1. 說出你想先驗證什麼
+2. 需求還模糊就載入 sunnydata-design
+3. 開始寫，卡住再載入對應能力
 ```
 
 <!-- CLAUDE_CODE_INIT_END -->

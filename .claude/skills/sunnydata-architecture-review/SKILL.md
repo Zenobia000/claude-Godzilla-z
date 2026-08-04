@@ -180,7 +180,9 @@ Trade-off: <為何選 A 而非 B 的一句話>
 
 ### ADR Trigger
 
-任何 **Critical** 或 **High** 的 fix 必須建議寫入 `.claude/context/decisions/architecture-review-{YYYY-MM-DD}-{topic}.md`，依 `subagent-context.md` 規則執行。
+任何形成持久架構取捨的 **Critical** 或 **High** fix 都要列為 ADR
+candidate；使用目標專案的正式 ADR 目錄與既有命名。只有修 bug、沒有新決策時，
+不為了嚴重度硬建 ADR。
 
 ---
 
@@ -234,7 +236,7 @@ Trade-off: <為何選 A 而非 B 的一句話>
 
 ## ADR Candidates
 
-- [ ] `architecture-review-<date>-<topic>.md` — <一句話標題>
+- [ ] `ADR-<NNNN>-<topic>.md` — <一句話標題與 decision owner>
 
 ## Open Questions
 
@@ -265,7 +267,7 @@ Trade-off: <為何選 A 而非 B 的一句話>
 | :--- | :--- |
 | PR 合併前 | `sunnydata-architecture-review` → 若無 Critical → `sunnydata-code-review`（行級） |
 | 新模組設計 | `architect` agent（設計）→ 實作 → `sunnydata-architecture-review`（驗收） |
-| 技術債盤點 | `sunnydata-architecture-review`（找出所有 High+）→ 排序 → ADR 寫入 decisions/ |
+| 技術債盤點 | `sunnydata-architecture-review`（找出所有 High+）→ 排序 → 必要決策寫入正式 ADR 目錄 |
 | Onboarding 走讀 | `sunnydata-architecture-review`（產出系統地圖）→ 補入 docs |
 | 大型重構決策 | `sunnydata-architecture-review` → `architect` agent（重新設計受影響部分） |
 
@@ -285,7 +287,9 @@ Trade-off: <為何選 A 而非 B 的一句話>
 - 需要與其他 subagent 平行執行
 - 主 agent 想保留 context window
 
-dispatch 後的結論依 `subagent-context.md` 規則寫入 `.claude/context/decisions/`。
+dispatch 後的結論回傳主 Agent 整合。只有需要長期保存的決策才依
+`VibeCoding_Workflow_Templates/03_architecture/adr.md`
+寫入正式 ADR；不自動建立 runtime context 報告。
 
 ### Reference loading
 
@@ -301,5 +305,5 @@ dispatch 後的結論依 `subagent-context.md` 規則寫入 `.claude/context/dec
 | 知道某 smell 的標準名稱 | `terminology.md` Smells 區段 |
 | 為某 smell 找修復模式 | `terminology.md` Patterns 區段 + Smell-to-Fix Map |
 | 評估重構優先級 | Severity 表 + Effort 評估 |
-| 把審查報告寫成 ADR | `.claude/context/decisions/` + `subagent-context.md` 範本 |
+| 把持久決策寫成 ADR | 目標專案正式 ADR 目錄 + VibeCoding ADR 範本 |
 | 大型範圍／平行審查 | `architecture-reviewer.md` subagent |
