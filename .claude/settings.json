@@ -1,129 +1,34 @@
 {
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
   "permissions": {
-    "allow": [
-      "Bash(ls:*)",
-      "Bash(cd:*)",
-      "Bash(pwd:*)",
-      "Bash(tree:*)",
-      "Bash(mkdir:*)",
-      "Bash(rm:*)",
-      "Bash(mv:*)",
-      "Bash(cp:*)",
-      "Bash(tee:*)",
-      "Bash(git:*)",
-      "Bash(npm:*)",
-      "Bash(npx:*)",
-      "Bash(pnpm:*)",
-      "Bash(node:*)",
-      "Bash(nvm:*)",
-      "Bash(python:*)",
-      "Bash(python3:*)",
-      "Bash(pip:*)",
-      "Bash(pip3:*)",
-      "Bash(pyenv:*)",
-      "Bash(poetry:*)",
-      "Bash(go:*)",
-      "Bash(cargo:*)",
-      "Bash(rustup:*)",
-      "Bash(docker:*)",
-      "Bash(docker-compose:*)",
-      "Bash(wget:*)",
-      "Bash(curl:*)",
-      "Bash(rg:*)",
-      "Bash(bat:*)",
-      "Bash(which:*)",
-      "Bash(command:*)",
-      "Bash(echo:*)",
-      "Bash(source:*)",
-      "Bash(chmod:*)",
-      "Bash(jq:*)",
-      "Bash(bash:*)",
-      "Bash(sudo:*)",
-      "Bash(dnf:*)",
-      "Bash(yum:*)",
-      "Bash(apt:*)",
-      "Bash(winget:*)",
-      "Read(*)",
-      "Write(*)",
-      "Edit(*)",
-      "Glob(*)",
-      "Grep(*)"
-    ],
-    "deny": [],
-    "ask": []
+    "deny": [
+      "Read(/.env)",
+      "Read(/.env.*)",
+      "Read(/**/.env)",
+      "Read(/**/.env.*)",
+      "Read(/secrets/**)",
+      "Read(/**/secrets/**)",
+      "Read(/credentials/**)",
+      "Read(/**/credentials/**)",
+      "Read(/config/credentials.json)",
+      "Read(/**/config/credentials.json)",
+      "Read(/.claude/settings.local.json)",
+      "Edit(/.env)",
+      "Edit(/.env.*)",
+      "Edit(/**/.env)",
+      "Edit(/**/.env.*)",
+      "Edit(/secrets/**)",
+      "Edit(/**/secrets/**)",
+      "Edit(/credentials/**)",
+      "Edit(/**/credentials/**)",
+      "Edit(/config/credentials.json)",
+      "Edit(/**/config/credentials.json)",
+      "Edit(/.claude/settings.local.json)"
+    ]
   },
   "statusLine": {
     "type": "command",
-    "command": "bash .claude/statusline.sh",
+    "command": "bash -lc 'git rev-parse --show-toplevel >/dev/null 2>&1 || exit 0; exec bash \"$(git rev-parse --show-toplevel 2>/dev/null)/.claude/statusline.sh\"'",
     "padding": 0
-  },
-  "model": "opus",
-  "hooks": {
-    "SessionStart": [
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "bash .claude/hooks/session-start.sh",
-            "timeout": 30
-          }
-        ]
-      }
-    ],
-    "UserPromptSubmit": [
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "bash .claude/hooks/user-prompt-submit.sh",
-            "timeout": 15
-          }
-        ]
-      }
-    ],
-    "PreToolUse": [
-      {
-        "matcher": "Agent",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "bash .claude/hooks/agent-monitor.sh",
-            "timeout": 10
-          }
-        ]
-      },
-      {
-        "matcher": "Write|Edit|Read",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "bash .claude/hooks/pre-tool-use.sh",
-            "timeout": 10
-          }
-        ]
-      }
-    ],
-    "PostToolUse": [
-      {
-        "matcher": "Agent",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "bash .claude/hooks/agent-monitor.sh",
-            "timeout": 10
-          }
-        ]
-      },
-      {
-        "matcher": "Write",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "bash .claude/hooks/post-write.sh",
-            "timeout": 15
-          }
-        ]
-      }
-    ]
   }
 }

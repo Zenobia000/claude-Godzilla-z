@@ -1,122 +1,67 @@
 # 專案結構總覽
 
-> **版本:** v4.3 | **更新:** 2026-03-24
+> **定位:** 快速 POC 用的 Claude Code harness | **更新:** 2026-08-04
 
 ---
 
 ## 目錄結構
 
 ```
-claude_v2026/
+claude-Godzilla-z/
 ├── README.md                           # 系統總覽、快速開始
 ├── CLAUDE_TEMPLATE.md                  # 新專案初始化範本
 ├── PROJECT_STRUCTURE.md                # 本檔案
 ├── MCP_SETUP_GUIDE.md                  # MCP Server 設定指南
-├── .mcp.json                           # MCP Server 定義（不入 Git）
 ├── .mcp.json.windows.example           # MCP 範本（Windows）
 ├── .mcp.json.linux.example             # MCP 範本（Linux）
 │
 ├── .claude/                            # Claude Code 核心配置
-│   ├── settings.json                   # 專案設定（權限、StatusLine、Model）
-│   ├── settings.local.json             # 個人設定（MCP 啟用）
-│   ├── WORKFLOW.md                     # 開發流程指南
-│   ├── statusline.sh                   # StatusLine bash 腳本（Windows）
-│   ├── statusline-linux.sh            # StatusLine bash 腳本（Linux）
-│   ├── statusline-go.exe              # StatusLine Go 備用
-│   ├── SOP.md                          # 設定 SOP
+│   ├── CLAUDE.md                       # 專案入口、元件責任、維護契約
+│   ├── WORKFLOW.md                     # Rules／Skills／Agents 三層協作模型
+│   ├── ABLATION.md                     # 常駐面消融紀錄與失敗證據登記
+│   ├── README.md                       # `.claude/` 生態系責任分層
+│   ├── OUTPUT_STYLES.md                # Output Style 使用說明
+│   ├── STATUSLINE_GUIDE.md             # StatusLine 平台差異與測試
+│   ├── settings.json                   # 最小權限基線 + 敏感路徑 deny
+│   ├── statusline.sh                   # StatusLine（Windows）
+│   ├── statusline-linux.sh             # StatusLine（Linux/WSL2）
 │   │
-│   ├── agents/          (13 個)
-│   │   ├── general-purpose.md          # 通用問題解決
-│   │   ├── planner.md                  # 功能規劃（opus）
-│   │   ├── architect.md                # 系統架構（opus）
-│   │   ├── code-quality-specialist.md  # 程式碼審查
-│   │   ├── security-infrastructure-auditor.md  # 安全稽核
-│   │   ├── test-automation-engineer.md # 測試自動化
-│   │   ├── tdd-guide.md               # TDD 引導
-│   │   ├── e2e-validation-specialist.md # E2E 測試
-│   │   ├── build-error-resolver.md     # 建置錯誤修復
-│   │   ├── refactor-cleaner.md         # 死碼清理
-│   │   ├── documentation-specialist.md # 文檔專家
-│   │   ├── deployment-expert.md        # 部署專家
-│   │   └── workflow-template-manager.md # 模板管理
+│   ├── rules/           (5 個，自動載入，共 175 行)
+│   │   ├── golden-rules.md             # 跨技術棧底線
+│   │   ├── git-workflow.md             # Git 常駐鐵律
+│   │   ├── thinking-boundary.md        # 速通／深思模式；雛型期不前置治理窮舉
+│   │   ├── language-register.md        # 文件的 L1/L2/L3 語域
+│   │   └── plain-language-answers.md   # 對話語域：何時翻到決策層
 │   │
-│   ├── commands/        (17 個)
-│   │   ├── plan.md                     # 規劃實作步驟
-│   │   ├── tdd.md                      # 測試驅動開發
-│   │   ├── build-fix.md               # 修復建置錯誤
-│   │   ├── e2e.md                      # E2E 測試
-│   │   ├── verify.md                   # 全面驗證
-│   │   ├── refactor-clean.md          # 死碼清理
-│   │   ├── review-code.md             # 程式碼審查
-│   │   ├── check-quality.md           # 品質評估
-│   │   ├── learn.md                    # 擷取模式
-│   │   ├── save-session.md            # 儲存 session
-│   │   ├── task-init.md               # 專案初始化
-│   │   ├── task-status.md             # 專案狀態（含時間追蹤）
-│   │   ├── task-next.md               # 下個任務（自動追蹤時間）
-│   │   ├── time-log.md                # 開發時間報表
-│   │   ├── hub-delegate.md            # Agent 委派
-│   │   ├── suggest-mode.md            # 建議密度
-│   │   └── template-check.md          # 模板合規
+│   ├── skills/          (23 個，按需載入)
+│   │   ├── INDEX.md                    # 情境路由表
+│   │   ├── adhd-dev-mode/              # 輸出密度治理
+│   │   ├── sunnydata-*/       (14)     # 軟體工程能力庫
+│   │   └── community-*/       (9)      # 社群 UI／UX／效能能力
 │   │
-│   ├── rules/           (7 個，自動載入)
-│   │   ├── coding-style.md            # 編碼風格
-│   │   ├── development-workflow.md    # 開發流程
-│   │   ├── git-workflow.md            # Git 流程
-│   │   ├── security.md               # 安全規範
-│   │   ├── testing.md                 # 測試要求
-│   │   ├── performance.md            # 效能優化
-│   │   └── patterns.md               # 通用模式
+│   ├── agents/          (8 個，需要隔離時才派出)
+│   │   ├── architect.md                # 唯讀架構第二意見
+│   │   ├── code-quality-specialist.md  # 唯讀變更審查
+│   │   ├── security-infrastructure-auditor.md
+│   │   ├── test-automation-engineer.md
+│   │   ├── end-to-end-validation-specialist.md
+│   │   ├── build-error-resolver.md
+│   │   ├── documentation-specialist.md
+│   │   └── deployment-expert.md
 │   │
-│   ├── skills/          (8 個精選)
-│   │   ├── INDEX.md                   # 索引與擴充指南
-│   │   ├── tdd-workflow/              # TDD 流程
-│   │   ├── api-design/               # API 設計
-│   │   ├── security-review/          # 安全審查
-│   │   ├── e2e-testing/              # E2E 測試
-│   │   ├── coding-standards/         # 編碼標準
-│   │   ├── deep-research/            # 深度研究
-│   │   ├── deployment-patterns/      # 部署模式
-│   │   └── docker-patterns/          # Docker 模式
+│   ├── output-styles/
+│   │   └── 15-Vision-output.md         # 唯一呈現樣式
 │   │
-│   ├── output-styles/   (15 個)
-│   │   ├── 01-prd-product-spec.md    # PRD
-│   │   ├── 02-bdd-scenario-spec.md   # BDD
-│   │   ├── ...                        # 03-15
-│   │   └── README.md                 # 使用指南
+│   ├── hooks/
+│   │   └── README.md                   # Hook 設計指南（零註冊）
 │   │
-│   ├── mcp-configs/
-│   │   └── README.md                  # MCP 推薦清單
-│   │
-│   ├── hooks/                         # Hook 腳本庫
-│   ├── taskmaster-data/               # 持久化資料（自動產生）
-│   │   ├── wbs.md                     # WBS 任務清單
-│   │   ├── project.json               # 專案元資料
-│   │   ├── timelog.jsonl              # 開發時間日誌（每 session 一筆）
-│   │   ├── wbs-history.log           # WBS 更新審計軌跡
-│   │   ├── .session-start             # 暫存：session 開始時間
-│   │   ├── .session-snapshot          # 暫存：最新 session 快照
-│   │   └── .current-task              # 暫存：當前進行中的任務編號
-│   ├── context/                       # 跨 Agent 上下文共享
-│   │   ├── decisions/                 # 技術決策記錄
-│   │   ├── quality/                   # 品質報告
-│   │   ├── testing/                   # 測試報告
-│   │   ├── e2e/                       # E2E 報告
-│   │   ├── security/                  # 安全報告
-│   │   ├── deployment/               # 部署報告
-│   │   ├── docs/                      # 文檔報告
-│   │   └── workflow/                  # 工作流報告
-│   │
-│   ├── coordination/                  # Agent 協調
-│   │   └── human_ai_collaboration_config.md
-│   │
-│   └── plugins/
-│       └── config.json
+│   └── mcp-configs/
+│       └── README.md                   # MCP 推薦清單
 │
-├── VibeCoding_Workflow_Templates/     # 工作流模板庫（17 個）
+├── VibeCoding_Workflow_Templates/     # 17 份工程文件模板（選用，不是待辦清單）
 │   ├── INDEX.md                       # 模板索引
 │   ├── 01_workflow_manual.md          # 流程總覽
-│   ├── 02_project_brief_and_prd.md   # PRD
+│   ├── 02_project_brief_and_prd.md    # PRD
 │   ├── 03_behavior_driven_development_guide.md  # BDD
 │   ├── 04_architecture_decision_record_template.md  # ADR
 │   ├── 05_architecture_and_design_document.md  # 架構設計
@@ -132,31 +77,57 @@ claude_v2026/
 │   ├── 15_documentation_and_maintenance_guide.md  # 文檔維護
 │   ├── 16_wbs_development_plan_template.md  # WBS 計劃
 │   ├── 17_frontend_information_architecture_template.md  # 前端 IA
-│   └── output_style.md               # Output Style 參考
+│   └── output_style.md                # Output Style 參考
 │
-├── everything-claude/                 # 參考資源庫（不直接使用）
-│   └── everything-claude-code/
-│       ├── agents/                    # 更多 agent 參考
-│       ├── skills/     (95 個)       # 更多 skill 可按需複製
-│       ├── rules/      (45 個)       # 語言特定規則可按需複製
-│       ├── commands/                  # 更多 command 參考
-│       └── mcp-configs/              # MCP 設定參考
-│
-└── status-line/                       # StatusLine 原始碼參考
-    └── claude-statusline/
+└── .out-of-scope/                     # 已審視並拒絕的機制與理由
+    ├── README.md
+    ├── hook-driven-project-state.md   # 為何不用 Hook 存專案狀態
+    ├── workflow-output-styles.md      # 為何 output-styles 不承載流程
+    └── plugin-packaging.md            # 為何不打包成 plugin
 ```
+
+### 已移除的目錄（v6.0-poc）
+
+| 目錄 | 為何移除 |
+| :--- | :--- |
+| `.claude/commands/` (16) | 把工作流寫死成命令序列；前緣模型不需要，反而壓縮解空間 |
+| `.claude/output-styles/` 01–14 (18) | 實際上是文件模板與流程，設成全域樣式會污染每個回答 |
+| `.claude/hooks/*.sh` (6) | 在 SessionStart／UserPromptSubmit 注入內容、寫入工作樹 |
+| `.claude/context/` | 手動維護的 subagent 摘要影子文件 |
+| `.claude/coordination/` | 人機協作設定檔，內容已由 rules 承接 |
+| `.claude/taskmaster-data/` | session 快照與 timelog，屬暫態狀態 |
+| `.claude/rules/` 7 檔 | coding-style／testing／security／performance／patterns／development-workflow／subagent-context——多數是舊模型的補丁或全域規範的重複 |
+
+完整理由與消融方法見 [.claude/ABLATION.md](.claude/ABLATION.md)。
 
 ---
 
 ## 配置層次
 
-| 層級               | 檔案                            | 用途                           |
-| :----------------- | :------------------------------ | :----------------------------- |
-| **專案共用** | `.claude/settings.json`       | 權限、StatusLine、Model、Hooks |
-| **個人設定** | `.claude/settings.local.json` | 個人權限、MCP 啟用清單         |
-| **MCP 定義** | `.mcp.json`                   | MCP Server 設定（含 API keys） |
-| **規則**     | `.claude/rules/*.md`          | 自動載入，每次對話生效         |
-| **技能**     | `.claude/skills/*/SKILL.md`   | 領域知識，按需參考             |
+| 層級 | 檔案 | 用途 |
+| :--- | :--- | :--- |
+| **專案共用** | `.claude/settings.json` | 最小權限基線、敏感路徑 deny、StatusLine |
+| **個人設定** | `.claude/settings.local.json` | 個人權限、MCP 啟用清單（不入版控） |
+| **MCP 定義** | `.mcp.json` | MCP Server 設定（含 API keys，不入版控） |
+| **常駐規則** | `.claude/rules/*.md` | 自動載入，每次對話生效 |
+| **按需能力** | `.claude/skills/*/SKILL.md` | 任務語意命中才載入 |
+| **漸進揭露** | `.claude/skills/*/references/*.md` | SKILL.md 指示時才讀 |
+
+---
+
+## 兩條路線
+
+| | 本 repo（main） | Pilot／企業級 |
+| :--- | :--- | :--- |
+| 分支 | `main` | `refactor/document-driven-ecosystem` |
+| 定位 | 快速 POC | 文件驅動、證據閉環 |
+| 流程入口 | 無，能力按需載入 | `/intake → /specify → /deliver → /verify` |
+| 需求權威 | 無 | `requirements_tracker.xlsx` ①需求決策 |
+| 硬閘 | 無 | owner 簽核後才可工程化 |
+| 追溯 | 不強制 | `SRC-* → REQ-* → ACPT-* → 證據` 主鏈 |
+| 文件模板 | 17 份經典模板 | 依九層分類重組版 ＋ 三本追蹤簿 |
+
+兩條線共用同一套 harness（`rules/`、`skills/`、`agents/`、`ABLATION.md`）。哪些檔案必須雙線一致、哪些刻意不一致，見 [.claude/ABLATION.md](.claude/ABLATION.md) 的「與 Pilot 路線的同步」。
 
 ---
 
@@ -165,3 +136,8 @@ claude_v2026/
 ### 新增 MCP Server
 
 見 [MCP_SETUP_GUIDE.md](MCP_SETUP_GUIDE.md)
+
+### 新增 Skill / Rule / Agent
+
+責任判斷表見 [.claude/skills/INDEX.md](.claude/skills/INDEX.md) 的「責任檢查」。
+新增常駐規則前必讀 [.claude/ABLATION.md](.claude/ABLATION.md)——填不出失敗證據的不該常駐。

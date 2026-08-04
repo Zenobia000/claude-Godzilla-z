@@ -1,4 +1,7 @@
 #!/bin/bash
+# Ported from ~/.claude/statusline.sh (global config). Keep behavior in sync
+# when the global script changes. Unlike the global copy, this version does
+# NOT write session snapshots (no taskmaster-data persistence in this repo).
 set -f
 
 input=$(cat)
@@ -111,6 +114,7 @@ build_bar() {
 iso_to_epoch() {
     local iso_str="$1"
     local epoch
+    [ -z "$iso_str" ] || [ "$iso_str" = "null" ] && return 1
     epoch=$(date -d "${iso_str}" +%s 2>/dev/null)
     if [ -n "$epoch" ]; then
         echo "$epoch"
@@ -128,24 +132,22 @@ iso_to_epoch() {
     return 1
 }
 
+# $1: unix epoch seconds, $2: time|datetime
 format_reset_time() {
-    local iso_str="$1"
+    local epoch="$1"
     local style="$2"
-    [ -z "$iso_str" ] || [ "$iso_str" = "null" ] && return
-
-    local epoch
-    epoch=$(iso_to_epoch "$iso_str")
-    [ -z "$epoch" ] && return
+    [ -z "$epoch" ] || [ "$epoch" = "null" ] && return
+    case "$epoch" in *[!0-9]*) return ;; esac
 
     local result=""
     case "$style" in
         time)
             result=$(date -d "@$epoch" +"%H:%M" 2>/dev/null)
-            [ -z "$result" ] && result=$(date -j -r "$epoch" +"%l:%M%p" 2>/dev/null | sed 's/^ //; s/\.//g' | tr '[:upper:]' '[:lower:]')
+            [ -z "$result" ] && result=$(date -j -r "$epoch" +"%H:%M" 2>/dev/null)
             ;;
         datetime)
             result=$(date -d "@$epoch" +"%m/%d %H:%M" 2>/dev/null)
-            [ -z "$result" ] && result=$(date -j -r "$epoch" +"%b %-d, %l:%M%p" 2>/dev/null | sed 's/  / /g; s/^ //; s/\.//g' | tr '[:upper:]' '[:lower:]')
+            [ -z "$result" ] && result=$(date -j -r "$epoch" +"%m/%d %H:%M" 2>/dev/null)
             ;;
     esac
     printf "%s" "$result"
@@ -311,36 +313,66 @@ if $needs_refresh; then
         fi
     fi
     if [ -z "$usage_data" ] && [ -f "$cache_file" ]; then
-        usage_data=$(cat "$cache_file" 2>/dev/null)
+        # Stale fallback capped at 10 minutes; older data is dropped rather
+        # than displayed as current.
+        cache_mtime=$(stat -c %Y "$cache_file" 2>/dev/null || stat -f %m "$cache_file" 2>/dev/null)
+        now=$(date +%s)
+        if [ $(( now - cache_mtime )) -le 600 ] 2>/dev/null; then
+            usage_data=$(cat "$cache_file" 2>/dev/null)
+        fi
     fi
 fi
 
 # ── Rate limit lines ────────────────────────────────────
+# Source priority per window: official stdin rate_limits (updated on every
+# API response — same data as /usage) → OAuth usage endpoint (cached).
+# Extra usage (💳) only exists on the endpoint.
 rate_lines=""
+bar_width=10
 
+usage_valid=false
 if [ -n "$usage_data" ] && echo "$usage_data" | jq -e . >/dev/null 2>&1; then
-    bar_width=10
+    usage_valid=true
+fi
 
-    five_hour_pct=$(echo "$usage_data" | jq -r '.five_hour.utilization // 0' | awk '{printf "%.0f", $1}')
-    five_hour_reset_iso=$(echo "$usage_data" | jq -r '.five_hour.resets_at // empty')
-    five_hour_reset=$(format_reset_time "$five_hour_reset_iso" "time")
+five_hour_pct=$(echo "$input" | jq -r '.rate_limits.five_hour.used_percentage // empty')
+five_hour_reset=$(echo "$input" | jq -r '.rate_limits.five_hour.resets_at // empty')
+seven_day_pct=$(echo "$input" | jq -r '.rate_limits.seven_day.used_percentage // empty')
+seven_day_reset=$(echo "$input" | jq -r '.rate_limits.seven_day.resets_at // empty')
+
+if [ -z "$five_hour_pct" ] && $usage_valid; then
+    five_hour_pct=$(echo "$usage_data" | jq -r '.five_hour.utilization // empty')
+    five_hour_reset=$(iso_to_epoch "$(echo "$usage_data" | jq -r '.five_hour.resets_at // empty')")
+fi
+if [ -z "$seven_day_pct" ] && $usage_valid; then
+    seven_day_pct=$(echo "$usage_data" | jq -r '.seven_day.utilization // empty')
+    seven_day_reset=$(iso_to_epoch "$(echo "$usage_data" | jq -r '.seven_day.resets_at // empty')")
+fi
+
+if [ -n "$five_hour_pct" ]; then
+    five_hour_pct=$(printf '%s' "$five_hour_pct" | awk '{printf "%.0f", $1}')
     five_hour_bar=$(build_bar "$five_hour_pct" "$bar_width")
     five_hour_pct_color=$(color_for_pct "$five_hour_pct")
     five_hour_pct_fmt=$(printf "%3d" "$five_hour_pct")
+    five_hour_reset_fmt=$(format_reset_time "$five_hour_reset" "time")
 
     rate_lines+="${white}⚡${reset}  ${five_hour_bar} ${five_hour_pct_color}${five_hour_pct_fmt}%${reset}"
-    [ -n "$five_hour_reset" ] && rate_lines+=" ${dim}🔄${reset}  ${white}${five_hour_reset}${reset}"
+    [ -n "$five_hour_reset_fmt" ] && rate_lines+=" ${dim}🔄${reset}  ${white}${five_hour_reset_fmt}${reset}"
+fi
 
-    seven_day_pct=$(echo "$usage_data" | jq -r '.seven_day.utilization // 0' | awk '{printf "%.0f", $1}')
-    seven_day_reset_iso=$(echo "$usage_data" | jq -r '.seven_day.resets_at // empty')
-    seven_day_reset=$(format_reset_time "$seven_day_reset_iso" "datetime")
+if [ -n "$seven_day_pct" ]; then
+    seven_day_pct=$(printf '%s' "$seven_day_pct" | awk '{printf "%.0f", $1}')
     seven_day_bar=$(build_bar "$seven_day_pct" "$bar_width")
     seven_day_pct_color=$(color_for_pct "$seven_day_pct")
     seven_day_pct_fmt=$(printf "%3d" "$seven_day_pct")
+    seven_day_reset_fmt=$(format_reset_time "$seven_day_reset" "datetime")
 
-    rate_lines+="\n${white}📅${reset}  ${seven_day_bar} ${seven_day_pct_color}${seven_day_pct_fmt}%${reset}"
-    [ -n "$seven_day_reset" ] && rate_lines+=" ${dim}🔄${reset}  ${white}${seven_day_reset}${reset}"
+    [ -n "$rate_lines" ] && rate_lines+="\n"
+    rate_lines+="${white}📅${reset}  ${seven_day_bar} ${seven_day_pct_color}${seven_day_pct_fmt}%${reset}"
+    [ -n "$seven_day_reset_fmt" ] && rate_lines+=" ${dim}🔄${reset}  ${white}${seven_day_reset_fmt}${reset}"
+fi
 
+if $usage_valid; then
     extra_enabled=$(echo "$usage_data" | jq -r '.extra_usage.is_enabled // false')
     if [ "$extra_enabled" = "true" ]; then
         extra_pct=$(echo "$usage_data" | jq -r '.extra_usage.utilization // 0' | awk '{printf "%.0f", $1}')
@@ -349,26 +381,9 @@ if [ -n "$usage_data" ] && echo "$usage_data" | jq -e . >/dev/null 2>&1; then
         extra_bar=$(build_bar "$extra_pct" "$bar_width")
         extra_pct_color=$(color_for_pct "$extra_pct")
 
-        rate_lines+="\n${white}💳${reset}  ${extra_bar} ${extra_pct_color}\$${extra_used}${dim}/${reset}${white}\$${extra_limit}${reset}"
+        [ -n "$rate_lines" ] && rate_lines+="\n"
+        rate_lines+="${white}💳${reset}  ${extra_bar} ${extra_pct_color}\$${extra_used}${dim}/${reset}${white}\$${extra_limit}${reset}"
     fi
-fi
-
-# ── Persist session duration for time tracking ──────────
-# Write current session's duration to a temp file so session-start can finalize it
-timelog_dir="$cwd/.claude/taskmaster-data"
-if [ -d "$timelog_dir" ] && [ "$total_duration_ms" -gt 0 ] 2>/dev/null; then
-    session_id=$(echo "$input" | jq -r '.session_id // ""')
-    today=$(date '+%Y-%m-%d' 2>/dev/null)
-    start_time=""
-    [ -f "$timelog_dir/.session-start" ] && start_time=$(cat "$timelog_dir/.session-start" 2>/dev/null | head -1)
-    total_cost_raw=$(echo "$input" | jq -r '.cost.total_cost_usd // 0')
-    # Read current task if any
-    current_task=""
-    [ -f "$timelog_dir/.current-task" ] && current_task=$(cat "$timelog_dir/.current-task" 2>/dev/null | head -1)
-    # Write snapshot (overwrite each time)
-    cat > "$timelog_dir/.session-snapshot" 2>/dev/null <<SNAPSHOT
-{"session_id":"${session_id}","date":"${today}","start":"${start_time}","duration_ms":${total_duration_ms},"cost_usd":${total_cost_raw},"task":"${current_task}"}
-SNAPSHOT
 fi
 
 # ── Output ──────────────────────────────────────────────
