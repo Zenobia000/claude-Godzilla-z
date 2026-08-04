@@ -1,2 +1,17 @@
+# Normalize all text to LF in the repository
+* text=auto eol=lf
+
 # Shell scripts must keep LF line endings (cross-platform)
 *.sh text eol=lf
+
+# Binary assets — never munge line endings
+*.xlsx binary
+*.docx binary
+*.doc binary
+*.exe binary
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.pdf binary

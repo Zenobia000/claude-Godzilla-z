@@ -1,0 +1,95 @@
+# OpenAPI 契約骨架 — 複製到專案後依命名規範改名：openapi-<service>-v<N>.yaml
+# 設計約定（錯誤格式、分頁、驗證規則）見 api_spec.md；契約以本檔為準，文件不重複維護端點清單。
+openapi: 3.1.0
+info:
+  title: "[服務名稱] API"
+  version: 1.0.0
+  description: |
+    對應需求：FR-***
+    變更政策：向後相容變更遞增 minor；破壞性變更升 major 並依 api_spec.md §1 的棄用流程。
+servers:
+  - url: https://api.example.com/api/v1
+paths:
+  /work-orders:
+    get:
+      summary: 列出工單
+      operationId: listWorkOrders
+      parameters:
+        - name: status
+          in: query
+          schema:
+            $ref: "#/components/schemas/WorkOrderStatus"
+        - name: page
+          in: query
+          schema: { type: integer, minimum: 1, default: 1 }
+      responses:
+        "200":
+          description: 成功
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    type: array
+                    items: { $ref: "#/components/schemas/WorkOrder" }
+                  total: { type: integer }
+        "401": { $ref: "#/components/responses/Unauthorized" }
+    post:
+      summary: 建立工單
+      operationId: createWorkOrder
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: "#/components/schemas/WorkOrderCreate" }
+      responses:
+        "201":
+          description: 已建立
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/WorkOrder" }
+        "422": { $ref: "#/components/responses/ValidationError" }
+components:
+  schemas:
+    WorkOrderStatus:
+      type: string
+      enum: [draft, pending, assigned, in_progress, completed, closed, cancelled]
+      description: 合法值與轉移規則見 lld.md §5 狀態機
+    WorkOrder:
+      type: object
+      required: [id, status, createdAt]
+      properties:
+        id: { type: string, format: uuid }
+        status: { $ref: "#/components/schemas/WorkOrderStatus" }
+        createdAt: { type: string, format: date-time }
+    WorkOrderCreate:
+      type: object
+      required: [address]
+      properties:
+        address: { type: string, minLength: 1 }
+    Error:
+      type: object
+      required: [code, message]
+      properties:
+        code: { type: string, description: 機器可判讀錯誤碼，清單見 api_spec.md §3 }
+        message: { type: string }
+        traceId: { type: string }
+  responses:
+    Unauthorized:
+      description: 未認證
+      content:
+        application/json:
+          schema: { $ref: "#/components/schemas/Error" }
+    ValidationError:
+      description: 欄位驗證失敗
+      content:
+        application/json:
+          schema: { $ref: "#/components/schemas/Error" }
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+security:
+  - bearerAuth: []

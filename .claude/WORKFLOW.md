@@ -1,161 +1,130 @@
-# 開發工作流指南
+# 文件驅動開發工作流
 
-## 完整開發流程
+本模板不再用 Hook 維護第二套 TaskMaster 狀態。開發主線由四個可手動觸發的 Action Skills 串接：
 
-```
-專案初始化 → 任務管理循環 → 結束保存
-```
-
-### Phase 0: 專案初始化
-
-```bash
-/task-init          # 建立 WBS、分析複雜度、配置 Hub 策略
-```
-
-產出：WBS 任務清單、專案配置、里程碑規劃
-
-### Phase 1: 任務循環（每個任務重複）
-
-```
-/task-next          # 從 WBS 取下一個任務（自動開始時間追蹤）
-    |
-/plan               # 規劃該任務的實作步驟（等待確認）
-    |
-/tdd                # 測試驅動開發（Red → Green → Refactor）
-    |
-/build-fix          # 修復建置錯誤（如有）
-    |
-/review-code        # 程式碼審查
-    |
-/e2e                # 端到端測試（關鍵流程）
-    |
-/verify full        # 全面驗證（建置+型別+lint+測試+安全）
-    |
-/task-status        # 確認進度（含預估 vs 實際時間），回到 /task-next
+```text
+Excel／訪談／既有系統
+          ↓
+       /intake
+          ↓
+來源登錄＋需求候選＋待確認事項
+          ↓
+       /specify
+          ↓
+PRD／BDD／SAD／ADR／Traceability
+          ↓
+       /deliver
+          ↓
+可驗收的垂直切片＋程式碼＋測試
+          ↓
+       /verify
+          ↓
+證據、缺口與真實完成狀態
 ```
 
-### Phase 2: 收尾
+## 這個 repo 的定位
 
-```bash
-/time-log           # 查看今日/累計開發時間
-/verify pre-pr      # PR 前完整檢查（含安全掃描）
-/save-session       # 儲存 session 狀態供下次恢復
-```
+這是**文件驅動開發的啟動寶（startup kit）**：只放可重用的模板、`rules/` 與 `skills/`，**不放任何專案的 Excel 或需求資料**。每次開新專案把它當基底，實際產出長在你的專案裡。
 
----
+流程最上游的「Excel／訪談／既有系統」是你**每個專案自己帶進來的輸入**（需求訪談表、業務 Excel、舊系統文件），住在你的實際專案，不在這個 repo。你在專案裡維護的需求決策，權威是 `requirements_tracker.xlsx` ①需求決策（③Gate 簽核、②決策沿革記變更）。先前隨附的 SmartLock 四本 Excel 只是一份「填好的範例」，已抽離；現行追蹤層是三個角色追蹤簿——**移除的是範例，不是 Excel 這個概念**。
 
-## 快速模式（小功能/Bug 修復）
+## 四個入口
 
-```
-/plan [描述]  →  /tdd  →  /verify quick
-```
+| 入口 | 何時使用 | 主要輸入 | 完成條件 |
+|---|---|---|---|
+| `/intake` | 新專案、需求訪談表、Excel、既有資料進件 | 原始來源與權威 owner | 來源座標、穩定 ID、①需求決策已種好 `DEC-*` 待 owner 拍板 |
+| `/specify` | 將白話需求工程化 | **已由 owner 核准的需求決策**、驗收、限制 | 只產生當前階段必要的工程契約，ID 互相連接 |
+| `/deliver` | 規格已足以實作 | 核准範圍與驗收標準 | 一個可測的垂直切片完成，未偷改範圍 |
+| `/verify` | 任務、PR、里程碑或上線前 | 變更、驗收標準、測試環境 | 實際證據支持狀態；未驗證部分清楚標示 |
 
----
+四個 Skill 設為手動呼叫，是為了保留人類決定工作階段與變更範圍的控制權。它們會視需要載入除錯、測試、安全、API、UI 或架構等能力 Skill。
 
-## 指令速查
+**需求決策 vs 工程決策的硬邊界**：優先序、範圍、里程碑、Gate、業務驗收屬**需求決策**，由產品 owner 於 `requirements_tracker.xlsx` ①需求決策拍板（③Gate 簽核），AI 不得自動衍生。Pilot 階段起，`/specify` 在 owner 簽核前不得把需求工程化（放行檢查清單唯一權威：`VibeCoding_Workflow_Templates/_meta/workflow_manual.md` §8）；雛型期只需骨架列，不打斷迭代。這條線與 [`rules/language-register.md`](rules/language-register.md) 的 L1（業務）→ L2（中介）→ L3（工程）分水嶺是同一條。
 
-### 核心工作流（按使用順序）
+## 文件深度
 
-| 指令 | 用途 | 常用參數 |
-| :--- | :--- | :--- |
-| `/task-init` | 專案初始化 | |
-| `/task-next` | 取下一個任務（自動追蹤時間） | |
-| `/task-status` | 查看專案進度（含時間追蹤） | `--detailed`, `--metrics` |
-| `/time-log` | 開發時間報表 | `--today`, `--by-task`, `--week`, `--month` |
-| `/plan` | 規劃實作步驟 | [功能描述] |
-| `/tdd` | 測試驅動開發 | [功能描述] |
-| `/build-fix` | 修復建置錯誤 | |
-| `/review-code` | 程式碼審查 | [路徑] |
-| `/e2e` | E2E 測試 | [流程描述] |
-| `/verify` | 全面驗證 | `quick`, `full`, `pre-commit`, `pre-pr` |
+不要一開始生成整套企業文件。文件深度跟著**開發階段**走——實務上多數專案從模糊需求靠雛型迭代出來，文件在階段升級時才補齊：
 
-### 輔助指令
+### 雛型（Prototype）
 
-| 指令 | 用途 |
-| :--- | :--- |
-| `/hub-delegate` | 委派 agent 執行任務 |
-| `/check-quality` | 品質評估 |
-| `/refactor-clean` | 死碼清理 |
-| `/template-check` | 模板合規檢查 |
-| `/time-log` | 開發時間報表（每日/每任務） |
-| `/suggest-mode` | 調整建議密度 |
-| `/learn` | 擷取可重用模式 |
-| `/save-session` | 儲存 session |
+模糊需求、快速迭代、可逆實驗。心流優先：允許直接對話迭代，Action Skills 是可選入口、不是關卡。
 
----
+- 來源／問題與影響
+- 可驗收行為或重現步驟
+- 需求追蹤簿 ①需求決策留 `DEC-*` 骨架列
+- 最小設計說明（回不了頭的決策才建 ADR）
+- 實作、回歸測試與證據
 
-## Agent 使用時機
+### Pilot／客戶驗證
 
-| 場景 | 自動使用的 Agent |
-| :--- | :--- |
-| 複雜功能需求 | planner (opus) |
-| 架構決策 | architect (opus) |
-| 寫完程式碼後 | code-quality-specialist |
-| Bug 修復/新功能 | tdd-guide |
-| 建置失敗 | build-error-resolver |
-| 安全敏感程式碼 | security-infrastructure-auditor |
-| E2E 測試 | e2e-validation-specialist |
-| 死碼清理 | refactor-cleaner |
-| 更新文檔 | documentation-specialist |
-| 部署上線 | deployment-expert |
-| 模板整合 | workflow-template-manager |
+給真實使用者驗、需要對外簽核。`/specify` 硬閘自此生效。依缺口補齊 Pilot 文件組：
 
----
+- BRD／PRD／SRS、驗收情境（GWT）
+- UX Flow／IA／UI Spec
+- SAD／ADR、API 契約（openapi.yaml）、DB 設計、LLD（code 地圖與狀態機）
+- Test Plan／UAT Plan、Deployment、Runbook
 
-## Rules 自動載入
+### 企業級（Enterprise）
 
-`.claude/rules/` 下的規則在每次對話中自動生效：
+法規、多團隊、高可用、稽核。
 
-| 規則 | 強制內容 |
-| :--- | :--- |
-| coding-style | 不可變性、檔案大小限制、錯誤處理 |
-| development-workflow | 研究先行、Plan-TDD-Review 流程 |
-| git-workflow | Conventional Commits、PR 流程 |
-| security | 每次 commit 前安全檢查清單 |
-| testing | 80%+ 覆蓋率、TDD 強制 |
-| performance | 模型選擇、context 管理 |
-| patterns | Repository Pattern、API 格式 |
+- 文件管制與核准
+- NFR、SDS、介面與事件契約
+- SIT／UAT、RACI、Monitoring、變更與證據紀錄
+- 權威矩陣與完整追溯
 
----
+企業文件全景請參考根目錄 Word 指南；可直接填寫的格式請使用 `VibeCoding_Workflow_Templates/`。
 
-## Skills 參考
+## Excel 與 Markdown
 
-`.claude/skills/` 下的 skill 提供特定領域的深度知識：
+Excel 是業務／PM 的視覺治理介面，Markdown 是工程契約與版本差異介面。兩者不是互相取代：
 
-| Skill | 搭配指令 |
-| :--- | :--- |
-| tdd-workflow | `/tdd` |
-| api-design | 06_api 模板 |
-| security-review | `/review-code` |
-| e2e-testing | `/e2e` |
-| coding-standards | 所有開發 |
-| deep-research | 複雜問題 |
-| deployment-patterns | `/verify pre-pr` |
-| docker-patterns | 容器化 |
+1. 一檔一個 owner：三個角色追蹤簿的分工見 `docs/document-system/workbook-guide.md`。
+2. 保留來源檔、sheet、row、cell/range 與來源列 ID。
+3. 用穩定 ID 串接（主鏈唯一權威見 [`docs/document-system/architecture.md`](../docs/document-system/architecture.md) §7.1）；`AC-*` 保留給既有架構選項，不作驗收 ID。
+4. 自動生成只覆寫標示為 generated 的區域，不覆寫人工核准或標註。
+5. 同步後執行 ID、連結、驗收與證據完整性檢查。
 
----
+追蹤層是三個**角色追蹤簿**（需求／工程／測試，各一個 owner），用法與欄位見 [`docs/document-system/workbook-guide.md`](../docs/document-system/workbook-guide.md)；所有權模型與自建生成活頁簿的注意事項見 [`docs/document-system/architecture.md`](../docs/document-system/architecture.md)。新專案從 owner 拍板的需求決策起手，不必複製任何特定領域的實例規模。
 
-## MCP Server
+## 協作模型：Rules × Skills × Agents
 
-| Server | 用途 |
-| :--- | :--- |
-| brave-search | 網路搜尋 |
-| context7 | 即時文檔查詢（套件文檔） |
-| github | GitHub 操作 |
-| playwright | 瀏覽器自動化 |
-| sequential-thinking | 鏈式推理 |
-| memory | 跨 session 記憶 |
+三者不是各自獨立的東西，而是三層疊在一起同時運作：
 
-更多可用 server 見 `.claude/mcp-configs/README.md`。
+- **Rules（恆定約束層）**：`rules/` 的 [golden-rules](rules/golden-rules.md)、[git-workflow](rules/git-workflow.md)、[language-register](rules/language-register.md) 約束**每一步**，不因階段或 Skill 改變。任何 Skill 或 Agent 的產出都不得違反；來源與 Rules 衝突時指出並以權威來源為準。
+- **Skills（方法／編排層）**：四個 Action Skill（`/intake→/verify`）是入口，決定當前階段做什麼，並依任務語意載入能力 Skill（`sunnydata-*`／`community-*`，如 debugging、testing、security、api-design）。能力 Skill 是「怎麼做」的知識，用完即走、不常駐 context。
+- **Agents（執行邊界層）**：由主 Agent（跟著 Skill 跑時）在需要**隔離 context／限制工具權限／安全平行／獨立第二意見**時，透過 Task 委派。Agent 是邊界，不是另一套流程——不在 Agent prompt 複製 Skill 的方法。
 
----
+一句話：**Skill 決定做什麼、Rule 約束怎麼做才合規、Agent 是需要隔離時的執行容器。**
 
-## 新專案設定指南
+### 階段 × 該考慮的 Agent
 
-1. 複製本模板目錄到新專案
-2. 複製 MCP 範本並填入 API keys:
-   - Windows: `cp .mcp.json.windows.example .mcp.json`
-   - Linux: `cp .mcp.json.linux.example .mcp.json`
-3. 根據專案語言，從 everything-claude 複製對應的語言規則到 `.claude/rules/`
-4. 根據專案需求，複製額外的 skills 到 `.claude/skills/`
-5. 啟動 Claude Code，執行 `/task-init`
+預設由主 Agent 直接做；只有隔離確有價值才委派，不為每件事都開 Agent。
+
+| 階段 | 主要 Skill | 典型可委派的 Agent |
+|---|---|---|
+| `/intake` | intake | `documentation-specialist`（大型來源正規化）|
+| `/specify` | specify | `architect`（架構第二意見）|
+| `/deliver` | deliver | `test-automation-engineer`、`build-error-resolver` |
+| `/verify` | verify | `code-quality-specialist`、`security-infrastructure-auditor`、`end-to-end-validation-specialist` |
+| 部署規劃 | 能力 Skill | `deployment-expert` |
+
+### 一個走查（新增一個付款 API）
+
+1. `/intake` 讀你專案的 Excel／訪談（L1 業務語域；Rules 要求來源可追溯），把需求種進 ①需求決策，等 owner 拍板優先序與範圍。
+2. owner 在 ①需求決策簽核 → `/specify` 過硬閘，在 L2 把需求翻成 FR/NFR、ACPT 與 API 契約；架構有疑慮時委派 `architect` 拿第二意見，載入 `sunnydata-api-design`。
+3. `/deliver` 實作垂直切片（L3 工程語域），載入 `sunnydata-testing`；build 壞了委派 `build-error-resolver`。
+4. `/verify` 跑實際測試與 trace，委派 `code-quality-specialist`、`security-infrastructure-auditor` 做隔離審查，用證據判定。
+
+全程 git-workflow 約束 commit／push／文件同步，language-register 約束每份產出的語域。
+
+## 狀態與證據
+
+至少分開記錄：
+
+- Requirement／Document：Draft、Review、Approved、Deprecated
+- Code reality：TO-BE、PARTIAL、AS-BUILT
+- Verification：Not run、Failed、Passed、Blocked
+- Evidence：命令、報告、檔案或外部紀錄位置
+
+只有最後一項有實際證據，才能宣告驗證通過。

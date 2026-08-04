@@ -29,12 +29,14 @@ The VibeCoding_Workflow_Templates/ directory contains workflow templates
 for enterprise-grade development lifecycle management.
 
 ### Claude Code Subagent System
-The .claude/ directory contains a comprehensive Subagent collaboration
-system designed for Claude Code integration.
+The .claude/ directory contains a document-driven Claude Code setup with
+on-demand skills, narrowly scoped optional agents, one golden-rule layer,
+and a minimal status line.
 
-### Linus Development Philosophy
-The development principles and technical debt prevention strategies
-are inspired by Linus Torvalds' development philosophy.
+### Document System Integration
+The template connects business-facing spreadsheet intake, engineering
+Markdown contracts, implementation evidence, and enterprise document
+selection guidance without treating every artifact as a second source of truth.
 
 ## Usage Rights
 

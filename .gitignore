@@ -5,6 +5,12 @@
 # Claude Code 個人設定
 .claude/settings.local.json
 
+# Claude Code 本機 runtime 與日誌（保留已提交的來源腳本／指南）
+.claude/runtime/
+.claude/cache/
+.claude/logs/*
+!.claude/logs/.gitignore
+
 # Node
 node_modules/
 
@@ -13,6 +19,9 @@ __pycache__/
 *.py[cod]
 venv/
 .env
+.env.*
+!.env.example
+!.env.*.example
 
 # OS
 .DS_Store
