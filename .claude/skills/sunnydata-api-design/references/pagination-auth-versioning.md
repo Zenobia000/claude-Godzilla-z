@@ -111,8 +111,12 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIs...
 
 # API key (for server-to-server)
 GET /api/v1/data
-X-API-Key: sk_live_abc123
+X-API-Key: <API_KEY>
 ```
+
+Never inline a real-looking key in docs or examples — placeholder-shaped values
+(`sk_live_...`, `AKIA...`) trip secret scanners and train readers to paste real
+ones. Use an angle-bracket placeholder and load the value from the environment.
 
 ### Authorization Patterns
 
