@@ -6,7 +6,7 @@
 
 ## 元件責任
 
-- `rules/`：每次工作都成立的規則。`golden-rules.md` 是跨技術棧的底線；`git-workflow.md` 是 Git／push／PR 操作規範；`language-register.md` 定義**文件**的業務／橋接／工程三層語域；`plain-language-answers.md` 定義**對話**的語域——何時該把答案翻到決策層、何時不可以；`thinking-boundary.md` 定義速通/深思模式與「哪些必須使用者親自思考、AI 只 provoke」。
+- `rules/`：**常駐**規則，只放每次工作都成立、而且與模型預設行為不同的約束；條件性細則一律下放到對應 skill 的 `references/`。`golden-rules.md` 是跨技術棧的底線；`git-workflow.md` 是 Git／push／PR 的常駐鐵律；`language-register.md` 定義**文件**的業務／橋接／工程三層語域；`plain-language-answers.md` 定義**對話**的語域——何時該把答案翻到決策層、何時不可以；`thinking-boundary.md` 定義速通/深思模式與「哪些必須使用者親自思考、AI 只 provoke」。常駐面的消融紀錄見 [ABLATION.md](ABLATION.md)。
 - `skills/`：能力資料庫與可重用方法；四個 Action Skills 是主要入口，路由見 `skills/INDEX.md`。
 - `agents/`：需要獨立 context、權限邊界、平行處理或專業驗證時才使用。
 - `output-styles/`：只改變回答呈現方式，不承載開發流程。
@@ -42,6 +42,7 @@ Excel 與 Markdown 都可以是權威來源，但同一欄位只能有一個 own
 4. **大型 skill 分層**：SKILL.md 超過約 200 行時拆 `references/`（漸進揭露），不整檔常駐。
 5. **來源可追**：新增 community/第三方 skill 必須在 `skills/INDEX.md` 記來源、授權與更新方式。
 6. **拒絕有紀錄**：退役或否決一個機制時，在 `.out-of-scope/` 留一檔（概念、理由、先例）；重新提案前先讀它。
+7. **常駐面要有證據**：新增任何常駐內容（`CLAUDE.md` 或 `rules/*.md`）時，必須在 [ABLATION.md](ABLATION.md) 的分類表新增一列並填「失敗證據」——這條規則是因為模型反覆犯了什麼錯才存在。填不出證據的內容不該常駐，改寫成 skill 按需載入。條件性內容（只在 commit、只在寫文件、只在除錯時才用得到）一律下放 `references/`。
 
 ## Runtime Context
 

@@ -12,6 +12,8 @@
 - 新增 `specify/references/bdd-format.md`：BDD 場景輕量格式（v8.0 移除 bdd_guide 模板後 `/specify` 步驟 4 的授權格式）。
 - 修正 stale 引用：specify `argument-hint` 與 skills/INDEX 撤下已刪除的模板名、rules 數量描述、CLAUDE_TEMPLATE 舊模板編號、PROJECT_STRUCTURE 目錄樹。
 - 新增 rules：`thinking-boundary.md`（速通/深思模式）；追蹤簿重構為三本角色追蹤簿。
+- 首次提示詞消融（ablation）：常駐面（`.claude/CLAUDE.md` + `rules/*.md`）369 → 223 行（−40%）。條件性內容下放對應 skill 的 `references/`——commit/PR 細則與 tangled history 恢復進 `sunnydata-branch-lifecycle/references/git-conventions.md`、程式碼↔文件同步觸發表進 `deliver/references/doc-sync-triggers.md`、L1/L2/L3 寫作指引與文件語域對照進 `specify/references/register-guide.md`。新增 `.claude/ABLATION.md` 記錄每條常駐規則的「失敗證據」，與維護契約第 7 條配套。
+- 修掉兩處常駐規則與 skill 的矛盾：`sunnydata-branch-lifecycle` 原本強制 commit body 走 WHY/WHAT/IMPACT（與 `git-workflow.md` 的「body 按需寫」衝突）、且在使用者已表態要 PR 時仍呈現四選項選單（與「commit→push→PR 為單一連貫操作」衝突）。同時將該 skill 拆為 SKILL.md（204 行）＋`references/`，符合維護契約第 4 條。
 - 補 dev→prod 晉升規範：`sunnydata-infrastructure` 新增 Environment Promotion（build-once-promote-artifact、per-env gate、expand-contract migration）；`deployment_and_operations` 模板新增 §2.1 環境晉升表，production 晉升證據接 `/verify`＋②執行證據＋③Gate 與 Release 狀態軸。
 
 ## Repo 版本

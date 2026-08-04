@@ -8,10 +8,12 @@ claude-Godzilla-z/
 │   ├── CLAUDE.md                 # 生態系入口與責任邊界
 │   ├── settings.json             # 最小設定；內建 Read/Edit 敏感路徑 deny
 │   ├── WORKFLOW.md               # 四階段文件驅動流程
-│   ├── rules/                    # 4 份常駐規則
+│   ├── ABLATION.md               # 常駐面消融紀錄與失敗證據登記
+│   ├── rules/                    # 5 份常駐規則（條件性細則下放 skill references/）
 │   │   ├── golden-rules.md       # 跨技術棧底線
-│   │   ├── git-workflow.md       # Git／push／PR 操作規範
+│   │   ├── git-workflow.md       # Git／push／PR 常駐鐵律
 │   │   ├── language-register.md  # L1/L2/L3 三層語域
+│   │   ├── plain-language-answers.md  # 對話語域：何時翻到決策層
 │   │   └── thinking-boundary.md  # 速通/深思模式與思考邊界
 │   ├── skills/
 │   │   ├── intake/               # Excel／訪談來源進件

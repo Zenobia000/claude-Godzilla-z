@@ -53,7 +53,8 @@
 
 ```text
 .claude/
-├── rules/          4 份常駐規則（golden、git-workflow、language-register、thinking-boundary）
+├── ABLATION.md     常駐面消融紀錄（每條常駐規則的失敗證據）
+├── rules/          5 份常駐規則（golden、git-workflow、language-register、plain-language-answers、thinking-boundary）
 ├── skills/         Action Skills + SunnyData + Community 能力庫
 ├── agents/         8 個隔離型專業角色
 ├── output-styles/  1 個純呈現樣式
@@ -63,7 +64,7 @@
 
 | 元件 | 現行責任 |
 |---|---|
-| Rules | Golden Rules、Git 工作流、語域分層、思考邊界四份恆定規則 |
+| Rules | 只放常駐且與模型預設不同的約束；條件性細則下放 skill `references/`。新增常駐內容須在 `ABLATION.md` 登記失敗證據 |
 | Skills | 方法、清單、模板路由與可重用能力 |
 | Agents | 獨立 context、工具／權限隔離、平行或第二意見 |
 | Output Style | 只改回答呈現，不承載 PRD／BDD／TDD 流程 |

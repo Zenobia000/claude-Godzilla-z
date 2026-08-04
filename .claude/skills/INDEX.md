@@ -69,7 +69,15 @@ Skills 是這套生態系的能力資料庫。它們分成「人工啟動的流�
 | Skill 作者工具 | `sunnydata-skill-authoring` | 新增、裁剪與驗證 Skill |
 | 白話解釋 | `sunnydata-plain-explain` | 把已查證的結論翻譯到讀者的決策層 |
 
-Action Skill 只載入當前步驟必要的能力；不要為了「完整」一次預載全部。大型 skill（skill-authoring、infrastructure、testing、api-design、code-review）已拆為精簡 SKILL.md＋`references/` 漸進揭露，依 SKILL.md 內的指示按需讀取。
+Action Skill 只載入當前步驟必要的能力；不要為了「完整」一次預載全部。大型 skill（skill-authoring、infrastructure、testing、api-design、code-review、branch-lifecycle）已拆為精簡 SKILL.md＋`references/` 漸進揭露，依 SKILL.md 內的指示按需讀取。
+
+常駐 `rules/` 下放到 skill `references/` 的條件性內容（只在特定動作才需要，不常駐）：
+
+| 內容 | 位置 | 常駐面留下的 |
+| :--- | :--- | :--- |
+| Commit message 細則、PR 前置與 body、tangled history 恢復 | `sunnydata-branch-lifecycle/references/git-conventions.md` | `rules/git-workflow.md` 的鐵律與兩條 commit 約束 |
+| 程式碼 ↔ 文件同步觸發表 | `deliver/references/doc-sync-triggers.md` | 「code 與 docs 同一個 PR」一句 |
+| L1/L2/L3 該與不該、文件語域對照 | `specify/references/register-guide.md` | 三層定義、L2 唯一通道鐵律、階段角色定位 |
 
 ## Community 能力庫
 
