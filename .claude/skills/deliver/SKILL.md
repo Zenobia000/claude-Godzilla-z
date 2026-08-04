@@ -35,7 +35,7 @@ rather than restating it as implementation rationale.
 
 ## Slice the work
 
-1. **Check the board first.** Read `engineering_tracker.xlsx` ③切片看板. If the
+1. **Check the board first.** Read `engineering_tracker.xlsx` ③ 切片看板. If the
    requested scope already has `SLC-*` rows, take the **frontier** — open,
    unclaimed, every blocker complete — and skip to step 4. Do not re-slice work
    that is already sliced.
@@ -105,7 +105,7 @@ Report completed `FR/NFR`, `ACPT` and `SCN` IDs, changed files, commands actuall
 results, unverified items, residual risks, and the recommended `/verify`
 invocation. Never report success from expectation or a subagent claim alone.
 
-Write the slice back to ③切片看板 as `待驗證` with its evidence link. **Only
+Write the slice back to ③ 切片看板 as `待驗證` with its evidence link. **Only
 `/verify` may write `完成`**, and only against real evidence — an implementer
 declaring its own slice done breaks
 [golden-rules](../../rules/golden-rules.md) §4.

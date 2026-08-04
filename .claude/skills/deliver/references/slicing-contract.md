@@ -53,6 +53,6 @@
 
 ## 寫進看板
 
-確認後才寫入 `engineering_tracker.xlsx` ③切片看板，**依賴順序寫**（blocker 在前），這樣 `Blocked by` 欄能引用到已存在的 `SLC-*`。
+確認後才寫入 `engineering_tracker.xlsx` ③ 切片看板，**依賴順序寫**（blocker 在前），這樣 `Blocked by` 欄能引用到已存在的 `SLC-*`。
 
 切片內容**不要**寫檔案路徑與程式碼片段——它們過期得很快。例外：原型產出的片段若比散文更精確地編碼了一個決策（狀態機、reducer、schema、型別形狀），就內嵌決策相關的最小部分，並註明來自原型。

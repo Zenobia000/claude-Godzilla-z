@@ -15,7 +15,7 @@
 - **執行層（execution layer）**：補上「規格 → 可切片執行」這一段，概念來源 [mattpocock/skills](https://github.com/mattpocock/skills)（MIT），各項均按本專案的硬閘與追溯結構重寫，來源與授權登錄於 `skills/INDEX.md`。
   - `WORKFLOW.md` 新增 **Context 衛生**：`/specify` 內部不得中斷、`/specify`→`/deliver` 與切片之間必須斷開、smart zone（~120k）逼近就換 session。
   - 新增 `sunnydata-codebase-design`（deep module 詞彙與接縫選擇規則）；`/specify` 插入步驟 5「決定測試接縫」，人工確認後才往下，並在步驟 7 加 ADR 三條件閘。
-  - 新增 `docs/document-system/ticket-tracker.md`：切片看板落在 `engineering_tracker.xlsx` ③切片看板，定義欄位、前緣查詢、認領協定與 **xlsx 併發寫入規則**（唯一寫入者、lock file、批次寫回、升級門檻）。追溯主鏈加入 `SLC-*`。
+  - 新增 `docs/document-system/ticket-tracker.md`：切片看板落在 `engineering_tracker.xlsx` ③ 切片看板，定義欄位、前緣查詢、認領協定與 **xlsx 併發寫入規則**（唯一寫入者、lock file、批次寫回、升級門檻）。追溯主鏈加入 `SLC-*`。
   - `/deliver` 改為「先看看板 → 沒切才切 → 人工確認 → 依賴順序寫入 → 動工前先認領」，並新增 `references/slicing-contract.md`（縱切、context-window 大小、依賴邊、wide refactor 的 expand-contract）。
   - `sunnydata-code-review` 補第二軸：Standards（含 Fowler 12 smell baseline）與 Spec 兩個子代理平行跑，禁止跨軸 rerank。
   - `/intake` 新增 `--questionnaire` 分支（`references/questionnaire-contract.md`）：答案在人身上而不在文件裡時，產出 L1 問卷交給業主；答覆回填保留來源座標，`核准` 仍屬 owner。

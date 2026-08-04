@@ -9,7 +9,7 @@
 | 項目 | 值 |
 |---|---|
 | 檔案 | `03_architecture/engineering_tracker.xlsx` |
-| 工作表 | `③切片看板` |
+| 工作表 | `③ 切片看板` |
 | Owner | 架構師／RD lead（與該檔既有 owner 一致） |
 | 上游 | `FR/NFR-*`、`SCN-*`（來自 `/specify`） |
 | 下游 | `/verify` 的證據紀錄 |

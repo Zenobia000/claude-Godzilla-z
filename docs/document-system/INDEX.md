@@ -23,7 +23,7 @@
 | `VibeCoding_Workflow_Templates/` | Authoring templates | 產生／更新工程文件 |
 | `VibeCoding_Workflow_Templates/01_requirements/requirements_tracker.xlsx` | 需求追蹤簿（需求決策權威）| owner 於 ①需求決策拍板優先序、範圍、核准，③Gate 簽核；`/specify` 硬閘（Pilot 起）的檢查對象 |
 | `01_requirements/requirements_tracker.xlsx`、`03_architecture/engineering_tracker.xlsx`、`05_qa/qa_tracker.xlsx` | 三個角色追蹤 Excel（PM/BA、架構師、QA）| 以 REQ→FR/NFR→TC 的 ID 骨幹串連；見 workbook-guide |
-| `03_architecture/engineering_tracker.xlsx` ③切片看板 | 切片狀態機（工程層）| `/deliver` 的 `SLC-*` 前緣、依賴與認領；契約見 [ticket-tracker.md](ticket-tracker.md) |
+| `03_architecture/engineering_tracker.xlsx` ③ 切片看板 | 切片狀態機（工程層）| `/deliver` 的 `SLC-*` 前緣、依賴與認領；契約見 [ticket-tracker.md](ticket-tracker.md) |
 
 逐文件、逐工作表與 27 類企業文件對照見 [artifact-map.md](artifact-map.md)。
 
