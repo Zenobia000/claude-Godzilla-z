@@ -17,7 +17,8 @@ claude-Godzilla-z/
 │
 ├── .claude/                            # Claude Code 核心配置
 │   ├── CLAUDE.md                       # 專案入口、元件責任、維護契約
-│   ├── WORKFLOW.md                     # Rules／Skills／Agents 三層協作模型
+│   ├── WORKFLOW.md                     # 流程結構：三層協作、context 邊界
+│   ├── PLAYBOOK.md                     # 流程用法：三條路線走查、決策點、常見錯誤
 │   ├── ABLATION.md                     # 常駐面消融紀錄與失敗證據登記
 │   ├── README.md                       # `.claude/` 生態系責任分層
 │   ├── OUTPUT_STYLES.md                # Output Style 使用說明
@@ -33,10 +34,10 @@ claude-Godzilla-z/
 │   │   ├── language-register.md        # 文件的 L1/L2/L3 語域
 │   │   └── plain-language-answers.md   # 對話語域：何時翻到決策層
 │   │
-│   ├── skills/          (23 個，按需載入)
+│   ├── skills/          (27 個，按需載入)
 │   │   ├── INDEX.md                    # 情境路由表
 │   │   ├── adhd-dev-mode/              # 輸出密度治理
-│   │   ├── sunnydata-*/       (14)     # 軟體工程能力庫
+│   │   ├── sunnydata-*/       (17)     # 軟體工程能力庫
 │   │   └── community-*/       (9)      # 社群 UI／UX／效能能力
 │   │
 │   ├── agents/          (8 個，需要隔離時才派出)

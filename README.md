@@ -12,7 +12,7 @@
 
 </div>
 
-> 一套開箱即用的 Claude Code 開發配置模板 — **23 個按需載入的 Skills、17 份工程文件模板、211 行常駐面**。
+> 一套開箱即用的 Claude Code 開發配置模板 — **27 個按需載入的 Skills、17 份工程文件模板、~210 行常駐面**。
 > 為快速 POC 設計：能力全都在，但不帶文件治理的硬邊界。複製到新專案，直接啟動。
 
 ---
@@ -53,7 +53,8 @@ ln -s "$(pwd)/.claude/skills/sunnydata-architecture-review" \
 ├── WORKFLOW.md            # Rules／Skills／Agents 三層怎麼一起運作
 ├── ABLATION.md            # 常駐面消融紀錄（每條規則的失敗證據）
 ├── rules/           (5)   # 永遠生效的常駐規則，共 175 行
-├── skills/          (23)  # 按需載入的能力庫（sunnydata-* / community-*）
+├── PLAYBOOK.md            # 三條路線走查、決策點、常見錯誤
+├── skills/          (27)  # 按需載入的能力庫（sunnydata-* / community-*）
 ├── agents/          (8)   # 需要隔離 context 或權限時才派出
 ├── output-styles/   (1)   # 只改呈現，不承載流程
 ├── hooks/                 # 零註冊，只留設計指南
@@ -98,9 +99,12 @@ ln -s "$(pwd)/.claude/skills/sunnydata-architecture-review" \
 | 前端 UI | `sunnydata-shadcn-ui`、`community-*` |
 | 多來源查證 | `sunnydata-deep-research` |
 | 2+ 個真正獨立的子任務 | `sunnydata-parallel-agents` |
+| 決定測試接縫、判斷抽象值不值得 | `sunnydata-codebase-design` |
+| 想法太大、連要問什麼都還不確定 | `sunnydata-wayfind` |
+| 答案在人身上不在文件裡 | `sunnydata-questionnaire` |
 | 回答太長太散 | `adhd-dev-mode`、`sunnydata-plain-explain` |
 
-完整路由與 community 能力庫見 [.claude/skills/INDEX.md](.claude/skills/INDEX.md)。
+完整路由與 community 能力庫見 [.claude/skills/INDEX.md](.claude/skills/INDEX.md)；實際怎麼跑一輪見 [.claude/PLAYBOOK.md](.claude/PLAYBOOK.md)。
 
 ---
 

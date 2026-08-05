@@ -58,7 +58,17 @@ Anthropic 在 Opus 5 發布時把 Claude Code 的系統提示詞砍掉 80%（約
 - `.claude/rules/thinking-boundary.md`
 - `.claude/rules/plain-language-answers.md`
 - `.claude/ABLATION.md` 的方法與分類表
-- `.claude/skills/` 下所有非 Action Skill
+- `.claude/skills/` 下所有非 Action Skill——**其中這幾個是兩線共用的工程紀律，最容易漂**：
+  `sunnydata-codebase-design`（接縫詞彙）、`sunnydata-code-review/references/two-axis-review.md`、
+  `sunnydata-testing` 的接縫與反模式段、`sunnydata-design` 的垂直切片段
+
+**同名但刻意不同的**（不要盲目同步）：
+
+| 檔案 | main（通用） | Pilot |
+|---|---|---|
+| `sunnydata-wayfind` / `wayfind` | 地圖在 `docs/maps/`，交棒 `sunnydata-design` | 地圖在 `docs/document-system/maps/`，交棒 `/intake`／`/specify` |
+| `sunnydata-questionnaire` | 獨立 skill，答覆落 spec/plan | `/intake` 的 reference，答覆回填 ①需求決策 |
+| 切片的落腳處 | `sunnydata-design` Phase 2，狀態靠原生 task | `/deliver` ＋ Excel ③ 切片看板 |
 
 **刻意不一致**（各自服務不同階段，不要同步）：
 
@@ -70,4 +80,5 @@ Anthropic 在 Opus 5 發布時把 Claude Code 的系統提示詞砍掉 80%（約
 
 | 日期 | 動作 | 結果 |
 | :--- | :--- | :--- |
+| 2026-08-05 | 從 Pilot 路線移植**通用工程紀律**（接縫詞彙、垂直切片、兩軸 review、TDD 反模式、context 衛生、wayfind、問卷、ADR 三條件閘）。刻意不搬 Excel 看板、追溯 ID、簽核閘與證據閉環 | 常駐面 211 → 未新增規則，只加路由指標 |
 | 2026-08-04 | 從 Pilot 路線移植消融後的 harness：刪 16 slash commands、18 output-styles、6 hooks、`context/`／`coordination/`／`taskmaster-data/` 與 7 份舊 rules；換上消融後的 `rules/`、skill 漸進揭露結構與本檔機制 | 常駐面 443 → 211 行（−52%）；`.claude/` 82,955 → 70,348 行、345 → 306 檔 |

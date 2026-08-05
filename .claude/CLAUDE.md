@@ -16,7 +16,7 @@
 
 ## 工作方式
 
-**沒有寫死的命令序列。** 遇到適用的 Skill 先載入其指示再行動；除錯、資安、API、測試、前端、架構等能力按任務載入對應 `sunnydata-*` 或 `community-*` Skill。使用者直接要求的結果與 `rules/golden-rules.md` 優先。
+**沒有寫死的命令序列**（結構見 [WORKFLOW.md](WORKFLOW.md)，走查與決策點見 [PLAYBOOK.md](PLAYBOOK.md)）。 遇到適用的 Skill 先載入其指示再行動；除錯、資安、API、測試、前端、架構等能力按任務載入對應 `sunnydata-*` 或 `community-*` Skill。使用者直接要求的結果與 `rules/golden-rules.md` 優先。
 
 避免為同一件事同時套用多個流程型 Skill。
 
