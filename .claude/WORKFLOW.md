@@ -50,7 +50,7 @@
 
 ## 文件什麼時候寫
 
-`VibeCoding_Workflow_Templates/` 的 17 份是**選用的**，不是待辦清單。
+`VibeCoding_Workflow_Templates/` 的 18 份是**選用的**，不是待辦清單。
 
 | 階段 | 通常值得寫 |
 |---|---|

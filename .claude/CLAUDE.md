@@ -11,7 +11,7 @@
 - `agents/`：需要獨立 context、權限邊界、平行處理或專業驗證時才使用。
 - `output-styles/`：只改變回答呈現方式，不承載開發流程。
 - `hooks/`：零註冊，只留設計指南；不得把專案管理狀態偷偷寫入。
-- `VibeCoding_Workflow_Templates/`：17 份工程文件模板。**依需要取用，不強制填滿**——POC 期填 PRD 與 ADR 通常就夠，其餘等真的需要時再補。
+- `VibeCoding_Workflow_Templates/`：18 份工程文件模板。**依需要取用，不強制填滿**——POC 期填 PRD 與 ADR 通常就夠，其餘等真的需要時再補。
 - `.out-of-scope/`：已審視並拒絕的機制與理由；重新提案前先讀對應檔。
 
 ## 工作方式

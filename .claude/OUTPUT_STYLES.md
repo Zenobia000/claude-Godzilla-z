@@ -17,6 +17,6 @@ Output Style 只負責「回答怎麼呈現」，不負責「工作怎麼執行�
 這些責任現在由下列位置承接：
 
 - 領域方法與流程：`sunnydata-*`、`community-*` Skills（按需載入）
-- 文件格式：`VibeCoding_Workflow_Templates/` 的 17 份模板
+- 文件格式：`VibeCoding_Workflow_Templates/` 的 18 份模板
 
 舊檔仍可由 Git 歷史取回，但不再進入 Claude Code 的執行期選單。

@@ -1,6 +1,6 @@
 # 專案結構總覽
 
-> **定位:** 快速 POC 用的 Claude Code harness | **更新:** 2026-08-04
+> **定位:** 快速 POC 用的 Claude Code harness | **更新:** 2026-08-05
 
 ---
 
@@ -59,8 +59,9 @@ claude-Godzilla-z/
 │   └── mcp-configs/
 │       └── README.md                   # MCP 推薦清單
 │
-├── VibeCoding_Workflow_Templates/     # 17 份工程文件模板（選用，不是待辦清單）
+├── VibeCoding_Workflow_Templates/     # 18 份工程文件模板（選用，不是待辦清單）
 │   ├── INDEX.md                       # 模板索引
+│   ├── 00_requirements_amulet.md      # 需求護身符（固定入口，不產文件）
 │   ├── 01_workflow_manual.md          # 模板選用路由
 │   ├── 02_project_brief_and_prd.md    # PRD
 │   ├── 03_behavior_driven_development_guide.md  # BDD
@@ -125,7 +126,7 @@ claude-Godzilla-z/
 | 需求權威 | 無 | `requirements_tracker.xlsx` ①需求決策 |
 | 硬閘 | 無 | owner 簽核後才可工程化 |
 | 追溯 | 不強制 | `SRC-* → REQ-* → ACPT-* → 證據` 主鏈 |
-| 文件模板 | 17 份經典模板 | 依九層分類重組版 ＋ 三本追蹤簿 |
+| 文件模板 | 18 份經典模板 | 依九層分類重組版 ＋ 三本追蹤簿 |
 
 兩條線共用同一套 harness（`rules/`、`skills/`、`agents/`、`ABLATION.md`）。哪些檔案必須雙線一致、哪些刻意不一致，見 [.claude/ABLATION.md](.claude/ABLATION.md) 的「與 Pilot 路線的同步」。
 
