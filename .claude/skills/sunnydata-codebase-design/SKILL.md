@@ -1,6 +1,6 @@
 ---
 name: sunnydata-codebase-design
-description: Shared vocabulary for designing deep modules — module, interface, depth, seam, adapter, leverage, locality. Use when deciding where a seam goes, designing or improving a module's interface, judging whether an abstraction earns its keep, or when another skill needs this vocabulary (notably /specify when choosing test seams).
+description: Shared vocabulary for designing deep modules — module, interface, depth, seam, adapter, leverage, locality. Use when deciding where a seam goes, designing or improving a module's interface, judging whether an abstraction earns its keep, or when another skill needs this vocabulary (notably sunnydata-design when planning and sunnydata-testing before the first test).
 ---
 
 # Codebase Design
