@@ -40,6 +40,8 @@ description: Turn a decision you cannot answer alone into a questionnaire for so
 - 只在**問題可能被誤讀、或容易招來敷衍答案**時，加一行「為什麼這題重要」。每題都加會變成噪音。
 - 收尾留一個 catch-all：「有沒有我們沒問到、但你覺得我們該知道的？」
 
+**題庫**：需求類問卷（FR／NFR 還沒問清楚）不要從零想題目——取 [`00` 需求護身符](../../../VibeCoding_Workflow_Templates/00_requirements_amulet.md) §3.2／§4.2 的 8＋8 題起手，再依「你要拿回什麼」裁剪。那份已經是 L1 語域，可直接照念；§3.1／§4.1 的完整清單只在往 production 走時才展開。
+
 ## 模板
 
 寫到 `docs/questionnaire-<slug>.md`（或專案既有放需求文件的地方），並從相關的 spec／plan 連過去。

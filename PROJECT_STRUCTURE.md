@@ -61,7 +61,7 @@ claude-Godzilla-z/
 │
 ├── VibeCoding_Workflow_Templates/     # 17 份工程文件模板（選用，不是待辦清單）
 │   ├── INDEX.md                       # 模板索引
-│   ├── 01_workflow_manual.md          # 流程總覽
+│   ├── 01_workflow_manual.md          # 模板選用路由
 │   ├── 02_project_brief_and_prd.md    # PRD
 │   ├── 03_behavior_driven_development_guide.md  # BDD
 │   ├── 04_architecture_decision_record_template.md  # ADR

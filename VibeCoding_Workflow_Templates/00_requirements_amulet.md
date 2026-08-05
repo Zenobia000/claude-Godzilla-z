@@ -1,7 +1,17 @@
 # 需求護身符：角色 × FR × NFR
 
-> **版本:** v1.0 | **更新:** 2026-08-05 | **用途:** 每個專案開工前先過一遍；面試、訪談、Kickoff 可直接照念  
+> **版本:** v1.1 | **更新:** 2026-08-05 | **用途:** 每個專案開工前先過一遍；面試、訪談、Kickoff 可直接照念  
 > **不是什麼:** 不是完整 SRS／SAD 範本（那些用 02–07）；這份只管「問對問題、權責不混」
+
+## 預設深度：不要整份跑
+
+| 你在哪 | 跑哪些 | 大約 |
+| :--- | :--- | :--- |
+| **POC／雛型（預設）** | §3.2 FR 八題 ＋ §4.2 NFR 八題 ＋ §5 開場檢查表 | 十分鐘 |
+| 往 production 走 | 再展開 §3.1／§4.1 的完整必問清單 | 一輪訪談 |
+| 一人多角 | §1–2 當**決策權對照表**讀，不是要你湊四個角色 | — |
+
+§3.1／§4.1 是 22 類窮舉清單，雛型期前置跑完會拖垮驗證速度——見 [`thinking-boundary`](../.claude/rules/thinking-boundary.md)「分析深度配階段」。**跑完檢查表要往哪走，看 [§5.E](#e-下一步先選路再選文件)。**
 
 ---
 
@@ -376,14 +386,25 @@ PM：問題與範圍
 - [ ] 每條重要 NFR 有數字或明確「這版不承諾」
 - [ ] SA 目標與架構策略若衝突，已升級給 PM
 
-### E. 下一步文件（按深度選）
+### E. 下一步：先選路，再選文件
 
-| 階段 | 去做 |
+檢查表的結果決定走哪條路，路徑定義在 [`.claude/PLAYBOOK.md`](../.claude/PLAYBOOK.md)。**文件是路上按需補的，不是待辦清單。**
+
+| 檢查表跑出什麼 | 走哪條路 | 載入 |
+| :--- | :--- | :--- |
+| **B 講不出「做完長什麼樣」** | PLAYBOOK **C：先撥霧**——只產決策，不產交付物 | `sunnydata-wayfind` |
+| **A 的需求 owner 不是你**，答案在別人身上 | 把問題寄出去，別自己猜 | `sunnydata-questionnaire`（題庫取 §3.2／§4.2） |
+| 講得出來，而且很小 | PLAYBOOK **A：直接做**——開分支、做最小可動的、跑起來看 | 不用載 |
+| 講得出來，是一個功能 | PLAYBOOK **B：規劃一輪**——探索 → 定接縫 → 切片，全程不中斷 | `sunnydata-design` → `sunnydata-codebase-design` |
+| **A 需要別人簽核**，或要證明某範圍是誰在何時核准 | 換 **Pilot／企業級路線**（`refactor/document-driven-ecosystem` 分支） | 見 PLAYBOOK「什麼時候換 Pilot 線」 |
+
+**文件按需補。** 判準一句：這份寫下來，會替誰省掉一次來回？答不出來就不寫。完整的「哪份、什麼時候」對照在 [`01` 模板選用路由](./01_workflow_manual.md)——這裡只給最常用的三格：
+
+| 什麼時候 | 補哪份 |
 | :--- | :--- |
-| 雛型 | 問題＋可驗收行為＋最小設計；回不了頭的才開 ADR |
-| Pilot | [`02` PRD](./02_project_brief_and_prd.md) → [`03` BDD](./03_behavior_driven_development_guide.md) → [`05` 架構](./05_architecture_and_design_document.md)＋[`04` ADR](./04_architecture_decision_record_template.md) |
-| 契約開工 | [`06` API](./06_api_design_specification.md)＋[`07` 模組](./07_module_specification_and_tests.md) |
-| 流程選擇 | [`01` 工作流說明](./01_workflow_manual.md) |
+| 雛型驗證中 | 幾乎不寫；回不了頭又反直覺的決策寫一則 [`04` ADR](./04_architecture_decision_record_template.md) |
+| 要有人接手 | [`02` PRD](./02_project_brief_and_prd.md)＋[`05` 架構](./05_architecture_and_design_document.md) |
+| 契約要穩定 | [`06` API](./06_api_design_specification.md)＋[`07` 模組](./07_module_specification_and_tests.md)；驗收要能直接變測試用 [`03` BDD](./03_behavior_driven_development_guide.md) |
 
 ---
 
@@ -403,4 +424,5 @@ PM：問題與範圍
 
 | 版本 | 日期 | 變更 |
 | :--- | :--- | :--- |
+| v1.1 | 2026-08-05 | 接上開發流程：§5.E 改為「先選路（PLAYBOOK A／B／C／Pilot），再選文件」；標明 POC 預設只跑 §3.2＋§4.2＋§5，§3.1／§4.1 往 production 才展開 |
 | v1.0 | 2026-08-05 | 初版：角色分工、SA／架構師 NFR 邊界、FR／NFR 問答清單、開場檢查表 |

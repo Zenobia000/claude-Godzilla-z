@@ -60,6 +60,8 @@
 
 判準一句：**這份文件寫下來，會替誰省掉一次來回？** 答不出來就不寫。
 
+入口是 [`00` 需求護身符](../VibeCoding_Workflow_Templates/00_requirements_amulet.md)（問對問題、不產文件），逐份的取用時機在 [`01` 模板選用路由](../VibeCoding_Workflow_Templates/01_workflow_manual.md)。
+
 ## 常駐約束
 
 | 規則 | 管什麼 |

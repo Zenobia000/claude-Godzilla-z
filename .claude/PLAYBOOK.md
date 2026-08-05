@@ -12,6 +12,8 @@
 | 講得出來，是一個功能 | [B：規劃一輪](#b規劃一輪) |
 | **講不出來** | [C：先撥霧](#c先撥霧) |
 
+> 連這句話都還沒跟人對過：[`00` 需求護身符](../VibeCoding_Workflow_Templates/00_requirements_amulet.md) 的 §3.2／§4.2 各八題 ＋ 開場檢查表，十分鐘跑完就有輪廓。**它只管問對問題，不產文件**，跑完會把你送回這張表。
+
 ---
 
 ## A：直接做
@@ -86,7 +88,7 @@
 
 | 情況 | 動作 |
 |---|---|
-| 答案在**人**身上 | `sunnydata-questionnaire`，別自己猜 |
+| 答案在**人**身上 | `sunnydata-questionnaire`，別自己猜；題庫取[護身符](../VibeCoding_Workflow_Templates/00_requirements_amulet.md) §3.2／§4.2 |
 | 講不出「做完長什麼樣」 | `sunnydata-wayfind`，別開工 |
 | 「該長什麼樣」爭不出來 | 做丟棄式原型；決策折回真碼，原型丟掉 |
 | 一片塞不進一個 context | 切太粗，回去重切 |
@@ -122,6 +124,8 @@
 - 對外交付，驗收條件必須逐條可稽核
 - 多人多團隊，「這條需求有沒有測到」要查得出來
 - 有法規或稽核要求
+
+前置判斷在[護身符 §5.A 權責](../VibeCoding_Workflow_Templates/00_requirements_amulet.md)：需求 owner 與業務驗收簽核的人不是你，通常就已經命中上面某一條。
 
 **先雛型 → 打掉 → 重構是正常路徑。** 別用 production 標準卡雛型，也別用雛型標準交付 production。
 
