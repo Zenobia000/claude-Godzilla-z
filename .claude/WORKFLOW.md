@@ -38,12 +38,30 @@ Agents（隔離）  需要獨立 context／權限／平行時才派出
 | 要寫 API | `sunnydata-api-design` |
 | 要寫測試 / 用 TDD | `sunnydata-testing` |
 | 卡在 bug | `sunnydata-debugging` |
+| 要決定測試接縫、判斷某個抽象值不值得 | `sunnydata-codebase-design` |
+| 想法太大、連要問什麼都還不確定 | `sunnydata-wayfind` |
+| 答案在**人**身上，不在任何文件裡 | `sunnydata-questionnaire` |
 | 前端 UI | `sunnydata-shadcn-ui`、`community-*` |
 | 準備收尾、開 PR | `sunnydata-code-review` → `sunnydata-branch-lifecycle` |
 | 要部署 / 容器化 | `sunnydata-infrastructure` |
 | 回答太長太散 | `adhd-dev-mode`、`sunnydata-plain-explain` |
 
 完整路由見 [skills/INDEX.md](skills/INDEX.md)。
+
+## Context 衛生（哪些步驟共享 context、哪些必須清空）
+
+上面那條節奏講的是**產出**怎麼接。這一節講**思考**怎麼接——兩者不一樣，搞混會讓工作在髒 context 上繼續推導。
+
+| 邊界 | 規則 |
+|---|---|
+| 探索 → 規劃 → 切片（`sunnydata-design` Phase 1→2） | **全程不中斷、不 compact。** 這幾步互為前提，中途壓縮會讓後面的切片建立在被摘要過的推導上 |
+| 規劃 → 實作 | **斷開。** 每個切片從**全新 context** 開始，只讀它自己的計畫 |
+| 切片之間 | **斷開。** 上一片的實作細節對下一片是雜訊 |
+| Review 與驗證 | 獨立 context。要判定的是證據，不是重述實作過程 |
+
+**Smart zone**：模型還能銳利推理的窗口約 120k tokens。規劃還沒完成就逼近它，**不要硬撐**——把當前結論寫進計畫檔，開新 session 續作。壓縮著跑完的規劃，錯誤會一路傳到每個切片。
+
+跨 session 靠**落地產出**接續，不靠對話摘要：計畫檔、已寫的測試、commit 就是交接面。真要一份純過渡的交接筆記，寫到作業系統暫存目錄，**不要進 repo**。
 
 ## 文件什麼時候該寫
 
