@@ -73,11 +73,25 @@ a major feature, before merge to main.
 **Optional but valuable:** when stuck (fresh perspective), before refactoring
 (establish baseline), after fixing a complex bug.
 
-Read `references/review-request.md` when dispatching a review: it holds the
-SHA-capture commands, the `superpowers:code-reviewer` dispatch template and
-placeholders, a full example dispatch, review cadence by workflow type, and
-Phase 2 red flags (never skip review because "it's simple"; never proceed past
-unfixed Critical or Important issues).
+Review runs on **two axes**, as parallel sub-agents so neither pollutes the
+other's context:
+
+- **Standards** — does the diff follow this repo's documented standards, plus a
+  Fowler smell baseline?
+- **Spec** — does it faithfully implement what was actually asked for? Missing,
+  extra (scope creep), or implemented-but-wrong.
+
+A change can pass one and fail the other — "follows every convention but builds
+the wrong thing" is the most expensive failure, and merging the reports is
+exactly what hides it. So the two stay **separate and unranked**. Read
+`references/two-axis-review.md` when dispatching: it holds the fixed-point
+protocol, both sub-agent briefs, the smell baseline to paste in, and the
+aggregation rule.
+
+Read `references/review-request.md` for the mechanics: SHA-capture commands,
+dispatch template and placeholders, a full example, review cadence by workflow
+type, and Phase 2 red flags (never skip review because "it's simple"; never
+proceed past unfixed Critical or Important issues).
 
 ## Phase 3: Receive and Respond to Feedback
 
@@ -113,7 +127,8 @@ START
   |
   v
 [Phase 2: Request Review]
-  Get BASE_SHA + HEAD_SHA → Dispatch code-reviewer subagent with template
+  Pin fixed point → Dispatch Standards + Spec sub-agents in parallel
+  → Report both axes separately, no cross-axis reranking
   |
   v
 [Phase 3: Receive Feedback]

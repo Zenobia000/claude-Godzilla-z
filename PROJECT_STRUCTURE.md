@@ -1,6 +1,6 @@
 # 專案結構總覽
 
-> **定位:** 快速 POC 用的 Claude Code harness | **更新:** 2026-08-04
+> **定位:** 快速 POC 用的 Claude Code harness | **更新:** 2026-08-05
 
 ---
 
@@ -17,7 +17,8 @@ claude-Godzilla-z/
 │
 ├── .claude/                            # Claude Code 核心配置
 │   ├── CLAUDE.md                       # 專案入口、元件責任、維護契約
-│   ├── WORKFLOW.md                     # Rules／Skills／Agents 三層協作模型
+│   ├── WORKFLOW.md                     # 流程結構：三層協作、context 邊界
+│   ├── PLAYBOOK.md                     # 流程用法：三條路線走查、決策點、常見錯誤
 │   ├── ABLATION.md                     # 常駐面消融紀錄與失敗證據登記
 │   ├── README.md                       # `.claude/` 生態系責任分層
 │   ├── OUTPUT_STYLES.md                # Output Style 使用說明
@@ -33,10 +34,10 @@ claude-Godzilla-z/
 │   │   ├── language-register.md        # 文件的 L1/L2/L3 語域
 │   │   └── plain-language-answers.md   # 對話語域：何時翻到決策層
 │   │
-│   ├── skills/          (23 個，按需載入)
+│   ├── skills/          (27 個，按需載入)
 │   │   ├── INDEX.md                    # 情境路由表
 │   │   ├── adhd-dev-mode/              # 輸出密度治理
-│   │   ├── sunnydata-*/       (14)     # 軟體工程能力庫
+│   │   ├── sunnydata-*/       (17)     # 軟體工程能力庫
 │   │   └── community-*/       (9)      # 社群 UI／UX／效能能力
 │   │
 │   ├── agents/          (8 個，需要隔離時才派出)
@@ -58,9 +59,10 @@ claude-Godzilla-z/
 │   └── mcp-configs/
 │       └── README.md                   # MCP 推薦清單
 │
-├── VibeCoding_Workflow_Templates/     # 17 份工程文件模板（選用，不是待辦清單）
+├── VibeCoding_Workflow_Templates/     # 18 份工程文件模板（選用，不是待辦清單）
 │   ├── INDEX.md                       # 模板索引
-│   ├── 01_workflow_manual.md          # 流程總覽
+│   ├── 00_requirements_amulet.md      # 需求護身符（固定入口，不產文件）
+│   ├── 01_workflow_manual.md          # 模板選用路由
 │   ├── 02_project_brief_and_prd.md    # PRD
 │   ├── 03_behavior_driven_development_guide.md  # BDD
 │   ├── 04_architecture_decision_record_template.md  # ADR
@@ -124,7 +126,7 @@ claude-Godzilla-z/
 | 需求權威 | 無 | `requirements_tracker.xlsx` ①需求決策 |
 | 硬閘 | 無 | owner 簽核後才可工程化 |
 | 追溯 | 不強制 | `SRC-* → REQ-* → ACPT-* → 證據` 主鏈 |
-| 文件模板 | 17 份經典模板 | 依九層分類重組版 ＋ 三本追蹤簿 |
+| 文件模板 | 18 份經典模板 | 依九層分類重組版 ＋ 三本追蹤簿 |
 
 兩條線共用同一套 harness（`rules/`、`skills/`、`agents/`、`ABLATION.md`）。哪些檔案必須雙線一致、哪些刻意不一致，見 [.claude/ABLATION.md](.claude/ABLATION.md) 的「與 Pilot 路線的同步」。
 

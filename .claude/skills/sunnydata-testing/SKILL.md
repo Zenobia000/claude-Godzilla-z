@@ -48,6 +48,42 @@ example, watch mode and pre-commit setup, unit test patterns
 (Jest/Vitest + Testing Library), and mocks for external services
 (Supabase, Redis, OpenAI).
 
+## Seams — where tests go
+
+A **seam** is the public boundary you test at: the interface where you observe
+behavior without reaching inside. Tests live at seams, never against internals.
+
+**Test only at pre-agreed seams.** Before writing any test, write down the seams
+under test and confirm them. No test is written at an unconfirmed seam. You
+cannot test everything — agreeing the seams up front is how testing effort lands
+on critical paths and complex logic instead of every edge case.
+
+Four rules for picking one, in order: prefer an existing seam; use the highest
+seam that can still observe the behavior; fewer is better (the ideal number is
+one); if a new seam is genuinely needed, propose it at the highest point you can.
+Load `sunnydata-codebase-design` for the vocabulary and the reasoning behind each.
+
+Ask: "What's the public interface, and which seams should we test?"
+
+## Anti-Patterns
+
+Three ways a test suite rots. Each has a tell:
+
+- **Implementation-coupled** — mocks internal collaborators, tests private
+  methods, or verifies through a side channel (querying the database instead of
+  using the interface). *Tell:* the test breaks when you refactor but behavior
+  hasn't changed.
+- **Tautological** — the assertion recomputes the expected value the way the code
+  does (`expect(add(a, b)).toBe(a + b)`, a snapshot derived by hand the same way,
+  a constant asserted equal to itself), so it passes by construction and can never
+  disagree with the code. *Fix:* expected values must come from an independent
+  source — a known-good literal, a worked example, the spec.
+- **Horizontal slicing** — writing all tests first, then all implementation. Bulk
+  tests verify *imagined* behavior: you test the shape of things rather than
+  user-facing behavior, and you commit to test structure before understanding the
+  implementation. *Fix:* vertical slices — one test → one implementation →
+  repeat, each test a tracer bullet responding to what the last cycle taught you.
+
 ## Choosing and Writing Test Layers
 
 - **Unit** — Read `references/unit-and-tdd-patterns.md` when testing functions,

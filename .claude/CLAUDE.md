@@ -11,12 +11,12 @@
 - `agents/`：需要獨立 context、權限邊界、平行處理或專業驗證時才使用。
 - `output-styles/`：只改變回答呈現方式，不承載開發流程。
 - `hooks/`：零註冊，只留設計指南；不得把專案管理狀態偷偷寫入。
-- `VibeCoding_Workflow_Templates/`：17 份工程文件模板。**依需要取用，不強制填滿**——POC 期填 PRD 與 ADR 通常就夠，其餘等真的需要時再補。
+- `VibeCoding_Workflow_Templates/`：18 份工程文件模板。**依需要取用，不強制填滿**——POC 期填 PRD 與 ADR 通常就夠，其餘等真的需要時再補。
 - `.out-of-scope/`：已審視並拒絕的機制與理由；重新提案前先讀對應檔。
 
 ## 工作方式
 
-**沒有寫死的命令序列。** 遇到適用的 Skill 先載入其指示再行動；除錯、資安、API、測試、前端、架構等能力按任務載入對應 `sunnydata-*` 或 `community-*` Skill。使用者直接要求的結果與 `rules/golden-rules.md` 優先。
+**沒有寫死的命令序列**（結構見 [WORKFLOW.md](WORKFLOW.md)，走查與決策點見 [PLAYBOOK.md](PLAYBOOK.md)）。 遇到適用的 Skill 先載入其指示再行動；除錯、資安、API、測試、前端、架構等能力按任務載入對應 `sunnydata-*` 或 `community-*` Skill。使用者直接要求的結果與 `rules/golden-rules.md` 優先。
 
 避免為同一件事同時套用多個流程型 Skill。
 

@@ -1,5 +1,7 @@
 # Skills 索引與路由
 
+流程結構見 [../WORKFLOW.md](../WORKFLOW.md)；實際走查與決策點見 [../PLAYBOOK.md](../PLAYBOOK.md)。
+
 這個 harness 沒有寫死的流程入口。Skills 是**按需載入的能力庫**——任務語意命中才載入，不無條件常駐。
 
 需要 `/intake → /specify → /deliver → /verify` 這類文件驅動的流程編排、Excel 追蹤簿與簽核硬閘時，換到 Pilot／企業級路線（`refactor/document-driven-ecosystem` 分支）。
@@ -15,6 +17,9 @@
 | 安全敏感（auth、輸入、秘密、供應鏈） | `sunnydata-security` | |
 | 變更完成，要審查 | `sunnydata-code-review` | 行級審查；架構級用 `sunnydata-architecture-review` |
 | 架構有 smell，要評估重構 | `sunnydata-architecture-review` | 既有系統用它；全新設計用 `architect` agent |
+| 要決定測試接縫放哪、某個抽象值不值得存在 | `sunnydata-codebase-design` | 不是 `sunnydata-architecture-review`——後者**找**哪裡痛，前者給描述解法的**詞彙**與接縫規則 |
+| 想法太大、一個 session 裝不下，**連要問什麼都還不確定** | `sunnydata-wayfind` | 不是 `sunnydata-design`——後者探索一個你握得住的問題；wayfind 給你握不住的那種，而且產決策不產方案 |
+| 答案在**人**身上，不在任何文件裡 | `sunnydata-questionnaire` | 不是自己猜——猜出來的被當成事實記下去，比沒答案更貴 |
 | 開分支 / 收尾開 PR | `sunnydata-branch-lifecycle` | |
 | 容器化、CI/CD、部署 | `sunnydata-infrastructure` | |
 | 前端 UI | `sunnydata-shadcn-ui`、`community-*` | |
@@ -52,6 +57,9 @@
 | 安全 | `sunnydata-security` | 信任邊界、auth、輸入、秘密、供應鏈 |
 | Code Review | `sunnydata-code-review` | 變更完成後的高信心審查 |
 | 架構 Review | `sunnydata-architecture-review` | 架構 smells、principles、fixes |
+| 深模組詞彙 | `sunnydata-codebase-design` | seam 放哪、interface 該多小、抽象值不值得 |
+| 撥霧 | `sunnydata-wayfind` | 太大又太模糊、一個 session 裝不下的工作 |
+| 問卷 | `sunnydata-questionnaire` | 把你答不出來的決策變成給別人填的問卷 |
 | 基礎設施 | `sunnydata-infrastructure` | 容器、CI/CD、部署與生產就緒 |
 | 分支生命週期 | `sunnydata-branch-lifecycle` | worktree、commit、PR／merge 收尾 |
 | 深度研究 | `sunnydata-deep-research` | 需要多個權威來源的調查 |
@@ -66,6 +74,8 @@
 | 內容 | 位置 | 常駐面留下的 |
 | :--- | :--- | :--- |
 | Commit message 細則、PR 前置與 body、tangled history 恢復 | `sunnydata-branch-lifecycle/references/git-conventions.md` | `rules/git-workflow.md` 的鐵律與兩條 commit 約束 |
+| 兩軸 review 的派工與 Fowler smell baseline | `sunnydata-code-review/references/two-axis-review.md` | SKILL.md 只留「兩軸為何分開、不得跨軸 rerank」 |
+| 地圖格式、ticket 表欄位、前緣定義 | `sunnydata-wayfind/references/map-contract.md` | SKILL.md 只留兩種模式、四種 ticket 型別、霧與出界的判準 |
 
 ## Community 能力庫
 
@@ -102,5 +112,18 @@
 - [Anthropic skills](https://github.com/anthropics/skills)
 - [Trail of Bits skills](https://github.com/trailofbits/skills)
 - [shadcn/ui skills](https://github.com/shadcn-ui/ui/tree/main/skills/shadcn)
+- [mattpocock/skills](https://github.com/mattpocock/skills)
+
+### 已引入的外部來源
+
+| 本專案的 skill／內容 | 來源 | 授權 | 更新方式 |
+|---|---|---|---|
+| `sunnydata-codebase-design` | [mattpocock/skills](https://github.com/mattpocock/skills) `codebase-design` | MIT © 2026 Matt Pocock | 手動比對上游；接縫選擇規則為本專案新增 |
+| `sunnydata-wayfind` | 同上，`wayfinder` | MIT | 地圖改為 repo 內 markdown＋單一 ticket 表；交棒對象改接 `sunnydata-design` |
+| `sunnydata-questionnaire` | 同上，`to-questionnaire` | MIT | 「grill the send」方法引用；L1 語域與「回答不等於核准」邊界為本專案新增 |
+| `sunnydata-code-review/references/two-axis-review.md` | 同上，`code-review` | MIT | 兩軸與 smell baseline 引用；spec 來源改為通用解析 |
+| `sunnydata-design` 垂直切片段 | 同上，`to-tickets` | MIT | 切片判準與 expand-contract 序列為概念引用 |
+| `sunnydata-testing` 接縫與反模式段 | 同上，`tdd` | MIT | 概念引用，措辭重寫 |
+| `.claude/WORKFLOW.md` Context 衛生段 | 同上，`ask-matt` 的 context hygiene / smart zone | MIT | 概念引用，改綁 `sunnydata-design` 兩階段 |
 
 全域共用：把 skill 目錄 symlink 到 `~/.claude/skills/`，檔案實體留在專案內（版控追得到），全域只放捷徑。

@@ -186,6 +186,16 @@ Every plan MUST start with this header:
 ---
 ```
 
+### Slice Vertically, Not Horizontally
+
+Before tasks, break the work into **tracer-bullet slices** — each a narrow but
+*complete* path through every layer it touches. A horizontal slice can't be
+verified until every other layer lands; a vertical one demos on its own. Read
+[references/vertical-slicing.md](references/vertical-slicing.md) for the four
+tests each slice must pass, prefactoring, blocking edges, and the
+expand–contract sequence for wide refactors. Present the slices numbered and
+confirm granularity and dependencies before writing tasks.
+
 ### Bite-Sized Task Granularity
 
 Each step is one action (2-5 minutes):
