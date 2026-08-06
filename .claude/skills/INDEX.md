@@ -20,6 +20,7 @@
 | 要決定測試接縫放哪、某個抽象值不值得存在 | `sunnydata-codebase-design` | 不是 `sunnydata-architecture-review`——後者**找**哪裡痛，前者給描述解法的**詞彙**與接縫規則 |
 | 想法太大、一個 session 裝不下，**連要問什麼都還不確定** | `sunnydata-wayfind` | 不是 `sunnydata-design`——後者探索一個你握得住的問題；wayfind 給你握不住的那種，而且產決策不產方案 |
 | 答案在**人**身上，不在任何文件裡 | `sunnydata-questionnaire` | 不是自己猜——猜出來的被當成事實記下去，比沒答案更貴 |
+| 要求可能有兩種讀法，或一個想法要先被戳破再投入 | `sunnydata-provoke` | 不是 `sunnydata-design`——後者探索並產出方案；provoke 只在**投入前**施壓，產決策空間不產方案 |
 | 開分支 / 收尾開 PR | `sunnydata-branch-lifecycle` | |
 | 容器化、CI/CD、部署 | `sunnydata-infrastructure` | |
 | 前端 UI | `sunnydata-shadcn-ui`、`community-*` | |
@@ -45,6 +46,8 @@
 
 **已知張力**：`adhd-dev-mode` 要求給 `file:line` 與確切指令，`plain-explain` 要求「用動作講機制、不用元件名」。仲裁在 `plain-language-answers.md` 的「何時不可以白話」第一條——使用者要定位時不白話。
 
+`sunnydata-provoke` **不是第五個權威**：它是 `thinking-boundary` 深思模式「只 provoke」的**方法**（怎麼施壓、怎麼收斂），不決定誰思考。與 `adhd-dev-mode`「別把判斷丟回去」的仲裁寫在該 skill 內——只有「猜錯要重做」的缺口才准問，上限三個。
+
 ## SunnyData 能力庫
 
 | 類別 | Skill | 使用時機 |
@@ -60,6 +63,7 @@
 | 深模組詞彙 | `sunnydata-codebase-design` | seam 放哪、interface 該多小、抽象值不值得 |
 | 撥霧 | `sunnydata-wayfind` | 太大又太模糊、一個 session 裝不下的工作 |
 | 問卷 | `sunnydata-questionnaire` | 把你答不出來的決策變成給別人填的問卷 |
+| 施壓 | `sunnydata-provoke` | 動手前攤模糊（只問會改變產出的），或對已成形的想法跑五軸並收斂 |
 | 基礎設施 | `sunnydata-infrastructure` | 容器、CI/CD、部署與生產就緒 |
 | 分支生命週期 | `sunnydata-branch-lifecycle` | worktree、commit、PR／merge 收尾 |
 | 深度研究 | `sunnydata-deep-research` | 需要多個權威來源的調查 |
