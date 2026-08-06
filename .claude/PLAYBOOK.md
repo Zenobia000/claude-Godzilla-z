@@ -88,6 +88,8 @@
 
 | 情況 | 動作 |
 |---|---|
+| 這個要求可能有兩種讀法 | `sunnydata-provoke` 模式 A：缺口分三級，**只問會改變產出的**（上限 3 個），其餘宣告假設往下做 |
+| 一個想法要先被戳破再投入 | `sunnydata-provoke` 模式 B：五軸施壓，**強制收斂**成最缺的證據＋今天第一步＋可信度 |
 | 答案在**人**身上 | `sunnydata-questionnaire`，別自己猜；題庫取[護身符](../VibeCoding_Workflow_Templates/00_requirements_amulet.md) §3.2／§4.2 |
 | 講不出「做完長什麼樣」 | `sunnydata-wayfind`，別開工 |
 | 「該長什麼樣」爭不出來 | 做丟棄式原型；決策折回真碼，原型丟掉 |
