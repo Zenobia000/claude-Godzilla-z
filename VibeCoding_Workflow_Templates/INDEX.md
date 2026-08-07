@@ -13,6 +13,8 @@
 | 00 | [requirements_amulet.md](./00_requirements_amulet.md) | **需求護身符**：角色分工、FR／NFR 必問、開場檢查表（每個專案先過） |
 | 01 | [workflow_manual.md](./01_workflow_manual.md) | **模板選用路由**：這個專案該寫哪幾份、何時換 Pilot 線（操作層見 `.claude/PLAYBOOK.md`） |
 
+> 剛把這套 harness 複製到新專案、還沒開始寫任何文件？先看 [`_meta/new_project_bootstrap.md`](./_meta/new_project_bootstrap.md)——它不是模板，是起步順序（收集專案資訊、生成該專案的 `CLAUDE.md`），不計入下面的 18 份。
+
 ### 階段 1: 規劃 (02-03)
 
 | # | 檔名 | 用途 |

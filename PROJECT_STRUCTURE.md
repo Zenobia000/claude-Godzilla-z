@@ -9,14 +9,14 @@
 ```
 claude-Godzilla-z/
 ├── README.md                           # 系統總覽、快速開始
-├── CLAUDE_TEMPLATE.md                  # 新專案初始化範本
+├── CLAUDE.md                           # repo 入口：這是什麼、怎麼開始、預設節奏
 ├── PROJECT_STRUCTURE.md                # 本檔案
 ├── MCP_SETUP_GUIDE.md                  # MCP Server 設定指南
 ├── .mcp.json.windows.example           # MCP 範本（Windows）
 ├── .mcp.json.linux.example             # MCP 範本（Linux）
 │
 ├── .claude/                            # Claude Code 核心配置
-│   ├── CLAUDE.md                       # 專案入口、元件責任、維護契約
+│   ├── CLAUDE.md                       # 元件責任、維護契約、Runtime Context
 │   ├── WORKFLOW.md                     # 流程結構：三層協作、context 邊界
 │   ├── PLAYBOOK.md                     # 流程用法：三條路線走查、決策點、常見錯誤
 │   ├── ABLATION.md                     # 常駐面消融紀錄與失敗證據登記
@@ -34,10 +34,10 @@ claude-Godzilla-z/
 │   │   ├── language-register.md        # 文件的 L1/L2/L3 語域
 │   │   └── plain-language-answers.md   # 對話語域：何時翻到決策層
 │   │
-│   ├── skills/          (27 個，按需載入)
+│   ├── skills/          (28 個，按需載入)
 │   │   ├── INDEX.md                    # 情境路由表
 │   │   ├── adhd-dev-mode/              # 輸出密度治理
-│   │   ├── sunnydata-*/       (17)     # 軟體工程能力庫
+│   │   ├── sunnydata-*/       (18)     # 軟體工程能力庫
 │   │   └── community-*/       (9)      # 社群 UI／UX／效能能力
 │   │
 │   ├── agents/          (8 個，需要隔離時才派出)
@@ -61,6 +61,8 @@ claude-Godzilla-z/
 │
 ├── VibeCoding_Workflow_Templates/     # 18 份工程文件模板（選用，不是待辦清單）
 │   ├── INDEX.md                       # 模板索引
+│   ├── _meta/
+│   │   └── new_project_bootstrap.md   # 帶進新專案的起步順序（不常駐）
 │   ├── 00_requirements_amulet.md      # 需求護身符（固定入口，不產文件）
 │   ├── 01_workflow_manual.md          # 模板選用路由
 │   ├── 02_project_brief_and_prd.md    # PRD
@@ -110,6 +112,8 @@ claude-Godzilla-z/
 | **專案共用** | `.claude/settings.json` | 最小權限基線、敏感路徑 deny、StatusLine |
 | **個人設定** | `.claude/settings.local.json` | 個人權限、MCP 啟用清單（不入版控） |
 | **MCP 定義** | `.mcp.json` | MCP Server 設定（含 API keys，不入版控） |
+| **常駐入口** | `CLAUDE.md`（根目錄） | 自動載入；只放入口與節奏，細節一律連結 |
+| **常駐責任** | `.claude/CLAUDE.md` | 自動載入；元件責任與維護契約 |
 | **常駐規則** | `.claude/rules/*.md` | 自動載入，每次對話生效 |
 | **按需能力** | `.claude/skills/*/SKILL.md` | 任務語意命中才載入 |
 | **漸進揭露** | `.claude/skills/*/references/*.md` | SKILL.md 指示時才讀 |

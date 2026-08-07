@@ -1,14 +1,10 @@
-<!-- CLAUDE_CODE_PROJECT_TEMPLATE_V4 -->
+# 新專案啟動（Bootstrap）
 
-# Claude Code 專案初始化範本
+> 把這套 harness 帶進**新專案**時的起步順序。本檔**不常駐**——開新專案時才讀。
+>
+> 這個 repo 自己的入口是根目錄的 [`CLAUDE.md`](../../CLAUDE.md)，不是這一份。
 
-> **版本:** v6.0-poc | **作者:** Sunny | **模式:** 人類主導
-
-當 Claude Code 偵測到此檔案時：
-1. 顯示範本資訊
-2. 詢問：「偵測到專案初始化範本，要開始設定嗎？」
-3. 同意後依下方 Phase 1–3 逐段收集資訊
-4. 完成後刪除此檔案
+複製 `.claude/` 到新專案後，在那個專案裡跑一次下面的 Phase 1–3，產出該專案自己的 `CLAUDE.md`。這份 bootstrap 只在新專案那一側需要，不必跟著複製過去。
 
 ---
 
@@ -55,7 +51,7 @@ Claude Code 在使用者確認後：
 4. **初始化 Git** -- .gitignore + 初始 commit
 5. **設定 GitHub** -- 如使用者選擇
 6. **建立 WBS** -- 任務分解結構
-7. **刪除此範本**
+7. **清掉新專案裡用不到的模板**
 
 ---
 
@@ -189,7 +185,7 @@ GitHub 儲存庫設定：
 配置：
 - CLAUDE.md 規則生效
 - 5 條常駐規則 (.claude/rules/，175 行)
-- 23 個按需載入的 Skill
+- 28 個按需載入的 Skill
 - 8 個隔離型 Agent 就緒
 - 18 份工程文件模板（選用）
 - GitHub: [啟用/未啟用]
@@ -199,5 +195,3 @@ GitHub 儲存庫設定：
 2. 需求還模糊就載入 sunnydata-design
 3. 開始寫，卡住再載入對應能力
 ```
-
-<!-- CLAUDE_CODE_INIT_END -->

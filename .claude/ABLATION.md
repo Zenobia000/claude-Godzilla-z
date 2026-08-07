@@ -35,12 +35,13 @@
 
 ## 分類現況
 
-盤點日 2026-08-05。常駐面 = `CLAUDE.md` + `rules/*.md`，共 211 行。
+盤點日 2026-08-05（根目錄 `CLAUDE.md` 於 2026-08-07 新增，未重跑全面消融）。常駐面 = 根目錄 `CLAUDE.md` + `.claude/CLAUDE.md` + `rules/*.md`，共 237 行。
 
 | 檔案 | 類型 | 失敗證據 | 下次處置 |
 |---|---|---|---|
-| `CLAUDE.md` 元件責任與工作方式 | 意圖 | — | 保留 |
-| `CLAUDE.md` 維護契約 | 意圖 | router 說謊、frontmatter 指向已刪檔 | 保留 |
+| 根目錄 `CLAUDE.md` 入口與節奏 | 意圖 | — | 保留（只放入口；長出細節就是該下放到連結目標的訊號）|
+| `.claude/CLAUDE.md` 元件責任 | 意圖 | — | 保留 |
+| `.claude/CLAUDE.md` 維護契約 | 意圖 | router 說謊、frontmatter 指向已刪檔 | 保留 |
 | `golden-rules.md` | 意圖 | — | 保留（他檔以「第 N 條」引用，編號須穩定）|
 | `git-workflow.md` 先開分支 | 補丁 | **未登記** | ⚠ 重驗：base 提示已含「預設分支先開分支」 |
 | `git-workflow.md` 多 session 協調 | 補丁 | 跨 session duplicate cherry-pick、stale branch | 保留 |
@@ -71,7 +72,7 @@ main（通用）是 harness 真相源；Pilot（`refactor/document-driven-ecosys
 | questionnaire | 獨立 skill，答覆落 spec/plan | `/intake` 的 reference，回填 ①需求決策 |
 | 切片落腳處 | `sunnydata-design` Phase 2，原生 task | `/deliver` ＋ Excel ③ 切片看板 |
 
-**完全不同步**：`CLAUDE.md`、`WORKFLOW.md`、`PLAYBOOK.md`、`skills/INDEX.md`（定位不同）、`rules/language-register.md`（POC 版無追溯 ID 與簽核邊界）、`VibeCoding_Workflow_Templates/`。
+**完全不同步**：根目錄 `CLAUDE.md`、`.claude/CLAUDE.md`、`WORKFLOW.md`、`PLAYBOOK.md`、`skills/INDEX.md`（定位不同）、`rules/language-register.md`（POC 版無追溯 ID 與簽核邊界）、`VibeCoding_Workflow_Templates/`（含 `_meta/new_project_bootstrap.md`）。
 
 ## 沿革
 
