@@ -5,7 +5,7 @@
 ```text
 claude-Godzilla-z/
 ├── .claude/
-│   ├── CLAUDE.md                 # 生態系入口與責任邊界
+│   ├── CLAUDE.md                 # 元件責任、維護契約、Runtime Context
 │   ├── settings.json             # 最小設定；內建 Read/Edit 敏感路徑 deny
 │   ├── WORKFLOW.md               # 流程結構：流程圖、入口、context 邊界（唯一權威）
 │   ├── PLAYBOOK.md               # 流程用法：三條路線走查、決策點、常見錯誤
@@ -30,7 +30,7 @@ claude-Godzilla-z/
 │
 ├── VibeCoding_Workflow_Templates/    # Pilot 核心 15 份模板＋3 本角色追蹤簿（企業級文件依需增建）
 │   ├── INDEX.md                  # 文件選用與模板索引
-│   ├── _meta/                    # workflow_manual、template_standard
+│   ├── _meta/                    # workflow_manual、template_standard、new_project_bootstrap
 │   ├── 01_requirements/          # requirements_tracker、prd、brd、srs
 │   ├── 02_ux_ui/                 # ux_research_and_journey、information_architecture、ui_spec
 │   ├── 03_architecture/          # sad、adr、diagrams/（drawio 大圖＋工具）、engineering_tracker
@@ -48,7 +48,7 @@ claude-Godzilla-z/
 ├── software_development_documentation_guide_zh_tw.docx
 │                                  # 企業文件全景與選用參考
 ├── CHANGELOG.md                   # 版本沿革（版本號唯一真相源：README badge）
-├── CLAUDE_TEMPLATE.md             # 新專案啟動範本
+├── CLAUDE.md                      # repo 入口：這是什麼、怎麼開始、預設節奏
 ├── README.md
 ├── MCP_SETUP_GUIDE.md
 └── .mcp.json.*.example
@@ -58,7 +58,8 @@ claude-Godzilla-z/
 
 | 元件 | 載入時機 | 設計限制 |
 |---|---|---|
-| `CLAUDE.md` | 專案啟動 | 只放入口與責任 |
+| `CLAUDE.md`（根目錄） | 每次對話 | 只放入口與預設節奏，細節一律連結 |
+| `.claude/CLAUDE.md` | 每次對話 | 元件責任與維護契約，不重複根目錄的入口敘述 |
 | `rules/*.md` | 每次對話 | 只放恆定規則（golden、git、語域、思考邊界） |
 | `skills/*/SKILL.md` | 人工或語意觸發 | 方法與知識可漸進載入 |
 | `agents/*.md` | 明確委派 | 隔離 context／工具／權限 |

@@ -98,7 +98,7 @@ claude
 /intake path/to/requirements.xlsx
 ```
 
-只有口頭構想時也從 `/intake` 開始，讓 AI 先建立來源登錄與待確認事項。新專案啟動提示見 [CLAUDE_TEMPLATE.md](CLAUDE_TEMPLATE.md)。
+只有口頭構想時也從 `/intake` 開始，讓 AI 先建立來源登錄與待確認事項。把這套生態系帶進新專案的起步順序見 [new_project_bootstrap.md](VibeCoding_Workflow_Templates/_meta/new_project_bootstrap.md)。
 
 個人 MCP 與額外權限放在不入 Git 的本機設定；範例見 [MCP_SETUP_GUIDE.md](MCP_SETUP_GUIDE.md)。
 

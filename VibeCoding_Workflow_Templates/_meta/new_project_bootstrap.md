@@ -1,8 +1,8 @@
-<!-- CLAUDE_CODE_PROJECT_TEMPLATE_V6 -->
+# 新專案啟動（Bootstrap）
 
-# Claude Code 專案啟動範本
-
-> **模式：** 人類主導、文件驅動、證據閉環
+> 把這套生態系帶進**新專案**時的起步順序。本檔**不常駐**——開新專案、或替既有專案補來源登錄時才讀。
+>
+> 這個 repo 自己的入口是根目錄的 [`CLAUDE.md`](../../CLAUDE.md)，不是這一份。
 
 ## 啟動方式
 
@@ -44,11 +44,11 @@ approval_status: Draft
 | Pilot／客戶驗證 | 給真實使用者驗、要簽核 | BRD/PRD/SRS、UX/UI、SAD/ADR、API/DB、Test/UAT、Deployment/Runbook（依缺口裁剪） |
 | 企業級（Enterprise） | 法規、多團隊、高風險 | 文件管制、NFR、SDS、SIT/UAT、Monitoring、Change Request |
 
-企業文件如何選用：`software_development_documentation_guide_zh_tw.docx`（治理智慧已萃取進 `VibeCoding_Workflow_Templates/_meta/workflow_manual.md`）
+企業文件如何選用：[`software_development_documentation_guide_zh_tw.docx`](../../software_development_documentation_guide_zh_tw.docx)（治理智慧已萃取進 [`workflow_manual.md`](./workflow_manual.md)）
 
-工程文件如何填寫：`VibeCoding_Workflow_Templates/`
+工程文件如何填寫：[`VibeCoding_Workflow_Templates/INDEX.md`](../INDEX.md)
 
-需求決策：`VibeCoding_Workflow_Templates/01_requirements/requirements_tracker.xlsx` ①需求決策（owner 拍板；③Gate 簽核）
+需求決策：`01_requirements/requirements_tracker.xlsx` ①需求決策（owner 拍板；③Gate 簽核）
 
 ## Phase 3：工程化規格
 
@@ -87,9 +87,9 @@ approval_status: Draft
 - 未執行項目、阻塞與殘餘風險
 - Requirement、Code reality、Verification 三種獨立狀態
 
-## 建議生成的專案指令
+## 目標專案的 CLAUDE.md
 
-目標專案的 `CLAUDE.md` 應短小，只記錄該專案特有資訊：
+新專案的 `CLAUDE.md` 應短小，只記錄**該專案特有**的資訊。不要把 Godzilla 自己的根 `CLAUDE.md` 整份複製過去——那份講的是這個 harness 本身：
 
 ```markdown
 # [PROJECT_NAME]
@@ -116,6 +116,4 @@ approval_status: Draft
 使用 `/intake → /specify → /deliver → /verify`（想法太大時先走 `/wayfind`），並遵循 `.claude/rules/golden-rules.md`。
 ```
 
-不要把通用 coding style、固定覆蓋率、整套 Git 流程或所有 Skill 內容複製進專案 `CLAUDE.md`。
-
-<!-- CLAUDE_CODE_INIT_END -->
+不要把通用 coding style、固定覆蓋率、整套 Git 流程或所有 Skill 內容複製進專案 `CLAUDE.md`——那些已經在 `.claude/rules/` 與 `.claude/skills/` 裡。
