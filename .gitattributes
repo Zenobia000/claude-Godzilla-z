@@ -1,2 +1,7 @@
-# Shell scripts must keep LF line endings (cross-platform)
-*.sh text eol=lf
+# Repo lives on /mnt/d and gets edited from both Windows and WSL.
+# Normalize everything to LF in the index and in the working tree, so a
+# Windows editor rewriting line endings cannot produce 291-file phantom diffs.
+* text=auto eol=lf
+
+# Auto-detection is reliable, but be explicit for the binaries we ship.
+*.png binary
