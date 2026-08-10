@@ -16,7 +16,7 @@
 
 | 資料夾 | 對應層（Word 章） | 模板 | 典型 Action |
 |---|---|---|---|
-| [`_meta/`](./_meta/) | 流程指南 | [workflow_manual](./_meta/workflow_manual.md)、[template_standard](./_meta/template_standard.md) | 全流程 |
+| [`_meta/`](./_meta/) | 流程指南 | [workflow_manual](./_meta/workflow_manual.md)、[template_standard](./_meta/template_standard.md)、[new_project_bootstrap](./_meta/new_project_bootstrap.md) | 全流程／開新專案 |
 | [`01_requirements/`](./01_requirements/) | 需求分析（ch5） | [prd](./01_requirements/prd.md)、[brd](./01_requirements/brd.md)、[srs](./01_requirements/srs.md)、`requirements_tracker.xlsx` | `/intake`、`/specify` |
 | [`02_ux_ui/`](./02_ux_ui/) | UX／UI（ch6–7） | [ux_research_and_journey](./02_ux_ui/ux_research_and_journey.md)、[information_architecture](./02_ux_ui/information_architecture.md)、[ui_spec](./02_ux_ui/ui_spec.md) | `/specify`、`/deliver` |
 | [`03_architecture/`](./03_architecture/) | 系統架構（ch8） | [sad](./03_architecture/sad.md)、[adr](./03_architecture/adr.md)、[diagrams/](./03_architecture/diagrams/)（drawio 溝通級大圖）、`engineering_tracker.xlsx` | `/specify` |

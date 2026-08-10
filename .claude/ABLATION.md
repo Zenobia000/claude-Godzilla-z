@@ -29,12 +29,13 @@ Anthropic 在 Opus 5 發布時把 Claude Code 的系統提示詞砍掉 80%（約
 
 ## 常駐內容分類現況
 
-盤點日：2026-08-04。常駐面 = `.claude/CLAUDE.md` + `.claude/rules/*.md`。
+盤點日：2026-08-04（根目錄 `CLAUDE.md` 於 2026-08-07 新增，未重跑全面消融）。常駐面 = 根目錄 `CLAUDE.md` + `.claude/CLAUDE.md` + `.claude/rules/*.md`。
 
 | 檔案 | 類型 | 失敗證據 | 下次消融處置 |
 | :--- | :--- | :--- | :--- |
-| `CLAUDE.md` 元件責任 | 意圖 | — | 保留 |
-| `CLAUDE.md` 維護契約 | 意圖 | 生態系改動造成 router 說謊、單一真相源 drift | 保留 |
+| 根目錄 `CLAUDE.md` 入口 | 意圖 | — | 保留（只放入口與節奏；長出細節就是該下放到連結目標的訊號） |
+| `.claude/CLAUDE.md` 元件責任 | 意圖 | — | 保留 |
+| `.claude/CLAUDE.md` 維護契約 | 意圖 | 生態系改動造成 router 說謊、單一真相源 drift | 保留 |
 | `golden-rules.md` | 意圖 | — | 保留（其他檔以「第 N 條」引用，編號須穩定） |
 | `git-workflow.md` 先開分支 | 補丁 | **未登記** | 重驗：base 系統提示已含「若在預設分支先開分支」 |
 | `git-workflow.md` 多 session 協調 | 補丁 | 跨 session duplicate cherry-pick、stale branch | 保留 |
