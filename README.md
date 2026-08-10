@@ -12,7 +12,7 @@
 
 </div>
 
-> 一套開箱即用的 Claude Code 開發配置模板 — **28 個按需載入的 Skills、18 份工程文件模板、~210 行常駐面**。
+> 一套開箱即用的 Claude Code 開發配置模板 — **28 個按需載入的 Skills、18 份工程文件模板、~237 行常駐面**。
 > 為快速 POC 設計：能力全都在，但不帶文件治理的硬邊界。複製到新專案，直接啟動。
 
 ---
@@ -48,13 +48,14 @@ ln -s "$(pwd)/.claude/skills/sunnydata-architecture-review" \
 ## 結構
 
 ```
+CLAUDE.md                  # repo 入口：這是什麼、怎麼開始、預設節奏
 .claude/
-├── CLAUDE.md              # 專案入口與維護契約
+├── CLAUDE.md              # 元件責任與維護契約
 ├── WORKFLOW.md            # Rules／Skills／Agents 三層怎麼一起運作（結構）
 ├── PLAYBOOK.md            # 三條路線走查、決策點、常見錯誤（用法）
 ├── ABLATION.md            # 常駐面消融紀錄（每條規則的失敗證據）
 ├── rules/           (5)   # 永遠生效的常駐規則，共 175 行
-├── skills/          (27)  # 按需載入的能力庫（sunnydata-* / community-*）
+├── skills/          (28)  # 按需載入的能力庫（sunnydata-* / community-*）
 ├── agents/          (8)   # 需要隔離 context 或權限時才派出
 ├── output-styles/   (1)   # 只改呈現，不承載流程
 ├── hooks/                 # 零註冊，只留設計指南
